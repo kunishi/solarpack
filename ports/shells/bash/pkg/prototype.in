@@ -1,0 +1,13 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+i postinstall=%%PKGDIR%%/postinstall
+i preremove=%%PKGDIR%%/preremove
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/bash=%%WRK_BASEDIR%%/bin/bash 0755 bin bin
+f none bin/bashbug=%%WRK_BASEDIR%%/bin/bashbug 0755 bin bin
+d none info=%%WRK_BASEDIR%%/info 0755 root bin
+f none info/bash.info=%%WRK_BASEDIR%%/info/bash.info 0644 bin bin
+d none man=%%WRK_BASEDIR%%/man 0755 root bin
+d none man/man1=%%WRK_BASEDIR%%/man/man1 0755 root bin
+f none man/man1/bash.1=%%WRK_BASEDIR%%/man/man1/bash.1 0644 bin bin
+f none man/man1/bashbug.1=%%WRK_BASEDIR%%/man/man1/bashbug.1 0644 bin bin
+d none man/man3=%%WRK_BASEDIR%%/man/man3 0755 root bin

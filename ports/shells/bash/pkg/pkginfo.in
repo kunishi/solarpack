@@ -1,0 +1,9 @@
+PKG=GNUbash
+NAME=GNU bash
+ARCH=%%ARCH%%
+VERSION=2.03
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none

@@ -1,0 +1,11 @@
+cp -p /etc/shells /etc/shells.bak
+(grep -v $CLIENT_BASEDIR/bin/bash /etc/shells.bak) > /etc/shells
+
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+if test -x ${INSTALL_INFO}; then
+	${INSTALL_INFO} --delete --info-dir=${INFODIR} ${INFODIR}/bash.info
+else
+	/usr/bin/echo ">> Remove bash.info entry to ${INFODIR}/dir by hand."
+fi
