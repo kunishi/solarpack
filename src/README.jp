@@ -1,0 +1,72 @@
+-*- text -*-
+
+SOAP -- Solaris Application Packaging tool
+
+Author: 国島丈生 <kunishi@acm.org>
+
+1. はじめに
+
+SOAPは、Solaris用バイナリパッケージを作成するのを支援するツールです。
+FreeBSDのportsや、NetBSDのpkgsrcにならった構成・使い方になっていますが、
+Solarisのパッケージ管理システムに特化したさまざまな機能が追加されてい
+ます。
+
+現在、Solaris7 (SPARC, Intel)にて動作を確認しています。また、Solaris2.6
+(SPARC)でもSOAPのbuildに成功することを確認しています。Solaris8は作者の
+環境が整っておらず、動作は未確認です(動くと思いますが……)。
+
+詳しい特徴や使い方については、付属のドキュメントを参照してください。
+
+2. 入手方法
+
+ftp://psi.c.oka-pu.ac.jp/pub/solaris/SOAP/ にて公開を行っています。
+このディレクトリにある以下のファイルをanonymous ftpにて取得してください。
+
+	README.jp			このファイル
+	soap-src-0.3.2.tar.Z		SOAPソースファイル
+	ports-snap.tar.gz		portsツリースナップショット
+
+3. インストール方法
+
+SOAPをインストールするには、gcc が必要となります。
+http://www.sunfreeware.com/ でバイナリパッケージを取得してインストール
+するなり、Solaris8のメディアについてきているgccをインストールしておく
+なりしてください。また、gccのインストールされたディレクトリにコマンド
+パスが通っている必要があります。また、/usr/ccs/bin にもコマンドパスを
+通しておいてください。
+
+その後、以下の手順でインストールを行ってください。
+
+ (1) soap-src-0.3.2.tar.Z を適当なディレクトリで展開する。
+ (2) cd soap-src-0.3.2
+ (3) ./configure
+     --with-topdir というオプションにより、SOAPをインストールする
+     ディレクトリを指定できる。書式は ./configure --help を参照。
+ (4) env LANG=C make bootstrap
+     これにより、SOAPのバイナリパッケージが release/${ARCH}/${OSREL}/
+     の下に作られます。既存の環境には全く影響しません。ただし、
+     gcc 2.95.2 の full build を2回行うため、ディスク容量はかなり
+     必要です。
+     なお、最近の gmake は LANG=japanese 環境ではインストール時に文句を
+     言われるため、LANG を指定しないか C にしておいてください。
+ (5) release/${ARCH}/${OSREL}/ の下のパッケージ群を pkgadd(1) で
+     インストールしてください。
+ (6) $(SOAP topdir)/share/mk/soap.conf を環境に合わせて編集してください。
+ (7) soap.conf で指定したディレクトリに ports-snap.tar.gz を展開します。
+
+4. 利用方法
+
+詳しくは付属のドキュメントを参照してください。
+
+SOAPインストール時に指定したディレクトリの下に、SOAP実行に必要なコマンド
+がすべて含まれています。この中には gcc などが含まれますので、普段は
+このディレクトリにはパスを通さず、SOAPによってパッケージを作成する場合のみ
+パスを通すようにしたほうがよいでしょう。
+
+5. 注意事項
+
+本システムの利用により損害等を受けても、作者はいっさい責任を取りません。
+あなたの責任において利用してください。
+(ライセンス条項はいずれ整備します)
+
+$Id: README.jp,v 1.1 2000/06/06 09:15:50 kunishi Exp $
