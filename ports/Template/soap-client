@@ -1,0 +1,12 @@
+# $Id: soap-client,v 1.1 2000/04/26 08:00:40 kunishi Exp $
+mail=
+instance=unique
+partial=quit
+runlevel=nocheck
+idepend=quit
+rdepend=quit
+space=nocheck
+setuid=nocheck
+conflict=quit
+action=nocheck
+basedir=default
