@@ -1,8 +1,13 @@
 #
-# $Id: Makefile,v 1.1 1999/05/21 09:35:27 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/05 09:23:39 kunishi Exp $
 #
 
-DISTNAME=	mew-1.93
+PKG=		OPENmew
+NAME=		Mew, Messaging in the Emacs World
+VERSION=	1.93
+VENDOR=		Mew developing team <http://www.mew.org/>
+
+DISTNAME=	mew-${VERSION}
 MASTER_SITES=	ftp://ftp.mew.org/pub/Mew/
 
 INSTALL_TARGET=	install install-info install-jinfo

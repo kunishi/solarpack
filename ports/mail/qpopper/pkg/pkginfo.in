@@ -1,9 +1,0 @@
-PKG=OPENqpop
-NAME=Berkeley POP3 server (now maintained by Qualcomm)
-VERSION=2.53
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Qualcomm Com. <http://www.qualcomm.com/>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

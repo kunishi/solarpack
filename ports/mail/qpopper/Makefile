@@ -1,14 +1,19 @@
 #
-# $Id: Makefile,v 1.1 1999/05/21 10:54:28 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/05 09:24:52 kunishi Exp $
 #
 
-DISTNAME=	qpopper2.53
-PKGNAME=	qpopper-2.53
+PKG=		OPENqpop
+NAME=		Berkeley POP3 server (now maintained by Qualcomm)
+VERSION=	2.53
+VENDOR=		Qualcomm Com. <http://www.qualcomm.com/>
+
+DISTNAME=	qpopper${VERSION}
+PKGNAME=	qpopper-${VERSION}
 MASTER_SITES=	ftp://ftp.qualcomm.com/eudora/servers/unix/popper/
 EXTRACT_SUFX=	.tar.Z
 
 .if defined(POPD_YOUBIN_SUPPORT)
-PKGNAME=	qpopper-youbin-2.53
+PKGNAME=	qpopper-youbin-${VERSION}
 O_DEFS+=	-DYOUBIN -DCALLED_FROM_POPD
 .endif
 

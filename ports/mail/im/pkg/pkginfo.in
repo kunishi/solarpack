@@ -1,9 +1,0 @@
-PKG=OPENim
-NAME=Internet Message, Perl5 commands to integrate Email and NetNews handling.
-VERSION=100
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=IM developing team <http://www.mew.org/>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

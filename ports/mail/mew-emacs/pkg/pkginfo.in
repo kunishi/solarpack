@@ -1,9 +1,0 @@
-PKG=OPENmew
-NAME=Mew, Messaging in the Emacs World
-VERSION=1.93
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Mew developing team <http://www.mew.org/>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
