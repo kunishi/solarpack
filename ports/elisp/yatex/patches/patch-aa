@@ -1,0 +1,27 @@
+--- makefile~	Sun Dec 24 02:07:40 2000
++++ makefile	Fri Nov 30 23:09:20 2001
+@@ -6,11 +6,11 @@
+ PREFIX	= /usr/local
+ 
+ ## mule2
+-EMACS	= mule
+-EMACSDIR= ${PREFIX}/lib/${EMACS}
++#EMACS	= mule
++#EMACSDIR= ${PREFIX}/lib/${EMACS}
+ ## emacs20
+-#EMACS	= emacs
+-#EMACSDIR= ${PREFIX}/share/${EMACS}
++EMACS	= emacs
++EMACSDIR= ${PREFIX}/share/${EMACS}
+ ## XEmacs
+ #EMACS	= xemacs
+ #EMACSDIR= ${PREFIX}/lib/${EMACS}
+@@ -25,7 +25,7 @@
+ INFODIR	= ${PREFIX}/info
+ 
+ TAR	= tar
+-INSTALL	= install -c -m 444
++INSTALL	= ${INSTALL_DATA}
+ MKDIR	= mkdir -p
+ 
+ # Comment out below if you are using Emacs Windows(meadow, etc)

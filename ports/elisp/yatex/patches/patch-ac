@@ -1,0 +1,13 @@
+--- docs/yahtmlj~	Mon Dec 25 19:22:57 2000
++++ docs/yahtmlj	Fri Nov 30 23:16:01 2001
+@@ -3,6 +3,10 @@
+ from file `yahtmlj.tex'
+ using `texinfmt.el' version 2.32 of 19 November 1993.
+ 
++INFO-DIR-SECTION Emacs
++START-INFO-DIR-ENTRY
++* yahtml: (yahtmlj). Yet Another HTML-mode for Emacs. (Japanese).
++END-INFO-DIR-ENTRY
+ 
+ 
+ 

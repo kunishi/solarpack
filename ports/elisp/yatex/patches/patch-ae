@@ -1,0 +1,13 @@
+--- docs/yatexj~	Mon Dec 25 19:22:54 2000
++++ docs/yatexj	Fri Nov 30 23:16:23 2001
+@@ -3,6 +3,10 @@
+ from file `yatexj.tex'
+ using `texinfmt.el' version 2.32 of 19 November 1993.
+ 
++INFO-DIR-SECTION Emacs
++START-INFO-DIR-ENTRY
++* YaTeX: (yatexj). Yet Another tex-mode for Emacs. (Japanese).
++END-INFO-DIR-ENTRY
+ 
+ 
+ 
