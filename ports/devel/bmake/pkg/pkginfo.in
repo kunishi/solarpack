@@ -1,9 +1,0 @@
-PKG=OPENbmake
-NAME=BSD make tool
-VERSION=2.1.14
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Simon J. Gerraty <sjg@quick.com.au>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

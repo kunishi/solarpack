@@ -1,9 +1,0 @@
-PKG=GNUrcs
-NAME=GNU rcs, the Revision Control System
-VERSION=5.7
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Free Software Foundation
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
