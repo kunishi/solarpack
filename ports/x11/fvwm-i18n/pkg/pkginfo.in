@@ -1,0 +1,9 @@
+PKG=OPENfvwm
+NAME=fvwm version 2
+ARCH=%%ARCH%%
+VERSION=2.2
+CATEGORY=application
+VENDOR=Robert Nation, <http://www.fvwm.org/>
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none
