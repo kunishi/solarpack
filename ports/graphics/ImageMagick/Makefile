@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.6 2001/11/19 14:00:47 kunishi Exp $
+# $Id: Makefile,v 1.7 2002/03/18 11:12:55 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	ImageMagick
-VERSION=	5.4.0.5
+VERSION=	5.4.3.11
 PORTREV=	2
 
 PKG=		OPUCimgmg
@@ -14,6 +14,7 @@ VENDOR=		John Cristy <magick@wizards.dupont.com>
 
 MASTER_SITES=	http://imagemagick.sourceforge.net/http/ \
 		ftp://ftp.u-aizu.ac.jp/pub/graphics/ImageMagick/
+DISTNAME=	${PORTNAME}-${VERSION:R}-${VERSION:E}
 
 LIB_DEPENDS=	OPUCbzip2:${PORTSDIR}/archivers/bzip2 \
 		OPUChdf5:${PORTSDIR}/graphics/hdf5 \
@@ -29,10 +30,10 @@ LIB_DEPENDS=	OPUCbzip2:${PORTSDIR}/archivers/bzip2 \
 		OPUClxml2:${PORTSDIR}/textproc/libxml2
 
 GNU_CONFIGURE=	yes
-WRKSRC=		${WRKDIR}/${PORTNAME}-5.4.0/
+WRKSRC=		${WRKDIR}/${PORTNAME}-${VERSION:R}
 CONFIGURE_ENV+=		LD_LIBRARY_PATH=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--enable-shared \
-			--with-perl=${LOCALBASE}/bin/perl \
+			--without-perl \
 			--program-transform-name='s,^,,'
 USE_PERL5=	yes
 USE_GMAKE=	yes
