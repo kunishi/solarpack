@@ -1,3 +1,0 @@
-(cd /usr/bin; \
-  if [ ! -f /usr/bin/perl ]; then \
-    /usr/bin/ln -s $CLIENT_BASEDIR/bin/perl perl; fi)
