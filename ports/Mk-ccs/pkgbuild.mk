@@ -1,5 +1,5 @@
 #
-# $Id: pkgbuild.mk,v 1.10 1999/05/13 12:16:12 kunishi Exp $
+# $Id: pkgbuild.mk,v 1.11 1999/05/14 12:52:56 kunishi Exp $
 #
 
 ### rule definitions
@@ -186,7 +186,7 @@ pkgclean::	clean
 
 distclean::	pkgclean
 	@${ECHO_MSG} "===> Cleaning distfiles for ${PKGNAME}"
-	@for file in ${DISTFILES}; do \
+	@for file in ${DISTFILES} ${PATCHFILES}; do \
 	 ${RM} -rf ${DISTDIR}/$${file}; done
 
 ### only for maintainance
