@@ -1,11 +1,53 @@
 --- Makefile.in.orig	Fri Nov 27 01:03:29 1998
-+++ Makefile.in	Fri Jun 16 21:00:05 2000
-@@ -67,7 +67,7 @@
- 		$(CC) -shared -o $(SHLIB) $(LIBOBJ)
++++ Makefile.in	Mon Nov 12 19:09:10 2001
+@@ -37,23 +37,26 @@
+ 		mono.c ordered.c ordered2.c mb_ordered.c
+ LIBSRC        = @libsrc@
+ LIBOBJ        = @libobj@
+-
++LIBOBJ_SO     = $(LIBOBJ:.o=.so)
  
- install:	$(LIBRARY)
+ # Other files of interest
+ 
+ LIBRARY       = libmpeg.a
+-SHLIB         = libmpeg.so
++SHLIB         = libmpeg.so.1
+ HEADER        = mpeg.h
+ EXTRAS        = @extras@
+ 
+ # Implicit targets
++.SUFFIXES:	.c .o .so
+ .c.o:
+ 		$(CC) -c $(CFLAGS) $(CPPFLAGS) $<
+ 
++.c.so:
++		$(CC) -c -fPIC -DPIC $(CFLAGS) $(CPPFLAGS) $< -o $@
+ 
+ # Library/cleanup targets: 
+ 
+-all:		lib $(EXTRAS)
++all:		lib shlib $(EXTRAS)
+ 
+ lib:		$(LIBRARY)
+ 
+@@ -63,14 +66,15 @@
+ 		$(AR) $(ARFLAGS) $(LIBRARY) $(LIBOBJ)
+ 		$(RANLIB) $(LIBRARY)
+ 
+-$(SHLIB):	$(LIBOBJ)
+-		$(CC) -shared -o $(SHLIB) $(LIBOBJ)
++$(SHLIB):	$(LIBOBJ_SO)
++		$(CC) -shared -Wl,-h -Wl,$(SHLIB) -o $(SHLIB) $(LIBOBJ_SO)
+ 
+-install:	$(LIBRARY)
 -		$(INSTALL) -d $(INSTALL_INCLUDE) $(INSTALL_LIBRARY)
++install:	$(LIBRARY) $(SHLIB)
 +		mkdir -p $(INSTALL_INCLUDE) $(INSTALL_LIBRARY)
  		$(INSTALL) -m 0644 $(HEADER) $(INSTALL_INCLUDE)/$(HEADER)
  		$(INSTALL) -m 0644 $(LIBRARY) $(INSTALL_LIBRARY)/$(LIBRARY)
- 		@if test -f $(SHLIB) ; then echo "warning: $(SHLIB) *not* installed (installing shared libraries is too system-specific)" ; fi
+-		@if test -f $(SHLIB) ; then echo "warning: $(SHLIB) *not* installed (installing shared libraries is too system-specific)" ; fi
++		$(INSTALL) -m 0644 $(SHLIB) $(INSTALL_LIBRARY)/$(SHLIB)
++		ln -s $(SHLIB) $(INSTALL_LIBRARY)/libmpeg.so
+ 
+ clean:
+ 		rm -f $(LIBRARY) $(EXTRAS) $(LIBOBJ) core

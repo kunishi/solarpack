@@ -1,14 +1,14 @@
 #
-# $Id: Makefile,v 1.2 2000/09/27 01:27:50 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/11/12 10:12:38 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	mpeg_lib
 VERSION=	1.3.1
-PORTREV=	1
+PORTREV=	2
 
-PKG=		OPENmpglb
+PKG=		OPUCmpglb
 NAME=		A collection of C routines to decode MPEG movies
 VENDOR=		Gregory P. Ward (gward@python.net)
 
