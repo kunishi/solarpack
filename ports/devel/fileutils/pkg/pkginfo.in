@@ -1,9 +1,0 @@
-PKG=GNUfileut
-NAME=GNU fileutils
-VERSION=4.0
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Free Software Foundation
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

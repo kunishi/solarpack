@@ -1,6 +1,6 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/gchgrp=%%WRK_BASEDIR%%/bin/gchgrp 0755 bin bin
 f none bin/gchmod=%%WRK_BASEDIR%%/bin/gchmod 0755 bin bin
@@ -24,7 +24,7 @@ f none bin/gsync=%%WRK_BASEDIR%%/bin/gsync 0755 bin bin
 f none bin/gtouch=%%WRK_BASEDIR%%/bin/gtouch 0755 bin bin
 f none bin/gvdir=%%WRK_BASEDIR%%/bin/gvdir 0755 bin bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/fileutils.info=%%WRK_BASEDIR%%/info/fileutils.info 0644 bin bin
+f info info/fileutils.info=%%WRK_BASEDIR%%/info/fileutils.info 0644 bin bin
 d none lib=%%WRK_BASEDIR%%/lib 0755 root bin
 d none lib/locale=%%WRK_BASEDIR%%/lib/locale 0755 root bin
 d none lib/locale/cs=%%WRK_BASEDIR%%/lib/locale/cs 0755 root bin
