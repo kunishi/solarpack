@@ -1,9 +1,0 @@
-i pkginfo=./pkginfo
-d none include 0755 bin bin
-f none include/png.h 0644 bin bin
-f none include/pngconf.h 0644 bin bin
-d none lib 0775 root bin
-f none lib/libpng.a 0644 bin bin
-f none lib/libpng.so.2.1.0.3 0755 bin bin
-s none lib/libpng.so.2=libpng.so.2.1.0.3
-s none lib/libpng.so=libpng.so.2

@@ -1,0 +1,22 @@
+--- Makefile.orig	Tue Jun  8 14:03:28 1999
++++ Makefile	Tue Jun  8 14:05:50 1999
+@@ -7,7 +7,7 @@
+ CC=gcc
+ 
+ # where make install puts libpng.a, libpng.so*, and png.h
+-prefix=/usr/local
++prefix=${PREFIX}
+ 
+ # Where the zlib library and include files are located
+ # Changing these to ../zlib poses a security risk.  If you want
+@@ -15,8 +15,8 @@
+ #ZLIBLIB=../zlib
+ #ZLIBINC=../zlib
+ 
+-ZLIBLIB=/usr/local/lib
+-ZLIBINC=/usr/local/include
++ZLIBLIB=${prefix}/lib
++ZLIBINC=${prefix}/include
+ 
+ WARNMORE=-Wwrite-strings -Wpointer-arith -Wshadow \
+          -Wmissing-declarations -Wtraditional -Wcast-align \
