@@ -1,0 +1,5 @@
+user anonymous kunishi@c.oka-pu.ac.jp
+cd /pub/gnu/gzip
+binary
+get gzip-1.2.4.tar
+quit
