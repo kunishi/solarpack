@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.88 2001/11/28 11:10:52 kunishi Exp $
+# $Id: port.mk,v 1.89 2001/11/30 15:21:54 kunishi Exp $
 #
 
 # ${APDK_DIR} and ${APDK_BINDIR} are set in ${APDK_DIR}/share/mk/soap.conf.
@@ -95,6 +95,21 @@ MAKE_INSTALL_ARGS+=	LIBTOOL=${LOCALBASE}/bin/libtool
 BUILD_DEPENDS+=	OPUCperl:${PORTSDIR}/lang/perl5
 RUN_DEPENDS+=	OPUCperl:${PORTSDIR}/lang/perl5
 .endif
+.if defined(USE_EMACS)
+BUILD_DEPENDS+=	OPUCemacs:${PORTSDIR}/editors/emacs
+RUN_DEPENDS+=	OPUCemacs:${PORTSDIR}/editors/emacs
+.endif
+
+BINDIR?=	${PREFIX}/bin
+BINDIR_TMP?=	${WRKDIR}${BINDIR}
+DOCDIR?=	${PREFIX}/share/doc/${PORTNAME}
+DOCDIR_TMP?=	${WRKDIR}${DOCDIR}
+INFODIR?=	${PREFIX}/info
+INFODIR_TMP?=	${WRKDIR}${INFODIR}
+SITELISPDIR?=	${LOCALBASE}/share/emacs/site-lisp
+SITELISPDIR_TMP?=	${WRKDIR}${SITELISPDIR}
+JAVADIR?=	${PREFIX}/share/java
+JAVADIR_TMP?=	${WRKDIR}${JAVADIR}
 
 WRKDIR?=	${MASTERDIR}/work
 WRKSRC?=	${WRKDIR}/${DISTNAME}
@@ -182,8 +197,8 @@ CONFIGURE_COOKIE?=	${WRKDIR}/.configure_done
 BUILD_COOKIE?=		${WRKDIR}/.build_done
 INSTALL_COOKIE?=	${WRKDIR}/.install_done
 PACKAGE_COOKIE?=	${WRKDIR}/.package_done
-INSTPKG_COOKIE?=	${WRKDIR}/.instpkg_done
 RELEASE_COOKIE?=	${WRKDIR}/.release_done
+INSTPKG_COOKIE?=	${WRKDIR}/.instpkg_done
 
 NOTHING_TO_DO?=		/usr/bin/true
 
@@ -245,7 +260,7 @@ FETCH_ENV?=	FTPANONPASS=${PKG_MAINTAINER}
 PATCH?=		gpatch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
-PATCH_ARGS?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
+PATCH_ARGS?=	-N -d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
@@ -294,10 +309,10 @@ FIND?=		/usr/bin/find
 GREP?=		/usr/bin/grep
 .if ${OSREL} >= 5.8
 GZCAT?=		/usr/bin/gzip -cd
-GZIP?=		/usr/bin/gzip
+GZIP?=		/usr/bin/gzip -f
 .else
 GZCAT?=		${APDK_BINDIR}/gzip -cd
-GZIP?=		${APDK_BINDIR}/gzip
+GZIP?=		${APDK_BINDIR}/gzip -f
 .endif
 INSTALL?=	/usr/ucb/install
 JAR?=		/usr/bin/jar
@@ -385,7 +400,7 @@ CONFIGURE_SCRIPT?=	configure
 CONFIGURE_TARGET?=	${GNU_HOSTTYPE}
 
 .if defined(GNU_CONFIGURE)
-CONFIGURE_ARGS+=	--prefix=${PREFIX} ${CONFIGURE_TARGET}
+CONFIGURE_ARGS+=	--prefix=${PREFIX} --target=${CONFIGURE_TARGET}
 HAS_CONFIGURE=		yes
 MAKE_ARGS+=		prefix=${PREFIX}
 .if !defined(PREFIX_AS_INSTPREFIX)
@@ -458,9 +473,9 @@ install:
 	@${IGNORECMD}
 package:
 	@${IGNORECMD}
-instpkg:
-	@${IGNORECMD}
 release:
+	@${IGNORECMD}
+instpkg:
 	@${IGNORECMD}
 .endif
 
@@ -509,12 +524,12 @@ install:	${INSTALL_COOKIE}
 package:	${PACKAGE_COOKIE}
 .endif
 
-.if !target(instpkg)
-instpkg:	${INSTPKG_COOKIE}
-.endif
-
 .if !target(release)
 release:	${RELEASE_COOKIE}
+.endif
+
+.if !target(instpkg)
+instpkg:	${INSTPKG_COOKIE}
 .endif
 
 ${EXTRACT_COOKIE}:
@@ -535,12 +550,12 @@ ${INSTALL_COOKIE}:
 ${PACKAGE_COOKIE}:
 	@cd ${.CURDIR} && ${MAKE} install
 	@cd ${.CURDIR} && ${MAKE} real-package
-${INSTPKG_COOKIE}:
-	@cd ${.CURDIR} && ${MAKE} package
-	@cd ${.CURDIR} && ${MAKE} real-instpkg
 ${RELEASE_COOKIE}:
 	@cd ${.CURDIR} && ${MAKE} package
 	@cd ${.CURDIR} && ${MAKE} real-release
+${INSTPKG_COOKIE}:
+	@cd ${.CURDIR} && ${MAKE} release
+	@cd ${.CURDIR} && ${MAKE} real-instpkg
 
 .if !target(reinstall)
 reinstall:
@@ -629,22 +644,6 @@ real-package:
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
-real-instpkg:
-	@if ${PKGINFO_PROG} -q ${PKG}; then \
-	  ${ECHO_MSG} "===> Package ${PKG} is already installed."; \
-	  exit 1; \
-	fi
-	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
-	@cd ${.CURDIR} && ${MAKE} run-depends lib-depends
-.if target(pre-instpkg)
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
-.endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(post-instpkg)
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
-.endif
-	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
-
 real-release:
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
 .if target(pre-release)
@@ -652,6 +651,26 @@ real-release:
 .endif
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-release)
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-instpkg:
+.if defined(FORCE_INSTPKG)
+	${PKG_DELETE} ${PKG}
+.else
+	@if ${PKGINFO_PROG} -q ${PKG}; then \
+	  ${ECHO_MSG} "===> Package ${PKG} is already installed."; \
+	  exit 1; \
+	fi
+.endif
+	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
+	@cd ${.CURDIR} && ${MAKE} run-depends lib-depends
+.if target(pre-instpkg)
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(post-instpkg)
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
@@ -690,16 +709,18 @@ do-fetch:
 do-extract:
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
+.if !defined(NO_EXTRACT)
 .if defined(USE_ZIP)
-	@for file in ${EXTRACT_ONLY}; do \
+	@for file in "${EXTRACT_ONLY}"; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
 	    cd ${WRKDIR} && (${EXTRACT_CMD} ${DISTDIR}/$${file}); \
 	done
 .else
-	@for file in ${EXTRACT_ONLY}; do \
+	@for file in "${EXTRACT_ONLY}"; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
 	    cd ${WRKDIR} && (${EXTRACT_CMD} ${DISTDIR}/$${file} | ${TAR} xf -); \
 	done
+.endif
 .endif
 .endif
 
@@ -746,7 +767,7 @@ do-configure:
 	@cd ${CONFIGURE_WRKSRC} && ${AUTOCONF} ${AUTOCONF_ARGS}
 .endif
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
-	  cd ${.CURDIR} && ${SH} ${SCRIPTDIR}/configure; \
+	  cd ${.CURDIR} && ${ENV} ${SCRIPT_ENV} ${SH} ${SCRIPTDIR}/configure; \
 	fi
 .if defined(HAS_CONFIGURE)
 	@cd ${CONFIGURE_WRKSRC} && \
@@ -796,20 +817,6 @@ do-package:
 	@${PKGTRANS} -s ${SPOOLDIR} ${.CURDIR}/${PKGNAME} all
 .endif
 
-.if !target(do-instpkg)
-do-instpkg:
-.if defined(CORE_TOOLS)
-	@${ECHO_MSG} "===>  This software is one of the core tools, which"
-	@${ECHO_MSG} "===>  is necessary during make process.  Hence it cannot"
-	@${ECHO_MSG} "===>  be installed by executing this target."
-	@${ECHO_MSG} "===>  Use pkgrm and pkgadd manually to install the package"
-	@${ECHO_MSG} "===>  of this software."
-	@exit 1
-.else
-	${PKGADD} -d ${.CURDIR}/${PKGNAME} all
-.endif
-.endif
-
 .if !target(do-release)
 do-release:
 .if !defined(PKG_WITHOUT_GZIP)
@@ -822,9 +829,15 @@ do-release:
 .endif
 .endif
 
+.if !target(do-instpkg)
+do-instpkg:
+	${GZCAT} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}/${PKGNAME_REAL} > ${WRKDIR}/${PKGNAME}
+	${PKGADD} -d ${WRKDIR}/${PKGNAME} all
+.endif
+
 ###
 
-.for name in fetch extract patch configure build install package instpkg release
+.for name in fetch extract patch configure build install package release instpkg
 .if !target(pre-${name})
 pre-${name}:
 	@${NOTHING_TO_DO}
