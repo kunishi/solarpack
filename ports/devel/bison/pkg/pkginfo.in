@@ -1,9 +1,0 @@
-PKG=GNUbison
-NAME=GNU bison
-ARCH=%%ARCH%%
-VERSION=1.27
-CATEGORY=application
-VENDOR=Free Software Foundation, Inc.
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
