@@ -1,0 +1,9 @@
+PKG=GNUgetxt
+NAME=GNU gettext package
+VERSION=0.10.35
+ARCH=%%ARCH%%
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none
