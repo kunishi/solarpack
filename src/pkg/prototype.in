@@ -1,0 +1,16 @@
+i pkginfo=./pkginfo
+d none lib/pkgbuild=%%INSTPREFIX%% 0755 root bin
+d none lib/pkgbuild/contrib=%%INSTPREFIX%%/contrib 0755 root bin
+d none lib/pkgbuild/contrib/patches=%%INSTPREFIX%%/contrib/patches 0755 root bin
+f none lib/pkgbuild/contrib/patches/site.def.patch=%%INSTPREFIX%%/contrib/patches/site.def.patch 0644 root bin
+f none lib/pkgbuild/contrib/patches/sun.cf.patch=%%INSTPREFIX%%/contrib/patches/sun.cf.patch 0644 root bin
+d none lib/pkgbuild/mk=%%INSTPREFIX%%/mk 0755 root bin
+f none lib/pkgbuild/mk/Makefile=%%INSTPREFIX%%/mk/Makefile 0644 root bin
+f none lib/pkgbuild/mk/pkgbuild.conf=%%INSTPREFIX%%/mk/pkgbuild.conf 0644 root bin
+f none lib/pkgbuild/mk/port.mk.in=%%INSTPREFIX%%/mk/port.mk.in 0644 root bin
+f none lib/pkgbuild/configure=%%INSTPREFIX%%/configure 0755 root bin
+f none lib/pkgbuild/Makefile.in=%%INSTPREFIX%%/Makefile.in 0644 root bin
+d none lib/pkgbuild/pkg=%%INSTPREFIX%%/pkg 0755 root bin
+f none lib/pkgbuild/pkg/pkginfo=%%INSTPREFIX%%/pkg/pkginfo 0644 root bin
+f none lib/pkgbuild/pkg/prototype.in=%%INSTPREFIX%%/pkg/prototype.in 0644 root bin
+f none lib/pkgbuild/configure.in=%%INSTPREFIX%%/configure.in 0644 root bin
