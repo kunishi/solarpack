@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.35 1999/08/27 08:28:16 kunishi Exp $
+# $Id: port.mk,v 1.36 1999/08/27 11:54:05 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -98,14 +98,14 @@ RELEASE_COOKIE?=	${WRKDIR}/.release_done
 
 NOTHING_TO_DO?=		/usr/bin/true
 
-CC?=		gcc
-GMAKE?=		gmake
+CC?=		${PKGBUILDDIR}/bin/gcc
+GMAKE?=		${PKGBUILDDIR}/bin/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 
 CONFIGURE_ENV+=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-MD5?=		${LOCALBASE}/bin/md5
+MD5?=		${PKGBUILDDIR}/bin/md5
 MD5_FILE=	${FILESDIR}/md5
 
 MAKEFILE?=	Makefile
@@ -125,17 +125,17 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
-WGET?=		${LOCALBASE}/bin/wget
+WGET?=		${PKGBUILDDIR}/bin/wget
 WGET_FLAGS?=	-nv
 
-PATCH?=		${LOCALBASE}/bin/patch
+PATCH?=		${PKGBUILDDIR}/bin/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 PATCH_ARGS?=	-d ${WRKSRC} --backup --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --backup --forward --quiet -E ${PATCH_DIST_STRIP}
 
-TAR?=		gtar
+TAR?=		${PKGBUILDDIR}/bin/gtar
 
 EXTRACT_CMD?=	${GZIP_CMD}
 
@@ -166,8 +166,8 @@ ECHO?=		/usr/bin/echo
 ENV?=		/usr/bin/env
 EXPR?=		/usr/bin/expr
 GREP?=		/usr/bin/grep
-GZCAT?=		${LOCALBASE}/bin/gzip -cd
-GZIP?=		${LOCALBASE}/bin/gzip
+GZCAT?=		${PKGBUILDDIR}/bin/gzip -cd
+GZIP?=		${PKGBUILDDIR}/bin/gzip
 INSTALL?=	/usr/ucb/install
 LN?=		/usr/bin/ln
 MV?=		/usr/bin/mv
@@ -215,7 +215,11 @@ MASTER_SITES?=
 PATCH_SITES?=	
 
 DISTFILES?=	${DISTNAME}${EXTRACT_SUFX}
+.if defined(CORE_TOOLS)
+PKGNAME?=	core-${DISTNAME}
+.else
 PKGNAME?=	${DISTNAME}
+.endif
 
 ALLFILES?=	${DISTFILES} ${PATCHFILES}
 
