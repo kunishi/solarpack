@@ -1,18 +1,18 @@
 #
-# $Id: Makefile,v 1.16 2001/11/28 12:20:29 kunishi Exp $
+# $Id: Makefile,v 1.17 2003/01/07 04:25:55 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	cvs
-VERSION=	1.11.1p1
+VERSION=	1.11.4
 PORTREV=	1
 
 PKG=		OPUCcvs
 NAME=		CVS, Concurrent Version System
 
 VENDOR=		Cyclic Software, Com. <http://www.cvshome.org/>
-MASTER_SITES=	ftp://ftp.cvshome.org/pub/cvs-${VERSION:S/p1//}/
+MASTER_SITES=	http://ftp.cvshome.org/cvs-${VERSION:S/p1//}/
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--without-gssapi
