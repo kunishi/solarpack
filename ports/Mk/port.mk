@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.50 2000/01/19 02:19:27 kunishi Exp $
+# $Id: port.mk,v 1.51 2000/01/19 03:54:58 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -64,6 +64,7 @@ INSTPREFIX?=	${WRKDIR}${PREFIX}
 SPOOLDIR?=	${WRKDIR}/spool
 
 PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
+		WRKSRC=${WRKSRC} \
 		INSTPREFIX=${INSTPREFIX} \
 		TEMPLATEDIR=${TEMPLATEDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
@@ -77,8 +78,11 @@ PKGINFO?=	${PKGDIR}/pkginfo
 PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
 CATEGORY?=	application
 MAINTAINER?=	${PKG_MAINTAINER}
-.if defined(CLASS_SHELL)
-CLASSES+=	shell
+
+.if defined(EDITABLE_FILES)
+.for file in ${EDITABLE_FILES}
+CLASS_BACKUP+=	${file}
+.endfor
 .endif
 .if defined(CLASS_INFO)
 USE_INSTALL_INFO=	yes
@@ -86,6 +90,12 @@ CLASSES+=	info
 .endif
 .if defined(USE_INSTALL_INFO)
 RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
+.endif
+.if defined(CLASS_SHELL)
+CLASSES+=	shell
+.endif
+.if defined(CLASS_BACKUP)
+CLASSES+=	backup
 .endif
 CLASSES+=	none
 # NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
@@ -842,6 +852,13 @@ _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
 .endfor
 .endif
 
+.if defined(EDITABLE_FILES)
+.for file in ${EDITABLE_FILES}
+_sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
+	echo "${_sedsubprotoinlist} -e 's?^f \(.* ${file}=.*\)?e \1?'"
+.endfor
+.endif
+
 .if !target(gen-prototype-in)
 PROTOTYPE_IN_BASE!=	${BASENAME} ${PROTOTYPE_IN}
 gen-prototype-in:	${INSTALL_COOKIE}
@@ -860,6 +877,11 @@ gen-prototype-in:	${INSTALL_COOKIE}
 .endfor
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@${ECHO} 'i depend=%%PKGDIR%%/depend' >> ${PROTOTYPE_IN}
+.endif
+.if defined(LICENSE_FILES)
+.for file in ${LICENSE_FILES}
+	@${ECHO} 'i copyright=${file}' >> ${PROTOTYPE_IN}
+.endfor
 .endif
 .if defined(CLASS_INFO)
 	@${ECHO} 'i i.info=%%TEMPLATEDIR%%/i.info' >> ${PROTOTYPE_IN}
