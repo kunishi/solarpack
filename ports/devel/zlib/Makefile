@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2002/03/13 06:53:41 kunishi Exp $
+# $Id: Makefile,v 1.9 2003/02/26 11:00:26 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -8,7 +8,7 @@ PORTNAME=	zlib
 VERSION=	1.1.4
 PORTREV=	1
 
-PKG=		OPENzlib
+PKG=		OPUCzlib
 NAME=		zlib, A general purpose data compression library
 
 VENDOR=		Jean-loup Gailly (jloup@gzip.org) and Mark Adler (madler@alumni.caltech.edu)
