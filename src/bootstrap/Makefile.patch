@@ -1,0 +1,39 @@
+#
+# bootstrap makefile for building GNU patch
+# $Id: Makefile.patch,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+#
+
+TARGET_CMD=	patch
+
+include ${TOPDIR}/bootstrap/config.mk
+
+DISTNAME=	patch-2.5
+DISTFILES=	${DISTNAME}.tar.gz
+SRCURL=		ftp://ftp.gnu.org/pub/gnu/patch/
+
+include ${BOOTSTRAPDIR}/rule.mk
+
+fetch:
+	if [ ! -f ${DISTDIR}/${DISTFILES} ]; then \
+	  (cd ${DISTDIR} && ${FTP} ${SRCURL}${DISTFILES}); \
+	fi
+
+extract:	${FETCH_COOKIE}
+	cd ${WORKDIR} && \
+	  (${GUNZIP} ${DISTDIR}/${DISTFILES} | ${EXTRACT_CMD} -)
+
+patch:		${EXTRACT_COOKIE}
+	${DO_NADA}
+
+configure:	${PATCH_COOKIE}
+	cd ${WORKDIR}/${DISTNAME} && \
+	  ${ENV} CC=${TMPPREFIX}/bin/gcc ./configure --prefix=${TMPPREFIX}
+
+build:		${CONFIGURE_COOKIE}
+	cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake
+
+install:	${BUILD_COOKIE}
+	if [ ! -f ${INSTALL_COOKIE} ]; then \
+	  cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake install; \
+	fi
+	${TOUCH} ${INSTALL_COOKIE}

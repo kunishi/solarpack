@@ -1,0 +1,39 @@
+#
+# bootstrap makefile for building md5
+# $Id: Makefile.md5,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+#
+
+TARGET_CMD=	md5
+
+include ${TOPDIR}/bootstrap/config.mk
+
+DISTNAME=	MD5
+DISTFILES=	MD5.tar.gz
+SRCURL=		ftp://ftp.tut.ac.jp/pub/Security/tool/md5/
+
+include ${BOOTSTRAPDIR}/rule.mk
+
+fetch:
+	if [ ! -f ${DISTDIR}/${DISTFILES} ]; then \
+	  (cd ${DISTDIR} && ${FTP} ${SRCURL}${DISTFILES}); \
+	fi
+
+extract:	${FETCH_COOKIE}
+	${MKDIR} ${WORKDIR}/${DISTNAME}
+	cd ${WORKDIR}/${DISTNAME} && \
+	  (${GUNZIP} ${DISTDIR}/${DISTFILES} | ${EXTRACT_CMD} -)
+
+patch:		${EXTRACT_COOKIE}
+	cd ${WORKDIR}/${DISTNAME} && ${GNUPATCH} < ${BOOTSTRAPDIR}/md5.patch
+
+configure:	${PATCH_COOKIE}
+	${DO_NADA}
+
+build:		${CONFIGURE_COOKIE}
+	cd ${WORKDIR}/${DISTNAME} && ${MAKE} CC=${TMPPREFIX}/bin/gcc
+
+install:	${BUILD_COOKIE}
+	if [ ! -f ${INSTALL_COOKIE} ]; then \
+	  ${INSTALL_PROGRAM} ${WORKDIR}/${DISTNAME}/md5 ${TMPPREFIX}/bin; \
+	fi
+	${TOUCH} ${INSTALL_COOKIE}
