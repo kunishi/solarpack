@@ -1,0 +1,9 @@
+PKG=OPENauctx
+NAME=A much enhanced LaTeX mode for GNU Emacs
+VERSION=9.9p
+CATEGORY=application
+ARCH=%%ARCH%%
+VENDOR=auc-tex_mgr@sunsite.auc.dk
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none

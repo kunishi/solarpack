@@ -1,0 +1,14 @@
+--- doc/auctex.orig	Thu Feb 11 19:19:56 1999
++++ doc/auctex	Tue Jun  1 11:05:37 1999
+@@ -1,7 +1,10 @@
+ This is Info file auctex, produced by Makeinfo-1.55 from the input file
+ auc-tex.texi.
+ 
+-   * AUCTeX::      A much enhanced LaTeX mode for GNU Emacs.   direntry
++INFO-SECTION GNU Emacs tools
++START-INFO-DIR-ENTRY
++* AUCTeX: (auctex).      A much enhanced LaTeX mode for GNU Emacs.   direntry
++END-INFO-DIR-ENTRY
+ 
+ 
+ Indirect:
