@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/06/23 11:19:09 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/07/01 11:21:49 kunishi Exp $
 #
 
 SUBDIR+=	ImageMagick
@@ -13,7 +13,6 @@ SUBDIR+=	libungif
 SUBDIR+=	mpeg-lib
 SUBDIR+=	netpbm
 SUBDIR+=	png
-SUBDIR+=	pnmtopng
 SUBDIR+=	tgif
 SUBDIR+=	tiff
 SUBDIR+=	wmicons
