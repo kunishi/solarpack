@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/05 08:01:09 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/01/19 01:21:50 kunishi Exp $
 #
 
 PKG=		GNUawk
@@ -13,6 +13,7 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gawk/ \
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/gawk.info
 
 .include <port.mk>

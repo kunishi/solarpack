@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/05 04:54:22 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/01/19 01:18:16 kunishi Exp $
 #
 
 PKG=		GNUlibrdl
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/readline/ \
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/history.info info/readline.info
 
 .include <port.mk>

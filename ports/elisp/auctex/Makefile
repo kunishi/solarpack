@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:34:13 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/01/19 01:20:09 kunishi Exp $
 #
 
 PKG=		OPENauctx
@@ -11,7 +11,6 @@ DISTNAME=	auctex-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/text/CTAN/support/auctex/
 
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
 
 MAKE_ARGS+=	prefix=${PREFIX} EMACS=mule
 
@@ -19,6 +18,7 @@ MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX} EMACS=mule
 INSTALL_TARGET=	install install-info install-contrib
 
 DOCS=		README INSTALLATION CHANGES COPYING PROBLEMS
+CLASS_INFO=	info/auctex
 
 post-build:
 	@(cd ${WRKSRC}; ${CCSMAKE} ${MAKE_ARGS} contrib)

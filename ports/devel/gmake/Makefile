@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/01/06 11:04:53 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/01/19 01:17:23 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -23,6 +23,7 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/make/ \
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS+=	--program-prefix=g
-USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/make.info
 
 .include <port.mk>

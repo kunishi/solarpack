@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:34:08 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/01/19 01:18:47 kunishi Exp $
 #
 
 PKG=		GNUlibtl
@@ -13,7 +13,8 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/libtool/ \
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/libtool.info
 
 post-install:
 	${CHOWN} -R ${BINOWN}:${BINGRP} ${INSTPREFIX}/share/libtool
