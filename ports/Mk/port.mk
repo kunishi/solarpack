@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.22 1999/06/04 11:38:19 kunishi Exp $
+# $Id: port.mk,v 1.23 1999/06/05 04:02:10 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -192,6 +192,8 @@ MASTER_SITES_GNU+=	\
 	ftp://ftp.kddlabs.co.jp/pub/gnu/@SUBDIR@/ \
 	ftp://ftp.cdrom.com/pub/gnu/@SUBDIR@/ \
 	ftp://tron.um.u-tokyo.ac.jp/pub/GNU/prep/@SUBDIR@/
+
+VENDOR_GNU=	Free Software Foundation, Inc.
 
 MASTER_SITES?=	
 PATCH_SITES?=	
