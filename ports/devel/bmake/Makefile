@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.17 2000/06/06 04:51:29 kunishi Exp $
+# $Id: Makefile,v 1.18 2000/06/07 13:26:46 kunishi Exp $
 #
 
 PORTNAME=	bmake
-VERSION=	3.1.0
+VERSION=	3.1.1
 PORTREV=	1
 
 .if defined(CORE_TOOLS)
