@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.55 2000/05/12 09:14:01 kunishi Exp $
+# $Id: port.mk,v 1.56 2000/05/15 03:54:17 kunishi Exp $
 #
 
 # ${SOLPKGDIR} and ${SOLPKGBINDIR} are set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -114,7 +114,7 @@ CLASSES+=	none
 
 VERSION_USE_REV?=	yes
 .if (${VERSION_USE_REV} == "yes")
-_VERSION!=	/usr/bin/date '+${VERSION},REV=%G.%m.%d.%H.%M'
+_VERSION!=	/usr/bin/date '+${VERSION},REV=%Y.%m.%d.%H.%M'
 .else
 _VERSION=	${VERSION}
 .endif
