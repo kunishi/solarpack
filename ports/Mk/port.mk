@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.44 2000/01/07 07:09:51 kunishi Exp $
+# $Id: port.mk,v 1.45 2000/01/18 11:25:26 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -75,8 +75,11 @@ PKGINFO?=	${PKGDIR}/pkginfo
 PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
 CATEGORY?=	application
 MAINTAINER?=	${PKG_MAINTAINER}
-.if defined(CATEGORY_SHELL)
+.if defined(CLASS_SHELL)
 CLASSES+=	shell
+.endif
+.if defined(CLASS_INFO)
+USE_INSTALL_INFO=	yes
 .endif
 .if defined(USE_INSTALL_INFO)
 CLASSES+=	info
@@ -600,7 +603,7 @@ do-release:
 .endif
 .if defined(RELEASE_PKG_DIR)
 	if [ -d ${RELEASE_PKG_DIR} ]; then \
-	  ${CP} ${PKGNAME_REAL} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
+	  ${MV} ${PKGNAME_REAL} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
 	fi
 .endif
 .endif
@@ -701,6 +704,7 @@ run-depends:	_DEPENDS_USE
 
 .endif
 
+### targets specific to Solaris package.
 .if !target(gen-depend-pkg-list)
 gen-depend-pkg-list:
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
@@ -723,14 +727,24 @@ print-name:
 
 .if !target(gen-depend)
 gen-depend:
-.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
+.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS) || defined(INCOMPAT_PKGS)
 	@${ECHO_MSG} "===>  Generating depend"
+.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@for entry in `cd ${MASTERDIR} && ${MAKE} gen-depend-pkg-list`; do \
 	  pkg=`${ECHO} $${entry} | ${SED} -e 's/:.*//'`; \
 	  dir=`${ECHO} $${entry} | ${SED} -e 's/[^:]*://'`; \
 	  name=`cd $${dir} && ${MAKE} print-name`; \
 	  ${ECHO} "P $${pkg} $${name}" >> ${DEPEND}; \
 	done
+.endif
+.if defined(INCOMPAT_PKGS)
+	@for entry in ${INCOMPAT_PKGS}; do \
+	  pkg=`${ECHO} $${entry} | ${SED} -e 's/:.*//'`; \
+	  dir=`${ECHO} $${entry} | ${SED} -e 's/[^:]*://'`; \
+	  name=`cd $${dir} && ${MAKE} print-name`; \
+	  ${ECHO} "I $${pkg} $${name}" >> ${DEPEND}; \
+	done
+.endif
 .else
 	@${NOTHING_TO_DO}
 .endif
@@ -762,11 +776,12 @@ gen-pkginfo:
 		-e "s!%%VENDOR%%!${VENDOR}!g" \
 		-e "s!%%MAINTAINER%%!${MAINTAINER}!g" \
 		-e "s!%%CLASSES%%!${CLASSES}!g" ${PKGINFO_IN} > ${PKGINFO}
-.endif
 .if (${SUNW_ISA} == "sparc9")
 	@${ECHO} SUNW_ISA=${SUNW_ISA} >> ${PKGINFO}
 .endif
+.endif
 
+### clean target
 .if !target(clean)
 clean:
 	@${ECHO_MSG} "===> Cleaning for ${PKGNAME}"
@@ -797,6 +812,27 @@ makesum:	fetch
 	  done
 .endif
 
+
+## class processing
+.if defined(CLASS_INFO)
+.for file in ${CLASS_INFO}
+_sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
+	echo "${_sedsubprotoinlist} -e \"s?\(.\) none \(${file}=.*\)?\1 info \2?\""
+.endfor
+.endif
+.if defined(CLASS_SHELL)
+.for file in ${CLASS_SHELL}
+_sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
+	echo "${_sedsubprotoinlist} -e \"s?\(.\) none \(${file}=.*\)?\1 shell \2?\""
+.endfor
+.endif
+.if defined(CLASS_BACKUP)
+.for file in ${CLASS_BACKUP}
+_sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
+	echo "${_sedsubprotoinlist} -e \"s?\(.\) none \(${file}=.*\)?\1 backup \2?\""
+.endfor
+.endif
+
 .if !target(gen-prototype-in)
 PROTOTYPE_IN_BASE!=	${BASENAME} ${PROTOTYPE_IN}
 gen-prototype-in:	${INSTALL_COOKIE}
@@ -808,23 +844,29 @@ gen-prototype-in:	${INSTALL_COOKIE}
 		${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.bak; \
 	fi
 	@${ECHO} 'i pkginfo=%%PKGDIR%%/pkginfo' >> ${PROTOTYPE_IN}
+.if defined(PROCEDURE_SCRIPTS)
+.for script in ${PROCEDURE_SCRIPTS}
+	@${ECHO} 'i ${script}=%%PKGDIR%%/${script}' >> ${PROTOTYPE_IN}
+.endfor
+.endif
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@${ECHO} 'i depend=%%PKGDIR%%/depend' >> ${PROTOTYPE_IN}
 .endif
-.if defined(USE_INSTALL_INFO)
+.if defined(CLASS_INFO)
 	@${ECHO} 'i i.info=%%TEMPLATEDIR%%/i.info' >> ${PROTOTYPE_IN}
 	@${ECHO} 'i r.info=%%TEMPLATEDIR%%/r.info' >> ${PROTOTYPE_IN}
 .endif
-.if defined(CATEGORY_SHELL)
+.if defined(CLASS_SHELL)
 	@${ECHO} 'i i.shell=%%TEMPLATEDIR%%/i.shell' >> ${PROTOTYPE_IN}
 	@${ECHO} 'i r.shell=%%TEMPLATEDIR%%/r.shell' >> ${PROTOTYPE_IN}
 .endif
-	@(cd ${INSTPREFIX} && find . -print | ${PKGPROTO}) | \
+	@${ECHO} ${_sedsubprotoinlist}
+	(cd ${INSTPREFIX} && find . -print | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
-		-e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
-		-e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
-		-e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%INSTPREFIX%%/\2 \3?' \
-		>> ${PROTOTYPE_IN}
+	  -e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
+	  -e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
+	  -e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%INSTPREFIX%%/\2 \3?' \
+	  ${_sedsubprotoinlist} >> ${PROTOTYPE_IN}
 	@${ECHO_MSG} "===> ${PROTOTYPE_IN_BASE} template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
 .endif
