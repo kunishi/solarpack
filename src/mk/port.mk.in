@@ -1,2 +1,2 @@
-PKGBUILDDIR?=	/opt/local/pkgbuild
+PKGBUILDDIR?=	@PKGBUILDDIR@
 .include "${PKGBUILDDIR}/ports/Mk/port.mk"
