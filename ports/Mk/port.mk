@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.46 2000/01/18 11:31:29 kunishi Exp $
+# $Id: port.mk,v 1.47 2000/01/18 11:50:39 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -822,19 +822,19 @@ makesum:	fetch
 .if defined(CLASS_INFO)
 .for file in ${CLASS_INFO}
 _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
-	echo "${_sedsubprotoinlist} -e \"s?\(.\) none \(${file}=.*\)?\1 info \2?\""
+	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 info \2?'"
 .endfor
 .endif
 .if defined(CLASS_SHELL)
 .for file in ${CLASS_SHELL}
 _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
-	echo "${_sedsubprotoinlist} -e \"s?\(.\) none \(${file}=.*\)?\1 shell \2?\""
+	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 shell \2?'"
 .endfor
 .endif
 .if defined(CLASS_BACKUP)
 .for file in ${CLASS_BACKUP}
 _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
-	echo "${_sedsubprotoinlist} -e \"s?\(.\) none \(${file}=.*\)?\1 backup \2?\""
+	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 backup \2?'"
 .endfor
 .endif
 
@@ -865,8 +865,11 @@ gen-prototype-in:	${INSTALL_COOKIE}
 	@${ECHO} 'i i.shell=%%TEMPLATEDIR%%/i.shell' >> ${PROTOTYPE_IN}
 	@${ECHO} 'i r.shell=%%TEMPLATEDIR%%/r.shell' >> ${PROTOTYPE_IN}
 .endif
-	@${ECHO} ${_sedsubprotoinlist}
-	(cd ${INSTPREFIX} && find . -print | ${PKGPROTO}) | \
+.if defined(CLASS_BACKUP)
+	@${ECHO} 'i i.backup=%%TEMPLATEDIR%%/i.backup' >> ${PROTOTYPE_IN}
+	@${ECHO} 'i r.backup=%%TEMPLATEDIR%%/r.backup' >> ${PROTOTYPE_IN}
+.endif
+	@(cd ${INSTPREFIX} && find . -print | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
 	  -e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
 	  -e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
