@@ -37,6 +37,7 @@ RELEASE_PKG_DIR?=	${PORTS_TOPDIR}/packages
 
 PATCHDIR?=	${MASTERDIR}/patches
 TOOLSDIR?= 	${PORTS_TOPDIR}/tools
+FILESDIR=	${MASTERDIR}/files
 SCRIPTDIR?=	${MASTERDIR}/scripts
 PKGDIR?=	${MASTERDIR}/pkg
 TEMPLATEDIR?=	${PORTS_TOPDIR}/Template
@@ -227,7 +228,7 @@ CONFIGURE_ENV+=	CC="${CC}" \
 		CXXFLAGS="${CXXFLAGS}" \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-MD5?=		${APDK_BINDIR}/md5
+MD5?=		md5
 MD5_FILE=	${MASTERDIR}/distinfo
 
 MAKEFILE?=	Makefile
@@ -258,7 +259,7 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
-FETCH_CMD?=	${APDK_BINDIR}/ftp
+FETCH_CMD?=	ftp
 FETCH_FLAGS?=	
 FETCH_ENV?=	FTPANONPASS=${PKG_MAINTAINER}
 
@@ -269,7 +270,7 @@ PATCH_ARGS?=	-N -d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
-TAR?=		${APDK_BINDIR}/gtar
+TAR?=		gtar
 
 .if defined(USE_BZIP2)
 EXTRACT_CMD?=	${LOCALBASE}/bin/bzip2 -dc
@@ -316,8 +317,8 @@ GREP?=		/usr/bin/grep
 GZCAT?=		/usr/bin/gzip -cd
 GZIP?=		/usr/bin/gzip -f
 .else
-GZCAT?=		${APDK_BINDIR}/gzip -cd
-GZIP?=		${APDK_BINDIR}/gzip -f
+GZCAT?=		gzip -cd
+GZIP?=		gzip -f
 .endif
 INSTALL?=	/usr/ucb/install
 JAR?=		/usr/bin/jar
@@ -827,6 +828,7 @@ do-package:
 .if !target(do-release)
 do-release:
 	if [ -d ${RELEASE_PKG_DIR} ]; then \
+	  ${RM} -rf ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}/${PKG}; \
 	  ${PKGTRANS} ${SPOOLDIR} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL} all; \
 	fi
 .if 0

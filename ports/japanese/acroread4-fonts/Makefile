@@ -5,16 +5,16 @@
 .include <port.pre.mk>
 
 PORTNAME=	ja-acrobat-reader-fonts
-VERSION=	4.0.5
+VERSION=	5.0.7
 PORTREV=	1
 
 PKG=	ADBjacrfn
 NAME=	Adobe Acrobat Reader Japanese Fonts
 
-MASTER_SITES=	ftp://ftp-pac.adobe.com/pub/adobe/acrobatreader/unix/4.x/
+MASTER_SITES=	ftp://ftp-pac.adobe.com/pub/adobe/acrobatreader/unix/5.x/
 DISTFILES=	jpnfont.tar.gz
 
-RUN_DEPENDS=	ADBacrord:${PORTSDIR}/print/acroread4
+RUN_DEPENDS=	OPUCacrd:${PORTSDIR}/print/acroread4
 
 WRKSRC=		${WRKDIR}/JPNKIT
 
@@ -24,7 +24,7 @@ do-build:
 	@${ECHO_MSG} "do 'make install' as root."
 
 do-install:
-	@$InstallDir=${INSTPREFIX}/Acrobat4 PREFIX=${INSTPREFIX} \
-	  ${WRKSRC}/INSTALL
+	@$InstallDir=${INSTPREFIX}/Acrobat PREFIX=${INSTPREFIX} \
+	  ${WRKSRC}/INSTLANG
 
 .include <port.mk>

@@ -3,7 +3,7 @@
 #
 
 PORTNAME=	openssl
-VERSION=	0.9.7a
+VERSION=	0.9.7b
 PORTREV=	1
 
 PKG=		OPUCopssl

@@ -6,13 +6,13 @@
 
 PORTNAME=	m4
 VERSION=	1.4
-PORTREV=	1
+PORTREV=	2
 
-PKG=		GNUm4
+PKG=		OPUCm4
 NAME=		GNU m4, an implementation of the traditional Unix macro processor.
 
 VENDOR=		${VENDOR_GNU}
-MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/m4/ \
+MASTER_SITES =	ftp://core.ring.gr.jp/pub/GNU/m4/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/m4/
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--program-prefix=g

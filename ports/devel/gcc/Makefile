@@ -7,7 +7,7 @@
 OSREL!=		/usr/bin/uname -r
 
 PORTNAME?=	gcc
-VERSION=	3.3
+VERSION=	3.3.1
 PORTREV?=	1
 
 PKG=		OPUCgcc
@@ -19,8 +19,8 @@ MASTER_SITES=	ftp://ftp.dnsbalance.ring.gr.jp/pub/GNU/gcc/gcc-${VERSION}/ \
 DISTNAME=	gcc-${VERSION}
 
 .if defined(USE_BINUTILS)
-BUILD_DEPENDS+=	GNUbinut:${PORTSDIR}/devel/binutils
-RUN_DEPENDS+=	GNUbinut:${PORTSDIR}/devel/binutils
+BUILD_DEPENDS+=	OPUCbinut:${PORTSDIR}/devel/binutils
+RUN_DEPENDS+=	OPUCbinut:${PORTSDIR}/devel/binutils
 .endif
 
 USE_GMAKE=	yes
@@ -30,7 +30,7 @@ CONFIGURE_ENV+=	CFLAGS='-g -O0'
 .endif
 CONFIGURE_ARGS+=	--disable-nls
 .if defined(USE_BINUTILS)
-CONFIGURE_ARGS+=	--with-gnu-asm --with-gnu-ld
+CONFIGURE_ARGS+=	--with-gnu-as --with-gnu-ld
 .else
 CONFIGURE_ARGS+=	--with-as=/usr/ccs/bin/as --with-ld=/usr/ccs/bin/ld
 .endif

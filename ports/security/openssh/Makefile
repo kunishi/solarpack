@@ -3,8 +3,8 @@
 #
 
 PORTNAME=	openssh
-VERSION=	3.5p1
-PORTREV=	3
+VERSION=	3.6.1p1
+PORTREV=	1
 
 PKG=		OPUCopssh
 NAME=		a free version of SSH, originated from OpenBSD Project

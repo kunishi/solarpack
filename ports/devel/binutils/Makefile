@@ -5,22 +5,18 @@
 .include <port.pre.mk>
 
 PORTNAME=	binutils
-VERSION=	2.11
+VERSION=	2.13.1
 PORTREV=	1
 
-PKG=	GNUbinut
+PKG=	OPUCbinut
 NAME=	GNU binutils
 VENDOR=	${VENDOR_GNU}
 
-MASTER_SITES=	ftp://ftp.freesoftware.com/pub/sourceware/binutils/releases/ \
-		ftp://sourceware.cygnus.com/pub/binutils/releases/
+MASTER_SITES=	http://ftp.gnu.org/gnu/binutils/
 
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
 USE_GMAKE=	yes
-CONFIGURE_ARGS+=	--program-prefix=g
-
-PROTOTYPE_IN=	${PKGDIR}/prototype.in.${ARCH}
+CONFIGURE_ARGS+=	--program-prefix=g --with-included-gettext
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/include

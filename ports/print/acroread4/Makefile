@@ -5,22 +5,22 @@
 .include <port.pre.mk>
 
 PORTNAME=	acrobat-reader
-VERSION=	4.0.5
+VERSION=	5.0.7
 PORTREV=	1
 
-PKG=	ADBacrord
+PKG=	OPUCacrd
 NAME=	Adobe Acrobat Reader
 
 VENDOR=	Adobe Systems Inc.
 .if (${ARCH} == "sparc")
-DISTNAME=	sunsparc-rs-405
+DISTNAME=	sol-507
 .elif (${ARCH} == "i386")
 DISTNAME=	sunx86-ar-405
 .endif
 MASTER_SITES=	ftp://ftp-pac.adobe.com/pub/adobe/acrobatreader/unix/4.x/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 .if (${ARCH} == "sparc")
-WRKSRC=		${WRKDIR}/SSOLRS.install
+WRKSRC=		${WRKDIR}
 .elif (${ARCH} == "i386")
 WRKSRC=		${WRKDIR}/SS86RS.install
 .endif
@@ -40,12 +40,12 @@ do-build:
 	@${ECHO_MSG} "do 'make install' as root."
 
 do-install:
-	@${MKDIR} ${INSTPREFIX}/Acrobat4
-	@ReadInstallDir=${INSTPREFIX}/Acrobat4 PREFIX=${PREFIX} ${AR_INSTALL_SCRIPT}
+	@${MKDIR} ${INSTPREFIX}/Acrobat
+	@ReadInstallDir=${INSTPREFIX}/Acrobat PREFIX=${PREFIX} ${AR_INSTALL_SCRIPT}
 
 post-install:
 	@${MKDIR} ${INSTPREFIX}/bin
-	@${INSTALL_SCRIPT} ${INSTPREFIX}/Acrobat4/bin/acroread \
+	@${INSTALL_SCRIPT} ${INSTPREFIX}/Acrobat/bin/acroread \
 	  ${INSTPREFIX}/bin/acroread
 
 .include <port.mk>

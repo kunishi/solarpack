@@ -5,7 +5,7 @@
        case "$product" in
          Exchange|Reader)
 -          replacement="$topdir"/"$product"
-+          replacement="$PREFIX"/Acrobat4/"$product"
++          replacement="$PREFIX"/Acrobat/"$product"
            ;;
          Distillr)
            replacement="$topdir"

@@ -6,7 +6,7 @@ MASTER_SITE_GNU+=	\
 	ftp://ftp.dnsbalance.ring.gr.jp/pub/GNU/%SUBDIR%/ \
 	ftp://core.ring.gr.jp/pub/GNU/%SUBDIR%/ \
 	ftp://ftp.kddlabs.co.jp/pub/gnu/%SUBDIR%/ \
-	ftp://ftp.gnu.org/pub/gnu/%SUBDIR%/ \
+	ftp://ftp.gnu.org/gnu/%SUBDIR%/ \
 	ftp://ftp.sourceforge.net/pub/mirrors/gnu/%SUBDIR%/
 
 MASTER_SITES_GNOME+=	\
