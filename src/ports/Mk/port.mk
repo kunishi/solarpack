@@ -1,10 +1,11 @@
 #
-# $Id: port.mk,v 1.6 1999/05/19 09:48:51 kunishi Exp $
+# $Id: port.mk,v 1.7 1999/05/21 02:14:16 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
 
 CCSMAKE=	/usr/ccs/bin/make
+CHOWN=		/usr/bin/chown
 ECHO=		/usr/bin/echo
 ENV=		/usr/bin/env
 GMAKE=		/usr/local/bin/gmake
@@ -23,12 +24,17 @@ PKGTRANS=	/usr/bin/pkgtrans -o
 PWD=		/usr/bin/pwd
 RM=		/usr/bin/rm
 SED=		/usr/bin/sed
+SH=		/bin/sh
 TOUCH=		/usr/bin/touch
 UNAME=		/usr/bin/uname
 WGET=		/usr/local/bin/wget
 
 ECHO_MSG=	${ECHO}
 POSTPROTO=	${PKGBUILDDIR}/tools/postproto.sh
+
+INSTALL_PROGRAM= ${INSTALL} -c -s -m 755 -o root -g bin
+INSTALL_DATA=	${INSTALL} -c -m 644 -o root -g bin
+INSTALL_SCRIPT=	${INSTALL} -c -m 755 -o root -g bin
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
@@ -54,6 +60,7 @@ DISTDIR=	${PKGBUILDDIR}/distfiles
 TOOLSDIR= 	${PKGBUILDDIR}/tools
 FILESDIR=	${.CURDIR}/files
 PATCHDIR=	${.CURDIR}/patches
+SCRIPTDIR=	${.CURDIR}/scripts
 WRKDIR=		${.CURDIR}/work
 WRKSRC?=	${WRKDIR}/${DISTNAME}
 WRK_BASEDIR?=	${WRKDIR}${PREFIX}
@@ -84,7 +91,10 @@ PACKAGE_COOKIE=		${WRKDIR}/.package_done
 INSTPKG_COOKIE=		${WRKDIR}/.instpkg_done
 RELEASE_COOKIE=		${WRKDIR}/.release_done
 
-MAKE_ENV+=	PREFIX=${PREFIX}
+MAKE_ENV+=	PREFIX=${PREFIX} LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
+		CC=${CC}
+MAKE_FLAGS?=	-f ${MAKEFILE}
+MAKEFILE?=	Makefile
 
 .if defined(GNU_CONFIGURE)
 HAS_CONFIGURE=		yes
@@ -322,15 +332,20 @@ do-patch:
 
 .if !target(do-configure)
 do-configure:
+	@if [ -f ${SCRIPTDIR}/configure ]; then \
+	  cd ${.CURDIR} && ${SH} ${SCRIPTDIR}/configure; \
+	fi
+.if defined(HAS_CONFIGURE) || defined(USE_IMAKE)
 	@cd ${WRKSRC} && ${ENV} ${CONFIGURE_ENV} ${CONFIGURE} ${CONFIGURE_ARGS}
+.endif
 .endif
 
 .if !target(do-build)
 do-build:
 .if defined(USE_GMAKE)
-	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS} ${MAKE_FLAGS}
 .else
-	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${MAKE_ARGS}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${MAKE_ARGS} ${MAKE_FLAGS}
 .endif
 .endif
 
@@ -338,9 +353,9 @@ do-build:
 do-install:
 	@${MKDIR} ${WRK_BASEDIR}
 .if defined(USE_GMAKE)
-	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
 .else
-	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
 .endif
 .endif
 
