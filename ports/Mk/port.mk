@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.52 2000/01/21 10:24:28 kunishi Exp $
+# $Id: port.mk,v 1.53 2000/01/25 13:41:54 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -80,6 +80,8 @@ PROTOTYPE_IN?=	${PKGDIR}/prototype.in
 DEPEND?=	${PKGDIR}/depend
 PROCEDURE_SCRIPTS?=	request checkinstall \
 			preinstall postinstall preremove postremove
+I_INITD_IN?=	${TEMPLATEDIR}/i.initd.in
+R_INITD_IN?=	${TEMPLATEDIR}/r.initd.in
 
 PKGINFO?=	${PKGDIR}/pkginfo
 PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
@@ -94,12 +96,16 @@ CLASS_BACKUP+=	${file}
 .if defined(CLASS_INFO)
 USE_INSTALL_INFO=	yes
 CLASSES+=	info
+PROTOTYPE_IGNORE_FILES+=	info/dir
 .endif
 .if defined(CLASS_SHELL)
 CLASSES+=	shell
 .endif
 .if defined(CLASS_BACKUP)
 CLASSES+=	backup
+.endif
+.if defined(CLASS_INITD)
+CLASSES+=	initd
 .endif
 CLASSES+=	none
 # NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
@@ -108,8 +114,7 @@ CLASSES+=	none
 
 VERSION_USE_REV?=	yes
 .if (${VERSION_USE_REV} == "yes")
-DATE_REV!=	/usr/bin/date '+%G.%m.%d.%H.%M'
-_VERSION=	${VERSION},REV=${DATE_REV}
+_VERSION!=	/usr/bin/date '+${VERSION},REV=%G.%m.%d.%H.%M'
 .else
 _VERSION=	${VERSION}
 .endif
@@ -202,7 +207,9 @@ CCSMAKE?=	/usr/ccs/bin/make
 CHOWN?=		/usr/bin/chown
 CP?=		/usr/bin/cp
 CPIO?=		/usr/bin/cpio
+CUT?=		/usr/bin/cut
 ECHO?=		/usr/bin/echo
+EGREP?=		/usr/bin/egrep
 ENV?=		/usr/bin/env
 EXPR?=		/usr/bin/expr
 FIND?=		/usr/bin/find
@@ -229,6 +236,9 @@ UNAME?=		/usr/bin/uname
 UNIQ?=		/usr/bin/uniq
 
 ECHO_MSG?=	${ECHO}
+
+INITD_START_NUM?=	99
+INITD_KILL_NUM?=	42
 
 ALL_TARGET?=		all
 INSTALL_TARGET?=	install
@@ -594,6 +604,16 @@ do-package:
 	@cd ${MASTERDIR} && ${MAKE} gen-prototype
 	@cd ${MASTERDIR} && ${MAKE} gen-pkginfo
 	@cd ${MASTERDIR} && ${MAKE} gen-depend
+.if defined(CLASS_INITD)
+	@${SED} \
+	  -e 's?%%INITD_START_NUM%%?${INITD_START_NUM}?g' \
+	  -e 's?%%INITD_KILL_NUM%%?${INITD_KILL_NUM}?g' \
+	  ${I_INITD_IN} > ${PKGDIR}/i.initd
+	@${SED} \
+	  -e 's?%%INITD_START_NUM%%?${INITD_START_NUM}?g' \
+	  -e 's?%%INITD_KILL_NUM%%?${INITD_KILL_NUM}?g' \
+	  ${R_INITD_IN} > ${PKGDIR}/r.initd
+.endif
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
 	@${PKGTRANS} -s ${SPOOLDIR} ${MASTERDIR}/${PKGNAME} all
@@ -696,8 +716,8 @@ DEPENDS_TMP+=	${RUN_DEPENDS}
 _DEPENDS_USE:
 .if defined(DEPENDS_TMP)
 	@for i in ${DEPENDS_TMP}; do \
-	  pkg=`${ECHO} $$i | ${SED} -e 's/:.*//'`; \
-	  dir=`${ECHO} $$i | ${SED} -e 's/[^:]*://'`; \
+	  pkg=`${ECHO} $$i | ${CUT} -d: -f1`; \
+	  dir=`${ECHO} $$i | ${CUT} -d: -f2`; \
 	  target=${DEPENDS_TARGET}; \
 	  if ${PKGINFO_PROG} -q $$pkg; then \
 	    ${ECHO_MSG} "===>   ${PKGNAME} depends on package: $$pkg - found"; \
@@ -732,7 +752,7 @@ gen-depend-pkg-list:
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 .for entry in ${LIB_DEPENDS} ${RUN_DEPENDS}
 	@${ECHO} ${entry}
-	@dir=`${ECHO} ${entry} | ${SED} -e 's/[^:]*://'`; \
+	@dir=`${ECHO} ${entry} | ${CUT} -d: -f2`; \
 	  (cd $${dir} && ${MAKE} gen-depend-pkg-list)
 .endfor
 .endif
@@ -753,16 +773,16 @@ gen-depend:
 	@${ECHO_MSG} "===>  Generating depend"
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@for entry in `cd ${MASTERDIR} && ${MAKE} gen-depend-pkg-list`; do \
-	  pkg=`${ECHO} $${entry} | ${SED} -e 's/:.*//'`; \
-	  dir=`${ECHO} $${entry} | ${SED} -e 's/[^:]*://'`; \
+	  pkg=`${ECHO} $${entry} | ${CUT} -d: -f1`; \
+	  dir=`${ECHO} $${entry} | ${CUT} -d: -f2`; \
 	  name=`cd $${dir} && ${MAKE} print-name`; \
 	  ${ECHO} "P $${pkg} $${name}" >> ${DEPEND}; \
 	done
 .endif
 .if defined(INCOMPAT_PKGS)
 	@for entry in ${INCOMPAT_PKGS}; do \
-	  pkg=`${ECHO} $${entry} | ${SED} -e 's/:.*//'`; \
-	  dir=`${ECHO} $${entry} | ${SED} -e 's/[^:]*://'`; \
+	  pkg=`${ECHO} $${entry} | ${CUT} -d: -f1`; \
+	  dir=`${ECHO} $${entry} | ${CUT} -d: -f2`; \
 	  name=`cd $${dir} && ${MAKE} print-name`; \
 	  ${ECHO} "I $${pkg} $${name}" >> ${DEPEND}; \
 	done
@@ -773,8 +793,8 @@ gen-depend:
 .endif
 
 .for sub in ${PROTOTYPE_SUB}
-_sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
-			val=`${ECHO} "${sub}" | ${SED} -e 's/^[^=][^=]*=//'`; \
+_sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${CUT} -d= -f1`; \
+			val=`${ECHO} "${sub}" | ${CUT} -d= -f2`; \
 			echo "${_sedsubprotolist} -e \"s!%%$${sym}%%!$${val}!g\""
 .endfor
 
@@ -785,8 +805,8 @@ gen-prototype:
 .endif
 
 .for sub in ${PKGINFO_SUB}
-_sedsubpkginfolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
-			val=`${ECHO} "${sub}" | ${SED} -e 's/^[^=][^=]*=//'`; \
+_sedsubpkginfolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's?=.*??'`; \
+			val=`${ECHO} "${sub}" | ${SED} -e 's?[^=]*=??'`; \
 			echo "${_sedsubpkginfolist} -e \"s!%%$${sym}%%!$${val}!g\""
 .endfor
 
@@ -808,6 +828,9 @@ gen-pkginfo:
 clean:
 	@${ECHO_MSG} "===> Cleaning for ${PKGNAME}"
 	@${RM} -rf ${WRKDIR} ${PKGINFO} ${PROTOTYPE} ${DEPEND}
+.if defined(CLASS_INITD)
+	@${RM} -rf ${PKGDIR}/i.initd ${PKGDIR}/r.initd
+.endif
 .endif
 
 .if !target(pkgclean)
@@ -837,7 +860,7 @@ makesum:	fetch
 
 ## class processing
 .if defined(CLASS_INFO)
-_sedsubprotoinlist=	-e '/^f none info\/dir=.*/ d'
+#_sedsubprotoinlist=	-e '/^f none info\/dir=.*/ d'
 .for file in ${CLASS_INFO}
 _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
 	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 info \2?'"
@@ -855,6 +878,12 @@ _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
 	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 backup \2?'"
 .endfor
 .endif
+.if defined(CLASS_INITD)
+.for file in ${CLASS_INITD}
+_sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
+	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 initd \2?'"
+.endfor
+.endif
 
 .if defined(EDITABLE_FILES)
 .for file in ${EDITABLE_FILES}
@@ -863,8 +892,15 @@ _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
 .endfor
 .endif
 
-.if !target(gen-prototype-in)
+.if !defined(PROTOTYPE_IGNORE_FILES)
+ELIMINATE_FILES?=	${CAT}
+.else
+_elimfiles!=	echo "${PROTOTYPE_IGNORE_FILES}" | sed -e 's?[ 	][ 	]*?|?g'
+ELIMINATE_FILES?=	${EGREP} -v '^./(${_elimfiles})$$'
+.endif
+
 PROTOTYPE_IN_BASE!=	${BASENAME} ${PROTOTYPE_IN}
+.if !target(gen-prototype-in)
 gen-prototype-in:	${INSTALL_COOKIE}
 	@${MAKE} install
 	@${ECHO_MSG} "===> Building ${PROTOTYPE_IN_BASE}"
@@ -899,7 +935,12 @@ gen-prototype-in:	${INSTALL_COOKIE}
 	@${ECHO} 'i i.backup=%%TEMPLATEDIR%%/i.backup' >> ${PROTOTYPE_IN}
 	@${ECHO} 'i r.backup=%%TEMPLATEDIR%%/r.backup' >> ${PROTOTYPE_IN}
 .endif
-	@(cd ${INSTPREFIX} && find . -print | ${PKGPROTO}) | \
+.if defined(CLASS_INITD)
+	@${ECHO} 'i i.initd=%%PKGDIR%%/i.initd' >> ${PROTOTYPE_IN}
+	@${ECHO} 'i r.initd=%%PKGDIR%%/r.initd' >> ${PROTOTYPE_IN}
+.endif
+	@(cd ${INSTPREFIX} && \
+	  ${FIND} . -print | ${ELIMINATE_FILES} | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
 	  -e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
 	  -e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
