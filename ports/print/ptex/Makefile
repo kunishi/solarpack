@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2000/06/02 14:15:32 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/06/07 05:50:53 kunishi Exp $
 #
 
 PORTNAME=	ja-ptex
@@ -44,8 +44,6 @@ post-extract:
 	${RM} -rf ${INSTPREFIX}/share/texmf/tex/plain/dvips
 	${TAR} -xzf ${DISTDIR}/plib-1.4-jis.tar.gz -C ${INSTPREFIX}/share
 	${TAR} -xzf ${DISTDIR}/ptex218.tar.gz -C ${WRKSRC}/web2c
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/texmf
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${WRKSRC}
 
 post-patch:
 	cd ${WRKSRC}/web2c/ptex218 && \
@@ -60,6 +58,8 @@ post-build:
 	  ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS} ${MAKE_FLAGS}
 
 post-install:
+	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/texmf
+	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${WRKSRC}
 	@cd ${WRKSRC}/web2c/ptex218 && \
 	  ${ENV} ${MAKE_INSTALL_ENV} ${GMAKE} ${INSTALL_TARGET} \
 	  ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
