@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.2 2000/09/27 01:27:59 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/10/19 11:39:07 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	mozilla
-VERSION=	M17
+VERSION=	M18
 PORTREV=	1
 
 PKG=		MZLAmzla
