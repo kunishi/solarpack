@@ -1,7 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/06/20 09:21:42 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/20 09:59:03 kunishi Exp $
 #
 
+SUBDIR+=	ORBit
 SUBDIR+=	autoconf
 SUBDIR+=	automake
 SUBDIR+=	bison
