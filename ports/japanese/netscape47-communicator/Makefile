@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.6 2000/06/07 12:46:53 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/06/23 11:23:57 kunishi Exp $
 #
 
 PORTNAME=	ja-netscape-communicator
@@ -16,14 +16,15 @@ NS_SHORTVERSION=	473
 
 .if (${ARCH} == "sparc")
 DISTNAME=	communicator-v${NS_SHORTVERSION}-export.sparc-sun-solaris2.5.1
-MASTER_SITES=	ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551/complete_install/ \
-		ftp://sunsite.sut.ac.jp/pub/archives/WWW/netscape/communicator/english/${VERSION}/unix/supported/sunos551/complete_install/
+MASTER_SITES=	ftp://sunsite.sut.ac.jp/pub/archives/WWW/netscape/communicator/english/${VERSION}/unix/supported/sunos551/complete_install/ \
+		ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551/complete_install/
 .elif (${ARCH} == "i386")
 DISTNAME=	communicator-v${NS_SHORTVERSION}-export.x86-sun-solaris2.5.1
-MASTER_SITES=	ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551_x86/complete_install/ \
-		ftp://sunsite.sut.ac.jp/pub/archives/WWW/netscape/communicator/englis/${VERSION}/unix/supported/sunos551_x86/complete_install/
+MASTER_SITES=	ftp://sunsite.sut.ac.jp/pub/archives/WWW/netscape/communicator/english/${VERSION}/unix/supported/sunos551_x86/complete_install/ \
+		ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551_x86/complete_install/
 .endif
-MASTER_SITES+=	http://www.bres.tsukuba.ac.jp/~yohta/netscape/
+MASTER_SITES+=	http://www.bres.tsukuba.ac.jp/~yohta/netscape/ \
+		ftp://ftp.jp.freebsd.org/pub/FreeBSD/ports/distfiles/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		communicator-ja-euc-v${NS_SHORTVERSION}-export.generic-generic-generic.tar.gz
 
