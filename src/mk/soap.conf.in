@@ -7,8 +7,8 @@ SOLPKGDIR=	@solpkg_topdir@
 SOLPKGSRCDIR=	${SOLPKGDIR}
 #SOLPKGSRCDIR=	/export/pub/cvs/solpkg
 #
-# C compiler for building packages. (comment out when using 'cc'.)
-CC=	${SOLPKGDIR}/bin/gcc
+# C compiler for building packages.
+#CC=	${SOLPKGDIR}/bin/gcc
 #
 # package maintainer.
 #
