@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.10 2000/06/05 01:27:49 kunishi Exp $
+# $Id: Makefile,v 1.11 2000/06/07 13:04:40 kunishi Exp $
 #
 
 PORTNAME=	dvipsk
@@ -61,11 +61,11 @@ post-install:
 	  for i in ${LATEX209_MACROS}; do \
 	    ${INSTALL_DATA} $$i ${TEXDIR}/latex209/dvips; \
 	  done
-	${MKDIR} ${DVIPSDIR}/config
-	${CP} ${DVIPSDIR}/contrib/config.proto ${DVIPSDIR}/config/config.ps
 	${MKDIR} ${INSTPREFIX}/share/doc/dvips
 	for i in ${DOCS}; do \
 	  ${INSTALL_DATA} ${WRKSRC}/$$i ${INSTPREFIX}/share/doc/dvips; \
 	done
+	${MKDIR} ${DVIPSDIR}/config
+	${CP} ${FILESDIR}/config.ps ${DVIPSDIR}/config/config.ps
 
 .include <port.mk>
