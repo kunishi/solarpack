@@ -9,3 +9,6 @@ f none lib/X11/app-defaults/KTerm=%%WRK_BASEDIR%%/lib/X11/app-defaults/KTerm 044
 d none share=%%WRK_BASEDIR%%/share 0755 root bin
 d none share/kterm=%%WRK_BASEDIR%%/share/kterm 0755 root bin
 f none share/kterm/terminfo.kt=%%WRK_BASEDIR%%/share/kterm/terminfo.kt 0644 root bin
+d none share/man=%%WRK_BASEDIR%%/share/man 0755 root bin
+d none share/man/man1=%%WRK_BASEDIR%%/share/man/man1 0755 root bin
+f none share/man/man1/kterm.1=%%WRK_BASEDIR%%/share/man/man1/kterm.1 0644 root bin
