@@ -1,5 +1,5 @@
 #
-# $Id: pkgbuild.mk,v 1.9 1999/05/11 10:38:07 kunishi Exp $
+# $Id: pkgbuild.mk,v 1.10 1999/05/13 12:16:12 kunishi Exp $
 #
 
 ### rule definitions
@@ -8,8 +8,9 @@
 	pre-fetch fetch post-fetch \
 	pre-patch patch post-patch \
 	do-build post-install install-package release \
+	generate-prototype generate-pkginfo \
 	clean pkgclean distclean \
-	build-prototype
+	gen-prototype-in gen-instinfo
 
 all:	build
 
@@ -123,16 +124,10 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
 	@${PKGMAKE} install
 	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
-	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?g" \
-	    -e 's?%%GNU_HOSTTYPE%%?${GNU_HOSTTYPE}?g' \
-	    -e 's?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g' \
-	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
-	@${SED} -e 's?%%ARCH%%?${ARCH}?' \
-	    -e 's?%%BASEDIR%%?${PREFIX}?' \
-	    -e 's?%%PKG_MAINTAINER%%?${PKG_MAINTAINER}?' \
-	    ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
+	@${PKGMAKE} generate-prototype
+	@${PKGMAKE} generate-pkginfo
 	@${MKDIR} ${SPOOLDIR}
-	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype
+	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
 	@${PKGTRANS} -s ${SPOOLDIR} ${CURDIR}/${PKGNAME} all
 	@${TOUCH} $@
 
@@ -169,6 +164,18 @@ do-build::
 
 post-install::
 
+generate-prototype::
+	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?g" \
+	    -e 's?%%GNU_HOSTTYPE%%?${GNU_HOSTTYPE}?g' \
+	    -e 's?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g' \
+	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
+
+generate-pkginfo::
+	@${SED} -e 's?%%ARCH%%?${ARCH}?' \
+	    -e 's?%%BASEDIR%%?${PREFIX}?' \
+	    -e 's?%%PKG_MAINTAINER%%?${PKG_MAINTAINER}?' \
+	    ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
+
 clean::
 	@${ECHO_MSG} "===> Cleaning for ${PKGNAME}"
 	@${RM} -rf ${WRKDIR} ${PKGDIR}/pkginfo ${PKGDIR}/prototype
@@ -183,7 +190,7 @@ distclean::	pkgclean
 	 ${RM} -rf ${DISTDIR}/$${file}; done
 
 ### only for maintainance
-build-prototype:	${INSTALL_COOKIE}
+gen-prototype-in::	${INSTALL_COOKIE}
 	@${PKGMAKE} install
 	@${ECHO_MSG} "===> Building prototype.in"
 	@if test -f ${PKGDIR}/prototype.in; then \
@@ -194,3 +201,13 @@ build-prototype:	${INSTALL_COOKIE}
 	 | ${POSTPROTO} > ${PKGDIR}/prototype.in
 	@${ECHO_MSG} "===> prototype.in template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
+
+gen-instinfo::
+	@if [ "${INST_INFO_FILES}" != '' ]; then \
+		${ECHO_MSG} "===>  Generating postinstall"; \
+		${TOOLSDIR}/gen-info-postinstall.sh "${INST_INFO_FILES}" >> ${PKGDIR}/postinstall; \
+		${ECHO_MSG} "===>  Generating preremove"; \
+		${TOOLSDIR}/gen-info-preremove.sh "${INST_INFO_FILES}" >> ${PKGDIR}/preremove; \
+	else \
+		${ECHO_MSG} ">> Define INST_INFO_FILES definitely."; \
+	fi

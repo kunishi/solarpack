@@ -35,6 +35,7 @@ PREFIX=		${LOCALBASE}
 
 CURDIR:sh=	/usr/bin/pwd
 DISTDIR=	${PKGBUILDDIR}/distfiles
+TOOLSDIR = 	${PKGBUILDDIR}/tools
 FILESDIR=	${CURDIR}/files
 PATCHDIR=	${CURDIR}/patches
 WRKDIR=		${CURDIR}/work
