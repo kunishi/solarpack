@@ -1,9 +1,0 @@
-PKG=OPENxpbyb
-NAME=Xpbiff with youbin support
-VERSION=1.27
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Kazuhiko Shutoh <shutoh@lm.emi.yamaha.co.jp>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

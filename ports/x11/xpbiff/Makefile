@@ -1,9 +1,14 @@
 #
-# $Id: Makefile,v 1.2 1999/05/19 01:42:46 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/06 07:04:02 kunishi Exp $
 #
 
+PKG=		OPENxpbyb
+NAME=		Xpbiff with youbin support
+VERSION=	1.27
+VENDOR=		Kazuhiko Shutoh <shutoh@lm.emi.yamaha.co.jp>
+
 DISTNAME=	xpbiff
-PKGNAME=	xpbiff-1.27
+PKGNAME=	xpbiff-${VERSION}
 MASTER_SITES=	ftp://ftp.ics.es.osaka-u.ac.jp/pub/xpbiff/
 EXTRACT_SUFX=	.tar.Z
 DISTFILES=	xpbiff-1.27-with-YOUBIN.tar.gz.uu
@@ -22,7 +27,7 @@ do-extract:
 	  fi)
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
-	@(cd ${WRKDIR}; ${GTAR} -xzf ${DISTDIR}/${DISTNAME}.tar.gz)
+	@(cd ${WRKDIR}; ${TAR} -xzf ${DISTDIR}/${DISTNAME}.tar.gz)
 
 post-install:
 	@${MKDIR} ${WRK_BASEDIR}/lib/X11/app-defaults

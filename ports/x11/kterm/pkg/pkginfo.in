@@ -1,9 +1,0 @@
-PKG=OPENkterm
-NAME=X11 kanji terminal emulator
-ARCH=%%ARCH%%
-VERSION=6.2.0
-CATEGORY=application
-VENDOR=Hiroto Kagotani <kagotani@in.it.okayama-u.ac.jp>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
