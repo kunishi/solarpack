@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.77 2000/09/27 02:07:59 kunishi Exp $
+# $Id: port.mk,v 1.78 2000/09/27 06:44:24 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -11,18 +11,7 @@
 
 SOAP_PREFIX?=	soap
 
-.if !defined(ARCH)
-ARCH!=		/usr/bin/mach
-.endif
-.if !defined(OSREL)
-OSREL!=		/usr/bin/uname -r
-.endif
-.if !defined(OSREL_SOLARIS)
-OSREL_SOLARIS!=	/usr/bin/uname -r | /usr/bin/sed 's/^5/2/'
-.endif
-.if !defined(SUNW_ISA)
-SUNW_ISA!=	/usr/bin/uname -p
-.endif
+.include "port.pre.mk"
 
 .if (${ARCH} == "sparc")
 GNU_HOSTTYPE?=	${ARCH}-sun-solaris${OSREL_SOLARIS}
@@ -173,12 +162,14 @@ RELEASE_COOKIE?=	${WRKDIR}/.release_done
 
 NOTHING_TO_DO?=		/usr/bin/true
 
+.if ${OSREL} >= 5.8
+CC?=		/opt/sfw/bin/gcc
+CXX?=		/opt/sfw/bin/g++
+GMAKE?=		/opt/sfw/bin/gmake
+.else
 CC?=		${SOAP_BINDIR}/gcc
 CXX?=		${SOAP_BINDIR}/c++
-.if ${OSREL} < 5.7
 GMAKE?=		${SOAP_BINDIR}/gmake
-.else
-GMAKE?=		/opt/sfw/bin/gmake
 .endif
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 CFLAGS?=	-O2
@@ -228,7 +219,7 @@ PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_S
 TAR?=		${SOAP_BINDIR}/gtar
 
 .if defined(USE_BZIP2)
-EXTRACT_CMD?=	bzip2 -dc
+EXTRACT_CMD?=	${LOCALBASE}/bin/bzip2 -dc
 .else
 EXTRACT_CMD?=	${GZCAT}
 .endif
@@ -266,8 +257,13 @@ EXPR?=		/usr/bin/expr
 FALSE?=		/usr/bin/false
 FIND?=		/usr/bin/find
 GREP?=		/usr/bin/grep
+.if ${OSREL} >= 5.8
+GZCAT?=		/usr/bin/gzip -cd
+GZIP?=		/usr/bin/gzip
+.else
 GZCAT?=		${SOAP_BINDIR}/gzip -cd
 GZIP?=		${SOAP_BINDIR}/gzip
+.endif
 INSTALL?=	/usr/ucb/install
 LN?=		/usr/bin/ln
 MV?=		/usr/bin/mv
