@@ -1,4 +1,5 @@
 i pkginfo=%%PKGDIR%%/pkginfo
+i depend=%%PKGDIR%%/depend
 d none bin=%%INSTPREFIX%%/bin 0755 root bin
 f none bin/fax2ps=%%INSTPREFIX%%/bin/fax2ps 0755 root bin
 f none bin/fax2tiff=%%INSTPREFIX%%/bin/fax2tiff 0755 root bin
