@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.4 1999/05/19 02:45:42 kunishi Exp $
+# $Id: port.mk,v 1.5 1999/05/19 08:51:10 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -50,7 +50,7 @@ X11BASE=	/usr/openwin
 PREFIX?=	${LOCALBASE}
 
 DISTDIR=	${PKGBUILDDIR}/distfiles
-TOOLSDIR = 	${PKGBUILDDIR}/tools
+TOOLSDIR= 	${PKGBUILDDIR}/tools
 FILESDIR=	${.CURDIR}/files
 PATCHDIR=	${.CURDIR}/patches
 WRKDIR=		${.CURDIR}/work
@@ -82,6 +82,8 @@ INSTALL_COOKIE=		${WRKDIR}/.install_done
 PACKAGE_COOKIE=		${WRKDIR}/.package_done
 INSTPKG_COOKIE=		${WRKDIR}/.instpkg_done
 RELEASE_COOKIE=		${WRKDIR}/.release_done
+
+MAKE_ENV+=	PREFIX=${PREFIX}
 
 .if defined(GNU_CONFIGURE)
 HAS_CONFIGURE=		yes
@@ -177,6 +179,9 @@ ${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
 
 ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
 	@${MAKE} configure
+.if defined(NO_BUILD)
+	@${ECHO_MSG} "===> No action for the target build."
+.else
 	@${ECHO_MSG} "===> Building for ${PKGNAME}"
 .if target(pre-build)
 	@${MAKE} pre-build
@@ -185,10 +190,14 @@ ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
 .if target(post-build)
 	@${MAKE} post-build
 .endif
+.endif
 	@${TOUCH} $@
 
 ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${MAKE} build
+.if defined(NO_INSTALL)
+	@${ECHO_MSG} "===> No action for target install."
+.else
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 .if target(pre-install)
 	@${MAKE} pre-install
@@ -196,6 +205,7 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${MAKE} do-install
 .if target(post-install)
 	@${MAKE} post-install
+.endif
 .endif
 	@${TOUCH} $@
 
