@@ -1,24 +1,29 @@
 #
-# $Id: Makefile,v 1.6 2000/06/07 06:06:36 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/21 12:37:45 kunishi Exp $
 #
 
 PORTNAME=	fvwm-i18n
 VERSION=	2.2
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENfvwm
 NAME=		fvwm version 2
 VENDOR=		Robert Nation, <http://www.fvwm.org/>
+
+OSREL!=		/usr/bin/uname -r
 
 DISTNAME =	fvwm-${VERSION}
 MASTER_SITES =	ftp://ftp.fvwm.org/pub/fvwm/version-2/
 PATCH_SITES =	ftp://ftp.ics.es.osaka-u.ac.jp/pub/CFAN/fvwm-users-jp/I18N_MB/
 PATCHFILES =	${DISTNAME}-I18N_MB-1999042001.patch
 
+BUILD_DEPENDS=	OPENxpm:${PORTSDIR}/graphics/xpm
+RUN_DEPENDS=	OPENxpm:${PORTSDIR}/graphics/xpm
+
 USE_X_PREFIX=		yes
 USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
-CONFIGURE_ENV+=		CXX='${CXX} -ansi -pedantic'
+CXXFLAGS=		-g -O -ansi -pedantic
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--enable-extras --enable-kanji
 CONFIGURE_ARGS+=	--with-iconpath=${PREFIX}/share/icons/fvwm:/usr/include/X11/bitmaps:/usr/include/X11/pixmaps
