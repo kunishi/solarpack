@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.7 2001/11/08 14:15:40 kunishi Exp $
+# $Id: Makefile,v 1.8 2002/03/18 09:28:40 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	png
-VERSION=	1.2.0
+VERSION=	1.2.1
 PORTREV=	1
 
 PKG=		OPUCpng
