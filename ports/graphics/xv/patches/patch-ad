@@ -28,7 +28,7 @@
  
 +#ifdef UseInstalledJpeg
 +JPEG = -DDOJPEG
-+LIBJPEG = -L${LOCALBASE}/lib -ljpeg
++LIBJPEG = -L${LOCALBASE}/lib -R${LOCALBASE}/lib -ljpeg
 +JPEGINCLUDE = -I${LOCALBASE}/include
 +#endif
 +
@@ -42,7 +42,7 @@
  
 +#ifdef UseInstalledTiff
 +TIFF = -DDOTIFF
-+LIBTIFF = -L${LOCALBASE}/lib -ltiff
++LIBTIFF = -L${LOCALBASE}/lib -R${LOCALBASE}/lib -ltiff
 +TIFFINCLUDE = -I${LOCALBASE}/include
 +#endif
 +
