@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.57 2000/05/15 22:14:59 kunishi Exp $
+# $Id: port.mk,v 1.58 2000/05/16 07:01:34 kunishi Exp $
 #
 
 # ${SOLPKGDIR} and ${SOLPKGBINDIR} are set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -8,6 +8,8 @@
 # ${SOLPKGSRCDIR} is set in ${SOLPKGDIR}/share/mk/port.mk.
 
 .include "solpkg.conf"
+
+PKGBUILD_PREFIX?=	solpkg
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
@@ -112,18 +114,21 @@ CLASSES+=	none
 # because they might contain spaces in its value, which cause
 # bad affects for generating ${_sedsubpkginfolist}.
 
-VERSION_USE_REV?=	yes
-.if (${VERSION_USE_REV} == "yes")
-_VERSION!=	/usr/bin/date '+${VERSION},REV=%Y.%m.%d.%H.%M'
+.if defined(PORTREV)
+_VERSION=	${VERSION}-${PORTREV}
 .else
 _VERSION=	${VERSION}
 .endif
+
+_PKGHOST!=	/usr/bin/hostname
+_PKGTS!=	/usr/bin/date '%Y.%m.%d.%H.%M'
 
 PKGINFO_SUB+=	PKG=${PKG} \
 		VERSION=${_VERSION} \
 		CATEGORY=${CATEGORY} \
 		ARCH=${ARCH} \
-		BASEDIR=${PREFIX}
+		BASEDIR=${PREFIX} \
+		PSTAMP=${_PKGHOST}:${_PKGTS}
 
 .if defined(PKG_WITHOUT_GZIP)
 PKGNAME_REAL=	${PKGNAME}
@@ -265,11 +270,12 @@ VENDOR_GNU=	Free Software Foundation, Inc.
 MASTER_SITES?=	
 PATCH_SITES?=	
 
+DISTNAME?=	${PORTNAME}-${VERSION}
 DISTFILES?=	${DISTNAME}${EXTRACT_SUFX}
 .if defined(CORE_TOOLS)
-PKGNAME?=	core-${DISTNAME}
+PKGNAME?=	${PKGBUILD_PREFIX}-${PORTNAME}-${_VERSION}
 .else
-PKGNAME?=	${DISTNAME}
+PKGNAME?=	${PORTNAME}-${_VERSION}
 .endif
 
 ALLFILES?=	${DISTFILES} ${PATCHFILES}
