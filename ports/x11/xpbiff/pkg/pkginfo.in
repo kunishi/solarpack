@@ -1,10 +1,9 @@
 PKG=OPENxpbyb
 NAME=Xpbiff with youbin support
 VERSION=1.27
-ARCH=sparc
+ARCH=%%ARCH%%
 CATEGORY=application
 VENDOR=Kazuhiko Shutoh <shutoh@lm.emi.yamaha.co.jp>
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/openwin
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none

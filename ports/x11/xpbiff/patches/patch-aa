@@ -1,0 +1,64 @@
+--- config.h.orig	Wed Oct 19 14:56:25 1994
++++ config.h	Wed May 19 10:32:24 1999
+@@ -8,18 +8,18 @@
+ /*
+  *	For X11R6
+  */
+-#undef X11R6
++#define X11R6
+ 
+ /*
+  *	For System V
+  */
+-#undef USG
++#define USG
+ 
+ /*
+  *	For Solaris
+  */
+-#undef SOLARIS
+-#undef UcbLibDir	-L/usr/ucblib
++#define SOLARIS
++#define UcbLibDir	-L/usr/ucblib
+ 
+ /*
+  *	For slow work station
+@@ -42,7 +42,7 @@
+  *	For Shape Extension
+  */
+ 
+-#undef SHAPE
++#define SHAPE
+ 
+ /*
+  *	Check Environment Variable MAIL for check file
+@@ -57,8 +57,8 @@
+ /*
+  *	For X pixmap
+  */
+-#undef XPM
+-#undef DepXpmLib	/usr/local/lib/libXpm.a
++#define XPM
++#define DepXpmLib	/usr/openwin/lib/libXpm.so
+ 
+ /*
+  *	For using I18N Xaw
+@@ -80,7 +80,7 @@
+ /*
+  *	Process MIME header, charset=ISO-2022-JP, base 64 encoding
+  */
+-#undef ISO_2022_JP
++#define ISO_2022_JP
+ 
+ /*
+  *	For SUN Audio
+@@ -91,6 +91,6 @@
+ /* 
+  * For YOUBIN Service
+ */
+-#undef YOUBIN
+-#undef YoubinBinDir /usr/local/bin
+-#undef YOUBIN_DEFAULT_SERVER_HOST "server"
++#define YOUBIN
++#define YoubinBinDir /usr/local/bin
++#define YOUBIN_DEFAULT_SERVER_HOST "server"

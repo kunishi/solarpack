@@ -1,0 +1,14 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/xpbiff=%%WRK_BASEDIR%%/bin/xpbiff 0755 root staff
+d none lib=%%WRK_BASEDIR%%/lib 0755 root bin
+d none lib/X11=%%WRK_BASEDIR%%/lib/X11 0755 root bin
+d none lib/X11/app-defaults=%%WRK_BASEDIR%%/lib/X11/app-defaults 0755 root bin
+f none lib/X11/app-defaults/XPbiff-co.ad=%%WRK_BASEDIR%%/lib/X11/app-defaults/XPbiff-co.ad 0644 root staff
+f none lib/X11/app-defaults/XPbiff-uj.ad=%%WRK_BASEDIR%%/lib/X11/app-defaults/XPbiff-uj.ad 0644 root staff
+f none lib/X11/app-defaults/XPbiff.ad=%%WRK_BASEDIR%%/lib/X11/app-defaults/XPbiff.ad 0644 root staff
+d none share=%%WRK_BASEDIR%%/share 0755 root bin
+d none share/doc=%%WRK_BASEDIR%%/share/doc 0755 root bin
+d none share/doc/xpbiff=%%WRK_BASEDIR%%/share/doc/xpbiff 0755 root bin
+f none share/doc/xpbiff/README-YOUBIN.j=%%WRK_BASEDIR%%/share/doc/xpbiff/README-YOUBIN.j 0644 root staff
+f none share/doc/xpbiff/README.j=%%WRK_BASEDIR%%/share/doc/xpbiff/README.j 0644 root staff
