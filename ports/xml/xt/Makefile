@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.5 2001/11/14 06:02:07 kunishi Exp $
+# $Id: Makefile,v 1.6 2001/11/15 11:58:48 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	xt
 VERSION=	19991105
-PORTREV=	2
+PORTREV=	3
 
 PKG=		OPUCxt
 NAME=		XSL Transformation tool for Java
@@ -20,7 +20,7 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}
 USE_ZIP=	yes
 
-SYSTEM_JAR_DIR=	${INSTPREFIX}/share/java/classes/${PORTNAME}
+SYSTEM_JAR_DIR=	${INSTPREFIX}/share/java/${PORTNAME}
 SYSTEM_DOC_DIR=	${INSTPREFIX}/share/doc/${PORTNAME}
 JAR_FILES=	xt.jar sax.jar
 DOC_FILES=	copying.txt xt.htm com demo
