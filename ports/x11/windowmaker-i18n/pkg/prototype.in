@@ -1,5 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i depend=%%PKGDIR%%/depend
 d none GNUstep=%%INSTPREFIX%%/GNUstep 0755 root bin
 d none GNUstep/Apps=%%INSTPREFIX%%/GNUstep/Apps 0755 root bin
 d none GNUstep/Apps/WPrefs.app=%%INSTPREFIX%%/GNUstep/Apps/WPrefs.app 0755 root bin

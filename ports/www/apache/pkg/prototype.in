@@ -1,9 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i depend=%%PKGDIR%%/depend
-i i.backup=%%TEMPLATEDIR%%/i.backup
-i r.backup=%%TEMPLATEDIR%%/r.backup
-i i.initd=%%PKGDIR%%/i.initd
-i r.initd=%%PKGDIR%%/r.initd
 d none apache=%%INSTPREFIX%%/apache 0755 root bin
 d none apache/bin=%%INSTPREFIX%%/apache/bin 0755 root bin
 f none apache/bin/ab=%%INSTPREFIX%%/apache/bin/ab 0755 root bin

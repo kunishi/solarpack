@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 d none include=%%INSTPREFIX%%/include 0755 root bin
 f none include/zconf.h=%%INSTPREFIX%%/include/zconf.h 0644 root bin
 f none include/zlib.h=%%INSTPREFIX%%/include/zlib.h 0644 root bin

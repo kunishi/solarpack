@@ -1,6 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i depend=%%PKGDIR%%/depend
 d none bin=%%INSTPREFIX%%/bin 0755 root bin
 f none bin/a2p=%%INSTPREFIX%%/bin/a2p 0755 root bin
 f none bin/c2ph=%%INSTPREFIX%%/bin/c2ph 0755 root bin

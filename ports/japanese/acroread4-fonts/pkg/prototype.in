@@ -1,5 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i depend=%%PKGDIR%%/depend
 d none Acrobat4=%%INSTPREFIX%%/Acrobat4 0755 root bin
 d none Acrobat4/Resource=%%INSTPREFIX%%/Acrobat4/Resource 0755 root bin
 d none Acrobat4/Resource/CIDFont=%%INSTPREFIX%%/Acrobat4/Resource/CIDFont 0755 root bin

@@ -1,6 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
 d none canna=%%INSTPREFIX%%/canna 0755 root bin
 d none canna/bin=%%INSTPREFIX%%/canna/bin 0755 root bin
 f none canna/bin/canlisp=%%INSTPREFIX%%/canna/bin/canlisp 0755 root bin

@@ -1,5 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i depend=%%PKGDIR%%/depend
 d none netscape=%%INSTPREFIX%%/netscape 0755 root bin
 d none netscape/plugins=%%INSTPREFIX%%/netscape/plugins 0755 root bin
 f none netscape/plugins/ShockwaveFlash.class=%%INSTPREFIX%%/netscape/plugins/ShockwaveFlash.class 0644 root bin

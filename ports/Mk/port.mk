@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.76 2000/09/21 12:27:38 kunishi Exp $
+# $Id: port.mk,v 1.77 2000/09/27 02:07:59 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -88,10 +88,8 @@ WRKSRC?=	${WRKDIR}/${DISTNAME}
 INSTPREFIX?=	${WRKDIR}${PREFIX}
 SPOOLDIR?=	${WRKDIR}/spool
 
-PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
-		WRKSRC=${WRKSRC} \
+PROTOTYPE_SUB+=	WRKSRC=${WRKSRC} \
 		INSTPREFIX=${INSTPREFIX} \
-		TEMPLATEDIR=${TEMPLATEDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
 PROTOTYPE?=	${PKGDIR}/prototype
 .if exists(${PKGDIR}/prototype.in.${OSREL}.${ARCH})
@@ -905,7 +903,37 @@ _sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${CUT} -d= -f1`; \
 .if !target(gen-prototype)
 gen-prototype:
 	@${ECHO_MSG} "===>  Generating prototype file"
-	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} > ${PROTOTYPE}
+	@${ECHO} 'i pkginfo=${PKGDIR}/pkginfo' > ${PROTOTYPE}
+.for script in ${PROCEDURE_SCRIPTS}
+.if exists(${PKGDIR}/${script})
+	@${ECHO} 'i ${script}=${PKGDIR}/${script}' >> ${PROTOTYPE}
+.endif
+.endfor
+.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
+	@${ECHO} 'i depend=${PKGDIR}/depend' >> ${PROTOTYPE}
+.endif
+.if defined(LICENSE_FILES)
+.for file in ${LICENSE_FILES}
+	@${ECHO} 'i copyright=${file}' >> ${PROTOTYPE}
+.endfor
+.endif
+.if defined(CLASS_INFO)
+	@${ECHO} 'i i.info=${TEMPLATEDIR}/i.info' >> ${PROTOTYPE}
+	@${ECHO} 'i r.info=${TEMPLATEDIR}/r.info' >> ${PROTOTYPE}
+.endif
+.if defined(CLASS_SHELL)
+	@${ECHO} 'i i.shell=${TEMPLATEDIR}/i.shell' >> ${PROTOTYPE}
+	@${ECHO} 'i r.shell=${TEMPLATEDIR}/r.shell' >> ${PROTOTYPE}
+.endif
+.if defined(CLASS_BACKUP)
+	@${ECHO} 'i i.backup=${TEMPLATEDIR}/i.backup' >> ${PROTOTYPE}
+	@${ECHO} 'i r.backup=${TEMPLATEDIR}/r.backup' >> ${PROTOTYPE}
+.endif
+.if defined(CLASS_INITD)
+	@${ECHO} 'i i.initd=${TEMPLATEDIR}/i.initd' >> ${PROTOTYPE}
+	@${ECHO} 'i r.initd=${TEMPLATEDIR}/r.initd' >> ${PROTOTYPE}
+.endif
+	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} >> ${PROTOTYPE}
 .endif
 
 .for sub in ${PKGINFO_SUB}
@@ -1022,36 +1050,6 @@ gen-prototype-in:	${INSTALL_COOKIE}
 		${ECHO_MSG} "===>  Backing up old ${PROTOTYPE_IN_BASE}"; \
 		${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.bak; \
 	fi
-	@${ECHO} 'i pkginfo=%%PKGDIR%%/pkginfo' >> ${PROTOTYPE_IN}
-.for script in ${PROCEDURE_SCRIPTS}
-.if exists(${PKGDIR}/${script})
-	@${ECHO} 'i ${script}=%%PKGDIR%%/${script}' >> ${PROTOTYPE_IN}
-.endif
-.endfor
-.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
-	@${ECHO} 'i depend=%%PKGDIR%%/depend' >> ${PROTOTYPE_IN}
-.endif
-.if defined(LICENSE_FILES)
-.for file in ${LICENSE_FILES}
-	@${ECHO} 'i copyright=${file}' >> ${PROTOTYPE_IN}
-.endfor
-.endif
-.if defined(CLASS_INFO)
-	@${ECHO} 'i i.info=%%TEMPLATEDIR%%/i.info' >> ${PROTOTYPE_IN}
-	@${ECHO} 'i r.info=%%TEMPLATEDIR%%/r.info' >> ${PROTOTYPE_IN}
-.endif
-.if defined(CLASS_SHELL)
-	@${ECHO} 'i i.shell=%%TEMPLATEDIR%%/i.shell' >> ${PROTOTYPE_IN}
-	@${ECHO} 'i r.shell=%%TEMPLATEDIR%%/r.shell' >> ${PROTOTYPE_IN}
-.endif
-.if defined(CLASS_BACKUP)
-	@${ECHO} 'i i.backup=%%TEMPLATEDIR%%/i.backup' >> ${PROTOTYPE_IN}
-	@${ECHO} 'i r.backup=%%TEMPLATEDIR%%/r.backup' >> ${PROTOTYPE_IN}
-.endif
-.if defined(CLASS_INITD)
-	@${ECHO} 'i i.initd=%%PKGDIR%%/i.initd' >> ${PROTOTYPE_IN}
-	@${ECHO} 'i r.initd=%%PKGDIR%%/r.initd' >> ${PROTOTYPE_IN}
-.endif
 	@(cd ${INSTPREFIX} && \
 	  ${FIND} . -print | ${ELIMINATE_FILES} | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \

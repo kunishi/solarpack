@@ -1,5 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i depend=%%PKGDIR%%/depend
 d none share=%%INSTPREFIX%%/share 0755 root bin
 d none share/doc=%%INSTPREFIX%%/share/doc 0755 root bin
 d none share/doc/boiled-egg=%%INSTPREFIX%%/share/doc/boiled-egg 0755 root bin

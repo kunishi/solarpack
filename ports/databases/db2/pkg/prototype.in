@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 d none BerkeleyDB=%%INSTPREFIX%%/BerkeleyDB 0755 root bin
 d none BerkeleyDB/bin=%%INSTPREFIX%%/BerkeleyDB/bin 0755 root bin
 f none BerkeleyDB/bin/db_archive=%%INSTPREFIX%%/BerkeleyDB/bin/db_archive 0555 root bin

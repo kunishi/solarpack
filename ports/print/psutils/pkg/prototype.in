@@ -1,5 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i depend=%%PKGDIR%%/depend
 d none bin=%%INSTPREFIX%%/bin 0755 root bin
 f none bin/epsffit=%%INSTPREFIX%%/bin/epsffit 0755 root bin
 f none bin/extractres=%%INSTPREFIX%%/bin/extractres 0755 root bin

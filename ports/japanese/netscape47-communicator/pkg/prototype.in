@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 d none local=%%INSTPREFIX%%/local 0755 root bin
 d none local/bin=%%INSTPREFIX%%/local/bin 0755 root bin
 s none local/bin/netscape=../netscape/netscape

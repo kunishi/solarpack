@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 f none README.Java3D-jdk=%%INSTPREFIX%%/README.Java3D-jdk 0664 root bin
 d none demo=%%INSTPREFIX%%/demo 2775 root bin
 d none demo/java3d=%%INSTPREFIX%%/demo/java3d 2775 root bin

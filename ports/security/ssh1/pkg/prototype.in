@@ -1,8 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i postremove=%%PKGDIR%%/postremove
-i postinstall=%%PKGDIR%%/postinstall
-i i.initd=%%PKGDIR%%/i.initd
-i r.initd=%%PKGDIR%%/r.initd
 d none bin=%%INSTPREFIX%%/bin 0755 root bin
 f none bin/make-ssh-known-hosts1=%%INSTPREFIX%%/bin/make-ssh-known-hosts1 0755 root bin
 f none bin/scp1=%%INSTPREFIX%%/bin/scp1 0755 root bin

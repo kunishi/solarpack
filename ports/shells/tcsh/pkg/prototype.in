@@ -1,6 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i i.shell=%%TEMPLATEDIR%%/i.shell
-i r.shell=%%TEMPLATEDIR%%/r.shell
 d none bin=%%INSTPREFIX%%/bin 0755 root bin
 f shell bin/tcsh=%%INSTPREFIX%%/bin/tcsh 0555 root bin
 d none man=%%INSTPREFIX%%/man 0755 root bin

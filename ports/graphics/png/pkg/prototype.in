@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 d none include=%%INSTPREFIX%%/include 0755 root bin
 f none include/png.h=%%INSTPREFIX%%/include/png.h 0644 root bin
 f none include/pngconf.h=%%INSTPREFIX%%/include/pngconf.h 0644 root bin

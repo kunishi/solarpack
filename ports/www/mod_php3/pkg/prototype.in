@@ -1,6 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i depend=%%PKGDIR%%/depend
 d none libexec=%%INSTPREFIX%%/libexec 0755 root bin
 d none libexec/mod_php3=%%INSTPREFIX%%/libexec/mod_php3 0755 root bin
 f none libexec/mod_php3/libphp3.so=%%INSTPREFIX%%/libexec/mod_php3/libphp3.so 0755 root bin

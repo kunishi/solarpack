@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 d none docs=%%INSTPREFIX%%/docs 0755 root bin
 d none docs/api=%%INSTPREFIX%%/docs/api 0755 root bin
 f none docs/api/allclasses-frame.html=%%INSTPREFIX%%/docs/api/allclasses-frame.html 0644 root bin

@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 d none share=%%INSTPREFIX%%/share 0755 root bin
 d none share/doc=%%INSTPREFIX%%/share/doc 0755 root bin
 d none share/doc/watanabe-vf=%%INSTPREFIX%%/share/doc/watanabe-vf 0755 root bin

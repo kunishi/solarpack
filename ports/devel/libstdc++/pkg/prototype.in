@@ -1,4 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
 d none include=%%INSTPREFIX%%/include 0755 root bin
 d none include/g++=%%INSTPREFIX%%/include/g++ 0755 root bin
 f none include/g++/PlotFile.h=%%INSTPREFIX%%/include/g++/PlotFile.h 0644 bin bin

@@ -1,6 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i i.info=%%TEMPLATEDIR%%/i.info
-i r.info=%%TEMPLATEDIR%%/r.info
 d none include=%%INSTPREFIX%%/include 0755 root bin
 d none include/readline=%%INSTPREFIX%%/include/readline 0755 root bin
 f none include/readline/chardefs.h=%%INSTPREFIX%%/include/readline/chardefs.h 0644 root bin

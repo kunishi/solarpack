@@ -1,6 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
 d none share=%%INSTPREFIX%%/share 0755 root bin
 d none share/texmf=%%INSTPREFIX%%/share/texmf 0755 root bin
 f none share/texmf/VERSION-7.3=%%INSTPREFIX%%/share/texmf/VERSION-7.3 0644 root bin

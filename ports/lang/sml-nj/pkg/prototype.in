@@ -1,5 +1,3 @@
-i pkginfo=%%PKGDIR%%/pkginfo
-i depend=%%PKGDIR%%/depend
 d none smlnj=%%INSTPREFIX%%/smlnj 0755 root bin
 d none smlnj/bin=%%INSTPREFIX%%/smlnj/bin 0755 root bin
 f none smlnj/bin/.arch-n-opsys=%%INSTPREFIX%%/smlnj/bin/.arch-n-opsys 0555 root bin
