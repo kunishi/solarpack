@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.67 2000/06/07 05:45:28 kunishi Exp $
+# $Id: port.mk,v 1.68 2000/06/08 04:23:51 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -332,6 +332,48 @@ INSTALL_TARGET+=	install.man
 ### rule definitions
 
 .MAIN:	all
+
+.if defined(ONLY_FOR_ARCHS)
+.for __ARCH in ${ONLY_FOR_ARCHS}
+.if ${MACHINE_ARCH:M${__ARCH}} != ""
+__ARCH_OK?=	1
+.endif
+.endfor
+.else
+__ARCH_OK?=	1
+.endif
+
+.if !defined(__ARCH_OK)
+IGNORE=		"is only for the architectures ${ONLY_FOR_ARCHS},"
+IGNORE+=	"and you are running ${ARCH}."
+.endif
+
+.if defined(IGNORE)
+IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} ${IGNORE}"
+
+fetch:
+	@${IGNORECMD}
+checksum:
+	@${IGNORECMD}
+extract:
+	@${IGNORECMD}
+patch:
+	@${IGNORECMD}
+configure:
+	@${IGNORECMD}
+all:
+	@${IGNORECMD}
+build:
+	@${IGNORECMD}
+install:
+	@${IGNORECMD}
+package:
+	@${IGNORECMD}
+instpkg:
+	@${IGNORECMD}
+release:
+	@${IGNORECMD}
+.endif
 
 .if !target(all)
 all:	build
