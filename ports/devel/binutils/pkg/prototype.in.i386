@@ -26,7 +26,6 @@ f none include/bfdlink.h=%%INSTPREFIX%%/include/bfdlink.h 0644 root bin
 d none lib=%%INSTPREFIX%%/lib 0755 root bin
 f none lib/libbfd.a=%%INSTPREFIX%%/lib/libbfd.a 0644 root bin
 f none lib/libbfd.la=%%INSTPREFIX%%/lib/libbfd.la 0644 root bin
-f none lib/libiberty.a=%%INSTPREFIX%%/lib/libiberty.a 0644 root bin
 f none lib/libopcodes.a=%%INSTPREFIX%%/lib/libopcodes.a 0644 root bin
 f none lib/libopcodes.la=%%INSTPREFIX%%/lib/libopcodes.la 0644 root bin
 d none man=%%INSTPREFIX%%/man 0755 root bin
