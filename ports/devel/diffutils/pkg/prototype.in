@@ -1,0 +1,14 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+i postinstall=%%PKGDIR%%/postinstall
+i preremove=%%PKGDIR%%/preremove
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/gcmp=%%WRK_BASEDIR%%/bin/gcmp 0755 bin bin
+f none bin/gdiff=%%WRK_BASEDIR%%/bin/gdiff 0755 bin bin
+f none bin/gdiff3=%%WRK_BASEDIR%%/bin/gdiff3 0755 bin bin
+f none bin/gsdiff=%%WRK_BASEDIR%%/bin/gsdiff 0755 bin bin
+d none info=%%WRK_BASEDIR%%/info 0755 root bin
+f none info/diff.info=%%WRK_BASEDIR%%/info/diff.info 0644 bin bin
+f none info/diff.info-1=%%WRK_BASEDIR%%/info/diff.info-1 0644 bin bin
+f none info/diff.info-2=%%WRK_BASEDIR%%/info/diff.info-2 0644 bin bin
+f none info/diff.info-3=%%WRK_BASEDIR%%/info/diff.info-3 0644 bin bin
+f none info/diff.info-4=%%WRK_BASEDIR%%/info/diff.info-4 0644 bin bin

@@ -1,9 +1,9 @@
 PKG=GNUdiff
 NAME=GNU diffutils
 VERSION=2.7
+ARCH=%%ARCH%%
 CATEGORY=application
 VENDOR=Free Software Foundation, Inc.
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/local
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none

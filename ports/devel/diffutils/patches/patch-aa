@@ -1,0 +1,13 @@
+--- diff.info.orig	Sun Oct  2 02:57:37 1994
++++ diff.info	Tue May 11 20:36:38 1999
+@@ -1,6 +1,10 @@
+ This is Info file diff.info, produced by Makeinfo-1.55 from the input
+ file ./diff.texi.
+ 
++START-INFO-DIR-ENTRY
++* diffutils: (diff).	GNU diff utilities.
++END-INFO-DIR-ENTRY
++
+    This file documents the the GNU `diff', `diff3', `sdiff', and `cmp'
+ commands for showing the differences between text files and the `patch'
+ command for using their output to update files.
