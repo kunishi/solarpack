@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.11 2002/03/20 09:25:06 kunishi Exp $
+# $Id: Makefile,v 1.12 2003/03/28 07:04:16 kunishi Exp $
 #
 
 PORTNAME=	mew
-VERSION=	2.2
-PORTREV=	3
+VERSION=	3.2
+PORTREV=	1
 
 PKG=		OPUCmew
 NAME=		Mew, Messages in the Emacs World
@@ -27,7 +27,6 @@ CONTRIBS=	contrib/00readme \
 		contrib/mew-browse.el \
 		contrib/mew-caesar.el \
 		contrib/mew-fancy-summary.el \
-		contrib/mew-gnus.el \
 		contrib/mew-nmz-fixer.el \
 		contrib/mew-nmz.el \
 		contrib/mew-refile-view.el \
