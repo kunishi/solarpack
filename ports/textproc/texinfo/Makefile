@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.15 2002/03/15 10:58:20 kunishi Exp $
+# $Id: Makefile,v 1.16 2003/02/27 04:15:01 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	texinfo
-VERSION=	4.1
+VERSION=	4.5
 PORTREV=	1
 
 .if defined(CORE_TOOLS)
