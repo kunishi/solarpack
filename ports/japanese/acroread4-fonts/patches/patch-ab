@@ -1,5 +1,14 @@
---- JPNKIT/INSTALL.orig	Mon May 24 18:28:02 1999
-+++ JPNKIT/INSTALL	Wed Jun 16 19:42:39 1999
+--- INSTALL~	Fri Jun 25 03:30:28 1999
++++ INSTALL	Wed Jun  7 16:24:29 2000
+@@ -230,7 +230,7 @@
+ 
+ TestInstallDir()
+ {
+-  dir="$1"
++  dir="/usr/local/Acrobat4"
+ 
+   if [ "`expr "X$dir" : 'X/'`" != 2 ]
+   then
 @@ -303,10 +303,7 @@
  
  GetInstallInfo()
@@ -12,7 +21,16 @@
  }
  
  ##########################################################################
-@@ -390,15 +387,15 @@
+@@ -350,6 +347,8 @@
+ {
+   ResourceDir="$InstallDir/Resource"
+ 
++  mkdir -p "$InstallDir/Resource"
++
+   InstallFiles "Installing Common resources ... " \
+     "$ResourceDir" "$LangComTar"
+ 
+@@ -397,15 +396,15 @@
  fi
  
  OutputWelcome
