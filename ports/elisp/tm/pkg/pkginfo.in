@@ -1,10 +1,9 @@
 PKG=OPENtm
 NAME=Tools for MIME, MIME package for GNU Emacs
-ARCH=sparc
+ARCH=%%ARCH%%
 VERSION=7.106
 CATEGORY=application
 VENDOR=MORIOKA Tomohiko <morioka@jaist.ac.jp>
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/local
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none
