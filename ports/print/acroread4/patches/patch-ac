@@ -1,5 +1,5 @@
---- SSOLRS.install/INSTALL.orig	Mon May 24 17:52:33 1999
-+++ SSOLRS.install/INSTALL	Wed Jun 16 19:01:51 1999
+--- INSTALL.orig	Mon May 24 17:52:33 1999
++++ INSTALL	Wed Jun 16 19:01:51 1999
 @@ -198,7 +198,7 @@
  
        case "$product" in
