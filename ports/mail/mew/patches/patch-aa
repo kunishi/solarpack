@@ -1,0 +1,28 @@
+--- Makefile~	Tue Sep 11 13:32:19 2001
++++ Makefile	Tue Nov 20 20:56:25 2001
+@@ -19,14 +19,14 @@
+ ## EDIT THE FOLLOWINGS
+ ##
+ 
+-prefix=/usr/local
++prefix=${PREFIX}
+ infodir=$(prefix)/info
+ 
+ ##
+ ## Compile engines
+ ##
+ 
+-EMACS = emacs
++#EMACS = emacs
+ #EMACS = xemacs
+ #EMACS = mule
+ 
+@@ -42,7 +42,7 @@
+ ## A directory where etc file will be installed.
+ ##
+ 
+-etcdir = $(prefix)/lib/$(EMACS)/etc/Mew
++etcdir = $(prefix)/share/$(EMACS)/etc/Mew
+ 
+ ################################################################
+ ##
