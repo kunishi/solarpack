@@ -1,0 +1,289 @@
+2000-06-06  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/Makefile, src/mk/port.subdir.mk.in, src/pkg/prototype.in, src/version.mk:
+	tiny bug fixed.
+
+2000-06-05  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/configure, src/configure.in:
+	added SUBDIR support.
+
+2000-06-01  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/bootstrap/Makefile.bmake:
+	synced up with bmake 3.1.0.
+
+2000-05-30  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/bootstrap/Makefile.gcc, src/bootstrap/config.mk, src/configure:
+	modification for Solaris 2.6, because of bugs(?) of gcc 2.95.2.
+
+2000-05-17  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/Makefile.in, src/version.mk:
+	introduced SOAP_REV.
+
+	* src/mk/soap.conf.in: typo fixed.
+
+	* src/mk/.cvsignore, src/pkg/.cvsignore, src/version.mk:
+	version 0.3.1.  added some files into mk/.cvsignore and pkg/.cvsignore.
+
+	* src/pkg/pkginfo.in: added PSTAMP.
+
+	* src/Makefile.in: fixed typos.
+
+	* src/bootstrap/port.mk, src/bootstrap/rule.mk, src/bootstrap/soap.conf, src/configure, src/configure.in, src/mk/Makefile, src/mk/port.mk.in, src/mk/soap.conf.in, src/pkg/pkginfo.in, src/pkg/prototype.in, src/version.mk, src/Makefile.in:
+	Big changes: the software name is changed to SOAP (SOlaris Application Packaging tool).
+
+	* src/Makefile.in, src/pkg/pkginfo, src/version.mk:
+	pkginfo now to be generated automatically.
+
+2000-05-16  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/Makefile.in: more small fixes.
+
+	* src/version.mk: new file.
+
+	* src/Makefile.in, src/configure, src/configure.in, src/pkg/pkginfo.in:
+	slight fixes about version management.
+
+	* src/Makefile.in:
+	commented out the process of removing distfiles.
+
+2000-05-15  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/Makefile.in, src/bootstrap/Makefile.gmake, src/bootstrap/Makefile.gtar, src/bootstrap/Makefile.gzip, src/bootstrap/get-gzip, src/mk/soap.conf.in, src/pkg/pkginfo.in:
+	version 0.1.1.  Several fixes.
+
+2000-05-12  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/Makefile.in, src/bootstrap/Makefile.bmake, src/bootstrap/Makefile.gcc, src/bootstrap/Makefile.gmake, src/bootstrap/Makefile.gtar, src/bootstrap/Makefile.gzip, src/bootstrap/Makefile.lukemftp, src/bootstrap/Makefile.md5, src/bootstrap/Makefile.patch, src/bootstrap/Makefile.texinfo, src/bootstrap/soap.conf, src/mk/soap.conf.in:
+	many fixes for the time of clean building.
+
+2000-05-11  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/Makefile.in:
+	added compressed distribution file for distclean target.
+
+	* src/bootstrap/Makefile.bmake, src/bootstrap/bmake.patch, src/bootstrap/get-gzip, src/bootstrap/get-lukemftp, src/bootstrap/md5.patch:
+	Oops, some fixes are forgotten to commit.
+
+	* src/Makefile.in, src/bootstrap/Makefile.bmake, src/bootstrap/config.mk, src/bootstrap/port.mk, src/bootstrap/soap.conf, src/mk/soap.conf.in:
+	many modifications for i386 architecture.
+
+2000-05-02  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/bootstrap/get-gzip, src/bootstrap/get-lukemftp:
+	New file.
+
+	* src/bootstrap/get-gzip, src/bootstrap/get-lukemftp:
+	new files.
+
+	* src/bootstrap/Makefile.bmake, src/bootstrap/Makefile.gzip, src/bootstrap/Makefile.lukemftp, src/bootstrap/Makefile.md5:
+	changed for the latest software version.
+
+2000-01-07  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/ports/Makefile:
+	added Mk and Template to CORE_TOOLS (bug fixed).  added clean target.
+
+	* src/ports/.cvsignore, src/ports/Makefile:
+	added core ports into .cvsignore.
+
+	* src/ports/Makefile:
+	removed all ports.  These ports are planned to be copied from main ports tree.
+
+2000-01-06  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/soap.conf.in:
+	commented out CC macro (the default value is in port.mk.
+
+	* src/Makefile.in:
+	removed tarballs in distfiles dir. when doing distclean.
+
+	* src/bootstrap/install-bmake.sh, src/bootstrap/install-gcc.sh, src/bootstrap/install-gmake.sh, src/bootstrap/install-lukemftp.sh:
+	removed install scripts.
+
+	* src/Makefile.in:
+	removed prototype and pkginfo when doing the target clean.
+
+	* src/Makefile.in:
+	added /usr/sbin into ${STANDARD_PATH}.  removed bin when doing the target clean.
+
+	* src/pkg/pkginfo, src/pkg/pkginfo.in, src/pkg/prototype.in, src/Makefile.in, src/mk/port.mk.in, src/mk/soap.conf.in:
+	pre-release.  fixes many bugs.
+
+	* src/bootstrap/Makefile.bmake, src/bootstrap/port.mk, src/bootstrap/soap.conf, src/mk/Makefile, src/pkg/pkginfo, src/Makefile.in:
+	pre-release version. fixed many for make release packages automatically.
+
+	* src/distfiles/.cvsignore:
+	new file, ignoring all distfiles.
+
+	* src/.cvsignore: deleted .cvsignore.
+
+	* src/.cvsignore:
+	new file, ignoring distfiles.
+
+2000-01-05  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/bootstrap/Makefile.gtar, src/bootstrap/Makefile.gzip, src/bootstrap/Makefile.lukemftp, src/bootstrap/Makefile.md5, src/bootstrap/Makefile.patch, src/bootstrap/Makefile.texinfo, src/bootstrap/config.mk, src/bootstrap/md5.patch, src/bootstrap/rule.mk, src/bootstrap/soap.conf, src/bootstrap/Makefile.bmake, src/bootstrap/Makefile.gcc, src/bootstrap/Makefile.gmake:
+	new files.
+
+1999-12-28  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/bootstrap/install-lukemftp.sh, src/Makefile.in, src/bootstrap/bmake.patch, src/bootstrap/install-bmake.sh, src/bootstrap/install-gcc.sh, src/bootstrap/install-gmake.sh:
+	added scripts for bootstrap phase.
+
+	* src/Makefile.in, src/configure, src/configure.in, src/mk/Makefile, src/mk/pkgbuild.conf, src/mk/port.mk.in, src/mk/soap.conf.in, src/pkg/pkginfo.in:
+	absolute definitions of /usr/solpkg was removed.
+
+	* src/pkg/pkginfo, src/pkg/pkginfo.in, src/configure, src/configure.in:
+	generation code for pkg/pkginfo was added.
+
+	* src/pkg/pkginfo, src/mk/pkgbuild.conf, src/mk/soap.conf.in, src/configure.in:
+	changed pkgbuild_topdir to /usr/solpkg.
+
+1999-08-27  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+	pkgbuild.conf
+		changed PKGBUILDDIR to /opt/pkgbuild.
+
+1999-06-09  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/Makefile.in, src/configure, src/configure.in:
+		Makefile.in configure configure.in
+		 * all commands are statically specified in Makefile, not using
+		   configure.
+
+	* src/mk/Makefile: 	Makefile
+		 * fixed dependencies between install and port.mk.
+
+	* src/Makefile.in: 	Makefile.in
+		 * added 'install' target.
+
+	* src/pkg/pkginfo, src/pkg/prototype.in:
+	Added Files:
+		pkginfo prototype.in
+
+	* src/mk/Makefile: Modified Files:
+		Makefile
+
+	* src/configure, src/configure.in, src/Makefile.in:
+	Added Files:
+		Makefile.in configure configure.in
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+		pkgbuild.conf
+		  * removed CVS Id field.
+
+	* src/tools/postproto.sh:
+	Big changes: ${WRK_BASEDIR} renamed to ${INSTPREFIX}.
+
+	* src/tools/gen-info-preremove.sh, src/tools/gen-info-postinstall.sh:
+		gen-info-postinstall.sh gen-info-preremove.sh
+		  * obsoleted, because of implementing new 'info install'
+		    mechanism.
+
+	* src/mk/Makefile: 	Makefile
+		 * added 'clean' target.
+
+	* src/mk/port.mk.in, src/mk/.cvsignore, src/mk/Makefile:
+		port.mk.in
+		  * modified for generating port.mk automatically.
+		.cvsignore Makefile
+		  * new files.
+
+	* src/mk/port.mk: 	port.mk
+			renamed to port.mk.in.
+
+1999-06-05  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/contrib/patches/site.def.patch, src/contrib/patches/sun.cf.patch:
+		site.def.patch sun.cf.patch
+		  * new files, for using gcc to compile X11 programs in
+		    OpenWindow environment.
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+		pkgbuild.conf
+		  * PKG_MAINTAINER changed to omit shell special characters.
+
+	* src/mk/port.mk, src/mk/port.mk.in:
+		port.mk
+		  typo fixed.
+
+	* src/mk/port.mk, src/mk/port.mk.in:
+		port.mk
+		  new file.  This is just a dummy Makefile for abstracting
+		  the place of real port.mk from ports.
+
+1999-06-03  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+	Modified Files:
+		pkgbuild.conf
+
+1999-05-21  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+		pkgbuild.conf : added MASTER_SITES_GNU definition.
+
+	* src/tools/postproto.sh: Modified Files:
+		postproto.sh : added the line of 'pkginfo' automatically.
+
+1999-05-19  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+	Modified Files:
+		pkgbuild.conf : added RELEASE_PKG_DIR macro.
+
+1999-05-17  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+	Modified Files:
+		pkgbuild.conf : added PKGBUILD_CCS_MAKEFILE_DIR macro for
+			using bmake as standard make tools.
+
+1999-05-14  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/tools/gen-info-postinstall.sh, src/tools/gen-info-preremove.sh:
+	Added Files:
+		gen-info-postinstall.sh gen-info-preremove.sh
+
+1999-05-13  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/tools/postproto.sh: Modified Files:
+		postproto.sh
+
+1999-05-11  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+		pkgbuild.conf
+			added PKGBUILDDIR and PKGBUILD_MAKEFILE_DIR macro defs.
+
+1999-05-08  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+		pkgbuild.conf
+			 added PKG_MAINTAINER variable.
+		pkgbuild.mk
+			added CORE_TOOLS switch into install-package target.
+			added code for generating pkgproto with PKG_MAINTAINER
+			variable.
+
+1999-04-28  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/tools/postproto.sh:
+	added uniq command.
+	replaced the owner kunishi to root, the group dblab to other, to fit the
+	standard root environment on Solaris.
+
+1999-04-27  KUNISHIMA Takeo  <kunishi@c.oka-pu.ac.jp>
+
+	* src/tools/postproto.sh:
+	Added Files:
+		postproto.sh
+
+	* src/mk/pkgbuild.conf, src/mk/soap.conf.in:
+	 	pkgbuild.conf pkgbuild.mk pre.mk : moved from src repository.
+
