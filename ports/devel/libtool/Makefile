@@ -1,19 +1,19 @@
 #
-# $Id: Makefile,v 1.7 2000/09/27 01:27:42 kunishi Exp $
+# $Id: Makefile,v 1.8 2002/03/15 10:36:01 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	libtool
-VERSION=	1.3.4
+VERSION=	1.4.2
 PORTREV=	1
 
-PKG=		GNUlibtl
+PKG=		OPUClibtl
 NAME=		GNU libtool
 
 VENDOR=		${VENDOR_GNU}
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/libtool/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/libtool/
+MASTER_SITES=	ftp://ftp.dnsbalance.ring.gr.jp/pub/GNU/libtool/ \
+		ftp://ftp.gnu.org/pub/gnu/libtool/
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
