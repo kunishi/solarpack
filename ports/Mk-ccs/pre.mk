@@ -36,7 +36,7 @@ LOCALBASE=	/usr/local
 X11BASE=	/usr/openwin
 
 CURDIR=		$(shell ${PWD})
-DISTDIR=	/usr/local/work
+DISTDIR=	/opt/local/pkgbuild/distfiles
 PATCHDIR=	${CURDIR}/patches
 WRKDIR=		${CURDIR}/work
 WRKSRC=		${WRKDIR}/${PKGNAME}
