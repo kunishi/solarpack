@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.4 2000/07/14 11:51:52 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/07/14 11:52:28 kunishi Exp $
 #
 
 PORTNAME=	psepro
 VERSION=	6.0
-PORTREV=	1
+PORTREV=	2
 
 PKG=	OBJDpsepr
 NAME=	ObjectStore PSE Pro
