@@ -1,24 +1,28 @@
 #
-# $Id: Makefile,v 1.3 2001/04/17 05:52:19 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/11/08 11:25:20 kunishi Exp $
 #
 
 PORTNAME=	openssl
-VERSION=	0.9.6a
+VERSION=	0.9.6b
 PORTREV=	1
 
-PKG=		OPENssl
+PKG=		OPUCopssl
 NAME=		Open Source toolkit for SSL/TLS
 
 MASTER_SITES=	http://www.openssl.org/source/
 
-USE_BINUTILS=	yes
 HAS_CONFIGURE=	yes
-CONFIGURE_SCRIPT=	config
+CONFIGURE_SCRIPT=	Configure
+.if (${ARCH} == "sparc")
+CONFIGURE_ARGS+=	solaris-sparcv9-gcc
+.endif
+.if (${ARCH} == "i386")
+CONFIGURE_ARGS+=	solaris-x86-gcc
+.endif
+.if defined(WITH_SHARED_LIB)
+USE_BINUTILS=	yes
 CONFIGURE_ARGS+=	shared
-MAKE_ARGS+=		CC="${CC}"
+.endif
 MAKE_INSTALL_ARGS+=	INSTALL_PREFIX=${WRKDIR}
-
-post-configure:
-	${PERL} -pi -e 's/^CC=/#CC=/;' ${WRKSRC}/Makefile.ssl
 
 .include <port.mk>
