@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.17 1999/06/03 11:39:48 kunishi Exp $
+# $Id: port.mk,v 1.18 1999/06/04 01:33:30 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -53,15 +53,19 @@ SPOOLDIR?=	${WRKDIR}/spool
 PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
 		WRK_BASEDIR=${WRK_BASEDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
+PROTOTYPE?=	${PKGDIR}/prototype
+PROTOTYPE_IN?=	${PKGDIR}/prototype.in
 
-EXTRACT_COOKIE=		${WRKDIR}/.extract_done
-PATCH_COOKIE=		${WRKDIR}/.patch_done
-CONFIGURE_COOKIE=	${WRKDIR}/.configure_done
-BUILD_COOKIE=		${WRKDIR}/.build_done
-INSTALL_COOKIE=		${WRKDIR}/.install_done
-PACKAGE_COOKIE=		${WRKDIR}/.package_done
-INSTPKG_COOKIE=		${WRKDIR}/.instpkg_done
-RELEASE_COOKIE=		${WRKDIR}/.release_done
+EXTRACT_COOKIE?=	${WRKDIR}/.extract_done
+PATCH_COOKIE?=		${WRKDIR}/.patch_done
+CONFIGURE_COOKIE?=	${WRKDIR}/.configure_done
+BUILD_COOKIE?=		${WRKDIR}/.build_done
+INSTALL_COOKIE?=	${WRKDIR}/.install_done
+PACKAGE_COOKIE?=	${WRKDIR}/.package_done
+INSTPKG_COOKIE?=	${WRKDIR}/.instpkg_done
+RELEASE_COOKIE?=	${WRKDIR}/.release_done
+
+NOTHING_TO_DO?=		/usr/bin/true
 
 CC?=		gcc
 GMAKE?=		gmake
@@ -146,6 +150,7 @@ UNAME?=		/usr/bin/uname
 WGET?=		${LOCALBASE}/bin/wget
 
 ECHO_MSG?=	${ECHO}
+
 POSTPROTO=	${PKGBUILDDIR}/tools/postproto.sh
 
 ALL_TARGET?=		all
@@ -208,133 +213,181 @@ INSTALL_TARGET+=	install.man
 ### rule definitions
 
 .MAIN:	all
-all:	build
 
-extract:	${EXTRACT_COOKIE}
-patch:		${PATCH_COOKIE}
-configure:	${CONFIGURE_COOKIE}
-build:		${BUILD_COOKIE}
-install:	${INSTALL_COOKIE}
-package:	${PACKAGE_COOKIE}
-install-package:	${INSTPKG_COOKIE}
-release:	${RELEASE_COOKIE}
+.if !target(all)
+all:	build
+.endif
 
 ###
 
+.if !target(fetch)
 fetch:
-	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
-.if target(pre-fetch)
-	@${MAKE} pre-fetch
+	@cd ${.CURDIR} && ${MAKE} real-fetch
 .endif
-	@${MAKE} do-fetch
-.if target(post-fetch)
-	@${MAKE} post-fetch
+
+.if !target(extract)
+extract:	${EXTRACT_COOKIE}
+.endif
+
+.if !target(patch)
+patch:	${PATCH_COOKIE}
+.endif
+
+.if !target(configure)
+configure:	${CONFIGURE_COOKIE}
+.endif
+
+.if !target(build)
+.if defined(NO_BUILD)
+build:	configure
+	@${TOUCH} ${BUILD_COOKIE}
+.else
+build:	${BUILD_COOKIE}
+.endif
+.endif
+
+.if !target(install)
+.if defined(NO_INSTALL)
+install:	build
+	@${TOUCH} ${INSTALL_COOKIE}
+install:	${INSTALL_COOKIE}
+.endif
+
+.if !target(package)
+package:	${PACKAGE_COOKIE}
+.endif
+
+.if !target(instpkg)
+instpkg:	${INSTPKG_COOKIE}
+.endif
+
+.if !target(release)
+release:	${RELEASE_COOKIE}
 .endif
 
 ${EXTRACT_COOKIE}:
-	@${MAKE} fetch
-	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
-.if target(pre-extract)
-	@${MAKE} pre-extract
-.endif
-	@${MAKE} checksum
-	@${MAKE} do-extract
-.if target(post-extract)
-	@${MAKE} post-extract
-.endif
-	@${TOUCH} $@
-
+	@cd ${.CURDIR} && ${MAKE} fetch
+	@cd ${.CURDIR} && ${MAKE} real-extract
 ${PATCH_COOKIE}:	${EXTRACT_COOKIE}
-	@${MAKE} extract
-	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
-.if target(pre-patch)
-	@${MAKE} pre-patch
-.endif
-	@${MAKE} do-patch
-.if target(post-patch)
-	@${MAKE} post-patch
-.endif
-	@${TOUCH} $@
-
+	@cd ${.CURDIR} && ${MAKE} extract
+	@cd ${.CURDIR} && ${MAKE} real-patch
 ${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
-	@${MAKE} patch
-	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
-.if target(pre-configure)
-	@${MAKE} pre-configure
-.endif
-	@${MAKE} do-configure
-.if target(post-configure)
-	@${MAKE} post-configure
-.endif
-	@${TOUCH} $@
-
+	@cd ${.CURDIR} && ${MAKE} patch
+	@cd ${.CURDIR} && ${MAKE} real-configure
 ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
-	@${MAKE} configure
-.if defined(NO_BUILD)
-	@${ECHO_MSG} "===> No action for the target build."
-.else
-	@${ECHO_MSG} "===> Building for ${PKGNAME}"
-.if target(pre-build)
-	@${MAKE} pre-build
-.endif
-	@${MAKE} do-build
-.if target(post-build)
-	@${MAKE} post-build
-.endif
-.endif
-	@${TOUCH} $@
-
+	@cd ${.CURDIR} && ${MAKE} configure
+	@cd ${.CURDIR} && ${MAKE} real-build
 ${INSTALL_COOKIE}:	${BUILD_COOKIE}
-	@${MAKE} build
-.if defined(NO_INSTALL)
-	@${ECHO_MSG} "===> No action for target install."
-.else
-	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
-.if target(pre-install)
-	@${MAKE} pre-install
-.endif
-	@${MAKE} do-install
-.if target(post-install)
-	@${MAKE} post-install
-.endif
-.endif
-	@${TOUCH} $@
-
+	@cd ${.CURDIR} && ${MAKE} build
+	@cd ${.CURDIR} && ${MAKE} real-install
 ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
-	@${MAKE} install
-	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
-.if target(pre-package)
-	@${MAKE} pre-package
-.endif
-	@${MAKE} do-package
-.if target(post-package)
-	@${MAKE} post-package
-.endif
-	@${TOUCH} $@
-
+	@cd ${.CURDIR} && ${MAKE} install
+	@cd ${.CURDIR} && ${MAKE} real-package
 ${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
-	@${MAKE} package
-	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
-.if target(pre-install-package)
-	@${MAKE} pre-install-package
-.endif
-	@${MAKE} do-install-package
-.if target(post-install-package)
-	@${MAKE} post-install-package
-.endif
-	@${TOUCH} $@
-
+	@cd ${.CURDIR} && ${MAKE} package
+	@cd ${.CURDIR} && ${MAKE} real-instpkg
 ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
-	@${MAKE} package
+	@cd ${.CURDIR} && ${MAKE} package
+	@cd ${.CURDIR} && ${MAKE} real-release
+
+real-fetch:
+	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+
+real-extract:
+	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} checksum
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-patch:
+	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-configure:
+	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-build:
+	@${ECHO_MSG} "===> Building for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-install:
+	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-package:
+	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-instpkg:
+	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+.endif
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+.endif
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+
+real-release
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
-.if target(pre-release)
-	@${MAKE} pre-release
+.if target(${.TARGET:S/^real-/pre-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@${MAKE} do-release
-.if target(post-release)
-	@${MAKE} post-release
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+.if target(${.TARGET:S/^real-/post-/})
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} $@
+	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 ###
 
@@ -420,7 +473,7 @@ do-configure:
 	  ${ENV} ${CONFIGURE_ENV} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
 .endif
 .if defined(USE_IMAKE)
-	@cd ${WRKSRC} && ${XMKMF})
+	@cd ${WRKSRC} && ${XMKMF}
 .endif
 .endif
 
@@ -445,15 +498,15 @@ do-install:
 
 .if !target(do-package)
 do-package:
-	@${MAKE} generate-prototype
-	@${MAKE} generate-pkginfo
+	@cd ${.CURDIR} && ${MAKE} generate-prototype
+	@cd ${.CURDIR} && ${MAKE} generate-pkginfo
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
 	@${PKGTRANS} -s ${SPOOLDIR} ${.CURDIR}/${PKGNAME} all
 .endif
 
-.if !target(do-install-package)
-do-install-package:
+.if !target(do-instpkg)
+do-instpkg:
 .if defined(CORE_TOOLS)
 	@${ECHO_MSG} "===>  This software is one of the core tools, which"
 	@${ECHO_MSG} "===>  is necessary during make process.  Hence it cannot"
@@ -475,6 +528,20 @@ do-release:
 	fi
 .endif
 .endif
+
+###
+
+.for name in fetch extract patch configure build install package instpkg release
+.if !target(pre-${name})
+pre-${name}:
+	@${NOTHING_TO_DO}
+.endif
+.if !target(post-${name})
+	@${NOTHING_TO_DO}
+.endif
+.endfor
+
+###
 
 .if !target(checksum)
 checksum:
@@ -504,12 +571,16 @@ checksum:
 
 ###
 
+.for sub in ${PROTOTYPE_SUB}
+_sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
+			val=`${ECHO} "${sub}" | ${SED} -e 's/^[^=][^=]*=//'`; \
+			echo "${_sedsubprotolist} -e s!%%$${sym}%%!$${val}!g"
+.endfor
+
 .if !target(generate-prototype)
 generate-prototype:
-	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?g" \
-	    -e 's?%%GNU_HOSTTYPE%%?${GNU_HOSTTYPE}?g' \
-	    -e 's?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g' \
-	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
+	@${ECHO_MSG} "===>   Generating prototype file"
+	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} > ${PROTOTYPE}
 .endif
 
 .if !target(generate-pkginfo)
@@ -520,18 +591,24 @@ generate-pkginfo:
 	    ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 .endif
 
+.if !target(clean)
 clean:
 	@${ECHO_MSG} "===> Cleaning for ${PKGNAME}"
-	@${RM} -rf ${WRKDIR} ${PKGDIR}/pkginfo ${PKGDIR}/prototype
+	@${RM} -rf ${WRKDIR} ${PKGDIR}/pkginfo ${PROTOTYPE}
+.endif
 
+.if !target(pkgclean)
 pkgclean:	clean
 	@${ECHO_MSG} "===> Cleaning package for ${PKGNAME}"
 	@${RM} -rf ${.CURDIR}/${PKGNAME}
+.endif
 
+.if !target(distclean)
 distclean:	pkgclean
 	@${ECHO_MSG} "===> Cleaning distfiles for ${PKGNAME}"
 	@for file in ${DISTFILES} ${PATCHFILES}; do \
 	 ${RM} -rf ${DISTDIR}/$${file}; done
+.endif
 
 ### only for maintainance
 .if !target(makesum)
@@ -549,12 +626,12 @@ gen-prototype-in:	${INSTALL_COOKIE}
 	@${MAKE} install
 	@${ECHO_MSG} "===> Building prototype.in"
 	@${MKDIR} ${PKGDIR}
-	@if test -f ${PKGDIR}/prototype.in; then \
+	@if test -f ${PROTOTYPE_IN}; then \
 		${ECHO_MSG} "===>  Backing up old prototype.in"; \
-		${MV} ${PKGDIR}/prototype.in ${PKGDIR}/prototype.in.bak; \
+		${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.bak; \
 	fi
-	(cd ${WRKDIR}${PREFIX} && find . -print | pkgproto) \
-	 | ${POSTPROTO} > ${PKGDIR}/prototype.in
+	(cd ${WRKDIR}${PREFIX} && find . -print | ${PKGPROTO}) \
+	 | ${POSTPROTO} > ${PROTOTYPE_IN}
 	@${ECHO_MSG} "===> prototype.in template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
 .endif
