@@ -19,6 +19,7 @@ pre-install::
 post-install::
 	@${MKDIR} ${WRK_BASEDIR}/share/doc/bmake
 	@${INSTALL} -c -m 644 -o root -g bin \
-		${WRKDIR}/help/*.html ${WRK_BASEDIR}/share/doc/bmake
+		${WRKDIR}/help/*.html ${WRKDIR}/help/*.htm \
+		${WRK_BASEDIR}/share/doc/bmake
 
 include ${PKGBUILD_CCS_MAKEFILE_DIR}/pkgbuild.mk
