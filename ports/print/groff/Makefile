@@ -1,21 +1,20 @@
 #
-# $Id: Makefile,v 1.5 2000/09/27 01:27:54 kunishi Exp $
+# $Id: Makefile,v 1.6 2002/03/15 11:34:46 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	groff
-VERSION=	1.11a
+VERSION=	1.17.2
 PORTREV=	1
 
-PKG=		GNUroff
+PKG=		OPUCgroff
 NAME=		GNU roff package
 
 VENDOR=		${VENDOR_GNU}
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/groff/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/groff/
+MASTER_SITES=	ftp://ftp.dnsbalance.ring.gr.jp/pub/GNU/groff/ \
+		ftp://ftp.gnu.org/pub/gnu/groff/
 
-WRKSRC =	${WRKDIR}/${PORTNAME}-1.11
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
