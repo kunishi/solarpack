@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.10 2000/05/15 09:22:53 kunishi Exp $
+# $Id: Makefile,v 1.11 2000/05/16 07:17:29 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -12,12 +12,8 @@ NAME=		GNU tar utilities
 VERSION=	1.13
 VENDOR=		${VENDOR_GNU}
 
+PORTNAME=	gtar
 DISTNAME=	tar-${VERSION}
-.if defined(CORE_TOOLS)
-PKGNAME=	core-g${DISTNAME}
-.else
-PKGNAME=	g${DISTNAME}
-.endif
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/tar/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/tar/
 

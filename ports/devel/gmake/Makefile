@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.11 2000/05/15 09:17:35 kunishi Exp $
+# $Id: Makefile,v 1.12 2000/05/16 07:17:29 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -12,12 +12,8 @@ NAME=		GNU make utility
 VERSION=	3.79
 VENDOR=		${VENDOR_GNU}
 
+PORTNAME=	gmake
 DISTNAME=	make-${VERSION}
-.if defined(CORE_TOOLS)
-PKGNAME=	core-g${DISTNAME}
-.else
-PKGNAME=	g${DISTNAME}
-.endif
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/make/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/make/
 

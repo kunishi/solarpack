@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/04/26 08:32:46 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/05/16 07:17:29 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -12,13 +12,9 @@ NAME=		a program to calculate checksum for a file
 VERSION=	1.0
 VENDOR=		Jim Ellis <jte@cert.org>
 
+PORTNAME=	md5
 DISTNAME=	MD5
 EXTRACT_SUFX=	.tar.Z
-.if defined(CORE_TOOLS)
-PKGNAME=	core-md5-${VERSION}
-.else
-PKGNAME=	md5-${VERSION}
-.endif
 MASTER_SITES=	ftp://ftp.aist-nara.ac.jp/pub/Security/tool/md5/
 WRKSRC=		${WRKDIR}
 

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.10 2000/05/02 04:59:06 kunishi Exp $
+# $Id: Makefile,v 1.11 2000/05/16 07:17:29 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -12,10 +12,7 @@ NAME=		GNU compress utilities
 VERSION=	1.2.4a
 VENDOR=		${VENDOR_GNU}
 
-DISTNAME=	gzip-${VERSION}
-.if defined(CORE_TOOLS)
-PKGNAME=	core-${DISTNAME}
-.endif
+PORTNAME=	gzip
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gzip/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gzip/
 

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.15 2000/05/02 04:58:41 kunishi Exp $
+# $Id: Makefile,v 1.16 2000/05/16 07:17:29 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -12,10 +12,7 @@ NAME=		GNU compiler collection
 VERSION=	2.95.2
 VENDOR=		${VENDOR_GNU}
 
-DISTNAME=	gcc-${VERSION}
-.if defined(CORE_TOOLS)
-PKGNAME=	core-${DISTNAME}
-.endif
+PORTNAME=	gcc
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gcc/
 

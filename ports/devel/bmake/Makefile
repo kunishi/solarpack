@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.12 2000/05/11 06:07:42 kunishi Exp $
+# $Id: Makefile,v 1.13 2000/05/16 07:17:29 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -12,12 +12,9 @@ NAME=		BSD make tool
 VERSION=	3.0.2
 VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 
-DISTNAME=	bmake-${VERSION}
-.if defined(CORE_TOOLS)
-PKGNAME=	core-${DISTNAME}
-.endif
+PORTNAME=	bmake
 MASTER_SITES=	ftp://ftp.quick.com.au/pub/sjg/
-WRKSRC=		${WRKDIR}/bmake
+WRKSRC=		${WRKDIR}/${PORTNAME}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} mk-1.1.tar.gz
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -35,8 +32,8 @@ pre-install:
 	@${MKDIR} ${INSTPREFIX}/bin
 
 post-install:
-	@${MKDIR} ${INSTPREFIX}/share/doc/bmake
-	@${INSTALL} -c -m 644 -o root -g bin \
-		${WRKSRC}/PSD.doc/tutorial.ms ${INSTPREFIX}/share/doc/bmake
+	@${MKDIR} ${INSTPREFIX}/share/doc/${PORTNAME}
+	@${INSTALL} -c -m 644 -o ${SHAREOWN} -g ${SHAREGRP} \
+	  ${WRKSRC}/PSD.doc/tutorial.ms ${INSTPREFIX}/share/doc/${PORTNAME}
 
 .include <port.mk>
