@@ -1,6 +1,9 @@
 if test ! -f $CLIENT_BASEDIR/etc/ssh_host_key; then
-	$CLIENT_BASEDIR/bin/ssh-keygen -b 1024 -f $CLIENT_BASEDIR/etc/ssh_host_key -N ""
+	$CLIENT_BASEDIR/bin/ssh-keygen -t rsa1 -f $CLIENT_BASEDIR/etc/ssh_host_key -N ""
 fi
 if test ! -f $CLIENT_BASEDIR/etc/ssh_host_dsa_key; then
-	$CLIENT_BASEDIR/bin/ssh-keygen -d -f $CLIENT_BASEDIR/etc/ssh_host_dsa_key -N ""
+	$CLIENT_BASEDIR/bin/ssh-keygen -t dsa -f $CLIENT_BASEDIR/etc/ssh_host_dsa_key -N ""
+fi
+if test ! -f $CLIENT_BASEDIR/etc/ssh_host_rsa_key; then
+	$CLIENT_BASEDIR/bin/ssh-keygen -t rsa -f $CLIENT_BASEDIR/etc/ssh_host_rsa_key -N ""
 fi

@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.2 2001/03/02 14:37:08 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/04/14 04:15:33 kunishi Exp $
 #
 
 PORTNAME=	openssh
-VERSION=	2.5.1p1
+VERSION=	2.5.2p1
 PORTREV=	1
 
 PKG=		OPENssh
