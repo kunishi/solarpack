@@ -1,0 +1,9 @@
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+if test -x ${INSTALL_INFO}; then
+	${INSTALL_INFO} --dir-file=${INFODIR}/dir ${INFODIR}/cpp.info
+	${INSTALL_INFO} --dir-file=${INFODIR}/dir ${INFODIR}/gcc.info
+else
+	/usr/bin/echo ">> Add cpp.info and gcc.info entry to ${INFODIR}/dir by hand."
+fi
