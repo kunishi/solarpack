@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.8 1999/05/21 02:27:47 kunishi Exp $
+# $Id: port.mk,v 1.9 1999/05/21 03:18:50 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -92,15 +92,20 @@ PACKAGE_COOKIE=		${WRKDIR}/.package_done
 INSTPKG_COOKIE=		${WRKDIR}/.instpkg_done
 RELEASE_COOKIE=		${WRKDIR}/.release_done
 
-MAKE_ENV+=	PREFIX=${PREFIX} LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
-		CC=${CC}
-MAKE_FLAGS?=	-f ${MAKEFILE}
 MAKEFILE?=	Makefile
+MAKE_FLAGS?=	-f ${MAKEFILE}
+MAKE_ENV+=	PREFIX=${PREFIX} \
+		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
+		CC=${CC}
+MAKE_INSTALL_ENV+=	PREFIX=${WRK_BASEDIR} \
+		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
+		CC=${CC}
+MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 
 .if defined(GNU_CONFIGURE)
 HAS_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
-MAKE_ENV+=		prefix=${PREFIX}
+MAKE+ARGS+=		prefix=${PREFIX}
 MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
 .endif
 
@@ -354,9 +359,9 @@ do-build:
 do-install:
 	@${MKDIR} ${WRK_BASEDIR}
 .if defined(USE_GMAKE)
-	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
+	@cd ${MAKE_INSTALL_EXEC_DIR} && ${ENV} ${MAKE_INSTALL_ENV} ${GMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
 .else
-	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
+	@cd ${MAKE_INSTALL_EXEC_DIR} && ${ENV} ${MAKE_INSTALL_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
 .endif
 .endif
 
