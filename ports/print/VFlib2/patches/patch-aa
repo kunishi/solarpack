@@ -1,0 +1,58 @@
+--- vfontcap~	Wed Jul 21 18:17:04 1999
++++ vfontcap	Fri Nov 30 21:16:59 2001
+@@ -33,9 +33,9 @@
+ ####
+ 
+ min:\
+-	:fc=watanabe-mincho:
++	:fc=solaris-hg-mincho-l:
+ goth:\
+-	:fc=watanabe-mincho:
++	:fc=solaris-hg-gothic-b:
+ #min:\
+ #	:ft=freetype:\
+ #	:ff=/usr/local/share/fonts/DynaFont-Premium30/win95/futt/dfhsmw3.ttc:
+@@ -47,6 +47,14 @@
+ #### PRIMITIVE  FONTS
+ ####
+ 
++### Solaris TrueType fonts
++r-solaris-hg-mincho-l|Solaris HG Mincho L:\
++	:ft=freetype:\
++	:ff=/usr/openwin/lib/locale/ja/X11/fonts/TT/HG-MinchoL.ttf:
++r-solaris-hg-gothic-b|Solaris HG Gothic B:\
++	:ft=freetype:\
++	:ff=/usr/openwin/lib/locale/ja/X11/fonts/TT/HG-GothicB.ttf:
++
+ ### SONY VECTOR FONTS
+ r-sony-mincho|Sony Vector Font (Mincho):\
+ 	:ft=sony:\
+@@ -366,6 +374,10 @@
+ ###--------------------------
+ ### CORRECTED 
+ ###
++solaris-hg-mincho-l:\
++	:fc=r-solaris-hg-mincho-l:
++solaris-hg-gothic-b:\
++	:fc=r-solaris-hg-gothic-b:
+ sony-mincho:\
+ 	:fc=r-sony-mincho:
+ sony-gothic:\
+@@ -595,13 +607,13 @@
+ ### for ASCII jTeX
+ ###
+ min|min5|min6|min7|min8|min9|min10|min12|min17|Mincho Font:\
+-	:fc=ricoh-heisei-mincho-w3:
++	:fc=solaris-hg-mincho-l:
+ goth|goth5||goth6|goth7|goth8|goth9|goth10|goth12|goth17|Gothic Font:\
+-	:fc=ricoh-heisei-gothic-w5:
++	:fc=solaris-hg-gothic-b:
+ tmin|tmin5|tmin6|tmin7|tmin8|tmin9|tmin10|tmin12|tmin17|Mincho Font:\
+-	:fc=ricoh-heisei-mincho-w3:
++	:fc=solaris-hg-mincho-l:
+ tgoth|tgoth5||tgoth6|tgoth7|tgoth8|tgoth9|tgoth10|tgoth12|tgoth17|Gothic Font:\
+-	:fc=ricoh-heisei-gothic-w5:
++	:fc=solaris-hg-gothic-b:
+ bmin:\
+ 	:fc=ricoh-heisei-bold-mincho:
+ bgoth:\
