@@ -1,0 +1,13 @@
+--- contrib/Solaris-8/prngd.orig	Tue Aug  7 17:12:26 2001
++++ contrib/Solaris-8/prngd	Fri Jan 31 20:40:53 2003
+@@ -15,8 +15,8 @@
+ DESC='PRNGD entropy-gathering daemon'
+ 
+ PRNGD=/usr/local/sbin/prngd
+-SOCKETDIR=/var/run/opt
+-SOCKET=$SOCKETDIR/prngd-socket
++SOCKETDIR=/var/run
++SOCKET=$SOCKETDIR/egd-pool
+ 
+ case $1 in
+ 'start')

@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.1 2003/01/31 01:59:33 kunishi Exp $
+# $Id: Makefile,v 1.2 2003/01/31 11:45:03 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	prngd
 VERSION=	0.9.27
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPUCprngd
 NAME=		A pseudo random number generator daemon
