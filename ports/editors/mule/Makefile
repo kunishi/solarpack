@@ -1,19 +1,22 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+#
+# $Id: Makefile,v 1.2 1999/05/18 02:48:07 kunishi Exp $
+#
 
 DISTNAME =	emacs-19.34b
 PKGNAME =	ja-mule@19.34-canna+wnn6-2.3
-MASTER_SITES =	ftp://etlport.etl.go.jp/pub/mule/
+MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/emacs/ \
+		ftp://etlport.etl.go.jp/pub/mule/
 
-PATCH_SITES =	ftp://etlport.etl.go.jp/pub/mule/
+PATCH_SITES =	ftp://ftp.media.kyoto-u.ac.jp/GNU/mule/ \
+		ftp://etlport.etl.go.jp/pub/mule/
 PATCHFILES =	mule-23-1934-alpha01.diff.gz
 PATCH_DIST_STRIP =	-p1
-JA_LOCALE_WNN_DIR =	/usr/lib/locale/ja/wnn/demo
 WRKSRC =	${WRKDIR}/emacs-19.34
 
+JA_LOCALE_WNN_DIR =	/usr/lib/locale/ja/wnn/demo
+
+USE_GMAKE=		yes
+GNU_CONFIGURE=		yes
 CONFIGURE_ARGS +=	--with-x \
 			--x-includes=${X11BASE}/include \
 			--x-libraries=${X11BASE}/lib \
@@ -32,7 +35,7 @@ CONFIGURE_ARGS +=	--with-canna \
 
 post-patch::
 	@(cd ${WRKSRC}/lisp; \
-	${PATCH} -p0 -N < ${CURDIR}/files/canna.el-19.34.patch; \
-	${PATCH} -p0 -N < ${CURDIR}/files/egg.el-19.34.patch)
+	${PATCH} -p0 -N < ${FILESDIR}/canna.el-19.34.patch; \
+	${PATCH} -p0 -N < ${FILESDIR}/egg.el-19.34.patch)
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+.include <port.mk>
