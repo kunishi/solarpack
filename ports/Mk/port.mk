@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.18 1999/06/04 01:33:30 kunishi Exp $
+# $Id: port.mk,v 1.19 1999/06/04 02:07:50 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -250,7 +250,9 @@ build:	${BUILD_COOKIE}
 .if defined(NO_INSTALL)
 install:	build
 	@${TOUCH} ${INSTALL_COOKIE}
+.else
 install:	${INSTALL_COOKIE}
+.endif
 .endif
 
 .if !target(package)
@@ -378,7 +380,7 @@ real-instpkg:
 .endif
 	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
-real-release
+real-release:
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
