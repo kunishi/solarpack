@@ -1,0 +1,2 @@
+(cd $CLIENT_BASEDIR/share/texmf/metapost/support/charlib; \
+  cp tilde-equal '~=')
