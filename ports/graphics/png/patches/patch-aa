@@ -1,22 +1,22 @@
---- Makefile~	Wed May 17 21:27:32 2000
-+++ Makefile	Wed May 17 21:28:01 2000
-@@ -7,7 +7,7 @@
+--- scripts/makefile.solaris.orig	Tue Jan  7 12:59:28 2003
++++ scripts/makefile.solaris	Tue Jan  7 13:00:09 2003
+@@ -8,7 +8,7 @@
  CC=gcc
  
- # Where make install puts libpng.a, libpng.so*, and png.h
+ # Where make install puts libpng.a, libpng12.so*, and png.h
 -prefix=/usr/local
-+prefix=${PREFIX}
++prefix=$(PREFIX)
  
  # Where the zlib library and include files are located
  # Changing these to ../zlib poses a security risk.  If you want
-@@ -15,8 +15,8 @@
+@@ -16,8 +16,8 @@
  #ZLIBLIB=../zlib
  #ZLIBINC=../zlib
  
 -ZLIBLIB=/usr/local/lib
 -ZLIBINC=/usr/local/include
-+ZLIBLIB=${prefix}/lib
-+ZLIBINC=${prefix}/include
++ZLIBLIB=$(ZLIBPREFIX)/lib
++ZLIBINC=$(ZLIBPREFIX)/include
  
  WARNMORE=-Wwrite-strings -Wpointer-arith -Wshadow \
  	-Wmissing-declarations -Wtraditional -Wcast-align \
