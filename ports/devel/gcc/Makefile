@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.23 2001/11/08 13:38:43 kunishi Exp $
+# $Id: Makefile,v 1.24 2002/03/15 09:02:48 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -7,7 +7,7 @@
 OSREL!=		/usr/bin/uname -r
 
 PORTNAME?=	gcc
-VERSION=	3.0.2
+VERSION=	3.0.4
 PORTREV?=	1
 
 PKG=		OPUCgcc
@@ -32,6 +32,7 @@ CONFIGURE_ENV+=	CFLAGS='-g -O0'
 CONFIGURE_ARGS+=	--with-gnu-asm --with-gnu-ld
 .endif
 ALL_TARGET=	bootstrap
+MAKE_ENV+=	LD_LIBRARY_PATH=${LOCALBASE}/lib LD_RUN_PATH=${LOCALBASE}/lib
 PROTOTYPE_SUB+=	GCC_VER=${VERSION}
 
 CLASS_INFO=	info/cpp.info info/cppinternals.info \
