@@ -12,4 +12,6 @@ post-install:
 	${INSTALL} -c -m 0644 ${WRKSRC}/dir-example \
 	    ${WRKDIR}${PREFIX}/share/examples/texinfo
 
+CORE_TOOLS=	yes
+
 include ../../include/pkgbuild.mk

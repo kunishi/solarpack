@@ -10,4 +10,6 @@ post-install:
 	${INSTALL} -c ${WRKSRC}/doc/sample.wgetrc \
 	    ${WRK_BASEDIR}/share/examples/wget/sample.wgetrc
 
+CORE_TOOLS=	yes
+
 include ../../include/pkgbuild.mk

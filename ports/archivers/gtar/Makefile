@@ -9,4 +9,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--program-prefix=g
 USE_GMAKE=	yes
 
+CORE_TOOLS=	yes
+
 include ../../include/pkgbuild.mk

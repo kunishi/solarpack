@@ -8,6 +8,7 @@ CONFIGURE_ARGS+=	--build=${GNU_HOSTTYPE}
 USE_GMAKE=	yes
 
 DO_BUILD_OVERRIDE=	yes
+CORE_TOOLS=	yes
 
 do-build:
 	-cd ${WRKSRC} && ${MAKE} LANGUAGES=c

@@ -9,4 +9,6 @@ CONFIGURE_ARGS+=	--program-prefix=g
 WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_GMAKE=	yes
 
+CORE_TOOLS=	yes
+
 include ../../include/pkgbuild.mk
