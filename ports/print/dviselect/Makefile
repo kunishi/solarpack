@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/23 10:19:17 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/06/07 05:49:46 kunishi Exp $
 #
 
 PORTNAME=	dviselect
@@ -11,7 +11,8 @@ NAME=		dviselect, dvi selecting utility
 
 VENDOR=		Univ. Maryland Department of Comp. Sci.
 DISTNAME=	${PORTNAME}
-MASTER_SITES=	ftp://ftp.ee.duke.edu/archives/
+MASTER_SITES=	ftp://ftp.ee.duke.edu/archives/ \
+		ftp://ftp.jp.freebsd.org/pub/FreeBSD/distfiles/
 
 USE_GMAKE=	yes
 ALL_TARGET=	default
