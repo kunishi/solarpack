@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/07/18 05:23:59 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/21 12:36:09 kunishi Exp $
 #
 
 PORTNAME=	tcsh
@@ -10,12 +10,15 @@ PKG=		OPENtcsh
 NAME=		tcsh, and extended C-shell with many useful features
 VENDOR=		Christos Zoulas <christos@gw.com>
 
-#DISTNAME=	${PORTNAME}-6.09
 MASTER_SITES =	ftp://ftp.astron.com/pri/
 
+OSREL!=		/usr/bin/uname -r
+
 GNU_CONFIGURE=	yes
-#WRKSRC=		${WRKDIR}/tcsh-${VERSION}
 INSTALL_TARGET=		install install.man
+.if ${OSREL} >= 5.8
+MAKE_ARGS+=	DFLAGS=-D_PATH_TCSHELL='\"$${DESTBIN}/tcsh\"'
+.endif
 
 CLASS_SHELL=	bin/tcsh
 
