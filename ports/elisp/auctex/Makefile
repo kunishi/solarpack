@@ -1,11 +1,17 @@
 #
-# $Id: Makefile,v 1.1 1999/06/01 04:39:25 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/05 06:33:19 kunishi Exp $
 #
 
-DISTNAME=	auctex-9.9p
+PKG=		OPENauctx
+NAME=		A much enhanced LaTeX mode for GNU Emacs
+VERSION=	9.9p
+VENDOR=auc-tex_mgr@sunsite.auc.dk
+
+DISTNAME=	auctex-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/text/CTAN/support/auctex/
 
 USE_GMAKE=	yes
+USE_INSTALL_INFO=	yes
 
 MAKE_ARGS+=	prefix=${PREFIX} EMACS=mule
 

@@ -1,8 +1,8 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/auctex=%%WRK_BASEDIR%%/info/auctex 0644 root bin
+f info info/auctex=%%WRK_BASEDIR%%/info/auctex 0644 root bin
 f none info/auctex-1=%%WRK_BASEDIR%%/info/auctex-1 0644 root bin
 f none info/auctex-2=%%WRK_BASEDIR%%/info/auctex-2 0644 root bin
 f none info/auctex-3=%%WRK_BASEDIR%%/info/auctex-3 0644 root bin
