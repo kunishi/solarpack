@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.21 1999/06/04 03:48:18 kunishi Exp $
+# $Id: port.mk,v 1.22 1999/06/04 11:38:19 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -142,6 +142,7 @@ PKG_CMD?=	${PKGMK}
 PKG_DELETE?=	${PKGRM}
 
 AWK?=		/usr/bin/awk
+CAT?=		/usr/bin/cat
 CCSMAKE?=	/usr/ccs/bin/make
 CHOWN?=		/usr/bin/chown
 CP?=		/usr/bin/cp
@@ -165,12 +166,12 @@ RM?=		/usr/bin/rm
 RMDIR?=		/usr/bin/rmdir
 SED?=		/usr/bin/sed
 SH?=		/bin/sh
+SORT?=		/usr/bin/sort
 UNAME?=		/usr/bin/uname
+UNIQ?=		/usr/bin/uniq
 WGET?=		${LOCALBASE}/bin/wget
 
 ECHO_MSG?=	${ECHO}
-
-POSTPROTO=	${PKGBUILDDIR}/tools/postproto.sh
 
 ALL_TARGET?=		all
 INSTALL_TARGET?=	install
@@ -241,7 +242,7 @@ all:	build
 
 .if !target(fetch)
 fetch:
-	@cd ${.CURDIR} && ${MAKE} real-fetch
+	@cd ${MASTERDIR} && ${MAKE} real-fetch
 .endif
 
 .if !target(extract)
@@ -287,126 +288,126 @@ release:	${RELEASE_COOKIE}
 .endif
 
 ${EXTRACT_COOKIE}:
-	@cd ${.CURDIR} && ${MAKE} fetch
-	@cd ${.CURDIR} && ${MAKE} real-extract
+	@cd ${MASTERDIR} && ${MAKE} fetch
+	@cd ${MASTERDIR} && ${MAKE} real-extract
 ${PATCH_COOKIE}:	${EXTRACT_COOKIE}
-	@cd ${.CURDIR} && ${MAKE} extract
-	@cd ${.CURDIR} && ${MAKE} real-patch
+	@cd ${MASTERDIR} && ${MAKE} extract
+	@cd ${MASTERDIR} && ${MAKE} real-patch
 ${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
-	@cd ${.CURDIR} && ${MAKE} patch
-	@cd ${.CURDIR} && ${MAKE} real-configure
+	@cd ${MASTERDIR} && ${MAKE} patch
+	@cd ${MASTERDIR} && ${MAKE} real-configure
 ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
-	@cd ${.CURDIR} && ${MAKE} configure
-	@cd ${.CURDIR} && ${MAKE} real-build
+	@cd ${MASTERDIR} && ${MAKE} configure
+	@cd ${MASTERDIR} && ${MAKE} real-build
 ${INSTALL_COOKIE}:	${BUILD_COOKIE}
-	@cd ${.CURDIR} && ${MAKE} build
-	@cd ${.CURDIR} && ${MAKE} real-install
+	@cd ${MASTERDIR} && ${MAKE} build
+	@cd ${MASTERDIR} && ${MAKE} real-install
 ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
-	@cd ${.CURDIR} && ${MAKE} install
-	@cd ${.CURDIR} && ${MAKE} real-package
+	@cd ${MASTERDIR} && ${MAKE} install
+	@cd ${MASTERDIR} && ${MAKE} real-package
 ${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
-	@cd ${.CURDIR} && ${MAKE} package
-	@cd ${.CURDIR} && ${MAKE} real-instpkg
+	@cd ${MASTERDIR} && ${MAKE} package
+	@cd ${MASTERDIR} && ${MAKE} real-instpkg
 ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
-	@cd ${.CURDIR} && ${MAKE} package
-	@cd ${.CURDIR} && ${MAKE} real-release
+	@cd ${MASTERDIR} && ${MAKE} package
+	@cd ${MASTERDIR} && ${MAKE} real-release
 
 real-fetch:
 	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 
 real-extract:
 	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} checksum
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} checksum
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-patch:
 	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-configure:
 	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-build:
 	@${ECHO_MSG} "===> Building for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-install:
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-package:
 	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-instpkg:
 	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-release:
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
 .if target(${.TARGET:S/^real-/pre-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(${.TARGET:S/^real-/post-/})
-	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
@@ -487,7 +488,7 @@ do-patch:
 .if !target(do-configure)
 do-configure:
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
-	  cd ${.CURDIR} && ${SH} ${SCRIPTDIR}/configure; \
+	  cd ${MASTERDIR} && ${SH} ${SCRIPTDIR}/configure; \
 	fi
 .if defined(HAS_CONFIGURE)
 	@cd ${WRKSRC} && \
@@ -519,11 +520,11 @@ do-install:
 
 .if !target(do-package)
 do-package:
-	@cd ${.CURDIR} && ${MAKE} generate-prototype
-	@cd ${.CURDIR} && ${MAKE} generate-pkginfo
+	@cd ${MASTERDIR} && ${MAKE} gen-prototype
+	@cd ${MASTERDIR} && ${MAKE} gen-pkginfo
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
-	@${PKGTRANS} -s ${SPOOLDIR} ${.CURDIR}/${PKGNAME} all
+	@${PKGTRANS} -s ${SPOOLDIR} ${MASTERDIR}/${PKGNAME} all
 .endif
 
 .if !target(do-instpkg)
@@ -536,7 +537,7 @@ do-instpkg:
 	@${ECHO_MSG} "===>  of this software."
 	@exit 1
 .else
-	${PKGADD} -d ${.CURDIR}/${PKGNAME} all
+	${PKGADD} -d ${MASTERDIR}/${PKGNAME} all
 .endif
 .endif
 
@@ -598,8 +599,8 @@ _sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
 			echo "${_sedsubprotolist} -e s!%%$${sym}%%!$${val}!g"
 .endfor
 
-.if !target(generate-prototype)
-generate-prototype:
+.if !target(gen-prototype)
+gen-prototype:
 	@${ECHO_MSG} "===>  Generating prototype file"
 	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} > ${PROTOTYPE}
 .endif
@@ -610,8 +611,8 @@ _sedsubpkginfolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
 			echo "${_sedsubpkginfolist} -e s!%%$${sym}%%!$${val}!g"
 .endfor
 
-.if !target(generate-pkginfo)
-generate-pkginfo:
+.if !target(gen-pkginfo)
+gen-pkginfo:
 	@${ECHO_MSG} "===>  Generating pkginfo file"
 	@${SED} ${_sedsubpkginfolist} \
 		-e 's!%%NAME%%!${NAME}!g' \
@@ -629,7 +630,7 @@ clean:
 .if !target(pkgclean)
 pkgclean:	clean
 	@${ECHO_MSG} "===> Cleaning package for ${PKGNAME}"
-	@${RM} -rf ${.CURDIR}/${PKGNAME}
+	@${RM} -rf ${MASTERDIR}/${PKGNAME}
 .endif
 
 .if !target(distclean)
@@ -659,8 +660,24 @@ gen-prototype-in:	${INSTALL_COOKIE}
 		${ECHO_MSG} "===>  Backing up old prototype.in"; \
 		${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.bak; \
 	fi
-	(cd ${WRKDIR}${PREFIX} && find . -print | ${PKGPROTO}) \
-	 | ${POSTPROTO} > ${PROTOTYPE_IN}
+	@(cd ${WRKDIR}${PREFIX} && find . -print | ${PKGPROTO}) | \
+	  ${SORT} +2 | ${UNIQ} | ${SED} \
+		-e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
+		-e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
+		-e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%WRK_BASEDIR%%/\2 \3?' | \
+	  ${AWK} 'BEGIN { printf("i pkginfo=%%%%PKGDIR%%%%/pkginfo\n");} \
+		  { print; }' \
+	  > ${PROTOTYPE_IN}
+.if defined(USE_INSTALL_INFO)
+	@${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.orig
+	@${CAT} ${PROTOTYPE_IN}.orig | ${AWK} \
+		'{ print; }\
+		 NR==1 { printf("i i.info=%%%%TEMPLATEDIR%%%%/i.info\n"); \
+			 printf("i r.info=%%%%TEMPLATEDIR%%%%/r.info\n"); }\
+		'\
+	  > ${PROTOTYPE_IN}
+	@${RM} ${PROTOTYPE_IN}.orig
+.endif
 	@${ECHO_MSG} "===> prototype.in template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
 .endif
