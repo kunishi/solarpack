@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.74 2000/07/01 07:44:44 kunishi Exp $
+# $Id: port.mk,v 1.75 2000/07/14 07:30:34 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -394,7 +394,7 @@ all:	build
 
 .if !target(fetch)
 fetch:
-	@cd ${MASTERDIR} && ${MAKE} real-fetch
+	@cd ${.CURDIR} && ${MAKE} real-fetch
 .endif
 
 .if !target(extract)
@@ -440,107 +440,107 @@ release:	${RELEASE_COOKIE}
 .endif
 
 ${EXTRACT_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} fetch
-	@cd ${MASTERDIR} && ${MAKE} real-extract
+	@cd ${.CURDIR} && ${MAKE} fetch
+	@cd ${.CURDIR} && ${MAKE} real-extract
 ${PATCH_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} extract
-	@cd ${MASTERDIR} && ${MAKE} real-patch
+	@cd ${.CURDIR} && ${MAKE} extract
+	@cd ${.CURDIR} && ${MAKE} real-patch
 ${CONFIGURE_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} patch
-	@cd ${MASTERDIR} && ${MAKE} real-configure
+	@cd ${.CURDIR} && ${MAKE} patch
+	@cd ${.CURDIR} && ${MAKE} real-configure
 ${BUILD_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} configure
-	@cd ${MASTERDIR} && ${MAKE} real-build
+	@cd ${.CURDIR} && ${MAKE} configure
+	@cd ${.CURDIR} && ${MAKE} real-build
 ${INSTALL_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} build
-	@cd ${MASTERDIR} && ${MAKE} real-install
+	@cd ${.CURDIR} && ${MAKE} build
+	@cd ${.CURDIR} && ${MAKE} real-install
 ${PACKAGE_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} install
-	@cd ${MASTERDIR} && ${MAKE} real-package
+	@cd ${.CURDIR} && ${MAKE} install
+	@cd ${.CURDIR} && ${MAKE} real-package
 ${INSTPKG_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} package
-	@cd ${MASTERDIR} && ${MAKE} real-instpkg
+	@cd ${.CURDIR} && ${MAKE} package
+	@cd ${.CURDIR} && ${MAKE} real-instpkg
 ${RELEASE_COOKIE}:
-	@cd ${MASTERDIR} && ${MAKE} package
-	@cd ${MASTERDIR} && ${MAKE} real-release
+	@cd ${.CURDIR} && ${MAKE} package
+	@cd ${.CURDIR} && ${MAKE} real-release
 
 real-fetch:
 .if defined(NO_FETCH)
 	@${ECHO_MSG} ">> ${NO_FETCH}"
 .endif
 .if target(pre-fetch)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-fetch)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 
 real-extract:
 	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
 .if target(pre-extract)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} checksum
-	@cd ${MASTERDIR} && ${MAKE} build-depends lib-depends
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} checksum
+	@cd ${.CURDIR} && ${MAKE} build-depends lib-depends
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-extract)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-patch:
 	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
 .if target(pre-patch)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-patch)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-configure:
 	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
 .if target(pre-configure)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-configure)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-build:
 	@${ECHO_MSG} "===> Building for ${PKGNAME}"
 .if target(pre-build)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-build)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-install:
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 .if target(pre-install)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-install)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-package:
 	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
 .if target(pre-package)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-package)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
@@ -550,24 +550,24 @@ real-instpkg:
 	  exit 1; \
 	fi
 	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
-	@cd ${MASTERDIR} && ${MAKE} run-depends lib-depends
+	@cd ${.CURDIR} && ${MAKE} run-depends lib-depends
 .if target(pre-instpkg)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-instpkg)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-release:
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
 .if target(pre-release)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-release)
-	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
+	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
@@ -648,7 +648,7 @@ do-patch:
 .if !target(do-configure)
 do-configure:
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
-	  cd ${MASTERDIR} && ${SH} ${SCRIPTDIR}/configure; \
+	  cd ${.CURDIR} && ${SH} ${SCRIPTDIR}/configure; \
 	fi
 .if defined(HAS_CONFIGURE)
 	@cd ${WRKSRC} && \
@@ -680,9 +680,9 @@ do-install:
 
 .if !target(do-package)
 do-package:
-	@cd ${MASTERDIR} && ${MAKE} gen-prototype
-	@cd ${MASTERDIR} && ${MAKE} gen-pkginfo
-	@cd ${MASTERDIR} && ${MAKE} gen-depend
+	@cd ${.CURDIR} && ${MAKE} gen-prototype
+	@cd ${.CURDIR} && ${MAKE} gen-pkginfo
+	@cd ${.CURDIR} && ${MAKE} gen-depend
 .if defined(CLASS_INITD)
 	@${SED} \
 	  -e 's?%%INITD_START_NUM%%?${INITD_START_NUM}?g' \
@@ -695,7 +695,7 @@ do-package:
 .endif
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
-	@${PKGTRANS} -s ${SPOOLDIR} ${MASTERDIR}/${PKGNAME} all
+	@${PKGTRANS} -s ${SPOOLDIR} ${.CURDIR}/${PKGNAME} all
 .endif
 
 .if !target(do-instpkg)
@@ -708,7 +708,7 @@ do-instpkg:
 	@${ECHO_MSG} "===>  of this software."
 	@exit 1
 .else
-	${PKGADD} -d ${MASTERDIR}/${PKGNAME} all
+	${PKGADD} -d ${.CURDIR}/${PKGNAME} all
 .endif
 .endif
 
@@ -777,8 +777,8 @@ DEPENDS_TARGET=	instpkg
 
 .if !target(depends)
 depends:	lib-depends
-	@cd ${MASTERDIR} && ${MAKE} build-depends
-	@cd ${MASTERDIR} && ${MAKE} run-depends
+	@cd ${.CURDIR} && ${MAKE} build-depends
+	@cd ${.CURDIR} && ${MAKE} run-depends
 
 .if make(build-depends) && defined(BUILD_DEPENDS)
 DEPENDS_TMP+=	${BUILD_DEPENDS}
@@ -851,7 +851,7 @@ gen-depend:
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS) || defined(INCOMPAT_PKGS)
 	@${ECHO_MSG} "===>  Generating depend"
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
-	@for entry in `cd ${MASTERDIR} && ${MAKE} gen-depend-pkg-list`; do \
+	@for entry in `cd ${.CURDIR} && ${MAKE} gen-depend-pkg-list`; do \
 	  pkg=`${ECHO} $${entry} | ${CUT} -d: -f1`; \
 	  dir=`${ECHO} $${entry} | ${CUT} -d: -f2`; \
 	  name=`cd $${dir} && ${MAKE} print-name`; \
@@ -915,7 +915,7 @@ clean:
 .if !target(pkgclean)
 pkgclean:	clean
 	@${ECHO_MSG} "===> Cleaning package for ${PKGNAME}"
-	@${RM} -rf ${MASTERDIR}/${PKGNAME}
+	@${RM} -rf ${.CURDIR}/${PKGNAME}
 .endif
 
 .if !target(distclean)
