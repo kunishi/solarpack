@@ -1,17 +1,16 @@
 #
-# $Id: Makefile,v 1.1 2001/11/28 15:44:01 kunishi Exp $
+# $Id: Makefile,v 1.2 2002/03/20 09:24:54 kunishi Exp $
 #
 
 PORTNAME=	emacs
-VERSION=	21.1
+VERSION=	21.2
 PORTREV=	1
 
 PKG=		OPUCemacs
 NAME=		GNU Emacs editor
 
-MASTER_SITES=	ftp://ftp.dnsbalance.ring.gr.jp/pub/GNU/emacs/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/emacs/ \
-		ftp://ftp.gnu.org/gnu/emacs/
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	emacs
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} leim-${VERSION}${EXTRACT_SUFX}
 
 .if defined(USE_XAW3D)
@@ -44,5 +43,8 @@ CLASS_INFO=	info/ada-mode info/autotype info/ccmode info/cl \
 		info/idlwave info/info info/message info/mh-e info/pcl-cvs \
 		info/reftex info/sc info/speedbar info/vip info/viper \
 		info/widget info/woman
+
+post-install:
+	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/emacs/${VERSION}
 
 .include <port.mk>
