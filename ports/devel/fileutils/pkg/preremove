@@ -1,0 +1,8 @@
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+if test -x ${INSTALL_INFO}; then
+	${INSTALL_INFO} --delete --info-dir=${INFODIR} ${INFODIR}/fileutils.info
+else
+	/usr/bin/echo ">> Remove fileutils.info entry from ${INFODIR}/dir by hand."
+fi
