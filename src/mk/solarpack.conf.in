@@ -1,12 +1,12 @@
 ###
 # solpkg root directory. 
-SOAP_DIR=	@solpkg_topdir@
+SOAP_DIR=	@soap_topdir@
 SOAP_BINDIR=	${SOAP_DIR}/bin
 #
 # The directory where solpkg ports tree are in.
 # Edit by yourself to fit your own environment.
 #SOAP_SRCDIR=	${SOAP_DIR}
-SOAP_SRCDIR=	/export/pub/cvs/solpkg
+SOAP_SRCDIR=	/export/cvs/soap
 #
 # C compiler for building packages.
 CC=	${SOAP_BINDIR}/gcc
