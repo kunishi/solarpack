@@ -41,7 +41,7 @@ DISTDIR=	/opt/local/pkgbuild/distfiles
 FILESDIR=	${CURDIR}/files
 PATCHDIR=	${CURDIR}/patches
 WRKDIR=		${CURDIR}/work
-WRKSRC=		${WRKDIR}/${PKGNAME}
+WRKSRC=		${WRKDIR}/${DISTNAME}
 WRK_BASEDIR=	${WRKDIR}${PREFIX}
 SPOOLDIR=	${WRKDIR}/spool
 PKGDIR=		${CURDIR}/pkg
@@ -58,6 +58,8 @@ PATCH_DIST_ARGS=	-d ${WRKSRC} --forward --quiet -E ${PATCH_DIST_STRIP}
 
 CONFIGURE_ENV=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
+
+INSTALL_TARGET=	install
 
 FETCH_COOKIE=		${WRKDIR}/.fetch_done
 EXTRACT_COOKIE=		${WRKDIR}/.extract_done

@@ -1,5 +1,5 @@
 #
-# $Id: pkgbuild.mk,v 1.6 1999/05/08 10:20:24 kunishi Exp $
+# $Id: pkgbuild.mk,v 1.7 1999/05/11 03:46:16 kunishi Exp $
 #
 
 ifeq ($(USE_IMAKE),yes)
@@ -9,6 +9,7 @@ XMKMF_ARGS+=	-a
 USE_CCSMAKE=	yes
 MAKE_ARGS+=	DESTDIR=${PREFIX}
 MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
+INSTALL_TARGET+=	install-man
 endif
 
 ifeq ($(USE_X_PREFIX),yes)
@@ -36,7 +37,9 @@ MAKE_ENV+=	MAKE=${MAKE} MAKEFLAGS=
 
 ### rule definitions
 
-.PHONY: fetch extract patch configure build package install-package \
+.PHONY: extract configure build package install-package \
+	pre-fetch fetch post-fetch \
+	pre-patch patch post-patch \
 	do-build post-install install-package release \
 	clean pkgclean distclean \
 	build-prototype
@@ -55,6 +58,7 @@ release:	${RELEASE_COOKIE}
 
 ${FETCH_COOKIE}:
 	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
+	@${PKGMAKE} pre-fetch
 	@${MKDIR} ${WRKDIR}
 	@(cd ${DISTDIR}; \
 	 for file in ${DISTFILES}; do \
@@ -67,12 +71,26 @@ ${FETCH_COOKIE}:
 			done; \
 		fi \
 	done)
+ifneq (${PATCHFILES},)
+	@(cd ${DISTDIR}; \
+	 for file in ${PATCHFILES}; do \
+		if [ ! -f $${file} ]; then \
+			for site in ${PATCH_SITES}; do \
+				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
+				if ${WGET} $${site}$${file}; then \
+					continue 2; \
+				fi \
+			done; \
+		fi \
+	 done)
+endif
+	@${PKGMAKE} post-fetch
 	@${TOUCH} ${FETCH_COOKIE}
 
 ${EXTRACT_COOKIE}:	${FETCH_COOKIE}
 	@${PKGMAKE} fetch
 	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
-	@for file in ${DISTFILES}; do \
+	@for file in ${EXTRACT_ONLY}; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
 	    cd ${WRKDIR} && ${GTAR} xzf ${DISTDIR}/$${file}; \
 	done
@@ -81,7 +99,8 @@ ${EXTRACT_COOKIE}:	${FETCH_COOKIE}
 ${PATCH_COOKIE}:	${EXTRACT_COOKIE}
 	@${PKGMAKE} extract
 	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
-ifdef (${PATCHFILES})
+	@${PKGMAKE} pre-patch
+ifneq (${PATCHFILES},)
 	@(cd ${DISTDIR}; \
 	for file in ${PATCHFILES}; do \
 	    case $${file} in \
@@ -111,6 +130,7 @@ endif
 		done; \
 	    fi; \
 	fi
+	@${PKGMAKE} post-patch
 	@${TOUCH} $@
 
 ${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
@@ -133,7 +153,7 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${PKGMAKE} build
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 	@${MKDIR} ${WRK_BASEDIR}
-	@cd ${WRKSRC} && ${MAKE} install ${MAKE_INSTALL_ARGS}
+	@cd ${WRKSRC} && ${MAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
 	@${PKGMAKE} post-install
 	@${TOUCH} $@
 
@@ -174,7 +194,7 @@ ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 	@${TOUCH} $@
 
 ifneq ($(DO_BUILD_OVERRIDE),yes)
-do-build:
+do-build::
 	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${MAKE_ARGS}
 endif
 
