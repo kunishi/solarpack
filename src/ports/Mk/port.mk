@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.19 1999/06/04 02:07:50 kunishi Exp $
+# $Id: port.mk,v 1.20 1999/06/04 03:22:42 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -35,6 +35,7 @@ TOOLSDIR?= 	${PKGBUILDDIR}/tools
 FILESDIR?=	${MASTERDIR}/files
 SCRIPTDIR?=	${MASTERDIR}/scripts
 PKGDIR?=	${MASTERDIR}/pkg
+TEMPLATEDIR?=	${PKGBUILDDIR}/ports/Template
 
 .if defined(USE_IMAKE)
 USE_X_PREFIX=	yes
@@ -55,6 +56,20 @@ PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
 PROTOTYPE?=	${PKGDIR}/prototype
 PROTOTYPE_IN?=	${PKGDIR}/prototype.in
+
+PKGINFO?=	${PKGDIR}/pkginfo
+PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
+CATEGORY?=	application
+MAINTAINER?=	${PKG_MAINTAINER}
+CLASSES?=	none
+# NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
+# because they might contain spaces in its value, which cause
+# bad affects for generating ${_sedsubpkginfolist}.
+PKGINFO_SUB+=	PKG=${PKG} \
+		VERSION=${VERSION} \
+		CATEGORY=${CATEGORY} \
+		ARCH=${ARCH} \
+		BASEDIR=${PREFIX}
 
 EXTRACT_COOKIE?=	${WRKDIR}/.extract_done
 PATCH_COOKIE?=		${WRKDIR}/.patch_done
@@ -581,16 +596,24 @@ _sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
 
 .if !target(generate-prototype)
 generate-prototype:
-	@${ECHO_MSG} "===>   Generating prototype file"
+	@${ECHO_MSG} "===>  Generating prototype file"
 	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} > ${PROTOTYPE}
 .endif
 
+.for sub in ${PKGINFO_SUB}
+_sedsubpkginfolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
+			val=`${ECHO} "${sub}" | ${SED} -e 's/^[^=][^=]*=//'`; \
+			echo "${_sedsubpkginfolist} -e s!%%$${sym}%%!$${val}!g"
+.endfor
+
 .if !target(generate-pkginfo)
 generate-pkginfo:
-	@${SED} -e 's?%%ARCH%%?${ARCH}?' \
-	    -e 's?%%BASEDIR%%?${PREFIX}?' \
-	    -e 's?%%PKG_MAINTAINER%%?${PKG_MAINTAINER}?' \
-	    ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
+	@${ECHO_MSG} "===>  Generating pkginfo file"
+	@${SED} ${_sedsubpkginfolist} \
+		-e 's!%%NAME%%!${NAME}!g' \
+		-e 's!%%VENDOR%%!${VENDOR}!g' \
+		-e 's!%%MAINTAINER%%!${MAINTAINER}!g' \
+		-e 's!%%CLASSES%%!${CLASSES}!g' ${PKGINFO_IN} > ${PKGINFO}
 .endif
 
 .if !target(clean)
