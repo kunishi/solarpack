@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.12 2000/01/19 01:29:04 kunishi Exp $
+# $Id: Makefile,v 1.13 2000/01/19 02:13:28 kunishi Exp $
 #
 
 PKG=		GNUwget
@@ -8,8 +8,7 @@ VERSION=	1.5.3
 VENDOR=		${VENDOR_GNU}
 
 DISTNAME=	wget-${VERSION}
-MASTER_SITES=	ftp://psi.c.oka-pu.ac.jp/pub/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/wget/
+MASTER_SITES=	ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/wget/
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
