@@ -1,16 +1,16 @@
 #
-# $Id: Makefile,v 1.1 2000/05/17 13:06:14 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/13 01:23:48 kunishi Exp $
 #
 
 PORTNAME=	bzip2
-VERSION=	0.9.5d
+VERSION=	1.0.0
 PORTREV=	1
 
 PKG=		OPENbzip2
 NAME=		a block-sorting file compressor
 
 VENDOR=		http://sourceware.cygnus.com/bzip2/
-MASTER_SITES=	ftp://sourceware.cygnus.com/pub/bzip2/v095/ \
+MASTER_SITES=	ftp://sourceware.cygnus.com/pub/bzip2/v100/ \
 		http://www.kernel.org/pub/software/utils/compress/bzip2/
 
 post-install:
