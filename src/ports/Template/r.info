@@ -9,5 +9,6 @@ do
 		echo ">> Remove `basename ${info}` entry from ${INFODIR}/dir by hand."
 	fi
 	rm -f ${info} || exit 2
+	echo ${info}
 done
 exit 0

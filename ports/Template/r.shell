@@ -1,0 +1,8 @@
+while read src
+do
+	echo ${src}
+	cp -p /etc/shells /etc/shells.bak
+	(grep -v ${src} /etc/shells.bak) > /etc/shells
+	rm -f ${src} || exit 2
+done
+exit 0

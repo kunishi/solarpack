@@ -3,6 +3,7 @@ INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
 
 while read src dst
 do
+	echo ${dst}
 	cp ${src} ${dst} || exit 2
 	if test -x ${INSTALL_INFO}; then
 		${INSTALL_INFO} --info-dir=${INFODIR} ${dst}
