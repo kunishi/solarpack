@@ -1,0 +1,20 @@
+--- configure~	Thu Nov 15 09:32:13 2001
++++ configure	Fri Nov 30 18:03:27 2001
+@@ -839,7 +839,7 @@
+ do
+   if [ -f $libdir/libz.a -o -f $libdir/libz.$so_ext ] ; then
+     echo "$libdir/libz found"
+-    zlib="-L$libdir -lz"
++    zlib="-L$libdir -R$libdir -lz"
+     break
+   fi
+ done
+@@ -866,7 +866,7 @@
+ do
+   if [ -f $libdir/libgc.a -o -f $libdir/libgc.$so_ext ] ; then 
+     echo "$libdir/libgc found"
+-    gclib="-L$libdir -lgc"
++    gclib="-L$libdir -R$libdir -lgc"
+     break
+   fi
+ done

@@ -1,0 +1,16 @@
+d none bin=%%INSTPREFIX%%/bin 0755 root bin
+f none bin/w3m=%%INSTPREFIX%%/bin/w3m 0755 root bin
+d none lib=%%INSTPREFIX%%/lib 0755 root bin
+d none lib/w3m=%%INSTPREFIX%%/lib/w3m 0755 root bin
+f none lib/w3m/dirlist.cgi=%%INSTPREFIX%%/lib/w3m/dirlist.cgi 0755 root bin
+f none lib/w3m/inflate=%%INSTPREFIX%%/lib/w3m/inflate 0755 root bin
+f none lib/w3m/w3mbookmark=%%INSTPREFIX%%/lib/w3m/w3mbookmark 0755 root bin
+f none lib/w3m/w3mhelperpanel=%%INSTPREFIX%%/lib/w3m/w3mhelperpanel 0755 root bin
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/doc=%%INSTPREFIX%%/share/doc 0755 root bin
+d none share/doc/w3m=%%INSTPREFIX%%/share/doc/w3m 0755 root bin
+f none share/doc/w3m/w3mhelp-lynx_en.html=%%INSTPREFIX%%/share/doc/w3m/w3mhelp-lynx_en.html 0644 root bin
+f none share/doc/w3m/w3mhelp-lynx_ja.html=%%INSTPREFIX%%/share/doc/w3m/w3mhelp-lynx_ja.html 0644 root bin
+f none share/doc/w3m/w3mhelp-w3m_en.html=%%INSTPREFIX%%/share/doc/w3m/w3mhelp-w3m_en.html 0644 root bin
+f none share/doc/w3m/w3mhelp-w3m_ja.html=%%INSTPREFIX%%/share/doc/w3m/w3mhelp-w3m_ja.html 0644 root bin
+f none share/doc/w3m/w3mhelp.html=%%INSTPREFIX%%/share/doc/w3m/w3mhelp.html 0644 root bin

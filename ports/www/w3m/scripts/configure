@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "# Configuration at ${HOSTNAME}" > ${WRKSRC}/config.param
+echo def_bindir=${PREFIX}/bin >> ${WRKSRC}/config.param
+echo def_libdir=${PREFIX}/lib/w3m >> ${WRKSRC}/config.param
+echo def_helpdir=${PREFIX}/share/doc/w3m >> ${WRKSRC}/config.param
+if [ -x /usr/dt/bin/netscape ]; then
+    echo dbrowser=/usr/dt/bin/netscape >> ${WRKSRC}/config.param
+else
+    echo dbrowser=${LOCALBASE}/bin/netscape >> ${WRKSRC}/config.param
+fi
