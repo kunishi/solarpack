@@ -1,13 +1,14 @@
 #
-# $Id: Makefile,v 1.8 2000/01/18 11:36:41 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/05/02 04:58:58 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
 PKG=		PKGBgtar
+NAME=		pkgbuild core tools: GNU tar utilities
 .else
 PKG=		GNUtar
+NAME=		GNU tar utilities
 .endif
-NAME=		pkgbuild core tools: GNU tar utilities
 VERSION=	1.12
 VENDOR=		${VENDOR_GNU}
 

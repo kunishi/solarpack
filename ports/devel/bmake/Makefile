@@ -1,13 +1,14 @@
 #
-# $Id: Makefile,v 1.10 2000/01/06 11:07:46 kunishi Exp $
+# $Id: Makefile,v 1.11 2000/05/02 04:58:29 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
 PKG=		PKGBbmake
+NAME=		pkgbuild core tools: BSD make tool
 .else
 PKG=		OPENbmake
+NAME=		BSD make tool
 .endif
-NAME=		pkgbuild core tools: BSD make tool
 VERSION=	2.2.3
 VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 

@@ -1,13 +1,14 @@
 #
-# $Id: Makefile,v 1.14 2000/01/18 11:57:30 kunishi Exp $
+# $Id: Makefile,v 1.15 2000/05/02 04:58:41 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
 PKG=		PKGBgcc
+NAME=		pkgbuild core tools: GNU compiler collection
 .else
 PKG=		GNUcc
+NAME=		GNU compiler collection
 .endif
-NAME=		GNU compilers
 VERSION=	2.95.2
 VENDOR=		${VENDOR_GNU}
 

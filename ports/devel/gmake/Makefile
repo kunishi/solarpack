@@ -1,13 +1,14 @@
 #
-# $Id: Makefile,v 1.9 2000/01/19 01:17:23 kunishi Exp $
+# $Id: Makefile,v 1.10 2000/05/02 04:58:50 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
 PKG=		PKGBgmake
+NAME=		pkgbuild core tools: GNU make utility
 .else
 PKG=		GNUmake
-.endif
 NAME=		GNU make utility
+.endif
 VERSION=	3.78.1
 VENDOR=		${VENDOR_GNU}
 
