@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.17 2000/09/27 01:27:41 kunishi Exp $
+# $Id: Makefile,v 1.18 2000/09/27 06:43:05 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -28,6 +28,10 @@ LIB_DEPENDS+=	GNUgetxt:${PORTSDIR}/devel/gettext
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS+=	--program-prefix=g
+.if defined(CORE_TOOLS)
+CONFIGURE_ARGS+=	--disable-nls
+PROTOTYPE_IN=		${PKGDIR}/prototype.in.nonls
+.endif
 MAKE_ENV+=	LANG=C
 
 CLASS_INFO=	info/make.info
