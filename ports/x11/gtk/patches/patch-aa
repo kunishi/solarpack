@@ -1,0 +1,14 @@
+--- gtk-config.in.orig	Fri Jun 16 22:18:23 2000
++++ gtk-config.in	Fri Jun 16 22:19:13 2000
+@@ -104,9 +104,9 @@
+ 
+ if test "$echo_libs" = "yes"; then
+       my_glib_libs=
+-      libdirs=-L@libdir@
++      libdirs="-L@libdir@ -R@libdir@"
+       for i in $glib_libs ; do
+-        if test $i != -L@libdir@ ; then
++        if test $i != -L@libdir@ -a $i != -R@libdir@ ; then
+           if test -z "$my_glib_libs" ; then
+             my_glib_libs="$i"
+           else
