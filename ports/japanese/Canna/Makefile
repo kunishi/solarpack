@@ -1,7 +1,6 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_imake.mk
+#
+# $Id: Makefile,v 1.2 1999/05/18 01:53:12 kunishi Exp $
+#
 
 DISTNAME =	Canna35b2
 PKGNAME =	ja-Canna-3.5b2
@@ -13,6 +12,7 @@ PATCHFILES =	${DISTNAME}-unoff1.patch.gz \
 		${DISTNAME}-hack1.patch.gz
 PATCH_DIST_STRIP =	-p1
 
+USE_IMAKE=	yes
 PREFIX =	${LOCALBASE}
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+.include <port.mk>
