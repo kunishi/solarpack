@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:51 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/03/02 09:33:42 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	rxvt
 VERSION=	2.7.5
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENjrxvt
 NAME=		An xterm replacement that supports pixmap background and Japanese
@@ -25,10 +25,11 @@ CONFIGURE_ARGS+= \
 	--enable-xpm-background --enable-transparency \
 	--enable-menubar --enable-graphics --enable-xim \
 	--enable-languages --with-encoding=EUCJ \
-	--disable-backspace-key --disable-delete-key
+	--disable-backspace-key --disable-delete-key \
+	--mandir='$${prefix}/share/man'
 
 pre-install:
-	${MKDIR} ${INSTPREFIX}/bin ${INSTPREFIX}/man/man1
+	${MKDIR} ${INSTPREFIX}/bin ${INSTPREFIX}/share/man/man1
 
 post-install:
 	${CHMOD} 4711 ${INSTPREFIX}/bin/rxvt
