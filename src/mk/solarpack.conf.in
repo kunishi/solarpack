@@ -1,5 +1,5 @@
 #
-# $Id: solarpack.conf.in,v 1.7 1999/06/03 11:39:27 kunishi Exp $
+# $Id: solarpack.conf.in,v 1.8 1999/06/05 07:37:54 kunishi Exp $
 #
 ###
 # pkgbuild root directory.
@@ -10,7 +10,7 @@ CC=	/usr/local/bin/gcc
 #
 # package maintainer.
 #
-PKG_MAINTAINER=	Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
+PKG_MAINTAINER=	kunishi@c.oka-pu.ac.jp
 #
 # the root directory to put the released packages
 #
