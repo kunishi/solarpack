@@ -116,6 +116,7 @@ ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
 ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${PKGMAKE} build
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
+	@${MKDIR} ${WRK_BASEDIR}
 	@cd ${WRKSRC} && ${MAKE} install prefix=${WRK_BASEDIR}
 	@${PKGMAKE} post-install
 	@${TOUCH} $@
@@ -123,8 +124,9 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
 	@${PKGMAKE} install
 	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
-	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?" \
-	    -e "s?%%WRK_BASEDIR%%?${WRK_BASEDIR}?" \
+	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?g" \
+	    -e "s?%%GNU_HOSTTYPE%%?${GNU_HOSTTYPE}?g" \
+	    -e "s?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g" \
 	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
 	@${SED} -e "s?%%ARCH%%?${ARCH}?" \
 	    -e "s?%%BASEDIR%%?${PREFIX}?" ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
@@ -134,13 +136,13 @@ ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
 	@${TOUCH} $@
 
 ${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
-	@${PKGMAKE} instal
+	@${PKGMAKE} package
 	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
 	@${PKGADD} -d ${CURDIR}/${PKGNAME} all
 	@${TOUCH} $@
 
 ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
-	@${PKGMAKE} install
+	@${PKGMAKE} package
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
 	@${GZIP} -9 ${PKGNAME}
 	@${TOUCH} $@
