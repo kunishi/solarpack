@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.18 2000/05/17 03:59:58 kunishi Exp $
+# $Id: Makefile,v 1.19 2000/05/30 05:44:00 kunishi Exp $
 #
+
+OSREL!=		/usr/bin/uname -r
 
 PORTNAME=	gcc
 VERSION=	2.95.2
@@ -20,6 +22,9 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+.if (${OSREL} == "5.6")
+CONFIGURE_ENV+=	CFLAGS='-g -O0'
+.endif
 ALL_TARGET=	bootstrap
 PROTOTYPE_SUB+=	GCC_VER=${VERSION}
 

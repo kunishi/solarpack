@@ -1,6 +1,6 @@
 #
 # Bootstrap makefile for building gcc
-# $Id: Makefile.gcc,v 1.2 2000/05/12 09:14:01 kunishi Exp $
+# $Id: Makefile.gcc,v 1.3 2000/05/30 05:43:59 kunishi Exp $
 #
 
 TARGET_CMD=	gcc
@@ -10,6 +10,9 @@ include ${BOOTSTRAPDIR}/config.mk
 DISTNAME=	gcc-2.95.2
 DISTFILES=	gcc-2.95.2.tar.gz
 SRCURL=		ftp://ftp.gnu.org/pub/gnu/gcc/
+
+CFLAGS=		-g -O0
+CONFIGURE_ENV=	CFLAGS="${CFLAGS}"
 
 include ${BOOTSTRAPDIR}/rule.mk
 
@@ -26,7 +29,8 @@ patch:		${EXTRACT_COOKIE}
 	${DO_NADA}
 
 configure:	${PATCH_COOKIE}
-	cd ${WORKDIR}/${DISTNAME} && ./configure --prefix=${TMPPREFIX}
+	cd ${WORKDIR}/${DISTNAME} && \
+		${ENV} ${CONFIGURE_ENV} ./configure --prefix=${TMPPREFIX}
 
 build:		${CONFIGURE_COOKIE}
 	cd ${WORKDIR}/${DISTNAME} && ${MAKE}

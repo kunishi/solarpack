@@ -1,6 +1,6 @@
 #
 # Makefile configuration file for standard Solaris make
-# $Id: config.mk,v 1.2 2000/05/11 06:14:36 kunishi Exp $
+# $Id: config.mk,v 1.3 2000/05/30 05:43:59 kunishi Exp $
 #
 
 WORKDIR=	${TOPDIR}/work
@@ -21,6 +21,8 @@ INSTALL_PROGRAM=	/usr/ucb/install -c -m 755
 FTP=		${TMPPREFIX}/bin/ftp
 GUNZIP=		${TMPPREFIX}/bin/gzip -c -d
 GNUPATCH=	${TMPPREFIX}/bin/patch
+
+CFLAGS=		-g -O
 
 MAKEFILE=	${BOOTSTRAPDIR}/Makefile.${TARGET_CMD}
 
