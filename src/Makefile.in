@@ -1,12 +1,12 @@
 #
-# $Id: Makefile.in,v 1.19 2000/05/17 01:50:06 kunishi Exp $
+# $Id: Makefile.in,v 1.20 2000/05/17 02:52:20 kunishi Exp $
 #
 
 include version.mk
 PKGNAME=	soap
 
 LOCALBASE=	/usr/local
-SOAPDIR=	@soap_topdir@
+SOAP_DIR=	@soap_topdir@
 
 CWD:sh=		pwd
 BOOTSTRAPDIR=	${CWD}/bootstrap
@@ -49,15 +49,15 @@ MAKEFLAGS=	TOPDIR=${CWD} \
 
 CORE_TOOLS=	bmake gcc gmake gtar gzip lukemftp md5 patch texinfo
 
-BUILD_OPTS=		SOAPSRCDIR=${CWD} \
-			SOAPDIR=${SOAPDIR} \
-			SOAPBINDIR=${WRKDIR}${LOCALBASE}/bin \
+BUILD_OPTS=		SOAP_SRCDIR=${CWD} \
+			SOAP_DIR=${SOAP_DIR} \
+			SOAP_BINDIR=${WRKDIR}${LOCALBASE}/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR} \
 			CORE_TOOLS=yes 
 
-BUILD_PACKAGE_OPTS=	SOAPSRCDIR=${CWD} \
-			SOAPDIR=${SOAPDIR} \
-			SOAPBINDIR=${WRKDIR}${LOCALBASE}/bin \
+BUILD_PACKAGE_OPTS=	SOAP_SRCDIR=${CWD} \
+			SOAP_DIR=${SOAP_DIR} \
+			SOAP_BINDIR=${WRKDIR}${LOCALBASE}/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR} \
 			CORE_TOOLS=yes 
 
@@ -113,13 +113,13 @@ build-misc-package::
 	${MKDIR} ${WRKDIR}/spool
 	${SED} -e 's!%%INSTPREFIX%%!${CWD}!' \
 	       ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
-	${SED}	-e 's!%%SOAPDIR%%!${SOAPDIR}!' \
+	${SED}	-e 's!%%SOAP_DIR%%!${SOAP_DIR}!' \
 	      	-e 's!%%SOAP_VERSION%%!${SOAP_VERSION}!' \
 		-e 's!%%SOAP_PSTAMP%%!${SOAP_PSTAMP}!' \
 	       ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
-	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOAP_VERSION} all
-	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOAP_VERSION}
+	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${PKGNAME}-conf-${SOAP_VERSION} all
+	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${PKGNAME}-conf-${SOAP_VERSION}
 
 clean:
 	${RM} -rf config.cache config.log config.status
