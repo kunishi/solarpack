@@ -1,0 +1,14 @@
+--- site.def.orig	Tue Aug 25 16:12:51 1998
++++ site.def	Sat Jun  5 16:40:48 1999
+@@ -33,11 +33,9 @@
+ 
+ #ifdef BeforeVendorCF
+ 
+-/*
+ #ifndef HasGcc2
+ #define HasGcc2 YES
+ #endif
+-*/
+ 
+ /*
+ #ifndef HasCplusplus

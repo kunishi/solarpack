@@ -1,0 +1,13 @@
+--- sun.cf.orig	Tue Aug 25 16:12:51 1998
++++ sun.cf	Sat Jun  5 16:41:03 1999
+@@ -1,8 +1,10 @@
+ XCOMM platform:  $XConsortium: sun.cf,v 1.133 94/07/08 12:23:12 gildea Exp $
+ XCOMM platform:  $SunSoft: @(#)sun.cf	1.2 02/18/98 10:58:25 $
+ 
++/*
+ #define HasSunC YES
+ #define CCompilerMajorVersion 4
++*/
+ 
+ #ifdef SVR4
+ #ifdef i386Architecture
