@@ -1,25 +1,24 @@
 #
-# $Id: Makefile,v 1.14 2000/09/27 01:27:39 kunishi Exp $
+# $Id: Makefile,v 1.15 2003/01/07 10:55:15 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	gtar
-VERSION=	1.13
+VERSION=	1.13.25
 PORTREV=	1
 
 .if defined(CORE_TOOLS)
 PKG=		SOAPgtar
 NAME=		Solaris Application Packaging tools: GNU tar utilities
 .else
-PKG=		GNUtar
+PKG=		OPUCgtar
 NAME=		GNU tar utilities
 .endif
 
 VENDOR=		${VENDOR_GNU}
 DISTNAME=	tar-${VERSION}
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/tar/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/tar/
+MASTER_SITES=	ftp://alpha.gnu.org/gnu/tar/
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
