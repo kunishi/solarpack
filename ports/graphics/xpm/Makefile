@@ -1,9 +1,10 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_imake.mk
+#
+# $Id: Makefile,v 1.2 1999/05/18 03:13:00 kunishi Exp $
+#
 
 DISTNAME =	xpm-3.4k
 MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/X/opengroup/contrib/libraries/
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+USE_IMAKE=	yes
+
+.include <port.mk>
