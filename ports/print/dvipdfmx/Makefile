@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.1 2003/02/27 09:02:24 kunishi Exp $
+# $Id: Makefile,v 1.2 2003/02/27 09:22:44 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	dvipdfmx
-VERSION=	20021128
+VERSION=	20021230
 PORTREV=	1
 
 PKG=		OPUCdvpdx
