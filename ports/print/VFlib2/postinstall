@@ -1,3 +1,0 @@
-if test ! -f $CLIENT_BASEDIR/share/VFlib/2.24.1/vfontcap; then
-	(cd $CLIENT_BASEDIR/share/VFlib/2.24.1; cp vfontcap.sample vfontcap)
-fi
