@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/07 05:51:12 kunishi Exp $
 #
 
 PORTNAME=	sudo
-VERSION=	1.6.3
+VERSION=	1.6.3p4
 PORTREV=	1
 
 PKG=		OPENsudo
