@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.60 2000/05/17 03:04:10 kunishi Exp $
+# $Id: port.mk,v 1.61 2000/05/18 08:17:05 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -37,7 +37,11 @@ X11BASE?=	/usr/openwin
 
 DISTDIR?=	${SOAP_SRCDIR}/distfiles
 PORTSDIR?=	${SOAP_SRCDIR}/ports
+.if defined(USE_BZIP2)
+EXTRACT_SUFX?=	.tar.bz2
+.else
 EXTRACT_SUFX?=	.tar.gz
+.endif
 RELEASE_PKG_DIR?=	${SOAP_SRCDIR}/packages
 
 PATCHDIR?=	${MASTERDIR}/patches
@@ -60,12 +64,19 @@ PREFIX?=	${LOCALBASE}
 .endif
 .endif
 
+.if defined(USE_BZIP2)
+BUILD_DEPENDS+=	OPENbzip2:${PORTSDIR}/archivers/bzip2
+.endif
 .if defined(USE_INSTALL_INFO)
 RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
 .endif
 #.if defined(USE_GMAKE)
 #BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel/gmake
 #.endif
+.if defined(USE_PERL5)
+BUILD_DEPENDS+=	OPENperl:${PORTSDIR}/lang/perl5
+RUN_DEPENDS+=	OPENperl:${PORTSDIR}/lang/perl5
+.endif
 
 WRKDIR?=	${MASTERDIR}/work
 WRKSRC?=	${WRKDIR}/${DISTNAME}
@@ -186,7 +197,11 @@ PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_S
 
 TAR?=		${SOAP_BINDIR}/gtar
 
-EXTRACT_CMD?=	${GZIP_CMD}
+.if defined(USE_BZIP2)
+EXTRACT_CMD?=	bzip2 -dc
+.else
+EXTRACT_CMD?=	${GZCAT}
+.endif
 
 INSTALL_PROGRAM= \
 	${INSTALL} -c -s -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
@@ -225,6 +240,7 @@ INSTALL?=	/usr/ucb/install
 LN?=		/usr/bin/ln
 MV?=		/usr/bin/mv
 MKDIR?=		/usr/bin/mkdir -p
+PERL?=		${LOCALBASE}/bin/perl
 PKGADD?=	/usr/sbin/pkgadd
 PKGMK?=		/usr/bin/pkgmk -o
 PKGINFO_PROG?=	/usr/bin/pkginfo
@@ -534,7 +550,7 @@ do-extract:
 	@${MKDIR} ${WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
-	    cd ${WRKDIR} && ${TAR} xzf ${DISTDIR}/$${file}; \
+	    cd ${WRKDIR} && (${EXTRACT_CMD} ${DISTDIR}/$${file} | ${TAR} xf -); \
 	done
 .endif
 
