@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2001/11/30 15:03:16 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/11/30 15:09:08 kunishi Exp $
 #
 
 PORTNAME=	smartdoc
@@ -11,7 +11,7 @@ NAME=		SmartDoc, a tool for creating documents based on XML
 
 MASTER_SITES=	http://www.asahi-net.or.jp/~dp8t-asm/java/tools/SmartDoc/
 DISTNAME=	setup${VERSION:S/.//g}
-EXTRACT_SUFX=	# none
+EXTRACT_FILES=	# none
 WRKSRC=		${WRKDIR}/sdoc
 
 USE_ZIP=	yes
