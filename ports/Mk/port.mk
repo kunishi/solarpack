@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.66 2000/06/06 07:51:34 kunishi Exp $
+# $Id: port.mk,v 1.67 2000/06/07 05:45:28 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -159,6 +159,7 @@ RELEASE_COOKIE?=	${WRKDIR}/.release_done
 NOTHING_TO_DO?=		/usr/bin/true
 
 CC?=		${SOAP_BINDIR}/gcc
+CXX?=		${SOAP_BINDIR}/c++
 GMAKE?=		${SOAP_BINDIR}/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 
@@ -924,6 +925,12 @@ _elimfiles!=	echo "${PROTOTYPE_IGNORE_FILES}" | sed -e 's?[ 	][ 	]*?|?g'
 ELIMINATE_FILES?=	${EGREP} -v '^./(${_elimfiles})$$'
 .endif
 
+.for sub in ${PROTOTYPE_SUB}
+_sedsubprotorevlist!=	sym=`${ECHO} "${sub}" | ${CUT} -d= -f1`; \
+			val=`${ECHO} "${sub}" | ${CUT} -d= -f2`; \
+			echo "${_sedsubprotorevlist} -e \"s!$${val}!%%$${sym}%%!g\""
+.endfor
+
 PROTOTYPE_IN_BASE!=	${BASENAME} ${PROTOTYPE_IN}
 .if !target(gen-prototype-in)
 gen-prototype-in:	${INSTALL_COOKIE}
@@ -970,7 +977,7 @@ gen-prototype-in:	${INSTALL_COOKIE}
 	  -e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
 	  -e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
 	  -e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%INSTPREFIX%%/\2 \3?' \
-	  ${_sedsubprotoinlist} >> ${PROTOTYPE_IN}
+	  ${_sedsubprotoinlist} ${_sedsubprotorevlist} >> ${PROTOTYPE_IN}
 	@${ECHO_MSG} "===> ${PROTOTYPE_IN_BASE} template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
 .endif

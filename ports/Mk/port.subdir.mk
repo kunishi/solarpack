@@ -1,5 +1,5 @@
 #
-# $Id: port.subdir.mk,v 1.1 2000/06/05 08:58:38 kunishi Exp $
+# $Id: port.subdir.mk,v 1.2 2000/06/07 05:45:28 kunishi Exp $
 #
 
 .MAIN:	all
@@ -31,6 +31,7 @@ TARGETS+=	install
 TARGETS+=	instpkg
 TARGETS+=	package
 TARGETS+=	pkgclean
+TARGETS+=	release
 
 .for __target in ${TARGETS}
 .if !target(${__target})
