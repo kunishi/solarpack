@@ -1,0 +1,9 @@
+PKG=GNUwget
+NAME=GNU wget, a free network utility to retirieve files from the WWW.
+ARCH=%%ARCH%%
+VERSION=1.5.3
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
+BASEDIR=%%BASEDIR%%
+CLASSES=none
