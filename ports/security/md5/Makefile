@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/05/17 03:59:58 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/06/02 00:44:04 kunishi Exp $
 #
 
 PORTNAME=	md5
@@ -19,6 +19,8 @@ DISTNAME=	MD5
 EXTRACT_SUFX=	.tar.Z
 MASTER_SITES=	ftp://ftp.aist-nara.ac.jp/pub/Security/tool/md5/
 WRKSRC=		${WRKDIR}
+
+ALL_TARGET=	md5
 
 test:
 	@cd ${WRKSRC} && ${CCSMAKE} test
