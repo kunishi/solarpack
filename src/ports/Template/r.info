@@ -1,0 +1,13 @@
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+while read info
+do
+	if test -x ${INSTALL_INFO}; then
+		${INSTALL_INFO} --delete --info-dir=${INFODIR} ${info}
+	else
+		echo ">> Remove `basename ${info}` entry from ${INFODIR}/dir by hand."
+	fi
+	rm -f ${info} || exit 2
+done
+exit 0
