@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2000/01/06 11:17:19 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/01/18 11:37:13 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -20,7 +20,8 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gzip/ \
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/gzip.info
 
 PKG_WITHOUT_GZIP=	yes
 
