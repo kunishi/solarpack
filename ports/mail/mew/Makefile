@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.10 2001/11/30 12:01:38 kunishi Exp $
+# $Id: Makefile,v 1.11 2002/03/20 09:25:06 kunishi Exp $
 #
 
 PORTNAME=	mew
-VERSION=	2.1
+VERSION=	2.2
 PORTREV=	3
 
 PKG=		OPUCmew
@@ -24,9 +24,6 @@ DOCDIR=		${INSTPREFIX}/share/doc/${PORTNAME}
 DOCS=		00api 00changes 00copyright 00copyright.jis 00diff 00readme
 CONTRIBS=	contrib/00readme \
 		contrib/00readme-namazu.jis \
-		contrib/README-mewinc.jis \
-		contrib/incdir \
-		contrib/incmbox \
 		contrib/mew-browse.el \
 		contrib/mew-caesar.el \
 		contrib/mew-fancy-summary.el \
@@ -35,8 +32,7 @@ CONTRIBS=	contrib/00readme \
 		contrib/mew-nmz.el \
 		contrib/mew-refile-view.el \
 		contrib/mew-smime-ja.texi \
-		contrib/mew-toolbar-frame.el \
-		contrib/mewinc
+		contrib/mew-toolbar-frame.el
 CLASS_INFO=	info/mew.info info/mew.jis.info
 
 post-install:
