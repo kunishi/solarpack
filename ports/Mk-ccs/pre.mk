@@ -3,6 +3,7 @@ ECHO=		/usr/bin/echo
 ENV=		/usr/bin/env
 GMAKE=		/usr/local/bin/gmake
 GTAR=		/usr/local/bin/gtar
+GZCAT=		/usr/local/bin/gzip -cd
 GZIP=		/usr/local/bin/gzip
 INSTALL=	/usr/ucb/install
 MAKE=		/usr/ccs/bin/make
@@ -37,6 +38,7 @@ X11BASE=	/usr/openwin
 
 CURDIR=		$(shell ${PWD})
 DISTDIR=	/opt/local/pkgbuild/distfiles
+FILESDIR=	${CURDIR}/files
 PATCHDIR=	${CURDIR}/patches
 WRKDIR=		${CURDIR}/work
 WRKSRC=		${WRKDIR}/${PKGNAME}

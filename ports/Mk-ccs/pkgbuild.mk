@@ -2,6 +2,12 @@ ifeq ($(USE_GMAKE),yes)
 MAKE=		/usr/local/bin/gmake
 endif
 
+ifeq ($(USE_CCSMAKE),yes)
+MAKE=		/usr/ccs/bin/make
+endif
+
+MAKE_ENV=	MAKE=${MAKE} MAKEFLAGS=
+
 ifeq ($(USE_IMAKE),yes)
 USE_X_PREFIX=	yes
 XMKMF=		${X11BASE}/bin/xmkmf
@@ -13,6 +19,8 @@ PREFIX=		${X11BASE}
 else
 PREFIX=		${LOCALBASE}
 endif
+
+MAKE_ENV+=	prefix=${PREFIX}
 
 ifeq ($(GNU_CONFIGURE),yes)
 CONFIGURE=	${WRKSRC}/configure
@@ -145,12 +153,12 @@ ${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
 ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 	@${PKGMAKE} package
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
-	@${GZIP} -9 ${PKGNAME}
+	@${GZIP} -c -9 ${PKGNAME} > ${PKGNAME}.gz
 	@${TOUCH} $@
 
 ifneq ($(DO_BUILD_OVERRIDE),yes)
 do-build:
-	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${MAKE_ARGS}
 endif
 
 clean:
@@ -159,9 +167,9 @@ clean:
 
 pkgclean:	clean
 	@${ECHO_MSG} "===> Cleaning package for ${PKGNAME}"
-	@${RM} -rf ${CURDIR}/${PKGNAME}.gz
+	@${RM} -rf ${CURDIR}/${PKGNAME}
 
-distclean:	clean
+distclean:	pkgclean
 	@${ECHO_MSG} "===> Cleaning distfiles for ${PKGNAME}"
 	@for file in ${DISTFILES}; do \
 	 ${RM} -rf ${DISTDIR}/$${file}; done
