@@ -4,5 +4,5 @@ d none share/patches=%%INSTPREFIX%%/contrib/patches 0755 root bin
 f none share/patches/site.def.patch=%%INSTPREFIX%%/contrib/patches/site.def.patch 0644 root bin
 f none share/patches/sun.cf.patch=%%INSTPREFIX%%/contrib/patches/sun.cf.patch 0644 root bin
 d none share/mk=%%INSTPREFIX%%/mk 0755 root bin
-e none share/mk/solpkg.conf=%%INSTPREFIX%%/mk/solpkg.conf 0644 root bin
+e none share/mk/soap.conf=%%INSTPREFIX%%/mk/soap.conf 0644 root bin
 e none share/mk/port.mk=%%INSTPREFIX%%/mk/port.mk 0644 root bin

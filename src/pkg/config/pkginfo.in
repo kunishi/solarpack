@@ -1,8 +1,8 @@
-PKG=PKGBmisc
-NAME=Package Building Tools, miscellaneous files.
-VERSION=%%SOLPKG_VERSION%%
+PKG=SOAPconf
+NAME=SOAP, Solaris Application Packaging Tools: conf files.
+VERSION=%%SOAP_VERSION%%
 CATEGORY=application
 VENDOR=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
 EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=%%SOLPKGDIR%%
+BASEDIR=%%SOAP_DIR%%
 CLASSES=none

@@ -1,12 +1,12 @@
 #
-# $Id: Makefile.in,v 1.18 2000/05/17 01:34:51 kunishi Exp $
+# $Id: Makefile.in,v 1.19 2000/05/17 01:50:06 kunishi Exp $
 #
 
 include version.mk
-PKGNAME=	solpkg
+PKGNAME=	soap
 
 LOCALBASE=	/usr/local
-SOLPKGDIR=	@solpkg_topdir@
+SOAPDIR=	@soap_topdir@
 
 CWD:sh=		pwd
 BOOTSTRAPDIR=	${CWD}/bootstrap
@@ -40,21 +40,24 @@ STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/sbin
 
 RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%Y%m%d
+RELEASE_TIME:sh=	/usr/bin/date +%Y.%m.%d.%H.%M
+RELEASE_HOST:sh=	/usr/bin/hostname
+SOAP_PSTAMP=		${RELEASE_HOST}:${RELEASE_TIME}
 
 MAKEFLAGS=	TOPDIR=${CWD} \
 		BOOTSTRAPDIR=${BOOTSTRAPDIR}
 
 CORE_TOOLS=	bmake gcc gmake gtar gzip lukemftp md5 patch texinfo
 
-BUILD_OPTS=		SOLPKGSRCDIR=${CWD} \
-			SOLPKGDIR=${SOLPKGDIR} \
-			SOLPKGBINDIR=${WRKDIR}${LOCALBASE}/bin \
+BUILD_OPTS=		SOAPSRCDIR=${CWD} \
+			SOAPDIR=${SOAPDIR} \
+			SOAPBINDIR=${WRKDIR}${LOCALBASE}/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR} \
 			CORE_TOOLS=yes 
 
-BUILD_PACKAGE_OPTS=	SOLPKGSRCDIR=${CWD} \
-			SOLPKGDIR=${SOLPKGDIR} \
-			SOLPKGBINDIR=${WRKDIR}${LOCALBASE}/bin \
+BUILD_PACKAGE_OPTS=	SOAPSRCDIR=${CWD} \
+			SOAPDIR=${SOAPDIR} \
+			SOAPBINDIR=${WRKDIR}${LOCALBASE}/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR} \
 			CORE_TOOLS=yes 
 
@@ -83,7 +86,7 @@ prepare-for-package::
 	cd ${TOPDIR} && \
 	  (${RM} -f bin && ${LN} -s ${WRKDIR}${LOCALBASE}/bin)
 	${MKDIR} ${RELEASE_PKG_DIR}
-	${CP} ${BOOTSTRAPDIR}/solpkg.conf ${BOOTSTRAPDIR}/port.mk \
+	${CP} ${BOOTSTRAPDIR}/soap.conf ${BOOTSTRAPDIR}/port.mk \
 	  ${WRKDIR}${LOCALBASE}/share/mk
 
 build-tools::
@@ -110,12 +113,13 @@ build-misc-package::
 	${MKDIR} ${WRKDIR}/spool
 	${SED} -e 's!%%INSTPREFIX%%!${CWD}!' \
 	       ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
-	${SED} -e 's!%%SOLPKGDIR%%!${SOLPKGDIR}!' \
-	       -e 's!%%SOLPKG_VERSION%%!${SOLPKG_VERSION}!' \
+	${SED}	-e 's!%%SOAPDIR%%!${SOAPDIR}!' \
+	      	-e 's!%%SOAP_VERSION%%!${SOAP_VERSION}!' \
+		-e 's!%%SOAP_PSTAMP%%!${SOAP_PSTAMP}!' \
 	       ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
-	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOLPKG_VERSION} all
-	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOLPKG_VERSION}
+	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOAP_VERSION} all
+	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOAP_VERSION}
 
 clean:
 	${RM} -rf config.cache config.log config.status

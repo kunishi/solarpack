@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT(pkg/prototype.in)
 
-AC_SUBST(solpkg_topdir)
+AC_SUBST(soap_topdir)
 
 dnl Checks for programs.
 
@@ -12,10 +12,10 @@ dnl Checks for header files.
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_ARG_WITH(topdir,
 [  --with-topdir	Solaris pkgtools top directory.],
-[solpkg_topdir="$with_topdir"],
-[solpkg_topdir="/usr/solpkg"])
+[soap_topdir="$with_topdir"],
+[soap_topdir="/usr/pkg"])
 
 dnl Checks for library functions.
 
 AC_OUTPUT(Makefile 
-	mk/port.mk mk/solpkg.conf)
+	mk/port.mk mk/soap.conf)

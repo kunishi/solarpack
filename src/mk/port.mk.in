@@ -1,4 +1,4 @@
-.include "solpkg.conf"
+.include "soap.conf"
 
-SOLPKGSRCDIR?=	@solpkg_topdir@
-.include "${SOLPKGSRCDIR}/ports/Mk/port.mk"
+SOAP_SRCDIR?=	@soap_topdir@
+.include "${SOAP_SRCDIR}/ports/Mk/port.mk"

@@ -1,22 +1,22 @@
 ###
 # solpkg root directory. 
-SOLPKGDIR=	@solpkg_topdir@
-SOLPKGBINDIR=	${SOLPKGDIR}/bin
+SOAP_DIR=	@solpkg_topdir@
+SOAP_BINDIR=	${SOAP_DIR}/bin
 #
 # The directory where solpkg ports tree are in.
 # Edit by yourself to fit your own environment.
-#SOLPKGSRCDIR=	${SOLPKGDIR}
-SOLPKGSRCDIR=	/export/pub/cvs/solpkg
+#SOAP_SRCDIR=	${SOAP_DIR}
+SOAP_SRCDIR=	/export/pub/cvs/solpkg
 #
 # C compiler for building packages.
-CC=	${SOLPKGBINDIR}/gcc
+CC=	${SOAP_BINDIR}/gcc
 #
 # package maintainer.
 #
 PKG_MAINTAINER=	kunishi@c.oka-pu.ac.jp
 #
 # the root directory to put the released packages
-#RELEASE_PKG_DIR=	${SOLPKGDIR}/packages
+#RELEASE_PKG_DIR=	${SOAP_DIR}/packages
 
 ## Master sites lists
 # GNU
@@ -25,5 +25,4 @@ MASTER_SITES_GNU=	\
 	ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/@SUBDIR@/
 
 ### do not modify below
-PKGBUILD_MAKEFILE_DIR=	${PKGBUILDDIR}/ports/Mk
-PKGBUILD_CCS_MAKEFILE_DIR=	${PKGBUILDDIR}/ports/Mk-ccs
+SOAP_MAKEFILE_DIR=	${SOAP_DIR}/ports/Mk

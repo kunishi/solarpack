@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.6 2000/01/06 04:59:37 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/05/17 01:50:07 kunishi Exp $
 #
 
 INSTALL=	/usr/ucb/install
@@ -9,7 +9,7 @@ SED=	/usr/bin/sed
 
 SYSMKDIR=	${INSTDIR}${LOCALBASE}/share/mk/
 
-TARGET=	port.mk solpkg.conf
+TARGET=	port.mk soap.conf
 
 install:
 	${INSTALL_DATA} ${TARGET} ${SYSMKDIR}

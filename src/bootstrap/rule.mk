@@ -1,6 +1,6 @@
 #
-# common rule for solpkg, standard Solaris make version
-# $Id: rule.mk,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+# common rule for soap, standard Solaris make version
+# $Id: rule.mk,v 1.2 2000/05/17 01:50:07 kunishi Exp $
 #
 
 .PHONY:	fetch extract patch configure build install
