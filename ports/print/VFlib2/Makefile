@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/23 10:34:58 kunishi Exp $
 #
 
 PORTNAME=	VFlib2
@@ -13,6 +13,7 @@ VENDOR=		Hirotsugu Kakugawa <h.kakugawa@computer.org>
 MASTER_SITES=	ftp://gull.se.hiroshima-u.ac.jp/pub/TypeHack/
 
 LIB_DEPENDS=	OPENft:${PORTSDIR}/print/freetype
+RUN_DEPENDS=	OPENwatvf:${PORTSDIR}/print/watanabe-vf
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
