@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.30 1999/06/17 11:06:41 kunishi Exp $
+# $Id: port.mk,v 1.31 1999/07/23 09:06:29 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -632,7 +632,7 @@ DEPENDS_TMP+=	${RUN_DEPENDS}
 
 _DEPENDS_USE:
 .if defined(DEPENDS_TMP)
-	@for i in ${DEPENDS_TMP}; do \
+	@for i in "${DEPENDS_TMP}"; do \
 	  pkg=`${ECHO} $$i | ${SED} -e 's/:.*//'`; \
 	  dir=`${ECHO} $$i | ${SED} -e 's/[^:]*://'`; \
 	  target=${DEPENDS_TARGET}; \
