@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.13 2000/09/27 01:27:58 kunishi Exp $
+# $Id: Makefile,v 1.14 2000/09/27 10:02:10 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -25,7 +25,6 @@ USE_GMAKE=	yes
 
 PKG_WITHOUT_GZIP=	yes
 EDITABLE_FILES=		info/dir
-LICENSE_FILES=		%%WRKSRC%%/COPYING
 
 post-install:
 	${MKDIR} ${INSTPREFIX}/share/examples/${PORTNAME}
