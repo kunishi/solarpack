@@ -1,0 +1,7 @@
+cd $CLIENT_BASEDIR/share/texmf/dvips/config
+cp -p config.ps config.ps.bak
+cat <<EOF >>config.ps
+
+% add fontmap file
+p +standard.map
+EOF

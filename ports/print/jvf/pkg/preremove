@@ -1,0 +1,2 @@
+(cd $CLIENT_BASEDIR/share/texmf/dvips/config; \
+mv config.ps.bak config.ps)
