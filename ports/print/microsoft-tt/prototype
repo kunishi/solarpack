@@ -1,7 +1,0 @@
-i pkginfo=./pkginfo
-d none share/fonts 0755 bin bin
-d none share/fonts/truetype 0755 bin bin
-f none share/fonts/truetype/msgothic.ttc 0644 bin bin
-f none share/fonts/truetype/msgothic.tti 0644 bin bin
-f none share/fonts/truetype/msmincho.ttc 0644 bin bin
-f none share/fonts/truetype/msmincho.tti 0644 bin bin
