@@ -1,20 +1,21 @@
 #
-# $Id: Makefile,v 1.1 2001/11/12 12:35:30 kunishi Exp $
+# $Id: Makefile,v 1.2 2003/02/26 11:00:42 kunishi Exp $
 #
 
 PORTNAME=	lcms
-VERSION=	1.07
+VERSION=	1.08
 PORTREV=	1
 
 PKG=		OPUClcms
 NAME=		Light Color Management System: a color management library
 
 MASTER_SITES=	http://www.littlecms.com/
+WRKSRC=		${WRKDIR}/${DISTNAME}/src
 
 post-patch:
 	cd ${WRKSRC}; \
-	  ${LN} -s ../src/lcms.h ./testbed; \
-	  ${LN} -s ../src/icc34.h ./testbed
+	  ${LN} -s ../include/lcms.h .; \
+	  ${LN} -s ../include/icc34.h .
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/lib ${INSTPREFIX}/include/lcms
