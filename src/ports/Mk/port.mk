@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.37 1999/08/31 11:16:00 kunishi Exp $
+# $Id: port.mk,v 1.38 1999/09/01 12:12:54 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -134,9 +134,9 @@ WGET_FLAGS?=	-nv
 PATCH?=		${PKGBUILDDIR}/bin/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
-PATCH_ARGS?=	-d ${WRKSRC} --backup --forward --quiet -E ${PATCH_STRIP}
+PATCH_ARGS?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
-PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --backup --forward --quiet -E ${PATCH_DIST_STRIP}
+PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
 TAR?=		${PKGBUILDDIR}/bin/gtar
 
@@ -796,8 +796,8 @@ gen-prototype-in:	${INSTALL_COOKIE}
 	@${ECHO} 'i r.info=%%TEMPLATEDIR%%/r.info' >> ${PROTOTYPE_IN}
 .endif
 .if defined(CATEGORY_SHELL)
-	@${ECHO} 'i i.shell=%%TEMPLATEDIR%%/i.shell >> ${PROTOTYPE_IN}
-	@${ECHO} 'i r.shell=%%TEMPLATEDIR%%/r.shell >> ${PROTOTYPE_IN}
+	@${ECHO} 'i i.shell=%%TEMPLATEDIR%%/i.shell' >> ${PROTOTYPE_IN}
+	@${ECHO} 'i r.shell=%%TEMPLATEDIR%%/r.shell' >> ${PROTOTYPE_IN}
 .endif
 	@(cd ${WRKDIR}${PREFIX} && find . -print | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
