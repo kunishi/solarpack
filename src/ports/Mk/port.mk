@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.20 1999/06/04 03:22:42 kunishi Exp $
+# $Id: port.mk,v 1.21 1999/06/04 03:48:18 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -53,6 +53,7 @@ SPOOLDIR?=	${WRKDIR}/spool
 
 PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
 		WRK_BASEDIR=${WRK_BASEDIR} \
+		TEMPLATEDIR=${TEMPLATEDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
 PROTOTYPE?=	${PKGDIR}/prototype
 PROTOTYPE_IN?=	${PKGDIR}/prototype.in
@@ -61,7 +62,10 @@ PKGINFO?=	${PKGDIR}/pkginfo
 PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
 CATEGORY?=	application
 MAINTAINER?=	${PKG_MAINTAINER}
-CLASSES?=	none
+.if defined(USE_INSTALL_INFO)
+CLASSES+=	info
+.endif
+CLASSES+=	none
 # NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
 # because they might contain spaces in its value, which cause
 # bad affects for generating ${_sedsubpkginfolist}.
@@ -255,7 +259,7 @@ configure:	${CONFIGURE_COOKIE}
 .if !target(build)
 .if defined(NO_BUILD)
 build:	configure
-	@${TOUCH} ${BUILD_COOKIE}
+	@${TOUCH} ${TOUCH_FLAGS} ${BUILD_COOKIE}
 .else
 build:	${BUILD_COOKIE}
 .endif
@@ -264,7 +268,7 @@ build:	${BUILD_COOKIE}
 .if !target(install)
 .if defined(NO_INSTALL)
 install:	build
-	@${TOUCH} ${INSTALL_COOKIE}
+	@${TOUCH} ${TOUCH_FLAGS} ${INSTALL_COOKIE}
 .else
 install:	${INSTALL_COOKIE}
 .endif
@@ -327,7 +331,7 @@ real-extract:
 .if target(${.TARGET:S/^real-/post-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-patch:
 	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
@@ -338,7 +342,7 @@ real-patch:
 .if target(${.TARGET:S/^real-/post-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-configure:
 	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
@@ -349,7 +353,7 @@ real-configure:
 .if target(${.TARGET:S/^real-/post-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-build:
 	@${ECHO_MSG} "===> Building for ${PKGNAME}"
@@ -371,7 +375,7 @@ real-install:
 .if target(${.TARGET:S/^real-/post-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-package:
 	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
@@ -382,7 +386,7 @@ real-package:
 .if target(${.TARGET:S/^real-/post-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-instpkg:
 	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
@@ -393,7 +397,7 @@ real-instpkg:
 .if target(${.TARGET:S/^real-/post-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-release:
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
@@ -404,7 +408,7 @@ real-release:
 .if target(${.TARGET:S/^real-/post-/})
 	@cd ${.CURDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
-	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
+	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 ###
 
