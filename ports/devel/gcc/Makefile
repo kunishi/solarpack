@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.11 1999/09/02 04:54:14 kunishi Exp $
+# $Id: Makefile,v 1.12 1999/11/02 02:56:57 kunishi Exp $
 #
 
 PKG=		GNUcc
 NAME=		GNU compilers
-VERSION=	2.95.1
+VERSION=	2.95.2
 VENDOR=		${VENDOR_GNU}
 
 DISTNAME=	gcc-${VERSION}
@@ -15,6 +15,7 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_INSTALL_INFO=	yes
 ALL_TARGET=	bootstrap
+PROTOTYPE_SUB+=	GCC_VER=${VERSION}
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/include/g++-3
