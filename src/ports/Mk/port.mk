@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.5 1999/05/19 08:51:10 kunishi Exp $
+# $Id: port.mk,v 1.6 1999/05/19 09:48:51 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -12,6 +12,7 @@ GTAR=		/usr/local/bin/gtar
 GZCAT=		/usr/local/bin/gzip -cd
 GZIP=		/usr/local/bin/gzip
 INSTALL=	/usr/ucb/install
+LN=		/usr/bin/ln
 MV=		/usr/bin/mv
 MKDIR=		/usr/bin/mkdir -p
 PATCH=		/usr/local/bin/patch
@@ -248,6 +249,7 @@ ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 ###
 
 .if !target(do-fetch)
+do-fetch:
 	@(cd ${DISTDIR}; \
 	 for file in ${DISTFILES}; do \
 		if [ ! -f $$file ]; then \
@@ -367,7 +369,12 @@ do-install-package:
 
 .if !target(do-release)
 do-release:
-	@${GZIP} -c -9 ${PKGNAME} > ${PKGNAME}.gz
+	${GZIP} -c -9 ${PKGNAME} > ${PKGNAME}.gz
+.if defined(RELEASE_PKG_DIR)
+	if [ -d ${RELEASE_PKG_DIR} ]; then \
+	  ${MV} ${PKGNAME}.gz ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
+	fi
+.endif
 .endif
 
 ###
@@ -401,6 +408,7 @@ distclean:	pkgclean
 gen-prototype-in:	${INSTALL_COOKIE}
 	@${MAKE} install
 	@${ECHO_MSG} "===> Building prototype.in"
+	@${MKDIR} ${PKGDIR}
 	@if test -f ${PKGDIR}/prototype.in; then \
 		${ECHO_MSG} "===>  Backing up old prototype.in"; \
 		${MV} ${PKGDIR}/prototype.in ${PKGDIR}/prototype.in.bak; \
@@ -412,6 +420,7 @@ gen-prototype-in:	${INSTALL_COOKIE}
 
 gen-instinfo:
 .if defined(INST_INFO_FILES)
+	@${MKDIR} ${PKGDIR}
 	@${ECHO_MSG} "===>  Generating postinstall"
 	${TOOLSDIR}/gen-info-postinstall.sh "${INST_INFO_FILES}" >> ${PKGDIR}/postinstall
 	@${ECHO_MSG} "===>  Generating preremove"
