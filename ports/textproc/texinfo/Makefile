@@ -1,6 +1,10 @@
 #
-# $Id: Makefile,v 1.11 2000/05/17 03:26:44 kunishi Exp $
+# $Id: Makefile,v 1.12 2000/05/17 03:59:58 kunishi Exp $
 #
+
+PORTNAME=	texinfo
+VERSION=	4.0
+PORTREV=	1
 
 .if defined(CORE_TOOLS)
 PKG=		SOAPtxinf
@@ -9,10 +13,8 @@ NAME=		Solaris Application Packaging tools: GNU texinfo tools
 PKG=		GNUtxinf
 NAME=		GNU texinfo tools
 .endif
-VERSION=	4.0
-VENDOR=		${VENDOR_GNU}
 
-PORTNAME=	texinfo
+VENDOR=		${VENDOR_GNU}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/texinfo/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/texinfo/
 

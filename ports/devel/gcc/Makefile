@@ -1,6 +1,10 @@
 #
-# $Id: Makefile,v 1.17 2000/05/17 03:26:43 kunishi Exp $
+# $Id: Makefile,v 1.18 2000/05/17 03:59:58 kunishi Exp $
 #
+
+PORTNAME=	gcc
+VERSION=	2.95.2
+PORTREV=	1
 
 .if defined(CORE_TOOLS)
 PKG=		SOAPgcc
@@ -9,10 +13,8 @@ NAME=		Solaris Application Packaging tools: GNU compiler collection
 PKG=		GNUcc
 NAME=		GNU compiler collection
 .endif
-VERSION=	2.95.2
-VENDOR=		${VENDOR_GNU}
 
-PORTNAME=	gcc
+VENDOR=		${VENDOR_GNU}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gcc/
 

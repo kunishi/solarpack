@@ -1,6 +1,10 @@
 #
-# $Id: Makefile,v 1.7 2000/05/17 03:26:44 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/05/17 03:59:58 kunishi Exp $
 #
+
+PORTNAME=	md5
+VERSION=	1.0
+PORTREV=	1
 
 .if defined(CORE_TOOLS)
 PKG=		SOAPmd5
@@ -9,10 +13,8 @@ NAME=		Solaris Application Packaging tools: a program to calculate checksum for 
 PKG=		OPENmd5
 NAME=		a program to calculate checksum for a file
 .endif
-VERSION=	1.0
-VENDOR=		Jim Ellis <jte@cert.org>
 
-PORTNAME=	md5
+VENDOR=		Jim Ellis <jte@cert.org>
 DISTNAME=	MD5
 EXTRACT_SUFX=	.tar.Z
 MASTER_SITES=	ftp://ftp.aist-nara.ac.jp/pub/Security/tool/md5/

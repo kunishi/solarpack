@@ -1,6 +1,10 @@
 #
-# $Id: Makefile,v 1.13 2000/05/17 03:26:43 kunishi Exp $
+# $Id: Makefile,v 1.14 2000/05/17 03:59:58 kunishi Exp $
 #
+
+PORTNAME=	gmake
+VERSION=	3.79
+PORTREV=	1
 
 .if defined(CORE_TOOLS)
 PKG=		SOAPgmake
@@ -9,10 +13,8 @@ NAME=		Solaris Application Packaging tools: GNU make utility
 PKG=		GNUmake
 NAME=		GNU make utility
 .endif
-VERSION=	3.79
-VENDOR=		${VENDOR_GNU}
 
-PORTNAME=	gmake
+VENDOR=		${VENDOR_GNU}
 DISTNAME=	make-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/make/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/make/

@@ -1,6 +1,10 @@
 #
-# $Id: Makefile,v 1.14 2000/05/17 03:26:43 kunishi Exp $
+# $Id: Makefile,v 1.15 2000/05/17 03:59:58 kunishi Exp $
 #
+
+PORTNAME=	bmake
+VERSION=	3.0.2
+PORTREV=	1
 
 .if defined(CORE_TOOLS)
 PKG=		SOAPbmake
@@ -9,10 +13,8 @@ NAME=		Solaris Application Packaging tools: BSD make tool
 PKG=		OPENbmake
 NAME=		BSD make tool
 .endif
-VERSION=	3.0.2
-VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 
-PORTNAME=	bmake
+VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 MASTER_SITES=	ftp://ftp.quick.com.au/pub/sjg/
 WRKSRC=		${WRKDIR}/${PORTNAME}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} mk-1.1.tar.gz
