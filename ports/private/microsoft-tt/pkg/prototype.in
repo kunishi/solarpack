@@ -1,0 +1,8 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/fonts=%%INSTPREFIX%%/share/fonts 0755 root bin
+d none share/fonts/truetype=%%INSTPREFIX%%/share/fonts/truetype 0755 root bin
+f none share/fonts/truetype/msgothic.ttc=%%INSTPREFIX%%/share/fonts/truetype/msgothic.ttc 0644 root bin
+f none share/fonts/truetype/msgothic.tti=%%INSTPREFIX%%/share/fonts/truetype/msgothic.tti 0644 root bin
+f none share/fonts/truetype/msmincho.ttc=%%INSTPREFIX%%/share/fonts/truetype/msmincho.ttc 0644 root bin
+f none share/fonts/truetype/msmincho.tti=%%INSTPREFIX%%/share/fonts/truetype/msmincho.tti 0644 root bin
