@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.14 2000/05/17 03:59:58 kunishi Exp $
+# $Id: Makefile,v 1.15 2000/06/02 00:46:08 kunishi Exp $
 #
 
 PORTNAME=	gmake
@@ -22,6 +22,7 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/make/ \
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS+=	--program-prefix=g
+MAKE_ENV+=	LANG=C
 
 CLASS_INFO=	info/make.info
 
