@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.15 1999/06/02 11:05:20 kunishi Exp $
+# $Id: port.mk,v 1.16 1999/06/02 11:15:56 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -37,6 +37,7 @@ INSTALL_PROGRAM= ${INSTALL} -c -s -m 755 -o root -g bin
 INSTALL_DATA=	${INSTALL} -c -m 644 -o root -g bin
 INSTALL_MAN=	${INSTALL} -c -m 644 -o root -g bin
 INSTALL_SCRIPT=	${INSTALL} -c -m 755 -o root -g bin
+INSTALL_TARGET?=	install
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
@@ -139,7 +140,6 @@ MAKE_ENV+=	PREFIX=${PREFIX} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC=${CC}
 
-INSTALL_TARGET?=	install
 MAKE_INSTALL_ENV+=	PREFIX=${WRK_BASEDIR} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC=${CC}
