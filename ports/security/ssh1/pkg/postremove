@@ -1,0 +1,30 @@
+BINDIR=$CLIENT_BASEDIR/bin
+SBINDIR=$CLIENT_BASEDIR/sbin
+MAN1DIR=$CLIENT_BASEDIR/man/man1
+MAN8DIR=$CLIENT_BASEDIR/man/man8
+
+link_bin='ssh ssh-keygen ssh-agent ssh-add scp ssh-askpass make-ssh-known-hosts'
+link_sbin='sshd'
+link_man1='ssh-keygen ssh-agent ssh-add scp make-ssh-known-hosts ssh slogin'
+link_man8='sshd'
+
+for file in ${link_bin}; do
+	if test ! -f ${BINDIR}/${file}2; then
+		rm -f ${BINDIR}/${file}
+	fi
+done
+for file in ${link_sbin}; do
+	if test ! -f ${SBINDIR}/${file}2; then
+		rm -f ${SBINDIR}/${file}
+	fi
+done
+for file in ${link_man1}; do
+	if test ! -f ${MAN1DIR}/${file}2.1; then
+		rm -f ${MAN1DIR}/${file}.1
+	fi
+done
+for file in ${link_man8}; do
+	if test ! -f ${MAN8DIR}/${file}2.8; then
+		rm -f ${MAN8DIR}/${file}.8
+	fi
+done
