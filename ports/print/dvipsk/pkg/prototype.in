@@ -1,0 +1,16 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+i postinstall=%%PKGDIR%%/postinstall
+i preremove=%%PKGDIR%%/preremove
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/afm2tfm=%%WRK_BASEDIR%%/bin/afm2tfm 0755 root bin
+f none bin/dvips=%%WRK_BASEDIR%%/bin/dvips 0755 root bin
+d none info=%%WRK_BASEDIR%%/info 0755 root bin
+f none info/dvips.info=%%WRK_BASEDIR%%/info/dvips.info 0644 root bin
+f none info/dvips.info-1=%%WRK_BASEDIR%%/info/dvips.info-1 0644 root bin
+f none info/dvips.info-2=%%WRK_BASEDIR%%/info/dvips.info-2 0644 root bin
+f none info/dvips.info-3=%%WRK_BASEDIR%%/info/dvips.info-3 0644 root bin
+f none info/dvips.info-4=%%WRK_BASEDIR%%/info/dvips.info-4 0644 root bin
+d none man=%%WRK_BASEDIR%%/man 0755 root bin
+d none man/man1=%%WRK_BASEDIR%%/man/man1 0755 root bin
+f none man/man1/afm2tfm.1=%%WRK_BASEDIR%%/man/man1/afm2tfm.1 0644 root bin
+f none man/man1/dvips.1=%%WRK_BASEDIR%%/man/man1/dvips.1 0644 root bin
