@@ -1,8 +1,8 @@
-include ../../conf/pkgbuild.conf
+include ../../../conf/pkgbuild.conf
 
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pre.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/gnu_configure.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_gmake.mk
 
 DISTNAME=	tar-1.12
 PKGNAME=	g${DISTNAME}
@@ -14,4 +14,4 @@ CONFIGURE_ARGS +=	--program-prefix=g
 
 CORE_TOOLS=	yes
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pkgbuild.mk

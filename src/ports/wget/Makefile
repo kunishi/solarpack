@@ -1,8 +1,8 @@
-include ../../conf/pkgbuild.conf
+include ../../../conf/pkgbuild.conf
 
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pre.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/gnu_configure.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_gmake.mk
 
 DISTNAME=	wget-1.5.3
 MASTER_SITES=	ftp://psi.c.oka-pu.ac.jp/pub/ \
@@ -15,4 +15,4 @@ post-install::
 	${INSTALL} -c ${WRKSRC}/doc/sample.wgetrc \
 	    ${WRK_BASEDIR}/share/examples/wget/sample.wgetrc
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pkgbuild.mk

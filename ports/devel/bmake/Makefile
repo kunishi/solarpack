@@ -1,8 +1,8 @@
-include ../../conf/pkgbuild.conf
+include ../../../conf/pkgbuild.conf
 
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pre.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/gnu_configure.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_gmake.mk
 
 DISTNAME =	bmake-2.1.14
 MASTER_SITES =	ftp://ftp.quick.com.au/pub/sjg/
@@ -21,4 +21,4 @@ post-install::
 	@${INSTALL} -c -m 644 -o root -g bin \
 		${WRKDIR}/help/*.html ${WRK_BASEDIR}/share/doc/bmake
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pkgbuild.mk

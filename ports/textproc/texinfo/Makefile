@@ -1,8 +1,8 @@
-include ../../conf/pkgbuild.conf
+include ../../../conf/pkgbuild.conf
 
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pre.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/gnu_configure.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_gmake.mk
 
 DISTNAME=	texinfo-3.12
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/texinfo/ \
@@ -16,4 +16,4 @@ post-install::
 	${INSTALL} -c -m 0644 ${WRKSRC}/dir-example \
 	    ${WRKDIR}${PREFIX}/share/examples/texinfo
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pkgbuild.mk

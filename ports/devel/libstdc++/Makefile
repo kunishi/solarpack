@@ -1,8 +1,8 @@
-include ../../conf/pkgbuild.conf
+include ../../../conf/pkgbuild.conf
 
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pre.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/gnu_configure.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_gmake.mk
 
 DISTNAME =	libstdc++-2.8.1.1
 MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/libstdc++/ \
@@ -10,4 +10,4 @@ MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/libstdc++/ \
 
 CORE_TOOLS =	yes
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/pkgbuild.mk
