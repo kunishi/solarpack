@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.61 2000/05/18 08:17:05 kunishi Exp $
+# $Id: port.mk,v 1.62 2000/05/18 10:22:32 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -224,6 +224,7 @@ AWK?=		/usr/bin/awk
 BASENAME?=	/usr/bin/basename
 CAT?=		/usr/bin/cat
 CCSMAKE?=	/usr/ccs/bin/make
+CHMOD?=		/usr/bin/chmod
 CHOWN?=		/usr/bin/chown
 CP?=		/usr/bin/cp
 CPIO?=		/usr/bin/cpio
