@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.43 2000/01/07 04:12:39 kunishi Exp $
+# $Id: port.mk,v 1.44 2000/01/07 07:09:51 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -85,11 +85,21 @@ CLASSES+=	none
 # NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
 # because they might contain spaces in its value, which cause
 # bad affects for generating ${_sedsubpkginfolist}.
+
+VERSION_USE_REV?=	yes
+.if (${VERSION_USE_REV} == "yes")
+DATE_REV!=	/usr/bin/date '+%G.%m.%d.%H.%M'
+_VERSION=	${VERSION},REV=${DATE_REV}
+.else
+_VERSION=	${VERSION}
+.endif
+
 PKGINFO_SUB+=	PKG=${PKG} \
-		VERSION=${VERSION} \
+		VERSION=${_VERSION} \
 		CATEGORY=${CATEGORY} \
 		ARCH=${ARCH} \
 		BASEDIR=${PREFIX}
+
 .if defined(PKG_WITHOUT_GZIP)
 PKGNAME_REAL=	${PKGNAME}
 .else
