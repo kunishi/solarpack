@@ -1,4 +1,4 @@
-# $Id: soap-client,v 1.1 2000/04/26 08:00:40 kunishi Exp $
+# $Id: soap-client,v 1.2 2000/04/26 08:06:18 kunishi Exp $
 mail=
 instance=unique
 partial=quit
@@ -7,6 +7,6 @@ idepend=quit
 rdepend=quit
 space=nocheck
 setuid=nocheck
-conflict=quit
+conflict=nocheck
 action=nocheck
 basedir=default
