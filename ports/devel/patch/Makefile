@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/01/06 11:29:42 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/01/06 11:34:31 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -9,7 +9,7 @@ NAME=		pkgbuild core tools: patch
 PKG=		GNUpatch
 NAME=		GNU patch
 .endif
-VERSION=	2.5
+VERSION=	2.5.4
 VENDOR=		${VENDOR_GNU}
 
 DISTNAME=	patch-${VERSION}
