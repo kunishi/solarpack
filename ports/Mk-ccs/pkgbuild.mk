@@ -1,9 +1,14 @@
+#
+# $Id: pkgbuild.mk,v 1.6 1999/05/08 10:20:24 kunishi Exp $
+#
+
 ifeq ($(USE_IMAKE),yes)
 USE_X_PREFIX=	yes
 XMKMF=		${X11BASE}/bin/xmkmf
 XMKMF_ARGS+=	-a
 USE_CCSMAKE=	yes
-MAKE_FLAGS+=	DESTDIR=${PREFIX}
+MAKE_ARGS+=	DESTDIR=${PREFIX}
+MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
 endif
 
 ifeq ($(USE_X_PREFIX),yes)
@@ -16,6 +21,7 @@ ifeq ($(GNU_CONFIGURE),yes)
 CONFIGURE=	${WRKSRC}/configure
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 MAKE_ENV+=	prefix=${PREFIX}
+MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
 endif
 
 ifeq ($(USE_GMAKE),yes)
@@ -127,7 +133,7 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${PKGMAKE} build
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 	@${MKDIR} ${WRK_BASEDIR}
-	@cd ${WRKSRC} && ${MAKE} install prefix=${WRK_BASEDIR} DESTDIR=${WRKDIR}
+	@cd ${WRKSRC} && ${MAKE} install ${MAKE_INSTALL_ARGS}
 	@${PKGMAKE} post-install
 	@${TOUCH} $@
 
@@ -139,17 +145,27 @@ ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
 	    -e "s?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g" \
 	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
 	@${SED} -e "s?%%ARCH%%?${ARCH}?" \
-	    -e "s?%%BASEDIR%%?${PREFIX}?" ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
+	    -e "s?%%BASEDIR%%?${PREFIX}?" \
+	    -e "s?%%PKG_MAINTAINER%%?${PKG_MAINTAINER}?" \
+	    ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype
 	@${PKGTRANS} -s ${SPOOLDIR} ${CURDIR}/${PKGNAME} all
 	@${TOUCH} $@
 
 ${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
+ifeq (${CORE_TOOLS},yes)
+	@${ECHO_MSG} "===> This software is one of the core tools, which"
+	@${ECHO_MSG} "===> is necessary during make process.  Hence it cannot"
+	@${ECHO_MSG} "===> be installed by executing this target."
+	@${ECHO_MSG} "===> Use pkgrm and pkgadd manually to install the package"
+	@${ECHO_MSG} "===> of this software."
+else
 	@${PKGMAKE} package
 	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
 	@${PKGADD} -d ${CURDIR}/${PKGNAME} all
 	@${TOUCH} $@
+endif
 
 ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 	@${PKGMAKE} package

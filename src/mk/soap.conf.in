@@ -1,2 +1,11 @@
+#
+# $Id: soap.conf.in,v 1.2 1999/05/08 10:20:23 kunishi Exp $
+#
+###
+#
 # C compiler for building packages.
 #CC=	/usr/local/bin/gcc
+#
+# package maintainer.
+#
+PKG_MAINTAINER=	Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
