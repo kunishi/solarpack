@@ -1,0 +1,8 @@
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+if test -x ${INSTALL_INFO}; then
+	${INSTALL_INFO} --delete --info-dir=${INFODIR} ${INFODIR}/libtool.info
+else
+	/usr/bin/echo ">> Remove libtool.info entry to ${INFODIR}/dir by hand."
+fi

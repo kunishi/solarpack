@@ -1,0 +1,9 @@
+PKG=GNUlibtl
+NAME=GNU libtool
+VERSION=1.3
+ARCH=%%ARCH%%
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none
