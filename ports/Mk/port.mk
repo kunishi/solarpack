@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.51 2000/01/19 03:54:58 kunishi Exp $
+# $Id: port.mk,v 1.52 2000/01/21 10:24:28 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -58,6 +58,13 @@ PREFIX?=	${LOCALBASE}
 .endif
 .endif
 
+.if defined(USE_INSTALL_INFO)
+RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
+.endif
+.if defined(USE_GMAKE)
+BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel/gmake
+.endif
+
 WRKDIR?=	${MASTERDIR}/work
 WRKSRC?=	${WRKDIR}/${DISTNAME}
 INSTPREFIX?=	${WRKDIR}${PREFIX}
@@ -87,9 +94,6 @@ CLASS_BACKUP+=	${file}
 .if defined(CLASS_INFO)
 USE_INSTALL_INFO=	yes
 CLASSES+=	info
-.endif
-.if defined(USE_INSTALL_INFO)
-RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
 .endif
 .if defined(CLASS_SHELL)
 CLASSES+=	shell
