@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 1999/06/05 05:44:29 kunishi Exp $
+# $Id: Makefile,v 1.6 1999/08/20 10:35:35 kunishi Exp $
 #
 
 PKG=		GNUzip
@@ -16,5 +16,6 @@ USE_GMAKE=	yes
 USE_INSTALL_INFO=	yes
 
 CORE_TOOLS=	yes
+PKG_WITHOUT_GZIP=	yes
 
 .include <port.mk>
