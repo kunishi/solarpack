@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.7 2002/12/26 08:31:35 kunishi Exp $
+# $Id: Makefile,v 1.8 2003/01/07 03:33:50 kunishi Exp $
 #
 
 PORTNAME=	openssl
-VERSION=	0.9.6h
+VERSION=	0.9.7
 PORTREV=	1
 
 PKG=		OPUCopssl
