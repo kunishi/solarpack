@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.6 2000/09/07 07:31:22 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/21 12:35:42 kunishi Exp $
 #
 
 ARCH!=		/usr/bin/mach
 
 PORTNAME=	ssh2
-VERSION=	2.2.0
+VERSION=	2.3.0
 PORTREV=	2
 
 PKG=		OPENssh2
@@ -19,9 +19,12 @@ GNU_CONFIGURE=	yes
 .if (${ARCH} == "i386")
 CONFIGURE_ARGS+=	--disable-asm
 .endif
+CONFIGURE_ARGS+=	--disable-compiler-optimizations
 USE_GMAKE=	yes
+MAKE_INSTALL_ARGS+=	etcdir=${WRKDIR}/etc/ssh2
 
-RUN_DEPENDS=	OPENssh1:${PORTSDIR}/security/ssh1
+pre-install:
+	${MKDIR} ${WRKDIR}/etc/ssh2
 
 post-install:
 	${MKDIR} ${INSTPREFIX}/share/examples/ssh2
