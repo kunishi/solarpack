@@ -1,0 +1,6 @@
+PATH=/usr/local/bin:$PATH; export PATH
+cd $CLIENT_BASEDIR/share/ghostscript/Resource
+./alias-aj14.sh install Solaris-HG-MinchoL=HG-MinchoL.ttf
+./alias-aj14.sh install Solaris-HG-GothicB=HG-GothicB.ttf
+./alias-aj14.sh install Ryumin-Light=Solaris-HG-MinchoL
+./alias-aj14.sh install GothicBBB-Medium=Solaris-HG-GothicB

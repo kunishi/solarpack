@@ -1,0 +1,6 @@
+PATH=/usr/local/bin:$PATH; export PATH
+cd $CLIENT_BASEDIR/share/ghostscript/Resource
+./alias-aj14.sh uninstall GothicBBB-Medium=Solaris-HG-GothicB
+./alias-aj14.sh uninstall Ryumin-Light=Solaris-HG-MinchoL
+./alias-aj14.sh uninstall Solaris-HG-GothicB=HG-GothicB.ttf
+./alias-aj14.sh uninstall Solaris-HG-MinchoL=HG-MinchoL.ttf

@@ -1,0 +1,12 @@
+--- src/unistd_.h~	Tue Jun  5 15:39:06 2001
++++ src/unistd_.h	Fri Nov 16 20:49:30 2001
+@@ -36,7 +36,9 @@
+ #  include <io.h>
+ #  define fsync(handle) _commit(handle)
+ #else
++# if (!defined(sun))
+ #  include <unistd.h>
++# endif
+ #endif
+ 
+ #endif   /* unistd__INCLUDED */
