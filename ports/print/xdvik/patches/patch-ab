@@ -1,0 +1,23 @@
+--- xdvik/xdvi-config.h.orig2	Tue Jun  1 13:52:00 1999
++++ xdvik/xdvi-config.h	Tue Jun  1 13:57:58 1999
+@@ -86,15 +86,15 @@
+ #define PRINTDVI
+ /* Print-out command templates */
+ /* all pages of DVI file */
+-#define PRCMDALL "cd %d; %R %F > %D/%F:All@%r.ps; %P -J'%F' %D/%F:All@%r.ps"
++/* #define PRCMDALL "cd %d; %R %F > %D/%F:All@%r.ps; %P -J'%F' %D/%F:All@%r.ps" */
+ /* the current page */
+-#define PRCMDCUR "cd %d; dviselect =%c %F %D/%F:%c@%r.dvi; %R %D/%F:%c@%r.dvi > %D/%F:%c@%r.ps; /bin/rm %D/%F:%c@%r.dvi; %P -J'%F (Page %c)' %D/%F:%c@%r.ps"
++/* #define PRCMDCUR "cd %d; dviselect =%c %F %D/%F:%c@%r.dvi; %R %D/%F:%c@%r.dvi > %D/%F:%c@%r.ps; /bin/rm %D/%F:%c@%r.dvi; %P -J'%F (Page %c)' %D/%F:%c@%r.ps" */
+ /* the lastly marked page */
+-#define PRCMDMRK "cd %d; dviselect =%m %F %D/%F:%m@%r.dvi; %R %D/%F:%m@%r.dvi > %D/%F:%m@%r.ps; /bin/rm %D/%F:%m@%r.dvi; %P -J'%F (Page %m)' %D/%F:%m@%r.ps"
++/* #define PRCMDMRK "cd %d; dviselect =%m %F %D/%F:%m@%r.dvi; %R %D/%F:%m@%r.dvi > %D/%F:%m@%r.ps; /bin/rm %D/%F:%m@%r.dvi; %P -J'%F (Page %m)' %D/%F:%m@%r.ps" */
+ /* pages in the region, between the current page and the lastly marked page */
+-#define PRCMDRGN "cd %d; dviselect =%s:%e %F %D/%F:%s-%e@%r.dvi; %R %D/%F:%s-%e@%r.dvi > %D/%F:%s-%e@%r.ps; /bin/rm %D/%F:%s-%e@%r.dvi; %P -J'%F (Page %s-%e)' %D/%F:%s-%e@%r.ps"
++/* #define PRCMDRGN "cd %d; dviselect =%s:%e %F %D/%F:%s-%e@%r.dvi; %R %D/%F:%s-%e@%r.dvi > %D/%F:%s-%e@%r.ps; /bin/rm %D/%F:%s-%e@%r.dvi; %P -J'%F (Page %s-%e)' %D/%F:%s-%e@%r.ps" */
+ /* all marked pages */
+-#define PRCMDLST "cd %d; dviselect %G %F %D/%F:%o@%r.dvi; %R %D/%F:%o@%r.dvi > %D/%F:%o@%r.ps; /bin/rm %D/%F:%o@%r.dvi; %P -J'%F (Page %o)' %D/%F:%o@%r.ps"
++/* #define PRCMDLST "cd %d; dviselect %G %F %D/%F:%o@%r.dvi; %R %D/%F:%o@%r.dvi > %D/%F:%o@%r.ps; /bin/rm %D/%F:%o@%r.dvi; %P -J'%F (Page %o)' %D/%F:%o@%r.ps" */
+ 
+ /* the default printer to print-out DVI file */
+ #define DVIPRINTER "lp"
