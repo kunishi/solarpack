@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.72 2000/06/30 01:50:40 kunishi Exp $
+# $Id: port.mk,v 1.73 2000/07/01 07:24:41 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -348,6 +348,9 @@ __ARCH_OK?=	1
 __ARCH_OK?=	1
 .endif
 
+.if defined(IS_INTERACTIVE) && defined(BATCH)
+IGNORE=		"is an interactive ports."
+.endif
 .if !defined(__ARCH_OK)
 IGNORE=		"is only for the architectures ${ONLY_FOR_ARCHS},"
 IGNORE+=	"and you are running ${ARCH}."
