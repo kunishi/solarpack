@@ -1,0 +1,88 @@
+--- unix-gcc.mak.org	Thu May 20 13:05:08 1999
++++ unix-gcc.mak	Thu May 20 13:07:48 1999
+@@ -214,7 +214,7 @@
+ # We don't include -ansi, because this gets in the way of the platform-
+ #   specific stuff that <math.h> typically needs; nevertheless, we expect
+ #   gcc to accept ANSI-style function prototypes and function definitions.
+-XCFLAGS=
++XCFLAGS=-DSVR4
+ 
+ CFLAGS=-O $(GCFLAGS) $(XCFLAGS)
+ 
+@@ -231,7 +231,7 @@
+ # SVR4 may need -lnsl.
+ # (Libraries required by individual drivers are handled automatically.)
+ 
+-EXTRALIBS=
++EXTRALIBS=-lnsl
+ 
+ # Define the include switch(es) for the X11 header files.
+ # This can be null if handled in some other way (e.g., the files are
+@@ -241,7 +241,7 @@
+ # Note that x_.h expects to find the header files in $(XINCLUDE)/X11,
+ # not in $(XINCLUDE).
+ 
+-XINCLUDE=-I/usr/local/X/include
++XINCLUDE=-I/usr/openwin/include
+ 
+ # Define the directory/ies and library names for the X11 library files.
+ # XLIBDIRS is for ld and should include -L; XLIBDIR is for LD_RUN_PATH
+@@ -250,15 +250,15 @@
+ # in particular, SCO Xenix, Unix, and ODT just want
+ #XLIBDIRS=
+ # Solaris and other SVR4 systems with dynamic linking probably want
+-#XLIBDIRS=-L/usr/openwin/lib
+-#XLIBDIR=/usr/openwin/lib
++XLIBDIRS=-L/usr/openwin/lib
++XLIBDIR=/usr/openwin/lib
+ # X11R6 (on any platform) may need
+-#XLIBS=Xt SM ICE Xext X11
++XLIBS=Xt SM ICE Xext X11
+ 
+ #XLIBDIRS=-L/usr/local/X/lib
+-XLIBDIRS=-L/usr/X11/lib
+-XLIBDIR=
+-XLIBS=Xt Xext X11
++#XLIBDIRS=-L/usr/X11/lib
++#XLIBDIR=
++#XLIBS=Xt Xext X11
+ 
+ # Define whether this platform has floating point hardware:
+ #	FPU_TYPE=2 means floating point is faster than fixed point.
+@@ -5508,11 +5508,14 @@
+ 
+ # ---------------- Kanji Font Utility ---------------- #
+ 
+-kanji_=kfutil.$(OBJ)
++kanji_=kfutil.$(OBJ) zkfimpath.$(OBJ)
+ kanji.dev: $(kanji_)
+ 	$(SETMOD) kanji $(kanji_)
++	$(ADDMOD) kanji -oper zkfimagepath
+ 
+ kfutil.$(OBJ): kfutil.c $(OP) $(gsmatrix_h)
++zkfimpath.$(OBJ): zkfimpath.c $(OP) $(gsmatrix_h) $(gspath_h) \
++					$(igstate_h) $(store_h)
+ 
+ # ---------------- Kanji Font(VFlib) ---------------- #
+ 
+@@ -5520,8 +5523,9 @@
+ kfvflib.dev: $(kfvflib_) kanji.dev
+ 	$(SETMOD) kfvflib $(kfvflib_)
+ 	$(ADDMOD) kfvflib -oper zkfVFlib
+-	$(ADDMOD) kfvflib -ps kfvflib
+-	$(ADDMOD) kfvflib -lib VFlib
++	$(ADDMOD) kfvflib -ps kfvflib kfvfbm
++	$(ADDMOD) kfvflib -lib VFlib2
++	$(ADDMOD) kfvflib -lib ttf
+ 
+ zkfvflib.$(OBJ): zkfvflib.c 
+ 
+@@ -5667,7 +5671,7 @@
+ 	./echogs -a ldt.tr -n -s gs.$(OBJ) -s
+ 	cat ld.tr >>ldt.tr
+ 	./echogs -a ldt.tr -s - $(EXTRALIBS) -lm
+-	LD_RUN_PATH=$(XLIBDIR); export LD_RUN_PATH; \
++	LD_RUN_PATH=$(XLIBDIR):$(prefix)/lib; export LD_RUN_PATH; \
+ 	XCFLAGS= XINCLUDE= XLDFLAGS= XLIBDIRS= XLIBS= \
+ 	FEATURE_DEVS= DEVICE_DEVS= DEVICE_DEVS1= DEVICE_DEVS2= DEVICE_DEVS3= \
+ 	DEVICE_DEVS4= DEVICE_DEVS5= DEVICE_DEVS6= DEVICE_DEVS7= DEVICE_DEVS8= \
