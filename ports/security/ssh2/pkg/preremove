@@ -1,0 +1,70 @@
+rm -f /etc/rc0.d/K42sshd2 /etc/rc1.d/K42sshd2 /etc/rc2.d/S99sshd2
+rm -f /etc/init.d/sshd2
+
+rm -f $CLIENT_BASEDIR/bin/ssh
+rm -f $CLIENT_BASEDIR/bin/ssh-agent
+rm -f $CLIENT_BASEDIR/bin/ssh-add
+rm -f $CLIENT_BASEDIR/bin/ssh-askpass
+rm -f $CLIENT_BASEDIR/bin/ssh-keygen
+rm -f $CLIENT_BASEDIR/bin/scp
+rm -f $CLIENT_BASEDIR/bin/sftp
+rm -f $CLIENT_BASEDIR/bin/sftp-server
+if test -f $CLIENT_BASEDIR/bin/ssh.old; then
+	mv -f $CLIENT_BASEDIR/bin/ssh.old $CLIENT_BASEDIR/bin/ssh
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-agent.old; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-agent.old $CLIENT_BASEDIR/bin/ssh-agent
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-add.old; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-add.old $CLIENT_BASEDIR/bin/ssh-add
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-askpass.old; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-askpass.old $CLIENT_BASEDIR/bin/ssh-askpass
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-keygen.old; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-keygen.old $CLIENT_BASEDIR/bin/ssh-keygen
+fi
+if test -f $CLIENT_BASEDIR/bin/scp.old; then
+	mv -f $CLIENT_BASEDIR/bin/scp.old $CLIENT_BASEDIR/bin/scp
+fi
+if test -f $CLIENT_BASEDIR/bin/sftp.old; then
+	mv -f $CLIENT_BASEDIR/bin/sftp.old $CLIENT_BASEDIR/bin/sftp
+fi
+if test -f $CLIENT_BASEDIR/bin/sftp-server.old; then
+	mv -f $CLIENT_BASEDIR/bin/sftp-server.old $CLIENT_BASEDIR/bin/sftp-server
+fi
+
+rm -f $CLIENT_BASEDIR/sbin/sshd
+if test -f $CLIENT_BASEDIR/sbin/sshd.old; then
+	mv -f $CLIENT_BASEDIR/sbin/sshd.old $CLIENT_BASEDIR/sbin/sshd
+fi
+
+rm -f $CLIENT_BASEDIR/man/man1/ssh.1
+rm -f $CLIENT_BASEDIR/man/man1/ssh-add.1
+rm -f $CLIENT_BASEDIR/man/man1/ssh-agent.1
+rm -f $CLIENT_BASEDIR/man/man1/ssh-keygen.1
+rm -f $CLIENT_BASEDIR/man/man1/scp.1
+rm -f $CLIENT_BASEDIR/man/man1/sftp.1
+if test -f $CLIENT_BASEDIR/man/man1/ssh.old.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh.old.1 $CLIENT_BASEDIR/man/man1/ssh.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/ssh-add.old.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh-add.old.1 $CLIENT_BASEDIR/man/man1/ssh-add.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/ssh-agent.old.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh-agent.old.1 $CLIENT_BASEDIR/man/man1/ssh-agent.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/ssh-keygen.old.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh-keygen.old.1 $CLIENT_BASEDIR/man/man1/ssh-keygen.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/scp.old.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/scp.old.1 $CLIENT_BASEDIR/man/man1/scp.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/sftp.old.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/sftp.old.1 $CLIENT_BASEDIR/man/man1/sftp.1
+fi
+
+rm -f $CLIENT_BASEDIR/man/man8/sshd.8
+if test -f $CLIENT_BASEDIR/man/man8/sshd.old.8; then
+	mv -f $CLIENT_BASEDIR/man/man8/sshd.old.8 $CLIENT_BASEDIR/man/man8/sshd.8
+fi

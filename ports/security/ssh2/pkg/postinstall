@@ -1,0 +1,92 @@
+if test ! -d /etc/ssh2; then
+	mkdir -p /etc/ssh2
+fi
+
+if test ! -f /etc/ssh2/hostkey; then
+	umask 022
+	$CLIENT_BASEDIR/bin/ssh-keygen2 -P -b 1024 -t dsa \
+	    -c "1024-bit dsa hostkey" -o /etc/ssh2/hostkey
+fi
+if test ! -f /etc/ssh2/ssh2_config; then
+	install -c /etc/ssh2 -m 644 -u bin -g bin \
+	    $CLIENT_BASEDIR/share/examples/ssh2/ssh2_config
+fi
+if test ! -f /etc/ssh2/sshd2_config; then
+	install -c /etc/ssh2 -m 644 -u bin -g bin \
+	    $CLIENT_BASEDIR/share/examples/ssh2/sshd2_config
+fi
+
+rm -f /etc/init.d/sshd2 && \
+install -c /etc/init.d -m 755 -u bin -g bin \
+    $CLIENT_BASEDIR/share/examples/ssh2/sshd2 /etc/init.d/sshd2
+rm -f /etc/rc0.d/K42sshd2 && ln -s ../init.d/sshd2 /etc/rc0.d/K42sshd2
+rm -f /etc/rc1.d/K42sshd2 && ln -s ../init.d/sshd2 /etc/rc1.d/K42sshd2
+rm -f /etc/rc2.d/S99sshd2 && ln -s ../init.d/sshd2 /etc/rc2.d/S99sshd2
+
+if test -f $CLIENT_BASEDIR/bin/ssh; then
+	mv -f $CLIENT_BASEDIR/bin/ssh $CLIENT_BASEDIR/bin/ssh.old
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-agent; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-agent $CLIENT_BASEDIR/bin/ssh-agent.old
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-add; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-add $CLIENT_BASEDIR/bin/ssh-add.old
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-askpass; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-askpass $CLIENT_BASEDIR/bin/ssh-askpass.old
+fi
+if test -f $CLIENT_BASEDIR/bin/ssh-keygen; then
+	mv -f $CLIENT_BASEDIR/bin/ssh-keygen $CLIENT_BASEDIR/bin/ssh-keygen.old
+fi
+if test -f $CLIENT_BASEDIR/bin/scp; then
+	mv -f $CLIENT_BASEDIR/bin/scp $CLIENT_BASEDIR/bin/scp.old
+fi
+if test -f $CLIENT_BASEDIR/bin/sftp; then
+	mv -f $CLIENT_BASEDIR/bin/sftp $CLIENT_BASEDIR/bin/sftp.old
+fi
+if test -f $CLIENT_BASEDIR/bin/sftp-server; then
+	mv -f $CLIENT_BASEDIR/bin/sftp-server $CLIENT_BASEDIR/bin/sftp-server.old
+fi
+(cd $CLIENT_BASEDIR/bin && ln -s ssh2 ssh)
+(cd $CLIENT_BASEDIR/bin && ln -s ssh-agent2 ssh-agent)
+(cd $CLIENT_BASEDIR/bin && ln -s ssh-add2 ssh-add)
+(cd $CLIENT_BASEDIR/bin && ln -s ssh-askpass2 ssh-askpass)
+(cd $CLIENT_BASEDIR/bin && ln -s ssh-keygen2 ssh-keygen)
+(cd $CLIENT_BASEDIR/bin && ln -s scp2 scp)
+(cd $CLIENT_BASEDIR/bin && ln -s sftp2 sftp)
+(cd $CLIENT_BASEDIR/bin && ln -s sftp-server2 sftp-server)
+
+if test -f $CLIENT_BASEDIR/sbin/sshd; then
+	mv -f $CLIENT_BASEDIR/sbin/sshd $CLIENT_BASEDIR/sbin/sshd.old
+fi
+(cd $CLIENT_BASEDIR/sbin && ln -s sshd2 sshd)
+
+if test -f $CLIENT_BASEDIR/man/man1/ssh.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh.1 $CLIENT_BASEDIR/man/man1/ssh.old.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/ssh-add.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh-add.1 $CLIENT_BASEDIR/man/man1/ssh-add.old.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/ssh-agent.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh-agent.1 $CLIENT_BASEDIR/man/man1/ssh-agent.old.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/ssh-keygen.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/ssh-keygen.1 $CLIENT_BASEDIR/man/man1/ssh-keygen.old.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/scp.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/scp.1 $CLIENT_BASEDIR/man/man1/scp.old.1
+fi
+if test -f $CLIENT_BASEDIR/man/man1/sftp.1; then
+	mv -f $CLIENT_BASEDIR/man/man1/sftp.1 $CLIENT_BASEDIR/man/man1/sftp.old.1
+fi
+(cd $CLIENT_BASEDIR/man/man1 && ln -s ssh2.1 ssh.1)
+(cd $CLIENT_BASEDIR/man/man1 && ln -s ssh-add2.1 ssh-add.1)
+(cd $CLIENT_BASEDIR/man/man1 && ln -s ssh-agent2.1 ssh-agent.1)
+(cd $CLIENT_BASEDIR/man/man1 && ln -s ssh-keygen2.1 ssh-keygen.1)
+(cd $CLIENT_BASEDIR/man/man1 && ln -s scp2.1 scp.1)
+(cd $CLIENT_BASEDIR/man/man1 && ln -s sftp2.1 sftp.1)
+
+if test -f $CLIENT_BASEDIR/man/man8/sshd.8; then
+	mv -f $CLIENT_BASEDIR/man/man8/sshd.8 $CLIENT_BASEDIR/man/man8/sshd.old.8
+fi
+(cd $CLIENT_BASEDIR/man/man8 && ln -s sshd2.8 sshd.8)
