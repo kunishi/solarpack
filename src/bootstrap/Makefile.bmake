@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building bmake
-# $Id: Makefile.bmake,v 1.3 2000/05/02 05:06:49 kunishi Exp $
+# $Id: Makefile.bmake,v 1.4 2000/05/11 06:14:36 kunishi Exp $
 #
 
 TARGET_CMD=	bmake
@@ -8,19 +8,23 @@ TARGET_CMD=	bmake
 include ${TOPDIR}/bootstrap/config.mk
 
 DISTNAME=	bmake
-DISTFILES=	bmake.tar.gz
+DISTFILES=	bmake-3.0.2.tar.gz mk-1.1.tar.gz
 SRCURL=		ftp://ftp.quick.com.au/pub/sjg/
 
 include ${BOOTSTRAPDIR}/rule.mk
 
 fetch:
-	if [ ! -f ${DISTDIR}/${DISTFILES} ]; then \
-	  (cd ${DISTDIR} && ${FTP} ${SRCURL}${DISTFILES}); \
-	fi
+	@for file in ${DISTFILES}; do \
+	  if [ ! -f ${DISTDIR}/$${file} ]; then \
+	    (cd ${DISTDIR} && ${FTP} ${SRCURL}$${file}); \
+	  fi; \
+	done
 
 extract:	${FETCH_COOKIE}
 	cd ${WORKDIR} && \
-	  (${GUNZIP} ${DISTDIR}/${DISTFILES} | ${EXTRACT_CMD} -)
+	  (${GUNZIP} ${DISTDIR}/bmake-3.0.2.tar.gz | ${EXTRACT_CMD} -)
+	cd ${WORKDIR}/bmake && \
+	  (${GUNZIP} ${DISTDIR}/mk-1.1.tar.gz | ${EXTRACT_CMD} -)
 
 patch:		${EXTRACT_COOKIE}
 #	cd ${WORKDIR}/${DISTNAME} && ${GNUPATCH} < ${BOOTSTRAPDIR}/bmake.patch
@@ -36,6 +40,6 @@ build:		${CONFIGURE_COOKIE}
 
 install:	${BUILD_COOKIE}
 	if [ ! -f ${INSTALL_COOKIE} ]; then \
-	  cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake -f makefile.boot install; \
+	  cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake -f makefile.boot install install-mk; \
 	fi
 	${TOUCH} ${INSTALL_COOKIE}

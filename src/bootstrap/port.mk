@@ -1,2 +1,2 @@
-PKGBUILDDIR?=	/usr/solpkg
-.include "${PKGBUILDDIR}/ports/Mk/port.mk"
+SOLPKGSRCDIR?=	/usr/solpkg
+.include "${SOLPKGSRCDIR}/ports/Mk/port.mk"

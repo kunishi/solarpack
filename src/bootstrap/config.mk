@@ -1,6 +1,6 @@
 #
 # Makefile configuration file for standard Solaris make
-# $Id: config.mk,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+# $Id: config.mk,v 1.2 2000/05/11 06:14:36 kunishi Exp $
 #
 
 WORKDIR=	${TOPDIR}/work
@@ -30,3 +30,5 @@ PATCH_COOKIE=		${WORKDIR}/.${TARGET_CMD}_patch_done
 CONFIGURE_COOKIE=	${WORKDIR}/.${TARGET_CMD}_configure_done
 BUILD_COOKIE=		${WORKDIR}/.${TARGET_CMD}_build_done
 INSTALL_COOKIE=		${WORKDIR}/.${TARGET_CMD}_install_done
+
+MAINTAINER=	kunishi@c.oka-pu.ac.jp
