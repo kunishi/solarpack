@@ -1,15 +1,15 @@
 #
-# $Id: port.mk,v 1.59 2000/05/17 01:34:51 kunishi Exp $
+# $Id: port.mk,v 1.60 2000/05/17 03:04:10 kunishi Exp $
 #
 
-# ${SOLPKGDIR} and ${SOLPKGBINDIR} are set in ${SOLPKGDIR}/share/mk/solpkg.conf.
-# (${SOLPKGBINDIR}/bmake automatically searches ${SOLPKGDIR}/share/mk 
+# ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
+# (${SOAP_BINDIR}/bmake automatically searches ${SOAP_DIR}/share/mk 
 #  as makefile directory.)
-# ${SOLPKGSRCDIR} is set in ${SOLPKGDIR}/share/mk/port.mk.
+# ${SOAP_SRCDIR} is set in ${SOAP_DIR}/share/mk/port.mk.
 
-.include "solpkg.conf"
+.include "soap.conf"
 
-PKGBUILD_PREFIX?=	solpkg
+SOAP_PREFIX?=	soap
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
@@ -35,23 +35,23 @@ MASTERDIR?=	${.CURDIR}
 LOCALBASE?=	/usr/local
 X11BASE?=	/usr/openwin
 
-DISTDIR?=	${SOLPKGSRCDIR}/distfiles
-PORTSDIR?=	${SOLPKGSRCDIR}/ports
+DISTDIR?=	${SOAP_SRCDIR}/distfiles
+PORTSDIR?=	${SOAP_SRCDIR}/ports
 EXTRACT_SUFX?=	.tar.gz
-RELEASE_PKG_DIR?=	${SOLPKGSRCDIR}/packages
+RELEASE_PKG_DIR?=	${SOAP_SRCDIR}/packages
 
 PATCHDIR?=	${MASTERDIR}/patches
-TOOLSDIR?= 	${SOLPKGSRCDIR}/tools
+TOOLSDIR?= 	${SOAP_SRCDIR}/tools
 FILESDIR?=	${MASTERDIR}/files
 SCRIPTDIR?=	${MASTERDIR}/scripts
 PKGDIR?=	${MASTERDIR}/pkg
-TEMPLATEDIR?=	${SOLPKGSRCDIR}/ports/Template
+TEMPLATEDIR?=	${SOAP_SRCDIR}/ports/Template
 
 .if defined(USE_IMAKE)
 USE_X_PREFIX=	yes
 .endif
 .if defined(CORE_TOOLS)
-PREFIX?=	${SOLPKGDIR}
+PREFIX?=	${SOAP_DIR}
 .else
 .if defined(USE_X_PREFIX)
 PREFIX?=	${X11BASE}
@@ -147,14 +147,14 @@ RELEASE_COOKIE?=	${WRKDIR}/.release_done
 
 NOTHING_TO_DO?=		/usr/bin/true
 
-CC?=		${SOLPKGBINDIR}/gcc
-GMAKE?=		${SOLPKGBINDIR}/gmake
+CC?=		${SOAP_BINDIR}/gcc
+GMAKE?=		${SOAP_BINDIR}/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 
 CONFIGURE_ENV+=	CC="${CC}" \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-MD5?=		${SOLPKGBINDIR}/md5
+MD5?=		${SOAP_BINDIR}/md5
 MD5_FILE=	${FILESDIR}/md5
 
 MAKEFILE?=	Makefile
@@ -174,17 +174,17 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
-FETCH_CMD?=	${SOLPKGBINDIR}/ftp
+FETCH_CMD?=	${SOAP_BINDIR}/ftp
 FETCH_FLAGS?=	
 
-PATCH?=		${SOLPKGBINDIR}/patch
+PATCH?=		${SOAP_BINDIR}/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 PATCH_ARGS?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
-TAR?=		${SOLPKGBINDIR}/gtar
+TAR?=		${SOAP_BINDIR}/gtar
 
 EXTRACT_CMD?=	${GZIP_CMD}
 
@@ -219,8 +219,8 @@ ENV?=		/usr/bin/env
 EXPR?=		/usr/bin/expr
 FIND?=		/usr/bin/find
 GREP?=		/usr/bin/grep
-GZCAT?=		${SOLPKGBINDIR}/gzip -cd
-GZIP?=		${SOLPKGBINDIR}/gzip
+GZCAT?=		${SOAP_BINDIR}/gzip -cd
+GZIP?=		${SOAP_BINDIR}/gzip
 INSTALL?=	/usr/ucb/install
 LN?=		/usr/bin/ln
 MV?=		/usr/bin/mv
@@ -273,7 +273,7 @@ PATCH_SITES?=
 DISTNAME?=	${PORTNAME}-${VERSION}
 DISTFILES?=	${DISTNAME}${EXTRACT_SUFX}
 .if defined(CORE_TOOLS)
-PKGNAME?=	${PKGBUILD_PREFIX}-${PORTNAME}-${_VERSION}
+PKGNAME?=	${SOAP_PREFIX}-${PORTNAME}-${_VERSION}
 .else
 PKGNAME?=	${PORTNAME}-${_VERSION}
 .endif
