@@ -1,0 +1,14 @@
+--- term.h~	Fri Jun 23 19:50:03 2000
++++ term.h	Fri Jun 23 19:52:37 2000
+@@ -283,9 +283,11 @@
+ 
+ /* NOTE THAT GIF REQUIRES A SEPARATE LIBRARY : see term/gif.trm */
+ /* GIF format. */
++/* 
+ #ifdef HAVE_LIBGD
+ # include "gif.trm"
+ #endif
++*/
+ 
+ /* geographical info system */
+ /* #include "grass.trm" */
