@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/07/01 11:22:16 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/09/21 12:33:09 kunishi Exp $
 #
 
 PORTNAME=	netpbm
@@ -16,10 +16,10 @@ EXTRACT_SUFX=	.tgz
 BUILD_DEPENDS=	GNUmake:${PORTSDIR}/devel/gmake
 LIB_DEPENDS=	OPENtiff:${PORTSDIR}/graphics/tiff \
 		OPENjpeg:${PORTSDIR}/graphics/jpeg \
-		OPENpng:${PORTSDIR}/graphics/png \
-		OPENzlib:${PORTSDIR}/devel/zlib
+		OPENpng:${PORTSDIR}/graphics/png
 
 USE_GMAKE=	yes
+USE_ZLIB=	yes
 MAKEFILE=	GNUmakefile
 
 COMMON_INCLUDE=	pbmplus.h

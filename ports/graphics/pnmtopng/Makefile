@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/02 08:49:35 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/21 12:33:20 kunishi Exp $
 #
 
 PORTNAME=	pnmtopng
@@ -13,10 +13,10 @@ VENDOR=		ftp://swrinde.nde.swri.edu/
 MASTER_SITES=	ftp://swrinde.nde.swri.edu/pub/png/applications/
 
 USE_PERL5=	yes
-LIB_DEPENDS=	OPENpng:${PORTSDIR}/graphics/png \
-		OPENzlib:${PORTSDIR}/devel/zlib
+LIB_DEPENDS=	OPENpng:${PORTSDIR}/graphics/png
 BUILD_DEPENDS=	OPENntpbm:${PORTSDIR}/graphics/netpbm 
 
+USE_ZLIB=	yes
 MAKE_INSTALL_ARGS+=	INSTDIR=${INSTPREFIX}
 
 post-extract:

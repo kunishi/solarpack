@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2000/07/01 10:14:12 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/09/21 12:33:42 kunishi Exp $
 #
 
 PORTNAME=	tiff
@@ -13,9 +13,9 @@ VENDOR=		Silicon Graphics, Inc.
 DISTNAME=	tiff-v${VERSION}
 MASTER_SITES=	http://www.libtiff.org/
 
-LIB_DEPENDS=	OPENzlib:${PORTSDIR}/devel/zlib \
-		OPENjpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	OPENjpeg:${PORTSDIR}/graphics/jpeg
 
+USE_ZLIB=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--noninteractive \
 			--with-ZIP --with-JPEG \
