@@ -1,7 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/06/08 04:35:05 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/06/16 11:44:06 kunishi Exp $
 #
 
+SUBDIR+=	aalib
 SUBDIR+=	java3d
 SUBDIR+=	jpeg
 SUBDIR+=	libungif
