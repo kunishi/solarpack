@@ -1,0 +1,9 @@
+PKG=OPENncftp
+NAME=NcFTP, a free set of programs that use FTP.
+VERSION=3.0b18
+ARCH=%%ARCH%%
+CATEGORY=application
+VENDOR=NcFTP Software <http://www.NcFTP.com/>
+EMAIL=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
+BASEDIR=%%BASEDIR%%
+CLASSES=none

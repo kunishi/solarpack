@@ -1,0 +1,15 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/ncftp=%%WRK_BASEDIR%%/bin/ncftp 0755 bin bin
+f none bin/ncftpbatch=%%WRK_BASEDIR%%/bin/ncftpbatch 0755 bin bin
+f none bin/ncftpbookmarks=%%WRK_BASEDIR%%/bin/ncftpbookmarks 0755 bin bin
+f none bin/ncftpget=%%WRK_BASEDIR%%/bin/ncftpget 0755 bin bin
+f none bin/ncftpls=%%WRK_BASEDIR%%/bin/ncftpls 0755 bin bin
+f none bin/ncftpput=%%WRK_BASEDIR%%/bin/ncftpput 0755 bin bin
+d none man=%%WRK_BASEDIR%%/man 0755 root bin
+d none man/man1=%%WRK_BASEDIR%%/man/man1 0755 root bin
+f none man/man1/ncftp.1=%%WRK_BASEDIR%%/man/man1/ncftp.1 0644 bin bin
+f none man/man1/ncftpbatch.1=%%WRK_BASEDIR%%/man/man1/ncftpbatch.1 0644 bin bin
+f none man/man1/ncftpget.1=%%WRK_BASEDIR%%/man/man1/ncftpget.1 0644 bin bin
+f none man/man1/ncftpls.1=%%WRK_BASEDIR%%/man/man1/ncftpls.1 0644 bin bin
+f none man/man1/ncftpput.1=%%WRK_BASEDIR%%/man/man1/ncftpput.1 0644 bin bin
