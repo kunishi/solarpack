@@ -1,0 +1,9 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/popauth=%%WRK_BASEDIR%%/bin/popauth 4111 root bin
+d none man=%%WRK_BASEDIR%%/man 0755 root bin
+d none man/man8=%%WRK_BASEDIR%%/man/man8 0755 root bin
+f none man/man8/popauth.8=%%WRK_BASEDIR%%/man/man8/popauth.8 0644 root bin
+f none man/man8/popper.8=%%WRK_BASEDIR%%/man/man8/popper.8 0644 root bin
+d none sbin=%%WRK_BASEDIR%%/sbin 0755 root bin
+f none sbin/popper=%%WRK_BASEDIR%%/sbin/popper 0755 root bin
