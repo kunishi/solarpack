@@ -1,0 +1,17 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+i preremove=%%PKGDIR%%/preremove
+i postinstall=%%PKGDIR%%/postinstall
+d none bin=%%INSTPREFIX%%/bin 0755 root bin
+f none bin/sudo=%%INSTPREFIX%%/bin/sudo 4111 root root
+d none man=%%INSTPREFIX%%/man 0755 root bin
+d none man/man5=%%INSTPREFIX%%/man/man5 0755 root bin
+f none man/man5/sudoers.5=%%INSTPREFIX%%/man/man5/sudoers.5 0444 root bin
+d none man/man8=%%INSTPREFIX%%/man/man8 0755 root bin
+f none man/man8/sudo.8=%%INSTPREFIX%%/man/man8/sudo.8 0444 root bin
+f none man/man8/visudo.8=%%INSTPREFIX%%/man/man8/visudo.8 0444 root bin
+d none sbin=%%INSTPREFIX%%/sbin 0755 root bin
+f none sbin/visudo=%%INSTPREFIX%%/sbin/visudo 0111 root bin
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/examples=%%INSTPREFIX%%/share/examples 0755 root bin
+d none share/examples/sudo=%%INSTPREFIX%%/share/examples/sudo 0755 root bin
+f none share/examples/sudo/sudoers=%%INSTPREFIX%%/share/examples/sudo/sudoers 0644 root bin

@@ -1,0 +1,2 @@
+removef $PKGINST /etc/sudoers || exit 2
+removef -f $PKGINST || exit 2

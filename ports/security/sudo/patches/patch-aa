@@ -1,0 +1,13 @@
+--- Makefile.in.orig	Fri Jan 21 19:11:51 2000
++++ Makefile.in	Fri Jan 21 19:12:08 2000
+@@ -93,8 +93,8 @@
+ mandir5 = $(mandir)/$(mantype)$(mansect5)
+ 
+ # User and group ids the installed files should be "owned" by
+-install_uid = 0
+-install_gid = 0
++install_uid = root
++install_gid = root
+ 
+ # User, group, and mode the sudoers file should be "owned" by (configure)
+ sudoers_uid = @SUDOERS_UID@

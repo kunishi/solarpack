@@ -1,0 +1,7 @@
+if test -f /etc/sudoers; then
+	mv -f /etc/sudoers /etc/sudoers.bak
+fi
+install -c /etc -m 0440 -u root -g root \
+    $CLIENT_BASEDIR/share/examples/sudo/sudoers /etc/sudoers
+installf $PKGINST /etc/sudoers e 0440 root root || exit 2
+installf -f $PKGINST || exit 2
