@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/06/07 05:48:34 kunishi Exp $
 #
 
 .if defined(POPD_YOUBIN_SUPPORT)
@@ -15,7 +15,7 @@ NAME=		Berkeley POP3 server (now maintained by Qualcomm)
 
 VENDOR=		Qualcomm Com. <http://www.qualcomm.com/>
 DISTNAME=	qpopper${VERSION}
-MASTER_SITES=	ftp://ftp.qualcomm.com/eudora/servers/unix/popper/
+MASTER_SITES=	ftp://ftp.qualcomm.com/eudora/servers/unix/popper/old/
 EXTRACT_SUFX=	.tar.Z
 
 .if defined(POPD_YOUBIN_SUPPORT)
