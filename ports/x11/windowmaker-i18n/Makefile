@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.1 2000/05/18 03:38:05 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/05/18 05:43:41 kunishi Exp $
 #
 
 PORTNAME=	windowmaker-i18n
 VERSION=	0.62.1
-PORTREV=	1
+PORTREV=	2
 
 PKG=	WMwndmk
 NAME=	A GNUStep-compliant NeXTStep clone window manager (i18n extension)
@@ -38,5 +38,18 @@ ARCH!=	/usr/bin/mach
 .if (${ARCH} == "i386")
 CONFIGURE_ENV+=	ac_cv_c_inline_mmx=no
 .endif
+
+post-extract:
+	cd ${WRKSRC} && ${TAR} xzf libwmfun-0.0.3.tar.gz
+
+post-patch:
+	${PERL} -pi -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/WPrefs.app/Paths.c
+	${PERL} -pi -e "s|%%PERL%%|${PERL}|g" ${WRKSRC}/util/wm-oldmenu2new
+
+pre-build:
+	cd ${WRKSRC}/WindowMaker/Defaults && ${MAKE} clean
+
+post-install:
+	${MKDIR} ${INSTPREFIX}/share/WindowMaker/Sounds/
 
 .include <port.mk>
