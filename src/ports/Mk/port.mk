@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.39 2000/01/05 10:38:10 kunishi Exp $
+# $Id: port.mk,v 1.40 2000/01/06 04:59:37 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -43,7 +43,7 @@ TEMPLATEDIR?=	${PKGBUILDDIR}/ports/Template
 USE_X_PREFIX=	yes
 .endif
 .if defined(CORE_TOOLS)
-PREFIX?=	${PKGBUILDDIR}
+PREFIX?=	${SOLPKGDIR}
 .else
 .if defined(USE_X_PREFIX)
 PREFIX?=	${X11BASE}
@@ -128,8 +128,8 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
-WGET?=		${PKGBUILDDIR}/bin/wget
-WGET_FLAGS?=	-nv
+FETCH_CMD?=	${PKGBUILDDIR}/bin/ftp
+FETCH_FLAGS?=	
 
 PATCH?=		${PKGBUILDDIR}/bin/patch
 PATCH_STRIP?=	-p0
@@ -454,7 +454,7 @@ do-fetch:
 		if [ ! -f $$file ]; then \
 			for site in ${MASTER_SITES}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${WGET} ${WGET_FLAGS} $${site}$${file}; then \
+				if ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
@@ -466,7 +466,7 @@ do-fetch:
 		if [ ! -f $${file} ]; then \
 			for site in ${PATCH_SITES}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${WGET} ${WGET_FLAGS} $${site}$${file}; then \
+				if ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
@@ -583,7 +583,7 @@ do-release:
 .endif
 .if defined(RELEASE_PKG_DIR)
 	if [ -d ${RELEASE_PKG_DIR} ]; then \
-	  ${MV} ${PKGNAME_REAL} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
+	  ${CP} ${PKGNAME_REAL} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
 	fi
 .endif
 .endif

@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building bmake
-# $Id: Makefile.bmake,v 1.1 2000/01/05 10:55:33 kunishi Exp $
+# $Id: Makefile.bmake,v 1.2 2000/01/06 04:59:37 kunishi Exp $
 #
 
 TARGET_CMD=	bmake
@@ -30,7 +30,9 @@ configure:	${PATCH_COOKIE}
 	  ${ENV} CC=${TMPPREFIX}/bin/gcc ./configure --prefix=${TMPPREFIX}
 
 build:		${CONFIGURE_COOKIE}
-	cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake -f makefile.boot
+	cd ${WORKDIR}/${DISTNAME} && \
+	  ${TMPPREFIX}/bin/gmake -f makefile.boot \
+	  XDEFS='-D_PATH_DEFSYSMK=\"/usr/share/mk/sys.mk\" -D_PATH_DEFSYSPATH=\"/usr/share/mk:${TMPPREFIX}/share/mk:/usr/local/share/mk:/opt/share/mk\"'
 
 install:	${BUILD_COOKIE}
 	if [ ! -f ${INSTALL_COOKIE} ]; then \

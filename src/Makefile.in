@@ -1,16 +1,17 @@
 #
-# $Id: Makefile.in,v 1.5 1999/12/28 12:02:24 kunishi Exp $
+# $Id: Makefile.in,v 1.6 2000/01/06 04:59:36 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
 
 LOCALBASE=	/usr/local
-PKGBUILDDIR=	@solpkg_topdir@
+SOLPKGDIR=	@solpkg_topdir@
 
 CWD:sh=		pwd
 BOOTSTRAPDIR=	${CWD}/bootstrap
 MAKEFILEDIR=	${CWD}/mk
 PKGDIR=		${CWD}/pkg
+PORTSDIR=	${CWD}/ports
 RELEASEDIR=	${CWD}/release
 WRKDIR=		${CWD}/work
 
@@ -19,46 +20,86 @@ CP=		/usr/bin/cp
 ENV=		/usr/bin/env
 PKGMK=		/usr/bin/pkgmk
 PKGTRANS=	/usr/bin/pkgtrans
+LN=		/usr/bin/ln
 MKDIR=		/usr/bin/mkdir -p
 RM=		/usr/bin/rm
 SED=		/usr/bin/sed
 SH=		/bin/sh
 TAR=		/usr/bin/tar
 
+BMAKE=		${CWD}/bin/bmake
+
 ARCH:sh=	/usr/bin/mach
 OSREL:sh=	/usr/bin/uname -r
 
-RELEASE_PKG_DIR=	/export/pub/Solaris/${ARCH}/${OSREL}
-RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
+STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/ucb
 
-CORE_PACKAGES=	bmake-2.1.14.gz \
-		gcc-2.8.1.gz \
-		gmake-3.77.gz \
-		gtar-1.12.gz \
-		gzip-1.2.4 \
-		libstdc++-2.8.1.1.gz \
-		md5-1.0.gz \
-		patch-2.5.gz \
-		texinfo-3.12.gz \
-		wget-1.5.3.gz
+RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
+RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
+WORKDIR=	${CWD}/work
+
+MAKEFLAGS=	TOPDIR=${CWD}
+
+CORE_TOOLS=	\
+		bmake \
+		gcc \
+		gmake \
+		gtar \
+		gzip \
+		lukemftp \
+		md5 \
+		patch \
+		texinfo
+
+BUILD_PACKAGE_OPTS=	PKGBUILDDIR=${CWD} \
+			SOLPKGDIR=${SOLPKGDIR} \
+			RELEASE_PKG_DIR=${RELEASEDIR} \
+			CORE_TOOLS=yes 
 
 all:
 	${MAKE} bootstrap
 
 bootstrap::
-	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIR}/install-lukemftp.sh && \
-	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIR}/install-gcc.sh && \
-	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIR}/install-gmake.sh && \
-	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIRR}/install-bmake.sh
+	${MAKE} build-strap-tools
+	${MAKE} prepare-for-package
+	${MAKE}	build-package
+
+build-strap-tools::
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gzip install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.lukemftp install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gcc install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gmake install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.patch install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.bmake install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gtar install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.md5 install
+	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.texinfo install
+
+prepare-for-package::
+	cd ${TOPDIR} && \
+	  (${RM} -f bin && ${LN} -s ${WRKDIR}/usr/local/bin)
+	${MKDIR} ${RELEASE_PKG_DIR}
+	${CP} ${BOOTSTRAPDIR}/solpkg.conf ${BOOTSTRAPDIR}/port.mk \
+	  ${WRKDIR}/usr/local/share/mk
+
+build-package::
+	for tool in ${CORE_TOOLS}; do \
+	  (PATH=${WRKDIR}/usr/local/bin:${STANDARD_PATH}; export PATH; \
+	   cd ${PORTSDIR}/$${tool} && \
+	     ${BMAKE} ${BUILD_PACKAGE_OPTS} release); \
+	done
 
 clean:
-	${RM} -f config.cache config.log config.status
+	${RM} -rf config.cache config.log config.status
 	cd mk && ${MAKE} clean
-	${RM} -f ${MAKEFILEDIR}/port.mk ${MAKEFILEDIR}/solpkg.conf
-	${RM} -f ${PKGDIR}/pkginfo ${PKGDIR}/prototype
+	for tool in ${CORE_TOOLS}; do \
+	  (cd ${PORTSDIR}/$${tool} && ${BMAKE} ${BUILD_PACKAGE_OPTS} pkgclean); \
+	done
 	${RM} -rf ${WRKDIR}
-	${RM} -f ${RELEASEDIR}/${PKGNAME}
 
-distclean:	clean
+releaseclean:	clean
+	${RM} -rf ${RELEASEDIR}
+
+distclean:	releaseclean
 	${RM} -f Makefile
 	${RM} -rf ${RELEASEDIR}
