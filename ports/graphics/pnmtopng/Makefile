@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:50 kunishi Exp $
+# $Id: Makefile,v 1.4 2003/02/26 11:01:18 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -15,7 +15,7 @@ VENDOR=		ftp://swrinde.nde.swri.edu/
 MASTER_SITES=	ftp://swrinde.nde.swri.edu/pub/png/applications/
 
 USE_PERL5=	yes
-LIB_DEPENDS=	OPENpng:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	OPUCpng:${PORTSDIR}/graphics/png
 BUILD_DEPENDS=	OPENntpbm:${PORTSDIR}/graphics/netpbm 
 
 USE_ZLIB=	yes
