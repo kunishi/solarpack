@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.6 2001/03/02 05:34:51 kunishi Exp $
+# $Id: Makefile,v 1.7 2001/03/02 09:22:08 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -15,5 +15,6 @@ VENDOR=		Arnaud Le Hors <lehors@sophia.inria.fr>, <http://www.inria.fr/koala/leh
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/X/opengroup/contrib/libraries/
 
 USE_IMAKE=	yes
+_MFLAGS+=	XPMINCDIR=${X11BASE}/share/include
 
 .include <port.mk>
