@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:52 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/04/17 05:52:02 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	smlnj
-VERSION=	110.0.6
+VERSION=	110.0.7
 PORTREV=	1
 
 PKG=		OPENsmlnj
@@ -14,18 +14,17 @@ VENDOR=		New-Jersey Univ.
 
 MASTER_SITES=	ftp://ftp.research.bell-labs.com/dist/smlnj/release/${VERSION}/ \
 		ftp://rodin.stanford.edu/pub/smlnj/release/${VERSION}/
-DISTFILES=	110-bin.${SML_ARCH}-unix.tar.Z \
-		110-cm.tar.Z 110-cml.tar.Z 110-config.tar.Z \
-		110-eXene.tar.Z 110-ml-burg.tar.Z 110-ml-lex.tar.Z \
-		110-ml-yacc.tar.Z 110-runtime.tar.Z \
-		110-smlnj-c.tar.Z 110-smlnj-lib.tar.Z
-EXTRACT_ONLY=	110-config.tar.Z
-
-BUILD_DEPENDS=	GNUbinut:${PORTSDIR}/devel/binutils
+DISTFILES=	bin.${SML_ARCH}-unix.tar.Z \
+		cm.tar.Z cml.tar.Z config.tar.Z \
+		eXene.tar.Z ml-burg.tar.Z ml-lex.tar.Z \
+		ml-yacc.tar.Z runtime.tar.Z \
+		smlnj-c.tar.Z smlnj-lib.tar.Z
+EXTRACT_ONLY=	config.tar.Z
 
 WRKSRC=		${WRKDIR}
 PROTOTYPE_SUB+=	SML_ARCH=${SML_ARCH}
 
+USE_BINUTILS=	yes
 USE_PERL5=	yes
 
 .if (${ARCH} == "sparc")
