@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 2002/12/27 12:22:23 kunishi Exp $
+# $Id: Makefile,v 1.3 2002/12/27 12:25:57 kunishi Exp $
 #
 
 PORTNAME=	ptex-lib
@@ -23,6 +23,7 @@ do-install:
 .for file in ${DISTFILES}
 	${TAR} -C ${INSTPREFIX}/share/texmf -xzf ${DISTDIR}/${file}
 .endfor
+	${INSTALL_DATA} ${FILESDIR}/morisawa.map ${INSTPREFIX}/share/texmf/dvips/config
 	echo "Map morisawa.map" >> ${INSTPREFIX}/share/texmf/web2c/updmap.cfg
 	${RM} -f ${INSTPREFIX}/share/texmf/dvipdfm/config
 	${RM} -f ${INSTPREFIX}/share/texmf/ls-R
