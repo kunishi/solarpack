@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.92 2003/02/26 10:52:38 kunishi Exp $
+# $Id: port.mk,v 1.93 2003/02/27 06:20:58 kunishi Exp $
 #
 
 # ${APDK_DIR} and ${APDK_BINDIR} are set in ${APDK_DIR}/share/mk/soap.conf.
@@ -827,7 +827,7 @@ do-package:
 .if !target(do-release)
 do-release:
 	if [ -d ${RELEASE_PKG_DIR} ]; then \
-	  ${PKGTRANS} -o ${SPOOLDIR} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL} all; \
+	  ${PKGTRANS} ${SPOOLDIR} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL} all; \
 	fi
 .if 0
 .if !defined(PKG_WITHOUT_GZIP)
