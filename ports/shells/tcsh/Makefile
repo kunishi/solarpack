@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/05 08:57:56 kunishi Exp $
 #
 
 PORTNAME=	tcsh
@@ -15,7 +15,7 @@ MASTER_SITES =	ftp://ftp.ccs.dendai.ac.jp/pub/misc/shell/tcsh/ \
 		ftp://ftp.astron.com/pub/tcsh/
 
 GNU_CONFIGURE=	yes
-WRKSRC=		${WRKDIR}/${PKGNAME}
+WRKSRC=		${WRKDIR}/tcsh-${VERSION}
 INSTALL_TARGET=		install install.man
 
 CLASS_SHELL=	bin/tcsh
