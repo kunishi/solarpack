@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2000/09/27 01:27:46 kunishi Exp $
+# $Id: Makefile,v 1.5 2001/04/18 14:30:22 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -28,6 +28,6 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS+=	--disable-perl
-CONFIGURE_ENV+=	LD_LIBRARY_PATH=${LOCALBASE}/lib
+CONFIGURE_ENV+=	LD_LIBRARY_PATH=${LOCALBASE}/lib CPPFLAGS=-I${LOCALBASE}/include
 
 .include <port.mk>
