@@ -1,14 +1,14 @@
 #
-# $Id: Makefile,v 1.7 2000/09/27 01:27:56 kunishi Exp $
+# $Id: Makefile,v 1.8 2001/11/30 12:36:17 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	ja-xdvik-vflib
 VERSION=	20c+j1.0p0d
-PORTREV=	1
+PORTREV=	2
 
-PKG=		OPENvxdvi
+PKG=		OPUCvxdvi
 NAME=		Xdvik with VFlib support
 
 VENDOR=		kb@mail.tug.org
@@ -19,7 +19,7 @@ PATCHFILES=	xdvik20c-j1.0p0d.patch.gz
 PATCH_SITES=	ftp://ftp.ipc.chiba-u.ac.jp/pub/pub.yamaga/xdvik-20c/
 PATCH_DIST_STRIP=	-p1
 
-LIB_DEPENDS=	OPENvflib:${PORTSDIR}/print/VFlib2
+LIB_DEPENDS=	OPUCvflib:${PORTSDIR}/print/VFlib2
 RUN_DEPENDS=	OPENadvps:${PORTSDIR}/print/dvipsk \
 		OPENdvsel:${PORTSDIR}/print/dviselect
 
