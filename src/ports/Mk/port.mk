@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.34 1999/08/25 10:36:07 kunishi Exp $
+# $Id: port.mk,v 1.35 1999/08/27 08:28:16 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -42,10 +42,14 @@ TEMPLATEDIR?=	${PKGBUILDDIR}/ports/Template
 .if defined(USE_IMAKE)
 USE_X_PREFIX=	yes
 .endif
+.if defined(CORE_TOOLS)
+PREFIX?=	${PKGBUILDDIR}
+.else
 .if defined(USE_X_PREFIX)
 PREFIX?=	${X11BASE}
 .else
 PREFIX?=	${LOCALBASE}
+.endif
 .endif
 
 WRKDIR?=	${MASTERDIR}/work
@@ -67,7 +71,6 @@ CATEGORY?=	application
 MAINTAINER?=	${PKG_MAINTAINER}
 .if defined(USE_INSTALL_INFO)
 CLASSES+=	info
-RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/devel-core/texinfo
 .endif
 CLASSES+=	none
 # NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
@@ -234,7 +237,6 @@ MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX}
 
 .if defined(USE_GMAKE)
 MAKE_ENV+=	MAKE=${GMAKE}
-BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel-core/gmake
 .endif
 
 .if defined(USE_IMAKE)
