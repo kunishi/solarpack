@@ -1,0 +1,34 @@
+--- Tgif.tmpl~	Fri Mar 16 21:56:52 2001
++++ Tgif.tmpl	Fri Mar 16 21:59:37 2001
+@@ -41,16 +41,16 @@
+ XIMPDEFINES      =
+ #endif
+ 
+-CC		= cc
+-PREPROCESSCMD	= cc -E $(STD_CPP_DEFINES)
++XCOMM CC		= cc
++XCOMM PREPROCESSCMD	= cc -E $(STD_CPP_DEFINES)
+ EXTRA_LDOPTIONS	=
+-EXTRA_LIBRARIES	= -lsocket -lnsl -lgen
++XCOMM EXTRA_LIBRARIES	= -lsocket -lnsl -lgen
+ LDCOMBINEFLAGS	= -r
+ XCOMM -----------------------------------------------
+ XCOMM For gcc-2.7.2, you may need -lbind on solaris (before Solaris 2.7):
+-XCOMM CC		= gcc -Wall
+-XCOMM PREPROCESSCMD	= gcc -E $(STD_CPP_DEFINES)
+-XCOMM CCOPTIONS		=
++CC		= gcc -Wall
++PREPROCESSCMD	= gcc -E $(STD_CPP_DEFINES)
++CCOPTIONS		=
+ XCOMM EXTRA_LIBRARIES	= -lsocket -lnsl -lgen -lbind
+ XCOMM -----------------------------------------------
+ 
+@@ -73,7 +73,7 @@
+                   -DNETLIST_FILE_EXT=\"net\" -DCOMP_FILE_EXT=\"cmp\"
+ MISCDEFINES	= -D_BACKGROUND_DONT_FORK -D_USE_XDRAWPOINT_TO_PUT_A_POINT \@@\
+                   -D_USE_PS_ADOBE_STRING=\"3.0/3.0\"
+-MOREDEFINES	= -D_HAS_STREAMS_SUPPORT
++MOREDEFINES	= -D_HAS_STREAMS_SUPPORT -DENABLE_NLS
+ 
+ XCOMM ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ XCOMM Please see Imakefile for more defines to be added to MOREDEFINES above
