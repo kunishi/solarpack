@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.10 1999/08/27 11:51:07 kunishi Exp $
+# $Id: Makefile,v 1.11 1999/09/02 04:54:14 kunishi Exp $
 #
 
 PKG=		GNUcc
@@ -15,5 +15,9 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_INSTALL_INFO=	yes
 ALL_TARGET=	bootstrap
+
+pre-install:
+	${MKDIR} ${INSTPREFIX}/include/g++-3
+	${MKDIR} ${INSTPREFIX}/include/g++-3/std
 
 .include <port.mk>
