@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.81 2001/03/02 14:34:41 kunishi Exp $
+# $Id: port.mk,v 1.82 2001/03/23 07:50:52 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -216,7 +216,7 @@ FETCH_CMD?=	${SOAP_BINDIR}/ftp
 FETCH_FLAGS?=	
 FETCH_ENV?=	FTPANONPASS=${PKG_MAINTAINER}
 
-PATCH?=		${SOAP_BINDIR}/patch
+PATCH?=		gpatch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 PATCH_ARGS?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
@@ -316,6 +316,8 @@ MASTER_SITES_GNU+=	\
 	ftp://ftp.kddlabs.co.jp/pub/gnu/@SUBDIR@/ \
 	ftp://ftp.cdrom.com/pub/gnu/@SUBDIR@/ \
 	ftp://tron.um.u-tokyo.ac.jp/pub/GNU/prep/@SUBDIR@/
+MASTER_SITES_GNOME+=	\
+	ftp://ftp.gnome.org/pub/gnome/@SUBDIR@/
 
 VENDOR_GNU=	Free Software Foundation, Inc.
 
