@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.19 2001/12/11 06:50:24 kunishi Exp $
+# $Id: Makefile,v 1.20 2002/03/15 12:57:27 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	wget
-VERSION=	1.8
+VERSION=	1.8.1
 PORTREV=	3
 
 PKG=		OPUCwget
