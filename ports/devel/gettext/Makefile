@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.10 2002/03/15 12:51:50 kunishi Exp $
+# $Id: Makefile,v 1.11 2003/01/07 05:15:34 kunishi Exp $
 # 
 
 .include <port.pre.mk>
 
 PORTNAME=	gettext
-VERSION=	0.11.1
-PORTREV=	3
+VERSION=	0.11.5
+PORTREV=	1
 
 PKG=		OPUCgetxt
 NAME=		GNU gettext package
