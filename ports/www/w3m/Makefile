@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2001/11/30 12:59:23 kunishi Exp $
+# $Id: Makefile,v 1.2 2002/03/20 09:46:52 kunishi Exp $
 #
 
 PORTNAME=	w3m
-VERSION=	0.2.2
+VERSION=	0.3
 PORTREV=	1
 
 PKG=		OPUCw3m
