@@ -1,13 +1,14 @@
-include ../../include/pre.mk
+include ../../conf/pkgbuild.conf
+
+include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
+include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
+include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
 
 DISTNAME=	gcc-2.8.1
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gcc/
-GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--build=${GNU_HOSTTYPE}
-USE_GMAKE=	yes
 
-#DO_BUILD_OVERRIDE=	yes
 CORE_TOOLS=	yes
 
 do-build::
@@ -18,4 +19,4 @@ do-build::
 	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} CC="stage2/xgcc -Bstage2/" CFLAGS="-g -O2"
 	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} compare
 
-include ../../include/pkgbuild.mk
+include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
