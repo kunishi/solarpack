@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.7 2000/06/23 11:23:57 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/09/08 11:28:11 kunishi Exp $
 #
 
 PORTNAME=	ja-netscape-communicator
-VERSION=	4.73
+VERSION=	4.75
 PORTREV=	1
 
 PKG=		NSjacomm
@@ -12,14 +12,14 @@ VENDOR=		Netscape Communications Corporation
 
 ARCH!=		/usr/bin/mach
 
-NS_SHORTVERSION=	473
+NS_SHORTVERSION=	475
 
 .if (${ARCH} == "sparc")
-DISTNAME=	communicator-v${NS_SHORTVERSION}-export.sparc-sun-solaris2.5.1
+DISTNAME=	communicator-v${NS_SHORTVERSION}-us.sparc-sun-solaris2.5.1
 MASTER_SITES=	ftp://sunsite.sut.ac.jp/pub/archives/WWW/netscape/communicator/english/${VERSION}/unix/supported/sunos551/complete_install/ \
 		ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551/complete_install/
 .elif (${ARCH} == "i386")
-DISTNAME=	communicator-v${NS_SHORTVERSION}-export.x86-sun-solaris2.5.1
+DISTNAME=	communicator-v${NS_SHORTVERSION}-us.x86-sun-solaris2.5.1
 MASTER_SITES=	ftp://sunsite.sut.ac.jp/pub/archives/WWW/netscape/communicator/english/${VERSION}/unix/supported/sunos551_x86/complete_install/ \
 		ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551_x86/complete_install/
 .endif
