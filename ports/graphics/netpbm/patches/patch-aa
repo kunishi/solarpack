@@ -1,0 +1,66 @@
+--- Pbmplus.tmpl.orig2	Wed Jan 19 15:14:33 2000
++++ Pbmplus.tmpl	Wed Jan 19 15:15:08 2000
+@@ -14,9 +14,9 @@
+  */
+ 
+ /* Set where to install PbmPLus */
+-         BINDIR = /usr/X11R6/pbmplus
+-         MANDIR = /usr/X11R6/man
+-      MANSUFFIX = 1p
++         BINDIR = %%LOCALBASE%%/bin
++         MANDIR = %%LOCALBASE%%/man
++      MANSUFFIX = 1
+ 
+ /* CONFIGURE: PBMPLUS's support for TIFF files depends on the library from
+  * Sam Leffler's TIFF Software package - see the OTHER.SYSTEMS file for a
+@@ -48,10 +48,10 @@
+ #define InstallManuals   YES
+ #endif
+ #ifndef InstallLibraries
+-#define InstallLibraries NO
++#define InstallLibraries YES
+ #endif
+ #ifndef InstallIncludes
+-#define InstallIncludes  NO
++#define InstallIncludes  YES
+ #endif
+ 
+ /* CONFIGURE: Normally the Imakefiles build and install separate binaries for
+@@ -105,7 +105,10 @@
+ #define PnmDir TOPDIR/pnm
+ #endif
+ #ifndef TiffDir
+-#define TiffDir TOPDIR/libtiff
++#define TiffDir %%LOCALBASE%%/lib
++#endif
++#ifndef TiffIncDir
++#define TiffIncDir %%LOCALBASE%%/include
+ #endif
+ 
+ /* Libraries: */
+@@ -122,7 +125,7 @@
+ #define LibPnm $(PNMDIR)/libpnm.a
+ #endif
+ #ifndef LibTiff
+-#define LibTiff $(TIFFDIR)/libtiff.a
++#define LibTiff -L$(TIFFDIR) -R$(TIFFDIR) -ltiff -ljpeg -lz -lm
+ #endif
+ 
+ /* Dependency libraries: */
+@@ -139,7 +142,7 @@
+ #define DepLibPnm LibPnm
+ #endif
+ #ifndef DepLibTiff
+-#define DepLibTiff LibTiff
++#define DepLibTiff $(TIFFDIR)/libtiff.a
+ #endif
+ 
+    PBMPLUSDIR = PbmplusDir
+@@ -153,6 +156,7 @@
+        PPMDIR = PpmDir
+        PNMDIR = PnmDir
+       TIFFDIR = TiffDir
++   TIFFINCDIR = TiffIncDir
+ 
+        LIBPBM = LibPbm
+        LIBPGM = LibPgm

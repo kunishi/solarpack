@@ -1,0 +1,24 @@
+--- pbmplus.h.orig	Wed Jan 19 13:59:36 2000
++++ pbmplus.h	Wed Jan 19 14:03:55 2000
+@@ -22,8 +22,10 @@
+ #endif
+ 
+ #if defined(USG) || defined(SVR4) || defined(VMS) || defined(__SVR4)
++#if !defined(sun)
+ #define SYSV
+ #endif
++#endif
+ #if ! ( defined(BSD) || defined(SYSV) || defined(MSDOS) || defined(AMIGA) )
+ /* CONFIGURE: If your system is >= 4.2BSD, set the BSD option; if you're a
+ ** System V site, set the SYSV option; if you're IBM-compatible, set MSDOS;
+@@ -42,8 +44,8 @@
+ ** hex and decimal forms to specify colors (see ppm/pgmtoppm.1 for details).
+ */
+ #ifndef RGB_DB
+-#define RGB_DB "/usr/lib/X11/rgb"
+-/*#define RGB_DB "/usr/openwin/lib/rgb.txt"*/
++/* #define RGB_DB "/usr/lib/X11/rgb" */
++#define RGB_DB "/usr/openwin/lib/rgb.txt"
+ #ifdef VMS
+ #define RGB_DB "PBMplus_Dir:RGB.TXT"
+ #endif

@@ -1,0 +1,11 @@
+--- pnm/Imakefile.orig	Sun Aug 13 13:31:14 1995
++++ pnm/Imakefile	Wed Jan 19 14:14:21 2000
+@@ -20,7 +20,7 @@
+ #if BuildLibTiff
+    CURRENTLIBS = $(LIBTIFF) $(LIBPNM) $(LIBPPM) $(LIBPGM) $(LIBPBM)
+ CURRENTDEPLIBS = $(DEPLIBTIFF) $(DEPLIBPNM) $(DEPLIBPPM) $(DEPLIBPGM) $(DEPLIBPBM)
+-     INCLUDES  = -I.. -I$(PBMDIR) -I$(PGMDIR) -I$(PPMDIR) -I$(TIFFDIR)
++     INCLUDES  = -I.. -I$(PBMDIR) -I$(PGMDIR) -I$(PPMDIR) -I$(TIFFINCDIR)
+        DEFINES = -DLIBTIFF
+          MERGE = pnmmerge
+       TIFFMAN1 = tifftopnm.1 pnmtotiff.1
