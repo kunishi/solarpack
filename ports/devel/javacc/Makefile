@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/29 13:34:14 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/07/01 07:26:53 kunishi Exp $
 #
 
 PORTNAME=	javacc
@@ -13,9 +13,13 @@ VENDOR=		Metamata, Inc. <http://www.metamata.com/JavaCC/>
 MASTER_SITES=	#
 DISTFILES=	JavaCC1_1.zip Docs.class
 
-NO_BUILD=	yes
+BUILD_DEPENDS=	OPENperl:${PORTSDIR}/lang/perl5
 
-JAVA?=		/usr/bin/java -classpath ".:/usr/java/lib/classes.zip"
+NO_BUILD=	yes
+IS_INTERACTIVE=	yes
+
+JAVA?=		/usr/bin/java
+JAVA_OPTS=	-classpath ".:/usr/java/lib/classes.zip"
 JAVACC_BASEDIR=	${INSTPREFIX}/share/java/JavaCC
 JAVACC_BIN=	javacc jjdoc jjtree
 
@@ -40,8 +44,8 @@ pre-install:
 	@${ECHO_MSG} "to be installed."
 
 do-install:
-	cd ${WRKDIR} && ${JAVA} JavaCC1_1 -c
-	cd ${WRKDIR} && ${JAVA} Docs -o ${JAVACC_BASEDIR}/docs
+	cd ${WRKDIR} && ${JAVA} ${JAVA_OPTS} JavaCC1_1 -c
+	cd ${WRKDIR} && ${JAVA} ${JAVA_OPTS} Docs -o ${JAVACC_BASEDIR}/docs
 
 post-install:
 	${MKDIR} ${INSTPREFIX}/share/java/classes
