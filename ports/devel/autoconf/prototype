@@ -1,0 +1,26 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+f none bin/autoconf 0755 bin bin
+f none bin/autoheader 0755 bin bin
+f none bin/autoreconf 0755 bin bin
+f none bin/autoscan 0755 bin bin
+f none bin/autoupdate 0755 bin bin
+f none bin/ifnames 0755 bin bin
+d none info 0755 bin bin
+f none info/autoconf.info 0644 bin bin
+f none info/standards.info 0644 bin bin
+d none share 0755 bin bin
+d none share/autoconf 0755 bin bin
+f none share/autoconf/acconfig.h 0644 bin bin
+f none share/autoconf/acfunctions 0644 bin bin
+f none share/autoconf/acgeneral.m4 0644 bin bin
+f none share/autoconf/acheaders 0644 bin bin
+f none share/autoconf/acidentifiers 0644 bin bin
+f none share/autoconf/acmakevars 0644 bin bin
+f none share/autoconf/acoldnames.m4 0644 bin bin
+f none share/autoconf/acprograms 0644 bin bin
+f none share/autoconf/acspecific.m4 0644 bin bin
+f none share/autoconf/autoconf.m4 0644 bin bin
+f none share/autoconf/autoconf.m4f 0644 bin bin
+f none share/autoconf/autoheader.m4 0644 bin bin
+f none share/autoconf/autoheader.m4f 0644 bin bin

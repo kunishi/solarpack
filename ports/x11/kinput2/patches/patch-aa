@@ -1,0 +1,62 @@
+--- Kinput2.conf.orig	Thu Apr 15 08:59:18 1999
++++ Kinput2.conf	Thu Apr 15 14:35:31 1999
+@@ -16,9 +16,9 @@
+  **/
+ 
+ /* #define UseWnn */	/* define if you are going to use Wnn (v4 or v6) */
+-/* #define UseWnn6 */	/* define if you are going to use Wnn6 */
++#define UseWnn6		/* define if you are going to use Wnn6 */
+ #define UseCanna	/* define if you are going to use Canna */
+-#define UseSj3		/* define if you are going to use Sj3 */
++/* #define UseSj3 */	/* define if you are going to use Sj3 */
+ 
+ 
+ XCOMM Wnn configuration
+@@ -50,19 +50,19 @@
+  * in the Wnn source tree.
+  */
+ XCOMM use installed header files (if config.h is there)
+-XCOMM WNNINCDIR = /usr/X11R6/include/wnn
++WNNINCDIR = /usr/lib/locale/ja/wnn/demo/include/wnn
+ XCOMM or header files in the source tree
+ XCOMM WNNINCDIR = $(CONTRIBSRC)/programs/Xsi/Wnn/include
+ XCOMM use installed library
+-XCOMM WNNLIB = -lwnn
++WNNLIB = -L/usr/lib/locale/ja/wnn/demo/lib -lwnn
+ 
+ /*
+  * Or, use library in the source tree..
+  */
+ XCOMM use library in the source tree
+-WNNSRC = $(CONTRIBSRC)/programs/Xsi/Wnn
+-WNNINCDIR = $(WNNSRC)/include
+-WNNLIB = $(WNNSRC)/jlib/libwnn.a
++XCOMM WNNSRC = $(CONTRIBSRC)/programs/Xsi/Wnn
++XCOMM WNNINCDIR = $(WNNSRC)/include
++XCOMM WNNLIB = $(WNNSRC)/jlib/libwnn.a
+ 
+ 
+ XCOMM Canna configuration
+@@ -78,17 +78,17 @@
+  * If you have already installed Canna header files and libraries..
+  */
+ XCOMM use installed headers/libraries
+-XCOMM CANNAINSTDIR = /usr/local/canna
+-XCOMM CANNASRC = $(CANNAINSTDIR)/include
+-XCOMM CANNALIB = -lcanna16
++CANNAINSTDIR = /usr/local/canna
++CANNASRC = $(CANNAINSTDIR)/include
++CANNALIB = -lcanna16
+ 
+ /*
+  * If you have compiled Canna that came with X11R6 (contrib/programs/Canna),
+  * but not installed yet..
+  */
+ XCOMM use headers/libraries in the source tree
+-CANNASRC = $(CONTRIBSRC)/programs/Canna32
+-CANNALIB = -L$(CANNASRC)/lib/canna16 -lcanna16
++XCOMM CANNASRC = $(CONTRIBSRC)/programs/Canna32
++XCOMM CANNALIB = -L$(CANNASRC)/lib/canna16 -lcanna16
+ 
+ 
+ XCOMM SJ3 configuration

@@ -1,0 +1,10 @@
+PKG=OPENvflib
+NAME=VFlib, a library for converting vector fonts to bitmap data.
+VERSION=2.24.1
+ARCH=sparc
+CATEGORY=application
+VENDOR=Hirotsugu Kakugawa <h.kakugawa@computer.org>
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

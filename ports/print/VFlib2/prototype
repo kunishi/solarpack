@@ -1,0 +1,26 @@
+i pkginfo=./pkginfo
+i postinstall=./postinstall
+d none bin 0775 root bin
+f none bin/bdfindex 0755 bin bin
+f none bin/fwindex 0755 bin bin
+f none bin/ktest 0755 bin bin
+f none bin/ttindex 0755 bin bin
+d none include 0755 bin bin
+f none include/VF.h 0644 bin bin
+d none lib 0755 bin bin
+f none lib/libVFlib2.a 0644 bin bin
+f none lib/libVFlib2.la 0644 bin bin
+f none lib/libVFlib2.so.24.0.1 0755 bin bin
+s none lib/libVFlib2.so.24=libVFlib2.so.24.0.1
+s none lib/libVFlib2.so=libVFlib2.so.24.0.1
+d none share 0755 bin bin
+d none share/VFlib 0755 bin bin
+d none share/VFlib/2.24.1 0755 bin bin
+f none share/VFlib/2.24.1/QA-english.tex 0644 bin bin
+f none share/VFlib/2.24.1/QA.txt 0644 bin bin
+f none share/VFlib/2.24.1/VF.h 0644 bin bin
+f none share/VFlib/2.24.1/man.dvi 0644 bin bin
+f none share/VFlib/2.24.1/man.ps 0644 bin bin
+f none share/VFlib/2.24.1/vfontcap.bdf 0644 bin bin
+f none share/VFlib/2.24.1/vfontcap.comp2 0644 bin bin
+f none share/VFlib/2.24.1/vfontcap.sample 0644 bin bin

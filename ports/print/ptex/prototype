@@ -1,0 +1,13 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+s none bin/iniptex=ptex
+f none bin/jbibtex 0755 bin bin
+f none bin/pdvitype 0755 bin bin
+f none bin/pltotf 0755 bin bin
+f none bin/ptex 0755 bin bin
+f none bin/tftopl 0755 bin bin
+s none bin/virptex=ptex
+d none share/texmf/web2c 0755 bin bin
+f none share/texmf/web2c/ptex.fmt 0644 bin bin
+f none share/texmf/web2c/ptex.pool 0644 bin bin
+f none share/texmf/web2c/texmf.cnf 0644 bin bin

@@ -1,0 +1,10 @@
+PKG=OPENa2psp
+NAME=ascii to ps filter, perl version.
+VERSION=1.44
+CATEGORY=application
+ARCH=sparc
+VENDOR=Kazumasa Utashiro <utashiro@iij.ad.jp>
+NAME=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

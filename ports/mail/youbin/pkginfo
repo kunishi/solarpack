@@ -1,0 +1,10 @@
+PKG=OPENyoubi
+NAME=Youbin service package
+VERSION=2.13
+ARCH=sparc
+CATEGORY=application
+VENDOR=Agusa Lab., Nagoya Univ.
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

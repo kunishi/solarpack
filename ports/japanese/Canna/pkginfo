@@ -1,0 +1,10 @@
+PKG=OPENcanna
+NAME=Canna, a Japanese input system
+ARCH=sparc
+VERSION=3.5b2
+CATEGORY=application
+VENDOR=NEC Corporation, Inc. <http://www.nec.co.jp/japanese/product/computer/soft/canna/>.
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

@@ -1,0 +1,10 @@
+PKG=OPENxaw3d
+NAME=Three-D Athena Widgets
+VERSION=1.5
+ARCH=sparc
+CATEGORY=application
+VENDOR=Kaleb S. Keithley <kaleb@opengroup.org>
+NAME=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/openwin
+CLASSES=none

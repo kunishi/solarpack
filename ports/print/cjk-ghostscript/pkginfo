@@ -1,0 +1,10 @@
+PKG=GNUgsvf
+NAME=GNU Ghostscript, with vflib and jpdf support
+VERSION=5.10
+ARCH=sparc
+CATEGORY=application
+VENDOR=Aladdin Enterprises <http://www.cs.wisc.edu/~ghost/>
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

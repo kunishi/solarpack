@@ -1,0 +1,10 @@
+PKG=OPUfvico
+NAME=Icon collections for fvwm95
+VERSION=1.00
+ARCH=sparc
+CATEGORY=application
+VENDOR=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/openwin
+CLASSES=none

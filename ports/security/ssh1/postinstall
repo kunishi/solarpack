@@ -1,0 +1,75 @@
+if test ! -f /etc/ssh_host_key; then
+	umask 022; $CLIENT_BASEDIR/bin/ssh-keygen1 -b 1024 -f /etc/ssh_host_key -N ''
+fi
+if test ! -f /etc/ssh_config; then
+	cp $CLIENT_BASEDIR/share/examples/ssh1/host_config.sample /etc/ssh_config
+	chown bin:bin /etc/ssh_config
+	chmod 644 /etc/ssh_config
+fi
+if test ! -f /etc/sshd_config; then
+	cat $CLIENT_BASEDIR/share/examples/ssh1/server_config.sample | \
+	    sed 's#_ETCDIR_#/etc#g' >/tmp/ssh_inst.$$
+	cp /tmp/ssh_inst.$$ /etc/sshd_config
+	chown bin:bin /etc/sshd_config
+	chmod 644 /etc/sshd_config
+	rm -f /tmp/ssh_inst.$$
+fi
+if test ! -f /etc/init.d/sshd2; then
+	rm -f /etc/init.d/sshd1 && \
+	install -c /etc/init.d -m 755 -u bin -g bin \
+	    $CLIENT_BASEDIR/share/examples/ssh1/sshd1 /etc/init.d/sshd1
+	rm -f /etc/rc0.d/K42sshd1 && ln -s ../init.d/sshd1 /etc/rc0.d/K42sshd1
+	rm -f /etc/rc1.d/K42sshd1 && ln -s ../init.d/sshd1 /etc/rc1.d/K42sshd1
+	rm -f /etc/rc2.d/S99sshd1 && ln -s ../init.d/sshd1 /etc/rc2.d/S99sshd1
+fi
+if test ! -f $CLIENT_BASEDIR/bin/ssh2; then
+	ln -s ssh1 $CLIENT_BASEDIR/bin/ssh
+fi
+if test ! -f $CLIENT_BASEDIR/bin/ssh-keygen2; then
+	ln -s ssh-keygen1 $CLIENT_BASEDIR/bin/ssh-keygen
+fi
+if test ! -f $CLIENT_BASEDIR/bin/ssh-agent2; then
+	ln -s ssh-agent1 $CLIENT_BASEDIR/bin/ssh-agent
+fi
+if test ! -f $CLIENT_BASEDIR/bin/ssh-add2; then
+	ln -s ssh-add1 $CLIENT_BASEDIR/bin/ssh-add
+fi
+if test ! -f $CLIENT_BASEDIR/bin/scp2; then
+	ln -s scp1 $CLIENT_BASEDIR/bin/scp
+fi
+if test ! -f $CLIENT_BASEDIR/bin/ssh-askpass2; then
+	ln -s ssh-askpass1 $CLIENT_BASEDIR/bin/ssh-askpass
+fi
+if test ! -f $CLIENT_BASEDIR/bin/slogin; then
+	ln -s ssh $CLIENT_BASEDIR/bin/slogin
+fi
+if test ! -f $CLIENT_BASEDIR/bin/make-ssh-known-hosts2; then
+	ln -s make-ssh-known-hosts1 $CLIENT_BASEDIR/bin/make-ssh-known-hosts
+fi
+if test ! -f $CLIENT_BASEDIR/sbin/sshd2; then
+	ln -s sshd1 $CLIENT_BASEDIR/sbin/sshd
+fi
+if test ! -f $CLIENT_BASEDIR/man/man1/ssh-keygen2.1; then
+	ln -s ssh-keygen1.1 $CLIENT_BASEDIR/man/man1/ssh-keygen.1
+fi
+if test ! -f $CLIENT_BASEDIR/man/man1/ssh-agent2.1; then
+	ln -s ssh-agent1.1 $CLIENT_BASEDIR/man/man1/ssh-agent.1
+fi
+if test ! -f $CLIENT_BASEDIR/man/man1/ssh-add2.1; then
+	ln -s ssh-add1.1 $CLIENT_BASEDIR/man/man1/ssh-add.1
+fi
+if test ! -f $CLIENT_BASEDIR/man/man1/scp2.1; then
+	ln -s scp1.1 $CLIENT_BASEDIR/man/man1/scp.1
+fi
+if test ! -f $CLIENT_BASEDIR/man/man1/make-ssh-known-hosts2.1; then
+	ln -s make-ssh-known-hosts1.1 $CLIENT_BASEDIR/man/man1/make-ssh-known-hosts.1
+fi
+if test ! -f $CLIENT_BASEDIR/man/man1/ssh2.1; then
+	ln -s ssh1.1 $CLIENT_BASEDIR/man/man1/ssh.1
+fi
+if test ! -f $CLIENT_BASEDIR/man/man1/slogin.1; then
+	ln -s ssh.1 $CLIENT_BASEDIR/man/man1/slogin.1
+fi
+if test ! -f $CLIENT_BASEDIR/man/man8/sshd2.1; then
+	ln -s sshd1.1 $CLIENT_BASEDIR/man/man8/sshd.1
+fi

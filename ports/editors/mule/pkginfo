@@ -1,0 +1,10 @@
+PKG=GNUmule
+NAME=GNU Multi-lingual Emacs
+ARCH=sparc
+VERSION=2.3@19.34b
+CATEGORY=application
+VENDOR=Free Software Foundation, inc.
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

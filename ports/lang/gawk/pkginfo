@@ -1,0 +1,9 @@
+PKG=GNUawk
+NAME=GNU awk
+VERSION=3.0.3
+CATEGORY=application
+VENDOR=Free Software Foundation
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

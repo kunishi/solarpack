@@ -1,0 +1,5 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+f none bin/nkf 0755 bin bin
+d none man/man1 0755 bin bin
+f none man/man1/nkf.1 0644 bin bin

@@ -1,0 +1,10 @@
+PKG=OPENpltxj
+NAME=ASCII pLaTeX2e
+VERSION=1998-09-01
+ARCH=sparc
+CATEGORY=application
+VENDOR=ASCII Corporation, Inc.
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

@@ -1,0 +1,8 @@
+if test ! -d /var/spool/canna; then
+	mkdir -p /var/spool/canna
+	chown bin:bin /var/spool/canna
+fi
+(cd /usr/lib && ln -s $CLIENT_BASEDIR/lib/libcanna.so.1)
+(cd /usr/lib && ln -s $CLIENT_BASEDIR/lib/libcanna16.so.1)
+(cd /usr/lib && ln -s $CLIENT_BASEDIR/lib/libRKC.so.1)
+(cd /usr/lib && ln -s $CLIENT_BASEDIR/lib/libRKC16.so.1)

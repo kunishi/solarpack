@@ -1,0 +1,8 @@
+i pkginfo=./pkginfo
+d none share 0755 bin bin
+d none share/fonts 0755 root other
+d none share/fonts/watanabe_font 0755 root other
+f none share/fonts/watanabe_font/README 0644 bin bin
+f none share/fonts/watanabe_font/dviprt.vfn 0644 bin bin
+f none share/fonts/watanabe_font/mincho.vf1 0644 bin bin
+f none share/fonts/watanabe_font/mincho.vf2 0644 bin bin

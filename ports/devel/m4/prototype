@@ -1,0 +1,8 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+f none bin/gm4 0755 bin bin
+d none info 0755 bin bin
+f none info/m4.info 0644 bin bin
+f none info/m4.info-1 0644 bin bin
+f none info/m4.info-2 0644 bin bin
+f none info/m4.info-3 0644 bin bin

@@ -1,0 +1,8 @@
+if test -f /etc/sudoers; then
+	chown 0 /etc/sudoers
+	chgrp 0 /etc/sudoers
+	chmod 0440 /etc/sudoers
+else
+	install -c /etc -m 0440 -u 0 -g 0 \
+	    $CLIENT_BASEDIR/share/examples/sudo/sudoers /etc/sudoers
+fi

@@ -1,0 +1,57 @@
+*** Makefile.orig	Mon Apr 12 13:19:32 1999
+--- Makefile	Mon Apr 12 13:19:51 1999
+***************
+*** 27,34 ****
+  CFLAGS = -O
+  
+  #EMACS = emacs
+! EMACS = xemacs
+! #EMACS = mule
+  
+  ##
+  ## A directory where "mewencode" will be installed.
+--- 27,34 ----
+  CFLAGS = -O
+  
+  #EMACS = emacs
+! #EMACS = xemacs
+! EMACS = mule
+  
+  ##
+  ## A directory where "mewencode" will be installed.
+***************
+*** 40,47 ****
+  ## A directory where mew*.el[c] will be installed.
+  ##
+  
+! ELISPDIR  = $(PREFIX)/lib/$(EMACS)/site-lisp
+! #ELISPDIR = $(PREFIX)/share/emacs/site-lisp
+  #ELISPDIR = $(PREFIX)/lib/emacs
+  
+  ##
+--- 40,47 ----
+  ## A directory where mew*.el[c] will be installed.
+  ##
+  
+! #ELISPDIR  = $(PREFIX)/lib/$(EMACS)/site-lisp
+! ELISPDIR = $(PREFIX)/share/emacs/site-lisp/mew
+  #ELISPDIR = $(PREFIX)/lib/emacs
+  
+  ##
+***************
+*** 48,54 ****
+  ## A directory where info files will be installed.
+  ##
+  
+! INFODIR = $(PREFIX)/$(EMACS)/info
+  
+  ################################################################
+  ##
+--- 48,54 ----
+  ## A directory where info files will be installed.
+  ##
+  
+! INFODIR = $(PREFIX)/info
+  
+  ################################################################
+  ##

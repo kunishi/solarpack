@@ -1,0 +1,10 @@
+PKG=GNUm4
+NAME=GNU m4, an implementation of the traditional Unix macro processor.
+VERSION=1.4
+ARCH=sparc
+CATEGORY=application
+VENDOR=Free Software Foundation
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

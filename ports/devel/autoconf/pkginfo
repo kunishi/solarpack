@@ -1,0 +1,10 @@
+PKG=GNUautcnf
+NAME=GNU autoconf, a tool for generating configure script automatically.
+VERSION=2.13
+ARCH=sparc
+CATEGORY=application
+VENDOR=Free Software Foundation
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

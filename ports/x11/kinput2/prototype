@@ -1,0 +1,22 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+f none bin/kinput2 0755 bin bin
+d none lib/X11 0775 root bin
+d none lib/X11/ccdef 0755 root other
+f none lib/X11/ccdef/ccdef.kinput2 0444 bin bin
+f none lib/X11/ccdef/ccdef.kinput2.egg 0444 bin bin
+f none lib/X11/ccdef/rule.eggfunc 0444 bin bin
+f none lib/X11/ccdef/rule.func 0444 bin bin
+f none lib/X11/ccdef/rule.greek 0444 bin bin
+f none lib/X11/ccdef/rule.hiragana.egg 0444 bin bin
+f none lib/X11/ccdef/rule.kana 0444 bin bin
+f none lib/X11/ccdef/rule.kana2 0444 bin bin
+f none lib/X11/ccdef/rule.katakana.egg 0444 bin bin
+f none lib/X11/ccdef/rule.kigou.egg 0444 bin bin
+f none lib/X11/ccdef/rule.roma 0444 bin bin
+f none lib/X11/ccdef/rule.wnnroma 0444 bin bin
+f none lib/X11/ccdef/rule.zascii 0444 bin bin
+d none lib/app-defaults 0775 root bin
+f none lib/app-defaults/Kinput2 0444 bin bin
+d none share/man/man1 0775 root bin
+f none share/man/man1/kinput2.1 0444 bin bin

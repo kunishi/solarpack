@@ -1,0 +1,10 @@
+PKG=OPENxpm
+NAME=X PixMap library and its tools
+ARCH=sparc
+VERSION=3.4k
+CATEGORY=application
+VENDOR=Arnaud Le Hors <lehors@sophia.inria.fr>, <http://www.inria.fr/koala/lehors/xpm.html>.
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/openwin
+CLASSES=none

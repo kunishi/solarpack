@@ -1,0 +1,10 @@
+PKG=OPENmew
+NAME=Mew, Messaging in the Emacs World
+VERSION=1.93
+ARCH=sparc
+CATEGORY=application
+VENDOR=Mew developing team <http://www.mew.org/>
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

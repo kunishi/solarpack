@@ -1,0 +1,10 @@
+PKG=OPENecfnt
+NAME=European Computer Modent Fonts and Text Companion Fonts.
+VERSION=1.0
+ARCH=sparc
+CATEGORY=application
+VENDOR=J"org Knappen <joerg.knappen@uni-mainz.de>
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

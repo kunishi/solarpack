@@ -1,0 +1,12 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+f none bin/cxpm 0755 bin bin
+f none bin/sxpm 0755 bin bin
+d none share/man/man1 0775 root bin
+f none share/man/man1/sxpm.1 0444 bin bin
+f none share/man/man1/cxpm.1 0444 bin bin
+d none share/include/X11 0775 root bin
+f none share/include/X11/xpm.h 0644 bin bin
+d none lib 0775 root bin
+s none lib/libXpm.so=libXpm.so.4.11
+f none lib/libXpm.so.4.11 0644 bin bin

@@ -1,0 +1,3 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+f none bin/a2ps 0755 bin bin

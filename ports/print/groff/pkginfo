@@ -1,0 +1,10 @@
+PKG=GNUroff
+NAME=GNU roff package
+VERSION=1.11a
+ARCH=sparc
+CATEGORY=application
+VENDOR=Free Software Foundation
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

@@ -1,0 +1,10 @@
+PKG=OPENptexj
+NAME=ASCII pTeX, JIS version
+VERSION=2.1.8
+ARCH=sparc
+CATEGORY=application
+VENDOR=ASCII Corporation, Inc.
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

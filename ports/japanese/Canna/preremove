@@ -1,0 +1,3 @@
+rm -rf /var/spool/canna
+rm -f /usr/lib/libcanna.so.1 /usr/lib/libcanna16.so.1
+rm -f /usr/lib/libRKC.so.1 /usr/lib/libRKC16.so.1

@@ -1,0 +1,12 @@
+i pkginfo=./pkginfo
+d none bin 0775 root bin
+f none bin/xdvi 0755 root other
+f none bin/xdvi.bin 0755 root other
+d none man/man1 0755 bin bin
+f none man/man1/xdvi.1 0644 root other
+d none share/texmf 0755 bin bin
+d none share/texmf/xdvi 0755 root other
+f none share/texmf/xdvi/vfontmap 0644 root other
+f none share/texmf/xdvi/xdvipaper.dvi2ps-j 0644 root other
+f none share/texmf/xdvi/xdvipaper.dvips 0644 root other
+f none share/texmf/xdvi/xdvipaper.jdvi2kps 0644 root other

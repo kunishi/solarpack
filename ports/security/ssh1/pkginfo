@@ -1,0 +1,10 @@
+PKG=OPENssh1
+NAME=Secure shell version 1
+ARCH=sparc
+VERSION=1.2.26
+CATEGORY=application
+BASEDIR=/usr/local
+VENDOR=SSH Communications Security, Espoo, Finland, http://www.cs.hut.fi/ssh
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+CLASSES=none

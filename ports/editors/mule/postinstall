@@ -1,0 +1,4 @@
+if test ! -f $CLIENT_BASEDIR/info/dir; then
+	install -c $CLIENT_BASEDIR -m 644 -u bin -g bin \
+		$CLIENT_BASEDIR/share/examples/info/dir
+fi

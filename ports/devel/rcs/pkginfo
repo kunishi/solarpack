@@ -1,0 +1,10 @@
+PKG=GNUrcs
+NAME=GNU rcs, the Revision Control System
+VERSION=5.7
+ARCH=sparc
+CATEGORY=application
+VENDOR=Free Software Foundation
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

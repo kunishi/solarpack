@@ -1,0 +1,10 @@
+PKG=OPENjless
+NAME=a paginator
+ARCH=sparc
+VERSION=332+iso248
+CATEGORY=application
+VENDOR=Kazushi Marukawa <jam@pobox.com>, <http://www.pobox.com/~jam/less/>.
+EMAIL=kunishi@c.oka-pu.ac.jp
+PSTAMP=Takeo Kunishima
+BASEDIR=/usr/local
+CLASSES=none

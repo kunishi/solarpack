@@ -1,0 +1,12 @@
+i pkginfo=./pkginfo
+d none bin 0755 bin bin
+f none bin/sendto 0755 bin bin
+f none bin/xyoubin 0755 bin bin
+f none bin/youbin 4755 root bin
+d none man 0755 bin bin
+d none man/man1 0755 bin bin
+f none man/man1/youbin.1 0644 bin bin
+f none man/man1/youbin_sub.1 0644 bin bin
+f none man/man1/youbind.1 0644 bin bin
+d none sbin 0755 bin bin
+f none sbin/youbind 0755 bin bin

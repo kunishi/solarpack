@@ -1,0 +1,5 @@
+i pkginfo=./pkginfo
+d none bin 0755 bin bin
+f none bin/tcsh 0755 bin bin
+d none man/man1 0755 bin bin
+f none man/man1/tcsh.1 0444 bin bin
