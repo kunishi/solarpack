@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/16 11:43:45 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/16 11:52:03 kunishi Exp $
 #
 
 PORTNAME=	aalib
@@ -8,7 +8,7 @@ PORTREV=	1
 
 PKG=		OPENaalib
 NAME=		An ascii art library
-VENDOR=		
+VENDOR=		Jan Hubicka (hubicka@paru.cas.cz) et al.
 
 MASTER_SITES=	ftp://ftp.ta.jcu.cz/pub/aa/
 
