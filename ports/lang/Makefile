@@ -1,8 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 08:58:39 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/20 06:33:49 kunishi Exp $
 #
 
 SUBDIR+=	gawk
 SUBDIR+=	perl5
+SUBDIR+=	sml-nj
 
 .include <port.subdir.mk>
