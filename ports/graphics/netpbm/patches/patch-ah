@@ -1,0 +1,11 @@
+--- stamp-date~	Sat Nov 20 23:58:58 1993
++++ stamp-date	Thu Jun  1 21:32:19 2000
+@@ -16,7 +16,7 @@
+ 
+ OUTFILE=compile.h
+ DATE=`date`
+-USER=`whoami`
++USER=`/usr/ucb/whoami`
+ 
+ echo "/* compile_time.h  This file tells the package when it was compiled */" > $OUTFILE
+ echo "/* DO NOT EDIT - THIS FILE IS MAINTAINED AUTOMATICALLY              */" >> $OUTFILE

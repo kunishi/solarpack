@@ -1,5 +1,5 @@
---- Pbmplus.tmpl.orig2	Wed Jan 19 15:14:33 2000
-+++ Pbmplus.tmpl	Wed Jan 19 15:15:08 2000
+--- Pbmplus.tmpl~	Sat Aug 19 13:57:43 1995
++++ Pbmplus.tmpl	Thu Jun  1 21:53:34 2000
 @@ -14,9 +14,9 @@
   */
  
@@ -8,7 +8,7 @@
 -         MANDIR = /usr/X11R6/man
 -      MANSUFFIX = 1p
 +         BINDIR = %%LOCALBASE%%/bin
-+         MANDIR = %%LOCALBASE%%/man
++         INCDIR = %%LOCALBASE%%/include
 +      MANSUFFIX = 1
  
  /* CONFIGURE: PBMPLUS's support for TIFF files depends on the library from
@@ -26,7 +26,24 @@
  #endif
  
  /* CONFIGURE: Normally the Imakefiles build and install separate binaries for
-@@ -105,7 +105,10 @@
+@@ -80,13 +80,13 @@
+ #define PbmplusBinDir $(BINDIR)
+ #endif
+ #ifndef PbmplusManDir
+-#define PbmplusManDir $(MANDIR)
++#define PbmplusManDir %%LOCALBASE%%/man
+ #endif
+ #ifndef PbmplusLibDir
+-#define PbmplusLibDir $(USRLIBDIR)
++#define PbmplusLibDir %%LOCALBASE%%/lib
+ #endif
+ #ifndef PbmplusIncDir
+-#define PbmplusIncDir $(INCDIR)
++#define PbmplusIncDir %%LOCALBASE%%/include
+ #endif
+ 
+ /* End of configurable definitions. */
+@@ -105,7 +105,13 @@
  #define PnmDir TOPDIR/pnm
  #endif
  #ifndef TiffDir
@@ -35,32 +52,55 @@
 +#endif
 +#ifndef TiffIncDir
 +#define TiffIncDir %%LOCALBASE%%/include
++#endif
++#ifndef ShhOptDir
++#define ShhOptDir TOPDIR/shhopt
  #endif
  
  /* Libraries: */
-@@ -122,7 +125,7 @@
+@@ -122,7 +128,10 @@
  #define LibPnm $(PNMDIR)/libpnm.a
  #endif
  #ifndef LibTiff
 -#define LibTiff $(TIFFDIR)/libtiff.a
 +#define LibTiff -L$(TIFFDIR) -R$(TIFFDIR) -ltiff -ljpeg -lz -lm
++#endif
++#ifndef LibShhOpt
++#define LibShhOpt $(SHHOPTDIR)/libshhopt.a
  #endif
  
  /* Dependency libraries: */
-@@ -139,7 +142,7 @@
+@@ -139,7 +148,10 @@
  #define DepLibPnm LibPnm
  #endif
  #ifndef DepLibTiff
 -#define DepLibTiff LibTiff
 +#define DepLibTiff $(TIFFDIR)/libtiff.a
++#endif
++#ifndef DepLibShhOpt
++#define DepLibShhOpt LibShhOpt
  #endif
  
     PBMPLUSDIR = PbmplusDir
-@@ -153,6 +156,7 @@
+@@ -153,17 +165,21 @@
         PPMDIR = PpmDir
         PNMDIR = PnmDir
        TIFFDIR = TiffDir
 +   TIFFINCDIR = TiffIncDir
++    SHHOPTDIR = ShhOptDir
  
         LIBPBM = LibPbm
         LIBPGM = LibPgm
+        LIBPPM = LibPpm
+        LIBPNM = LibPnm
+       LIBTIFF = LibTiff
++    LIBSHHOPT = LibShhOpt
+     DEPLIBPBM = DepLibPbm
+     DEPLIBPGM = DepLibPgm
+     DEPLIBPPM = DepLibPpm
+     DEPLIBPNM = DepLibPnm
+    DEPLIBTIFF = DepLibTiff
++ DEPLIBSHHOPT = DepLibShhOpt
+ 
+ #if InstallMerged
+ 

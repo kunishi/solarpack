@@ -1,0 +1,15 @@
+--- ppm/Imakefile~	Thu Jun  1 21:22:39 2000
++++ ppm/Imakefile	Thu Jun  1 21:23:00 2000
+@@ -17,9 +17,9 @@
+ #define DepLibPpm LibPpm
+ #include <../Pbmplus.tmpl>
+ 
+-   CURRENTLIBS = $(LIBPPM) $(LIBPGM) $(LIBPBM)
+-CURRENTDEPLIBS = $(DEPLIBPPM) $(DEPLIBPGM) $(DEPLIBPBM)
+-     INCLUDES  = -I.. -I$(PBMDIR) -I$(PGMDIR)
++   CURRENTLIBS = $(LIBPPM) $(LIBPGM) $(LIBPBM) $(LIBSHHOPT)
++CURRENTDEPLIBS = $(DEPLIBPPM) $(DEPLIBPGM) $(DEPLIBPBM) $(DEPLIBSHHOPT)
++     INCLUDES  = -I.. -I$(PBMDIR) -I$(PGMDIR) -I$(SHHOPTDIR)
+        DEFINES = -DRGB_DB=\"DefaultRGBDatabase\"
+          MERGE = ppmmerge
+ 

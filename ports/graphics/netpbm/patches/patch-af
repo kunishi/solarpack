@@ -1,0 +1,15 @@
+--- pgm/Imakefile~	Thu Jun  1 21:20:01 2000
++++ pgm/Imakefile	Thu Jun  1 21:20:25 2000
+@@ -17,9 +17,9 @@
+ #define DepLibPgm LibPgm
+ #include <../Pbmplus.tmpl>
+ 
+-   CURRENTLIBS = $(LIBPGM) $(LIBPBM)
+-CURRENTDEPLIBS = $(DEPLIBPGM) $(DEPLIBPBM)
+-     INCLUDES  = -I.. -I$(PBMDIR)
++   CURRENTLIBS = $(LIBPGM) $(LIBPBM) $(LIBSHHOPT)
++CURRENTDEPLIBS = $(DEPLIBPGM) $(DEPLIBPBM) $(DEPLIBSHHOPT)
++     INCLUDES  = -I.. -I$(PBMDIR) -I$(SHHOPTDIR)
+          MERGE = pgmmerge
+ 
+           MAN1 = asciitopgm.1 bioradtopgm.1 fstopgm.1 \
