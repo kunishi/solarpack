@@ -1,10 +1,9 @@
 PKG=OPENft
 NAME=Freetype, the Free TrueType Font Engine
 VERSION=1.2
-ARCH=sparc
+ARCH=%%ARCH%%
 CATEGORY=application
 VENDOR=Robert Wilhelm and Werner Lemberg <http://www.freetype.org/>
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/local
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none
