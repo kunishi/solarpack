@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/01 10:41:12 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/08 04:41:38 kunishi Exp $
 #
 
 PORTNAME=	flash-plugin
@@ -9,14 +9,13 @@ PORTREV=	1
 PKG=		MCRMflash
 NAME=		Macromedia Flash Plugin
 VENDOR=		Macromedia Corp.
+ONLY_FOR_ARCHS=	sparc
 
 DISTNAME=	flash_solaris
 MASTER_SITES=	http://www.macromedia.com/
 
 RUN_DEPENDS=	NSjacomm:${PORTSDIR}/japanese/netscape47-communicator
-
 WRKSRC=		${WRKDIR}/Solaris
-ONLY_FOR_ARCHS=	sparc
 NO_BUILD=	yes
 
 PLUGINDIR=	${INSTPREFIX}/netscape/plugins
