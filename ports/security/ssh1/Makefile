@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.6 2000/07/04 06:16:12 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/07/06 12:27:58 kunishi Exp $
 #
 
 ARCH!=		/usr/bin/mach
 
 PORTNAME=	ssh
-VERSION=	1.2.29
+VERSION=	1.2.30
 PORTREV=	1
 
 PKG=		OPENssh1
