@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 08:43:49 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/05 11:14:46 kunishi Exp $
 #
 
 SUBDIR+=	autoconf
@@ -15,7 +15,6 @@ SUBDIR+=	glib
 SUBDIR+=	gmake
 SUBDIR+=	libPropList
 SUBDIR+=	libreadline
-SUBDIR+=	libstdc++
 SUBDIR+=	libtool
 SUBDIR+=	m4
 SUBDIR+=	patch

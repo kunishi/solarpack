@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.11 2000/05/17 06:42:46 kunishi Exp $
+# $Id: Makefile,v 1.12 2000/06/05 11:14:46 kunishi Exp $
 #
 
 PORTNAME=	cvs
@@ -9,8 +9,8 @@ PORTREV=	1
 PKG=		OPENcvs
 NAME=		CVS, Concurrent Version System
 
-VENDOR=		Cyclic Software, Com. <http://www.cyclic.com/>
-MASTER_SITES=	http://download.cyclic.com/pub/cvs-${VERSION}/
+VENDOR=		Cyclic Software, Com. <http://www.cvshome.org/>
+MASTER_SITES=	ftp://ftp.cvshome.org/pub/cvs-${VERSION}/
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
