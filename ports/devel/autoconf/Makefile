@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 1999/06/04 03:21:50 kunishi Exp $
+# $Id: Makefile,v 1.5 1999/06/04 03:46:49 kunishi Exp $
 #
 
 PKG=	GNUautcnf
@@ -8,12 +8,12 @@ VERSION=	2.13
 CATEGORY=	application
 VENDOR=		Free Software Foundation
 MAINTAINER=	kunishi@c.oka-pu.ac.jp
-CLASSES=	info none
 
 DISTNAME=	autoconf-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/autoconf/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/autoconf/
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
+USE_INSTALL_INFO=	yes
 
 .include <port.mk>
