@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2001/11/28 13:27:55 kunishi Exp $
+# $Id: Makefile,v 1.2 2003/02/26 10:58:20 kunishi Exp $
 #
 
 PORTNAME=	libiconv
-VERSION=	1.7
+VERSION=	1.8
 PORTREV=	1
 
 PKG=		OPUCiconv
