@@ -1,13 +1,13 @@
 #
-# $Id: Makefile,v 1.7 1999/06/09 02:34:09 kunishi Exp $
+# $Id: Makefile,v 1.8 1999/08/27 02:11:35 kunishi Exp $
 #
 
 PKG=		OPENbmake
 NAME=		BSD make tool
-VERSION=	2.1.14
+VERSION=	2.2.1
 VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 
-DISTNAME=	bmake-2.1.14
+DISTNAME=	bmake-${VERSION}
 MASTER_SITES=	ftp://ftp.quick.com.au/pub/sjg/
 WRKSRC=		${WRKDIR}/bmake
 
