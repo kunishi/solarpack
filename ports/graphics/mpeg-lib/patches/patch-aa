@@ -1,0 +1,11 @@
+--- Makefile.in.orig	Fri Nov 27 01:03:29 1998
++++ Makefile.in	Fri Jun 16 21:00:05 2000
+@@ -67,7 +67,7 @@
+ 		$(CC) -shared -o $(SHLIB) $(LIBOBJ)
+ 
+ install:	$(LIBRARY)
+-		$(INSTALL) -d $(INSTALL_INCLUDE) $(INSTALL_LIBRARY)
++		mkdir -p $(INSTALL_INCLUDE) $(INSTALL_LIBRARY)
+ 		$(INSTALL) -m 0644 $(HEADER) $(INSTALL_INCLUDE)/$(HEADER)
+ 		$(INSTALL) -m 0644 $(LIBRARY) $(INSTALL_LIBRARY)/$(LIBRARY)
+ 		@if test -f $(SHLIB) ; then echo "warning: $(SHLIB) *not* installed (installing shared libraries is too system-specific)" ; fi
