@@ -1,9 +1,10 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 08:58:39 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/03/16 10:17:16 kunishi Exp $
 #
 
 SUBDIR+=	im
-SUBDIR+=	mew
+SUBDIR+=	mew-emacs20
+SUBDIR+=	mew-mule
 SUBDIR+=	qpopper
 SUBDIR+=	youbin
 
