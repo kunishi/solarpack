@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.10 2001/11/19 12:04:15 kunishi Exp $
+# $Id: Makefile,v 1.11 2001/11/30 12:53:38 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -26,6 +26,13 @@ CONFIGURE_ARGS+=	--noninteractive \
 			--with-DIR_GZLIB=${LOCALBASE}/lib \
 			--with-DIR_JPEGLIB=${LOCALBASE}/lib \
 			--with-INSTALL='${SHELL} ${WRKSRC}/port/install.sh -root ${WRKDIR}' \
+			--with-DSO=SOLARIS \
+			--with-DSOSUF=so.3 \
+			--with-DSOSUF_VERSION=so.3 \
+			--with-LIBCOPTS='-fPIC -DPIC' \
 			--target=${GNU_HOSTTYPE}
+
+post-install:
+	${LN} -sf libtiff.so.3 ${INSTPREFIX}/lib/libtiff.so
 
 .include <port.mk>

@@ -1,0 +1,11 @@
+--- libtiff/Makefile.in~	Sat Dec 16 08:57:05 2000
++++ libtiff/Makefile.in	Tue Nov 20 15:32:19 2001
+@@ -178,7 +178,7 @@
+ 	touch $@
+ # Solaris 2.x
+ SOLARISdso: ${OBJS}
+-	${LD} -L@DIR_LIB@ -G -h libtiff.@DSOSUF@ -o libtiff.@DSOSUF@ ${OBJS}
++	${CC} -shared -Wl,-h -Wl,libtiff.@DSOSUF@ -o libtiff.@DSOSUF_VERSION@ ${OBJS}
+ 	touch $@
+ # HP-UX A.09.03
+ HPUXdso: ${OBJS}
