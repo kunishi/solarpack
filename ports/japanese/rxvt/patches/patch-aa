@@ -1,0 +1,12 @@
+--- src/main.c.orig	Thu May 18 19:09:45 2000
++++ src/main.c	Thu May 18 19:10:07 2000
+@@ -38,6 +38,9 @@
+ #ifdef TTY_GID_SUPPORT
+ # include <grp.h>
+ #endif
++#ifdef HAVE_TERMIOS_H
++# include <termios.h>
++#endif
+ 
+ /*----------------------------------------------------------------------*/
+ /* main() */
