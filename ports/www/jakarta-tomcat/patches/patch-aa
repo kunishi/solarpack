@@ -1,0 +1,10 @@
+--- conf/server.xml.orig	Wed Dec 13 06:36:20 2000
++++ conf/server.xml	Fri May 25 13:46:25 2001
+@@ -67,6 +67,7 @@
+     -->
+     <Logger name="tc_log" 
+             verbosityLevel = "INFORMATION" 
++            path="logs/tomcat.log"
+     />
+ 
+     <Logger name="servlet_log" 

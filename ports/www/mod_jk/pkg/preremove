@@ -1,0 +1,6 @@
+APXS=$CLIENT_BASEDIR/apache/bin/apxs
+
+if [ -x $APXS ]; then
+	$APXS -e -A -n jk $CLIENT_BASEDIR/lib/mod_jk/mod_jk.so
+fi
+rm $CLIENT_BASEDIR/lib/mod_jk/mod_jk.so

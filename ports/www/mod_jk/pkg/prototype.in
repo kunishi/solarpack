@@ -1,0 +1,6 @@
+d none apache=%%INSTPREFIX%%/apache 0755 root bin
+d none apache/conf=%%INSTPREFIX%%/apache/conf 0755 root bin
+e backup apache/conf/mod_jk.conf=%%INSTPREFIX%%/apache/conf/mod_jk.conf 0644 root bin
+d none lib=%%INSTPREFIX%%/lib 0755 root bin
+d none lib/mod_jk=%%INSTPREFIX%%/lib/mod_jk 0755 root bin
+f none lib/mod_jk/mod_jk.so=%%INSTPREFIX%%/lib/mod_jk/mod_jk.so 0755 root bin

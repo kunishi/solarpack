@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.85 2001/04/17 05:53:12 kunishi Exp $
+# $Id: port.mk,v 1.86 2001/05/28 13:56:52 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -111,9 +111,7 @@ CATEGORY?=	application
 MAINTAINER?=	${PKG_MAINTAINER}
 
 .if defined(EDITABLE_FILES)
-.for file in ${EDITABLE_FILES}
-CLASS_BACKUP+=	${file}
-.endfor
+CLASS_BACKUP+=	${EDITABLE_FILES}
 .endif
 .if defined(CLASS_INFO)
 USE_INSTALL_INFO=	yes
