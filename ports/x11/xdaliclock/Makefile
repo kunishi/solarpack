@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.6 2000/09/27 01:28:00 kunishi Exp $
+# $Id: Makefile,v 1.7 2001/03/02 09:05:19 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	xdaliclock
 VERSION=	2.18
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENxdlcl
 NAME=		X melting digital clock
@@ -23,7 +23,7 @@ pre-install:
 	${MKDIR} ${INSTPREFIX}/bin ${INSTPREFIX}/man/man1
 
 post-install:
-	${MKDIR} ${INSTPREFIX}/lib/X11/app-defaults
-	${INSTALL_DATA} ${WRKSRC}/XDaliClock.ad ${INSTPREFIX}/lib/X11/app-defaults/XDaliClock
+	${MKDIR} ${INSTPREFIX}/lib/app-defaults
+	${INSTALL_DATA} ${WRKSRC}/XDaliClock.ad ${INSTPREFIX}/lib/app-defaults/XDaliClock
 
 .include <port.mk>

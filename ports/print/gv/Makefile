@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.2 2000/09/27 01:27:54 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/03/02 09:01:32 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	gv
 VERSION=	3.5.8
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENgv
 NAME=		gv, an X11 ghostscript frontend.
