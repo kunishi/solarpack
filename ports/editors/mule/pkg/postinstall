@@ -1,0 +1,9 @@
+INFO_DIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+if test ! -f $INFO_DIR/dir; then
+	install -c $INFO_DIR -m 644 -u bin -g bin \
+		$CLIENT_BASEDIR/share/examples/info/dir
+else
+	echo "merge $CLIENT_BASEDIR/share/examples/info/dir into $INFO_DIR/dir by hand."
+fi

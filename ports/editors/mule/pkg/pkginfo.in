@@ -1,10 +1,9 @@
 PKG=GNUmule
 NAME=GNU Multi-lingual Emacs
-ARCH=sparc
+ARCH=%%ARCH%%
 VERSION=2.3@19.34b
 CATEGORY=application
 VENDOR=Free Software Foundation, inc.
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/local
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none
