@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.8 2000/09/27 01:27:59 kunishi Exp $
+# $Id: Makefile,v 1.9 2001/03/02 06:29:09 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	fvwm-i18n
 VERSION=	2.2
-PORTREV=	2
+PORTREV=	3
 
 PKG=		OPENfvwm
 NAME=		fvwm version 2
@@ -27,6 +27,7 @@ USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
 CXXFLAGS=		-g -O -ansi -pedantic
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
+CONFIGURE_ARGS+=	--mandir='$${prefix}/share/man'
 CONFIGURE_ARGS+=	--enable-extras --enable-kanji
 CONFIGURE_ARGS+=	--with-iconpath=${PREFIX}/share/icons/fvwm:/usr/include/X11/bitmaps:/usr/include/X11/pixmaps
 MAKE_ENV+=		prefix=${PREFIX}
