@@ -1,10 +1,9 @@
 PKG=GNUpatch
 NAME=GNU patch
-ARCH=sparc
+ARCH=%%ARCH%%
 VERSION=2.5
 CATEGORY=application
 VENDOR=Free Software Foundation, Inc.
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/local
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none

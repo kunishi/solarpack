@@ -1,5 +1,0 @@
-i pkginfo=./pkginfo
-d none bin 0755 bin bin
-f none bin/patch 0755 bin bin
-d none man/man1 0755 bin bin
-f none man/man1/patch.1 0644 bin bin
