@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.41 2000/01/06 10:48:45 kunishi Exp $
+# $Id: port.mk,v 1.42 2000/01/07 02:33:59 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -658,7 +658,7 @@ DEPENDS_TMP+=	${RUN_DEPENDS}
 
 _DEPENDS_USE:
 .if defined(DEPENDS_TMP)
-	@for i in "${DEPENDS_TMP}"; do \
+	@for i in ${DEPENDS_TMP}; do \
 	  pkg=`${ECHO} $$i | ${SED} -e 's/:.*//'`; \
 	  dir=`${ECHO} $$i | ${SED} -e 's/[^:]*://'`; \
 	  target=${DEPENDS_TARGET}; \
