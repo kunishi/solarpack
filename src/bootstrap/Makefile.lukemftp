@@ -1,23 +1,25 @@
 #
 # Bootstrap makefile for building lukemftp
-# $Id: Makefile.lukemftp,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+# $Id: Makefile.lukemftp,v 1.2 2000/05/02 05:06:49 kunishi Exp $
 #
 
 TARGET_CMD=	lukemftp
 
 include ${TOPDIR}/bootstrap/config.mk
 
-DISTNAME=	lukemftp-1.1
-DISTFILES=	lukemftp-1.1.tar.gz
+DISTNAME=	lukemftp-1.2
+DISTFILES=	lukemftp-1.2.tar.gz
 SRCURL=		ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/
+
+FETCH_CMD=	/usr/bin/ftp
+FETCH_SCRIPT=	${BOOTSTRAPDIR}/get-${TARGET_CMD}
+FETCH_SITE=	ftp.netbsd.org
 
 include ${BOOTSTRAPDIR}/rule.mk
 
 fetch:
 	if [ ! -f ${DISTDIR}/${DISTFILES} ]; then \
-	  ${ECHO_MSG} "Get lukemftp distfiles from the following URL manually:"; \
-	  ${ECHO_MSG} "    ${SRCURL}${DISTFILES}"; \
-	  exit 1; \
+	  (cd ${DISTDIR}; ${FETCH_CMD} -n ${FETCH_SITE} <${FETCH_SCRIPT}); \
 	fi
 
 extract:	${FETCH_COOKIE}

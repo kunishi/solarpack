@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building md5
-# $Id: Makefile.md5,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+# $Id: Makefile.md5,v 1.2 2000/05/02 05:06:49 kunishi Exp $
 #
 
 TARGET_CMD=	md5
@@ -8,8 +8,8 @@ TARGET_CMD=	md5
 include ${TOPDIR}/bootstrap/config.mk
 
 DISTNAME=	MD5
-DISTFILES=	MD5.tar.gz
-SRCURL=		ftp://ftp.tut.ac.jp/pub/Security/tool/md5/
+DISTFILES=	MD5.tar.Z
+SRCURL=		ftp://ftp.aist-nara.ac.jp/pub/Security/tool/md5/
 
 include ${BOOTSTRAPDIR}/rule.mk
 
@@ -24,7 +24,7 @@ extract:	${FETCH_COOKIE}
 	  (${GUNZIP} ${DISTDIR}/${DISTFILES} | ${EXTRACT_CMD} -)
 
 patch:		${EXTRACT_COOKIE}
-	cd ${WORKDIR}/${DISTNAME} && ${GNUPATCH} < ${BOOTSTRAPDIR}/md5.patch
+	${DO_NADA}
 
 configure:	${PATCH_COOKIE}
 	${DO_NADA}

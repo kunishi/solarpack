@@ -1,6 +1,6 @@
 #
 # Bootstrap makefile for building gzip
-# $Id: Makefile.gzip,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+# $Id: Makefile.gzip,v 1.2 2000/05/02 05:06:49 kunishi Exp $
 #
 
 TARGET_CMD=	gzip
@@ -11,13 +11,15 @@ DISTNAME=	gzip-1.2.4
 DISTFILES=	gzip-1.2.4.tar
 SRCURL=		ftp://ftp.gnu.org/pub/gnu/gzip/
 
+FETCH_CMD=	/usr/bin/ftp
+FETCH_SCRIPT=	${BOOTSTRAPDIR}/get-${TARGET_CMD}
+FETCH_SITE=	ftp.gnu.org
+
 include ${BOOTSTRAPDIR}/rule.mk
 
 fetch:
 	if [ ! -f ${DISTDIR}/${DISTFILES} ]; then \
-	  ${ECHO_MSG} "Get gzip distfiles from the following URL manually:"; \
-	  ${ECHO_MSG} "    ${SRCURL}${DISTFILES}"; \
-	  exit 1; \
+	  (cd ${DISTDIR}; ${FETCH_CMD} -n ${FETCH_SITE} <${FETCH_SCRIPT}); \
 	fi
 
 extract:	${FETCH_COOKIE}
