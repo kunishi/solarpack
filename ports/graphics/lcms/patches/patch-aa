@@ -1,0 +1,46 @@
+--- src/Makefile.orig	Sat Mar 10 23:02:55 2001
++++ src/Makefile	Mon Nov 12 15:32:35 2001
+@@ -1,10 +1,10 @@
+ SHELL = /bin/sh
+ 
+ CFLAGS = -g -O2
+-BASEDIR = /usr/local
++BASEDIR = ${PREFIX}
+ BINDIR = $(BASEDIR)/bin
+ LIBDIR = $(BASEDIR)/lib
+-INCDIR = $(BASEDIR)/include
++INCDIR = $(BASEDIR)/include/lcms
+ 
+ 
+ 
+@@ -12,16 +12,28 @@
+ 	cmslut.c cmsmatsh.c cmsmtrx.c cmspack.c cmspcs.c cmswtpnt.c cmsxform.c
+ 
+ OBJS = $(SRCS:.c=.o)
++SO_OBJS = $(SRCS:.c=.so)
+ 
+-all:	liblcms.a
++all:	liblcms.a liblcms.so.1
+ 
+ liblcms.a: $(OBJS)
+ 	ar -cru liblcms.a $(OBJS)
+ 
+-install: liblcms.a
++liblcms.so.1:	$(SO_OBJS)
++	$(CC) -shared -Wl,-h -Wl,liblcms.so.1 -o liblcms.so.1 $(SO_OBJS)
++	ln -s liblcms.so.1 liblcms.so
++
++.SUFFIXES:	.c .so
++.c.so:
++	$(CC) -c -fpic -DPIC $(CFLAGS) $< -o $@
++
++install: liblcms.a liblcms.so.1
+ 	cp liblcms.a $(LIBDIR)
+ 	ranlib $(LIBDIR)/liblcms.a
+ 	chmod 644 $(LIBDIR)/liblcms.a
++	cp liblcms.so.1 $(LIBDIR)
++	chmod 644 liblcms.so.1
++	ln -s liblcms.so.1 $(LIBDIR)/liblcms.so
+ 	cp lcms.h icc34.h $(INCDIR)
+ 	chmod 644 $(INCDIR)/lcms.h
+ 	chmod 644 $(INCDIR)/icc34.h

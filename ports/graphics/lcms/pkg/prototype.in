@@ -1,0 +1,16 @@
+d none include=%%INSTPREFIX%%/include 0755 root bin
+d none include/lcms=%%INSTPREFIX%%/include/lcms 0755 root bin
+f none include/lcms/icc34.h=%%INSTPREFIX%%/include/lcms/icc34.h 0644 root bin
+f none include/lcms/lcms.h=%%INSTPREFIX%%/include/lcms/lcms.h 0644 root bin
+d none lib=%%INSTPREFIX%%/lib 0755 root bin
+f none lib/liblcms.a=%%INSTPREFIX%%/lib/liblcms.a 0644 root bin
+f none lib/liblcms.so.1=%%INSTPREFIX%%/lib/liblcms.so.1 0755 root bin
+s none lib/liblcms.so=liblcms.so.1
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/doc=%%INSTPREFIX%%/share/doc 0755 root bin
+d none share/doc/lcms=%%INSTPREFIX%%/share/doc/lcms 0755 root bin
+f none share/doc/lcms/LCMSAPI.TXT=%%INSTPREFIX%%/share/doc/lcms/LCMSAPI.TXT 0644 root bin
+f none share/doc/lcms/TUTORIAL.TXT=%%INSTPREFIX%%/share/doc/lcms/TUTORIAL.TXT 0644 root bin
+f none share/doc/lcms/neutral.c=%%INSTPREFIX%%/share/doc/lcms/neutral.c 0644 root bin
+f none share/doc/lcms/tifficc.c=%%INSTPREFIX%%/share/doc/lcms/tifficc.c 0644 root bin
+f none share/doc/lcms/wtpt.c=%%INSTPREFIX%%/share/doc/lcms/wtpt.c 0644 root bin

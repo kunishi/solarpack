@@ -1,0 +1,19 @@
+--- src/libjasper/include/jasper/jas_types.h.orig	Thu Jun 28 10:31:26 2001
++++ src/libjasper/include/jasper/jas_types.h	Mon Nov 12 20:19:19 2001
+@@ -132,14 +132,12 @@
+ #include <windows.h>
+ #endif
+ 
+-#if defined(WIN32) || defined(HAVE_WINDOWS_H)
+ #define uchar	unsigned char
+ #define	ushort	unsigned short
+ #define	uint	unsigned int
+ #define	ulong	unsigned long
+-#define	longlong	INT64
+-#define	ulonglong	UINT64
+-#endif
++#define	longlong	long
++#define	ulonglong	unsigned long
+ 
+ #if defined(HAVE_STDLIB_H)
+ #include <stdlib.h>
