@@ -1,0 +1,11 @@
+--- pnm/Makefile.orig	Wed Sep 19 11:23:10 2001
++++ pnm/Makefile	Fri Nov  9 00:15:34 2001
+@@ -182,7 +182,7 @@
+ # The Tiff library references math functions.
+ tifftopnm pnmtotiff pnmtotiffcmyk: %: %.o $(NETPBMLIBS) $(LIBOPT)
+ 	$(LD) $(LDFLAGS) -o $@ $@.o `$(LIBOPT) $(NETPBMLIBS)` \
+-	  $(TIFFLD) $(JPEGLD) -lm $(TIFFLIB_LDFLAGS) $(CDEBUG)
++	  $(TIFFLD) $(JPEGLD) $(ZLD) -lm $(TIFFLIB_LDFLAGS) $(CDEBUG)
+ 
+ pngtopnm pnmtopng: %: %.o $(NETPBMLIBS) $(LIBOPT)
+ 	$(LD) $(LDFLAGS) -o $@ $@.o `$(LIBOPT) $(NETPBMLIBS)` \
