@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.75 2000/07/14 07:30:34 kunishi Exp $
+# $Id: port.mk,v 1.76 2000/09/21 12:27:38 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -70,6 +70,11 @@ BUILD_DEPENDS+=	OPENbzip2:${PORTSDIR}/archivers/bzip2
 .if defined(USE_INSTALL_INFO)
 RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
 .endif
+.if defined(USE_ZLIB)
+.if ${OSREL} <= 5.7
+LIB_DEPENDS+=	OPENzlib:${PORTSDIR}/devel/zlib
+.endif
+.endif
 #.if defined(USE_GMAKE)
 #BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel/gmake
 #.endif
@@ -89,7 +94,19 @@ PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
 		TEMPLATEDIR=${TEMPLATEDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
 PROTOTYPE?=	${PKGDIR}/prototype
+.if exists(${PKGDIR}/prototype.in.${OSREL}.${ARCH})
+PROTOTYPE_IN?=	${PKGDIR}/prototype.in.${OSREL}.${ARCH}
+.else
+.if exists(${PKGDIR}/prototype.in.${OSREL})
+PROTOTYPE_IN?=	${PKGDIR}/prototype.in.${OSREL}
+.else
+.if exists(${PKGDIR}/prototype.in.${ARCH})
+PROTOTYPE_IN?=	${PKGDIR}/prototype.in.${ARCH}
+.else
 PROTOTYPE_IN?=	${PKGDIR}/prototype.in
+.endif
+.endif
+.endif
 DEPEND?=	${PKGDIR}/depend
 PROCEDURE_SCRIPTS?=	request checkinstall \
 			preinstall postinstall preremove postremove
@@ -160,7 +177,11 @@ NOTHING_TO_DO?=		/usr/bin/true
 
 CC?=		${SOAP_BINDIR}/gcc
 CXX?=		${SOAP_BINDIR}/c++
+.if ${OSREL} < 5.7
 GMAKE?=		${SOAP_BINDIR}/gmake
+.else
+GMAKE?=		/opt/sfw/bin/gmake
+.endif
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 CFLAGS?=	-O2
 CXXFLAGS?=	-O2
@@ -181,9 +202,11 @@ MAKE_ENV+=	PREFIX=${PREFIX} \
 		X11BASE=${X11BASE} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC="${CC}" \
-		CFLAGS="${CFLAGS}"
+		CFLAGS="${CFLAGS}" \
+		CXX="${CXX}" \
+		CXXFLAGS="${CXXFLAGS}"
 
-MAKE_INSTALL_ENV+=	PREFIX=${INSTPREFIX} \
+MAKE_INSTALL_ENV+= \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC="${CC}" \
 		CFLAGS="${CFLAGS}"
@@ -335,6 +358,8 @@ MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR} PREFIX=${PREFIX} \
 .if !defined(NO_INSTALL_MAN)
 INSTALL_TARGET+=	install.man
 .endif
+.else
+MAKE_INSTALL_ENV+=	PREFIX=${INSTPREFIX}
 .endif
 
 ### rule definitions
