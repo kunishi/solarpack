@@ -1,0 +1,13 @@
+#!/bin/sh
+PATH=%%PREFIX%%/sbin:/usr/bin:/bin
+
+case "$1" in
+'start'|'stop'|'restart')
+	if [ -f %%PREFIX%%/apache/bin/apachectl ] ; then
+		%%PREFIX%%/apache/bin/apachectl $1
+	fi
+	;;
+*)
+	echo "usage: $0 {start|stop|restart}"
+	;;
+esac
