@@ -18,3 +18,6 @@ f none include/gdfonts.h=%%INSTPREFIX%%/include/gdfonts.h 0644 root bin
 f none include/gdfontt.h=%%INSTPREFIX%%/include/gdfontt.h 0644 root bin
 d none lib=%%INSTPREFIX%%/lib 0755 root bin
 f none lib/libgd.a=%%INSTPREFIX%%/lib/libgd.a 0644 root bin
+f none lib/libgd.so.2.0.0=%%INSTPREFIX%%/lib/libgd.so.2.0.0 0644 root bin
+s none lib/libgd.so.2=%%INSTPREFIX%%/lib/libgd.so.2.0.0
+s none lib/libgd.so=%%INSTPREFIX%%/lib/libgd.so.2.0.0
