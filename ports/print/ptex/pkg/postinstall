@@ -1,2 +1,4 @@
-(cd $CLIENT_BASEDIR/share/texmf/metapost/support/charlib; \
-  cp tilde-equal '~=')
+TEXMF=$CLIENT_BASEDIR/share/texmf
+TILDE_EQUAL='~='
+
+cd $TEXMF/metapost/support/charlib && cp tilde-equal $TILDE_EQUAL

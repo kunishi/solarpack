@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 2000/01/19 01:30:52 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/01/19 09:16:34 kunishi Exp $
 #
 
 PKG=		OPENptexj
@@ -18,9 +18,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		texmflib-7.3.tar.gz \
 		ptex218.tar.gz \
 		plib-1.4-jis.tar.gz \
-		Makefile.in.patch.txt \
-		base.tar.gz \
-		unpacked.tar.gz
+		Makefile.in.patch.txt
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} web-7.2.tar.gz
 
 WRKSRC=		${WRKDIR}/web2c-7.2
@@ -38,10 +36,6 @@ post-extract:
 	${MKDIR} ${INSTPREFIX}/share
 	${TAR} -xzf ${DISTDIR}/texmflib-7.3.tar.gz -C ${INSTPREFIX}/share
 	${RM} -rf ${INSTPREFIX}/share/texmf/tex/latex/base
-	${TAR} -xzf ${DISTDIR}/base.tar.gz \
-	  -C ${INSTPREFIX}/share/texmf/tex/latex/
-	${TAR} -xzf ${DISTDIR}/unpacked.tar.gz \
-	  -C ${INSTPREFIX}/share/texmf/tex/latex/
 	${TAR} -xzf ${DISTDIR}/plib-1.4-jis.tar.gz -C ${INSTPREFIX}/share
 	${TAR} -xzf ${DISTDIR}/ptex218.tar.gz -C ${WRKSRC}/web2c
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/texmf
