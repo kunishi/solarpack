@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2001/11/12 12:36:36 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/11/14 05:07:57 kunishi Exp $
 #
 
 PORTNAME=	libxml2
-VERSION=	2.4.6
+VERSION=	2.4.10
 PORTREV=	1
 
 PKG=		OPUClxml2
