@@ -1,0 +1,10 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/doc=%%INSTPREFIX%%/share/doc 0755 root bin
+d none share/doc/watanabe-vf=%%INSTPREFIX%%/share/doc/watanabe-vf 0755 root bin
+f none share/doc/watanabe-vf/README=%%INSTPREFIX%%/share/doc/watanabe-vf/README 0644 root bin
+f none share/doc/watanabe-vf/dviprt.vfn=%%INSTPREFIX%%/share/doc/watanabe-vf/dviprt.vfn 0644 root bin
+d none share/fonts=%%INSTPREFIX%%/share/fonts 0755 root bin
+d none share/fonts/watanabe_font=%%INSTPREFIX%%/share/fonts/watanabe_font 0755 root bin
+f none share/fonts/watanabe_font/mincho.vf1=%%INSTPREFIX%%/share/fonts/watanabe_font/mincho.vf1 0644 root bin
+f none share/fonts/watanabe_font/mincho.vf2=%%INSTPREFIX%%/share/fonts/watanabe_font/mincho.vf2 0644 root bin
