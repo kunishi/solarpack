@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 2000/06/21 02:41:22 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/06/22 02:14:20 kunishi Exp $
 #
 
 PORTNAME=	zoularis
@@ -17,6 +17,8 @@ USE_PERL5=	yes
 INSTALL_TARGET=	all
 MAKE_INSTALL_ARGS+=	CC=${LOCALBASE}/bin/gcc
 
+PROTOTYPE_IN=	${PKGDIR}/prototype.in.${ARCH}
+PREFIX=		${LOCALBASE}/bsd
 INSTPREFIX=	${LOCALBASE}/bsd
 NETBSD_SRCDIR?=	/export/NetBSD/src
 
