@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.1 1999/06/09 10:35:38 kunishi Exp $
+# $Id: Makefile.in,v 1.2 1999/06/09 10:42:22 kunishi Exp $
 #
 
 PKGNAME=	pkgbuild-0.1
@@ -20,7 +20,7 @@ RM=		@PKGB_RM@
 SED=		@PKGB_SED@
 
 all:
-	cd mk && ${MAKE} PKGBUILDDIR=${PKGBUILDDIR}
+	cd mk && ${MAKE} PKGBUILDDIR=${PKGBUILDDIR} LOCALBASE=${LOCALBASE}
 	cd pkg && ${SED} -e 's!%%INSTPREFIX%%!${CWD}!g' prototype.in > prototype
 
 release:	all
@@ -29,6 +29,10 @@ release:	all
 	${PKGMK} -o -f ${PKGDIR}/prototype -b ${CWD} -d ${WRKDIR}
 	${PKGTRANS} ${WRKDIR} ${RELEASEDIR}/${PKGNAME} all
 	${COMPRESS} ${RELEASEDIR}/${PKGNAME}
+
+install:
+	cd mk && \
+	  ${MAKE} PKGBUILDDIR=${PKGBUILDDIR} LOCALBASE=${LOCALBASE} install
 
 clean:
 	${RM} -f config.cache config.log config.status
