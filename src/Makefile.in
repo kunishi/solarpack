@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.7 2000/01/06 07:52:49 kunishi Exp $
+# $Id: Makefile.in,v 1.8 2000/01/06 07:58:17 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
@@ -34,7 +34,7 @@ BMAKE=		${CWD}/bin/bmake
 ARCH:sh=	/usr/bin/mach
 OSREL:sh=	/usr/bin/uname -r
 
-STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/ucb
+STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:/usr/ucb
 
 RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
@@ -106,6 +106,7 @@ clean:
 	  (cd ${PORTSDIR}/$${tool} && ${BMAKE} ${BUILD_PACKAGE_OPTS} pkgclean); \
 	done
 	${RM} -rf ${WRKDIR}
+	${RM} ${CWD}/bin
 
 releaseclean:	clean
 	${RM} -rf ${RELEASEDIR}
