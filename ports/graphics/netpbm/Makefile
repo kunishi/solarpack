@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.11 2001/11/08 15:37:44 kunishi Exp $
+# $Id: Makefile,v 1.12 2001/11/19 12:54:21 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	netpbm
 VERSION=	9.20
-PORTREV=	4
+PORTREV=	5
 
 PKG=		OPUCntpbm
 NAME=	A toolkit for conversion of images between different formats
@@ -17,8 +17,8 @@ EXTRACT_SUFX=	.tgz
 
 BUILD_DEPENDS=	GNUmake:${PORTSDIR}/devel/gmake \
 		GNUflex:${PORTSDIR}/devel/flex
-LIB_DEPENDS=	OPENtiff:${PORTSDIR}/graphics/tiff \
-		OPENjpeg:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	OPUCtiff:${PORTSDIR}/graphics/tiff \
+		OPUCjpeg:${PORTSDIR}/graphics/jpeg \
 		OPUCpng:${PORTSDIR}/graphics/png
 
 USE_GMAKE=	yes
