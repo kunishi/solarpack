@@ -1,11 +1,16 @@
 #
-# $Id: soap.conf.in,v 1.2 1999/05/08 10:20:23 kunishi Exp $
+# $Id: soap.conf.in,v 1.3 1999/05/11 09:28:44 kunishi Exp $
 #
 ###
+# pkgbuild root directory.
+PKGBUILDDIR=	/opt/local/pkgbuild
 #
-# C compiler for building packages.
-#CC=	/usr/local/bin/gcc
+# C compiler for building packages. (comment out when using 'cc'.)
+CC=	/usr/local/bin/gcc
 #
 # package maintainer.
 #
 PKG_MAINTAINER=	Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
+
+### do not modify below
+PKGBUILD_MAKEFILE_DIR=	${PKGBUILDDIR}/include
