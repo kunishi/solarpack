@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.90 2002/12/26 05:26:16 kunishi Exp $
+# $Id: port.mk,v 1.91 2003/01/06 11:12:51 kunishi Exp $
 #
 
 # ${APDK_DIR} and ${APDK_BINDIR} are set in ${APDK_DIR}/share/mk/soap.conf.
@@ -60,7 +60,7 @@ BUILD_DEPENDS+=	GNUbinut:${PORTSDIR}/devel/binutils
 CC=		gcc -B${LOCALBASE}/${GNU_HOSTTYPE}/bin/
 CXX=		c++ -B${LOCALBASE}/${GNU_HOSTTYPE}/bin/
 .endif
-.if defined(USE_BZIP2)
+.if defined(USE_BZIP2) && !exists(/usr/bin/bzip2)
 BUILD_DEPENDS+=	OPUCbzip2:${PORTSDIR}/archivers/bzip2
 .endif
 .if defined(USE_INSTALL_INFO)
@@ -68,10 +68,8 @@ BUILD_DEPENDS+=	OPUCbzip2:${PORTSDIR}/archivers/bzip2
 RUN_DEPENDS+=	OPUCtxinf:${PORTSDIR}/textproc/texinfo
 .endif
 .endif
-.if defined(USE_ZLIB)
-.if ${OSREL} <= 5.7
-LIB_DEPENDS+=	OPENzlib:${PORTSDIR}/devel/zlib
-.endif
+.if defined(USE_ZLIB) && !exists(/usr/lib/libz.so)
+LIB_DEPENDS+=	OPUCzlib:${PORTSDIR}/devel/zlib
 .endif
 .if defined(USE_AUTOMAKE)
 USE_AUTOCONF=	yes
@@ -204,14 +202,20 @@ INSTPKG_COOKIE?=	${WRKDIR}/.instpkg_done
 
 NOTHING_TO_DO?=		/usr/bin/true
 
+.if defined(USE_SYSTEM_TOOLS)
 .if ${OSREL} >= 5.8
 CC?=		/opt/sfw/bin/gcc
-CXX?=		/opt/sfw/bin/g++
+CXX?=		/opt/sfw/bin/c++
 GMAKE?=		/opt/sfw/bin/gmake
 .else
 CC?=		${APDK_BINDIR}/gcc
 CXX?=		${APDK_BINDIR}/c++
 GMAKE?=		${APDK_BINDIR}/gmake
+.endif
+.else
+CC?=		gcc
+CXX?=		c++
+GMAKE?=		gmake
 .endif
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 CFLAGS?=	-O2
@@ -402,7 +406,7 @@ CONFIGURE_SCRIPT?=	configure
 CONFIGURE_TARGET?=	${GNU_HOSTTYPE}
 
 .if defined(GNU_CONFIGURE)
-CONFIGURE_ARGS+=	--prefix=${PREFIX} --target=${CONFIGURE_TARGET}
+CONFIGURE_ARGS+=	--prefix=${PREFIX} #--target=${CONFIGURE_TARGET}
 HAS_CONFIGURE=		yes
 MAKE_ARGS+=		prefix=${PREFIX}
 .if !defined(PREFIX_AS_INSTPREFIX)
@@ -992,6 +996,7 @@ _sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${CUT} -d= -f1`; \
 
 .if !target(gen-prototype)
 gen-prototype:
+	@${MKDIR} ${PKGDIR}
 	@${ECHO_MSG} "===>  Generating prototype file"
 	@${ECHO} 'i pkginfo=${PKGDIR}/pkginfo' > ${PROTOTYPE}
 .for script in ${PROCEDURE_SCRIPTS}
@@ -1045,6 +1050,7 @@ _sedsubpkginfolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's?=.*??'`; \
 
 .if !target(gen-pkginfo)
 gen-pkginfo:
+	@${MKDIR} ${PKGDIR}
 	@${ECHO_MSG} "===>  Generating pkginfo file"
 	@${SED} ${_sedsubpkginfolist} \
 		-e "s!%%NAME%%!${NAME}!g" \
