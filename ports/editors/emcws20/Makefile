@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/07/14 09:49:30 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/07/14 10:20:34 kunishi Exp $
 #
 
 .if !defined(PORTNAME)
@@ -53,7 +53,9 @@ CLASS_INFO=	info/ccmode info/cl info/dired-x info/ediff \
 		info/message info/mh-e info/reftex info/sc \
 		info/vip info/viper info/widget
 PROTOTYPE_IN?=	${PKGDIR}/prototype.in
+PROTOTYPE_SUB+=	EMACS_VER=${EMACS_VER}
 
+EMACS_VER=	20.7
 EMCWS_VER=	20000614
 WNN6_INCDIR=	/usr/lib/locale/ja/wnn/demo/include/wnn
 WNN6_LIBDIR=	/usr/lib/locale/ja/wnn/demo/lib
