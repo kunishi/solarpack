@@ -1,9 +1,10 @@
 #
-# $Id: Makefile,v 1.7 2000/06/19 12:18:19 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/06/23 11:19:09 kunishi Exp $
 #
 
 SUBDIR+=	ImageMagick
 SUBDIR+=	aalib
+SUBDIR+=	gd
 SUBDIR+=	hdf
 SUBDIR+=	java3d
 SUBDIR+=	jbigkit
