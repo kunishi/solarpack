@@ -23,7 +23,8 @@ endif
 
 .PHONY: fetch extract patch configure build package install-package \
 	do-build post-install install-package release \
-	clean pkgclean distclean
+	clean pkgclean distclean \
+	build-prototype
 
 all:	build
 
@@ -149,7 +150,7 @@ ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 
 ifneq ($(DO_BUILD_OVERRIDE),yes)
 do-build:
-	@cd ${WRKSRC} && ${MAKE}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE}
 endif
 
 clean:
@@ -164,3 +165,16 @@ distclean:	clean
 	@${ECHO_MSG} "===> Cleaning distfiles for ${PKGNAME}"
 	@for file in ${DISTFILES}; do \
 	 ${RM} -rf ${DISTDIR}/$${file}; done
+
+### only for maintainance
+build-prototype:	${INSTALL_COOKIE}
+	@${PKGMAKE} install
+	@${ECHO_MSG} "===> Building prototype.in"
+	@if test -f ${PKGDIR}/prototype.in; then \
+		${ECHO_MSG} "===>  Backing up old prototype.in"; \
+		${MV} ${PKGDIR}/prototype.in ${PKGDIR}/prototype.in.bak; \
+	fi
+	(cd ${WRKDIR}${PREFIX} && find . -print | pkgproto) \
+	 | ${POSTPROTO} > ${PKGDIR}/prototype.in
+	@${ECHO_MSG} "===> prototype.in template was successfully made."
+	@${ECHO_MSG} "===> You must edit the file by hand."
