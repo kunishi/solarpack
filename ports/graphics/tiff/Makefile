@@ -1,19 +1,19 @@
 #
-# $Id: Makefile,v 1.11 2001/11/30 12:53:38 kunishi Exp $
+# $Id: Makefile,v 1.12 2001/12/01 06:15:40 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	tiff
-VERSION=	3.5.6.b
-PORTREV=	2
+VERSION=	3.5.7
+PORTREV=	3
 
 PKG=		OPUCtiff
 NAME=		TIFF Software Distribution
 
 VENDOR=		Silicon Graphics, Inc.
-DISTNAME=	tiff-v3.5.6-beta
-MASTER_SITES=	http://www.libtiff.org/
+DISTNAME=	${PORTNAME}-v${VERSION}
+MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/
 
 LIB_DEPENDS=	OPUCjpeg:${PORTSDIR}/graphics/jpeg
 
