@@ -1,0 +1,14 @@
+--- installman.orig	Wed May 17 19:01:20 2000
++++ installman	Wed May 17 19:02:20 2000
+@@ -52,7 +52,10 @@
+ -x "t/perl$Config{exe_ext}"		|| warn "WARNING: You've never run 'make test'!!!",
+ 	"  (Installing anyway.)\n";
+ 
+-$packlist = ExtUtils::Packlist->new("$Config{installarchlib}/.packlist");
++$installprefix = $ENV{INSTALLPREFIX};
++$installarchlib = $Config{installarchlib};
++$installarchlib =~ s|/usr/local|$installprefix|;
++$packlist = ExtUtils::Packlist->new("$installarchlib/.packlist");
+ 
+ # Install the main pod pages.
+ runpod2man('pod', $man1dir, $man1ext);
