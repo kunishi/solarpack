@@ -1,5 +1,5 @@
 #
-# $Id: pkgbuild.mk,v 1.8 1999/05/11 09:27:51 kunishi Exp $
+# $Id: pkgbuild.mk,v 1.9 1999/05/11 10:38:07 kunishi Exp $
 #
 
 ### rule definitions
@@ -169,15 +169,15 @@ do-build::
 
 post-install::
 
-clean:
+clean::
 	@${ECHO_MSG} "===> Cleaning for ${PKGNAME}"
 	@${RM} -rf ${WRKDIR} ${PKGDIR}/pkginfo ${PKGDIR}/prototype
 
-pkgclean:	clean
+pkgclean::	clean
 	@${ECHO_MSG} "===> Cleaning package for ${PKGNAME}"
 	@${RM} -rf ${CURDIR}/${PKGNAME}
 
-distclean:	pkgclean
+distclean::	pkgclean
 	@${ECHO_MSG} "===> Cleaning distfiles for ${PKGNAME}"
 	@for file in ${DISTFILES}; do \
 	 ${RM} -rf ${DISTDIR}/$${file}; done
