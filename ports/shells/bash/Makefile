@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.6 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/05/17 06:53:28 kunishi Exp $
 #
 
 PORTNAME=	bash
-VERSION=	2.03
+VERSION=	2.04
 PORTREV=	1
 
 PKG=		GNUbash
