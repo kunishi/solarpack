@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.10 2003/01/07 03:45:04 kunishi Exp $
+# $Id: Makefile,v 1.11 2003/02/27 07:10:34 kunishi Exp $
 #
 
 PORTNAME=	openssh
 VERSION=	3.5p1
-PORTREV=	2
+PORTREV=	3
 
 PKG=		OPUCopssh
 NAME=		a free version of SSH, originated from OpenBSD Project
@@ -13,7 +13,7 @@ MASTER_SITES=	ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/ \
 		ftp://ftp.jp.openbsd.org/pub/OpenBSD/OpenSSH/portable/
 
 LIB_DEPENDS=	OPUCopssl:${PORTSDIR}/security/openssl
-RUN_DEPENDS=	OPENaskpx:${PORTSDIR}/security/x11-ssh-askpass
+RUN_DEPENDS=	OPUCaskpx:${PORTSDIR}/security/x11-ssh-askpass
 
 USE_ZLIB=	yes
 GNU_CONFIGURE=	yes
