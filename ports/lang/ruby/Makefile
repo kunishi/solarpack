@@ -16,6 +16,5 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-shared
 USE_GMAKE=	yes
 MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
-PREFIX_AS_INSTPREFIX=	yes
 
 .include <port.mk>
