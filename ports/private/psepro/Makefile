@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/07/14 11:48:21 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/07/14 11:51:52 kunishi Exp $
 #
 
 PORTNAME=	psepro
@@ -27,4 +27,6 @@ do-install:
 	@${ECHO_MSG} "make sure installing directories will be ${INSTPREFIX}/psepro."
 	@cd ${DISTDIR} && java proinst
 
+post-install:
+	${CHMOD} 755 ${INSTPREFIX}/psepro
 .include <port.mk>

@@ -1,5 +1,5 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-d none psepro=%%INSTPREFIX%%/psepro 0751 root bin
+d none psepro=%%INSTPREFIX%%/psepro 0755 root bin
 f none psepro/CHANGES.htm=%%INSTPREFIX%%/psepro/CHANGES.htm 0444 root bin
 f none psepro/LICENSE.htm=%%INSTPREFIX%%/psepro/LICENSE.htm 0444 root bin
 f none psepro/README.htm=%%INSTPREFIX%%/psepro/README.htm 0444 root bin
