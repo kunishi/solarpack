@@ -1,0 +1,27 @@
+--- Makefile.orig	Wed Dec 18 22:42:10 2002
++++ Makefile	Fri Jan 31 10:33:04 2003
+@@ -28,9 +28,9 @@
+ # Solaris 7 or 8 or 9
+ # CC=cc
+ # CFLAGS=-xO4 -KPIC -DSOLARIS
+-# CC=gcc
+-# CFLAGS=-O -DSOLARIS
+-# SYSLIBS=-lsocket -lnsl
++CC=gcc
++CFLAGS=-O -DSOLARIS
++SYSLIBS=-lsocket -lnsl
+ 
+ # Solaris 2.6
+ # CC=cc
+@@ -178,9 +178,10 @@
+ SRC = bsd-daemon.c bsd-snprintf.c unix_socket.c tcp_socket.c close_on_exec.c conffile.c error_handlers.c error_log.c non_blocking.c obtain_limit.c prngd.c rand.c seed.c serverloop.c sha1.c sockio.c
+ 
+ # Move default locations
++PREFIX=/usr/local
+ #DEFS=-DRANDSAVENAME=\"/tmp/prngd-seed\" -DCONFIGFILE=\"/tmp/prngd.conf\"
+ # or
+-#DEFS=-DRANDSAVENAME=\"/usr/local/etc/prngd/prngd-seed\" -DCONFIGFILE=\"/usr/local/etc/prngd/prngd.conf\"
++DEFS=-DRANDSAVENAME=\"${PREFIX}/etc/prngd/prngd-seed\" -DCONFIGFILE=\"${PREFIX}/etc/prngd/prngd.conf\"
+ # or
+ 
+ COMPLETE_CPPFLAGS=-I. $(CPPFLAGS)
