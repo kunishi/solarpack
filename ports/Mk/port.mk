@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.91 2003/01/06 11:12:51 kunishi Exp $
+# $Id: port.mk,v 1.92 2003/02/26 10:52:38 kunishi Exp $
 #
 
 # ${APDK_DIR} and ${APDK_BINDIR} are set in ${APDK_DIR}/share/mk/soap.conf.
@@ -37,7 +37,6 @@ RELEASE_PKG_DIR?=	${PORTS_TOPDIR}/packages
 
 PATCHDIR?=	${MASTERDIR}/patches
 TOOLSDIR?= 	${PORTS_TOPDIR}/tools
-FILESDIR?=	${MASTERDIR}/files
 SCRIPTDIR?=	${MASTERDIR}/scripts
 PKGDIR?=	${MASTERDIR}/pkg
 TEMPLATEDIR?=	${PORTS_TOPDIR}/Template
@@ -229,7 +228,7 @@ CONFIGURE_ENV+=	CC="${CC}" \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
 MD5?=		${APDK_BINDIR}/md5
-MD5_FILE=	${FILESDIR}/md5
+MD5_FILE=	${MASTERDIR}/distinfo
 
 MAKEFILE?=	Makefile
 MAKE_FLAGS?=	-f ${MAKEFILE}
@@ -820,11 +819,17 @@ do-package:
 .endif
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
+.if 0
 	@${PKGTRANS} -s ${SPOOLDIR} ${.CURDIR}/${PKGNAME} all
+.endif
 .endif
 
 .if !target(do-release)
 do-release:
+	if [ -d ${RELEASE_PKG_DIR} ]; then \
+	  ${PKGTRANS} -o ${SPOOLDIR} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL} all; \
+	fi
+.if 0
 .if !defined(PKG_WITHOUT_GZIP)
 	${GZIP} -c -9 ${PKGNAME} > ${PKGNAME_REAL}
 .endif
@@ -834,11 +839,15 @@ do-release:
 	fi
 .endif
 .endif
+.endif
 
 .if !target(do-instpkg)
 do-instpkg:
+	${PKGADD} -d ${SPOOLDIR} all
+.if 0
 	${GZCAT} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}/${PKGNAME_REAL} > ${WRKDIR}/${PKGNAME}
 	${PKGADD} -d ${WRKDIR}/${PKGNAME} all
+.endif
 .endif
 
 ###
@@ -1088,7 +1097,6 @@ distclean:	pkgclean
 ### only for maintainance
 .if !target(makesum)
 makesum:	fetch
-	@${MKDIR} ${FILESDIR}
 .if defined(MERGE_MD5) && (${MERGE_MD5} == "yes") && exists(${MD5_FILE})
 	@${MV} ${MD5_FILE} ${MD5_FILE}.bak
 	@(cd ${DISTDIR} && ${MD5} ${CKSUMFILES}) | ${CAT} ${MD5_FILE}.bak - | \
