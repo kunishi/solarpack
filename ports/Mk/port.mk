@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.40 2000/01/06 08:45:08 kunishi Exp $
+# $Id: port.mk,v 1.41 2000/01/06 10:48:45 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -17,6 +17,9 @@ OSREL!=		/usr/bin/uname -r
 .endif
 .if !defined(OSREL_SOLARIS)
 OSREL_SOLARIS!=	/usr/bin/uname -r | /usr/bin/sed 's/^5/2/'
+.endif
+.if !defined(SUNW_ISA)
+SUNW_ISA!=	/usr/bin/uname -p
 .endif
 
 .if (${ARCH} == "sparc")
@@ -747,6 +750,9 @@ gen-pkginfo:
 		-e "s!%%VENDOR%%!${VENDOR}!g" \
 		-e "s!%%MAINTAINER%%!${MAINTAINER}!g" \
 		-e "s!%%CLASSES%%!${CLASSES}!g" ${PKGINFO_IN} > ${PKGINFO}
+.endif
+.if (${SUNW_ISA} == "sparc9")
+	@${ECHO} SUNW_ISA=${SUNW_ISA} >> ${PKGINFO}
 .endif
 
 .if !target(clean)
