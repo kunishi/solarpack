@@ -1,3 +1,0 @@
-PATH=$CLIENT_BASEDIR/bin:$PATH; export PATH
-$CLIENT_BASEDIR/bin/mktexlsr
-$CLIENT_BASEDIR/bin/texconfig rehash

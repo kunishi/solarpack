@@ -1,5 +1,5 @@
---- texk/web2c/ptex-3.0.5/Makefile.in.orig	Fri Dec 27 12:10:19 2002
-+++ texk/web2c/ptex-3.0.5/Makefile.in	Fri Dec 27 12:12:00 2002
+--- texk/web2c/ptex/Makefile.in.orig	Fri Dec 27 12:10:19 2002
++++ texk/web2c/ptex/Makefile.in	Fri Dec 27 12:12:00 2002
 @@ -7,15 +7,15 @@
  programs=ptex tftopl pltotf pdvitype jbibtex
  formats=ptex.fmt platex.fmt
