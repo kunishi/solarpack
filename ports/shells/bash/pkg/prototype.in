@@ -1,10 +1,10 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
 i i.info=%%TEMPLATEDIR%%/i.info
 i r.info=%%TEMPLATEDIR%%/r.info
+i i.shell=%%TEMPLATEDIR%%/i.shell
+i r.shell=%%TEMPLATEDIR%%/r.shell
 d none bin=%%INSTPREFIX%%/bin 0755 root bin
-f none bin/bash=%%INSTPREFIX%%/bin/bash 0755 bin bin
+f shell bin/bash=%%INSTPREFIX%%/bin/bash 0755 bin bin
 f none bin/bashbug=%%INSTPREFIX%%/bin/bashbug 0755 bin bin
 d none info=%%INSTPREFIX%%/info 0755 root bin
 f info info/bash.info=%%INSTPREFIX%%/info/bash.info 0644 bin bin
