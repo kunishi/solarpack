@@ -1,59 +1,97 @@
-.PHONY: extract patch configure build prepackage package clean pkgclean
+PKGNAME=	wget-1.5.3
+BASEDIR=	/usr/local
+USE_GMAKE=	yes
+
+post-install:
+	${MKDIR} ${WRK_BASEDIR}/share/examples/wget
+	${INSTALL} -c ${WRKSRC}/doc/sample.wgetrc \
+	    ${WRK_BASEDIR}/share/examples/wget/sample.wgetrc
+
+GMAKE=		/usr/local/bin/gmake
+GTAR=		/usr/local/bin/gtar
+GZIP=		/usr/local/bin/gzip
+INSTALL=	/usr/ucb/install
+MAKE=		/usr/ccs/bin/make
+MKDIR=		/usr/bin/mkdir -p
+PKGMK=		/usr/bin/pkgmk
+PKGTRANS=	/usr/bin/pkgtrans
+PWD=		/usr/bin/pwd
+RM=		/usr/bin/rm
+SED=		/usr/bin/sed
+TOUCH=		/usr/bin/touch
+UNAME=		/usr/bin/uname
+
+CURDIR=	$(shell ${PWD})
+WRKDIR=	${CURDIR}/work
+WRKSRC=	${WRKDIR}/${PKGNAME}
+WRK_BASEDIR=	${WRKDIR}/local
+SPOOLDIR=	${WRKDIR}/spool
+PKGDIR=	${CURDIR}/pkg
+
+EXTRACT_SUFX=	.tar.gz
+
+ARCH=		$(shell ${UNAME} -p)
+
+EXTRACT_COOKIE:=	${WRKDIR}/.extract_done
+PATCH_COOKIE:=		${WRKDIR}/.patch_done
+CONFIGURE_COOKIE:=	${WRKDIR}/.configure_done
+BUILD_COOKIE:=		${WRKDIR}/.build_done
+INSTALL_COOKIE:=	${WRKDIR}/.install_done
+PACKAGE_COOKIE:=	${WRKDIR}/.package_done
+
+.PHONY: extract patch configure build prepackage package clean pkgclean \
+	post-install
 
 all:	build
 
-PKGNAME=	wget-1.5.3
+extract:	${EXTRACT_COOKIE}
+patch:		${PATCH_COOKIE}
+configure:	${CONFIGURE_COOKIE}
+build:		${BUILD_COOKIE}
+install:	${INSTALL_COOKIE}
+package:	${PACKAGE_COOKIE}
 
-CURDIR:=	$(shell pwd)
+${EXTRACT_COOKIE}:
+	${MKDIR} ${WRKDIR}
+	cd ${WRKDIR} && ${GTAR} xzf /work/net/${PKGNAME}${EXTRACT_SUFX}
+	@${TOUCH} $@
 
-extract:	work/.extract_done
-patch:		work/.patch_done
-configure:	work/.configure_done
-build:		work/.build_done
-install:	work/.install_done
-package:	work/.package_done
-
-work/.extract_done:
-	mkdir -p work
-	cd work && gtar xzf /work/net/wget-1.5.3.tar.gz
-	touch $@
-
-work/.patch_done:	work/.extract_done
-	gmake extract
+${PATCH_COOKIE}:	${EXTRACT_COOKIE}
+	${GMAKE} extract
 	# nothing done with patch
-	touch $@
+	@${TOUCH} $@
 
-work/.configure_done:	work/.patch_done
-	gmake patch
-	cd work/wget-1.5.3 && ./configure
-	touch $@
+${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
+	${GMAKE} patch
+	cd ${WRKSRC} && ./configure
+	@${TOUCH} $@
 
-work/.build_done:	work/.configure_done
-	gmake configure
-	cd work/wget-1.5.3 && gmake
-	touch $@
+${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
+	${GMAKE} configure
+	cd ${WRKSRC} && ${MAKE}
+	@${TOUCH} $@
 
-work/.install_done:	work/.build_done
-	gmake build
-	cd work/wget-1.5.3 && gmake install prefix=${CURDIR}/work/local
-	mkdir -p work/local/share/examples/wget
-	ginstall -c work/wget-1.5.3/doc/sample.wgetrc work/local/share/examples/wget/sample.wgetrc
-	sed -e "s?%%PKGDIR%%?${CURDIR}/pkg?" \
-	    -e "s?%%WRK_BASEDIR%%?${CURDIR}/work/local?" \
-	    pkg/prototype.in > pkg/prototype
-	sed -e "s?%%ARCH%%?$(shell uname -p)?" \
-	    -e "s?%%BASEDIR%%?/usr/local?" pkg/pkginfo.in > pkg/pkginfo
-	touch $@
+${INSTALL_COOKIE}:	${BUILD_COOKIE}
+	${GMAKE} build
+	cd ${WRKSRC} && ${MAKE} install prefix=${WRK_BASEDIR}
+	${GMAKE} post-install
+	@${TOUCH} $@
 
-work/.package_done:	work/.install_done
-	gmake install
-	mkdir -p ${CURDIR}/work/spool
-	pkgmk -d ${CURDIR}/work/spool -f ${CURDIR}/pkg/prototype
-	pkgtrans -s ${CURDIR}/work/spool ${CURDIR}/${PKGNAME} all
-	gzip -9 ${PKGNAME}
+${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
+	${GMAKE} install
+	${SED} -e "s?%%PKGDIR%%?${PKGDIR}?" \
+	    -e "s?%%WRK_BASEDIR%%?${WRK_BASEDIR}?" \
+	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
+	${SED} -e "s?%%ARCH%%?${ARCH}?" \
+	    -e "s?%%BASEDIR%%?${BASEDIR}?" ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
+	${MKDIR} ${SPOOLDIR}
+	${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype
+	${PKGTRANS} -s ${SPOOLDIR} ${CURDIR}/${PKGNAME} all
+	${GZIP} -9 ${PKGNAME}
+	@${TOUCH} $@
 
 clean:
-	rm -rf work pkg/pkginfo pkg/prototype
+	${RM} -rf ${WRKDIR} ${PKGDIR}/pkginfo ${PKGDIR}/prototype
 
 pkgclean:	clean
-	rm -rf ${CURDIR}/${PKGNAME}.gz
+	${RM} -rf ${CURDIR}/${PKGNAME}.gz
