@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.29 1999/06/09 03:18:18 kunishi Exp $
+# $Id: port.mk,v 1.30 1999/06/17 11:06:41 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -28,6 +28,7 @@ LOCALBASE?=	/usr/local
 X11BASE?=	/usr/openwin
 
 DISTDIR?=	${PKGBUILDDIR}/distfiles
+PORTSDIR?=	${PKGBUILDDIR}/ports
 EXTRACT_SUFX?=	.tar.gz
 RELEASE_PKG_DIR?=	${PKGBUILDDIR}/packages
 
@@ -58,6 +59,7 @@ PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
 PROTOTYPE?=	${PKGDIR}/prototype
 PROTOTYPE_IN?=	${PKGDIR}/prototype.in
+DEPEND?=	${PKGDIR}/depend
 
 PKGINFO?=	${PKGDIR}/pkginfo
 PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
@@ -146,6 +148,7 @@ PKG_CMD?=	${PKGMK}
 PKG_DELETE?=	${PKGRM}
 
 AWK?=		/usr/bin/awk
+BASENAME?=	/usr/bin/basename
 CAT?=		/usr/bin/cat
 CCSMAKE?=	/usr/ccs/bin/make
 CHOWN?=		/usr/bin/chown
@@ -162,6 +165,7 @@ MV?=		/usr/bin/mv
 MKDIR?=		/usr/bin/mkdir -p
 PKGADD?=	/usr/sbin/pkgadd
 PKGMK?=		/usr/bin/pkgmk -o
+PKGINFO_PROG?=	/usr/bin/pkginfo
 PKGPROTO?=	/usr/bin/pkgproto
 PKGRM?=		/usr/sbin/pkgrm
 PKGTRANS?=	/usr/bin/pkgtrans -o
@@ -333,6 +337,7 @@ real-extract:
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} checksum
+	@cd ${MASTERDIR} && ${MAKE} build-depends lib-depends
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
 .if target(post-extract)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
@@ -395,7 +400,12 @@ real-package:
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-instpkg:
+	@if ${PKGINFO_PROG} -q ${PKG}; then \
+	  ${ECHO_MSG} "===> Package ${PKG} is already installed."; \
+	  exit 1; \
+	fi
 	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
+	@cd ${MASTERDIR} && ${MAKE} run-depends lib-depends
 .if target(pre-instpkg)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
@@ -527,6 +537,7 @@ do-install:
 do-package:
 	@cd ${MASTERDIR} && ${MAKE} gen-prototype
 	@cd ${MASTERDIR} && ${MAKE} gen-pkginfo
+	@cd ${MASTERDIR} && ${MAKE} gen-depend
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
 	@${PKGTRANS} -s ${SPOOLDIR} ${MASTERDIR}/${PKGNAME} all
@@ -598,6 +609,95 @@ checksum:
 
 ###
 
+.if !defined(DEPENDS_TARGET)
+DEPENDS_TARGET=	instpkg
+.endif
+
+.if !target(depends)
+depends:	lib-depends
+	@cd ${MASTERDIR} && ${MAKE} build-depends
+	@cd ${MASTERDIR} && ${MAKE} run-depends
+
+.if make(build-depends)
+DEPENDS_TMP+=	${BUILD_DEPENDS}
+.endif
+
+.if make(lib-depends)
+DEPENDS_TMP+=	${LIB_DEPENDS}
+.endif
+
+.if make(run-depends)
+DEPENDS_TMP+=	${RUN_DEPENDS}
+.endif
+
+_DEPENDS_USE:
+.if defined(DEPENDS_TMP)
+	@for i in ${DEPENDS_TMP}; do \
+	  pkg=`${ECHO} $$i | ${SED} -e 's/:.*//'`; \
+	  dir=`${ECHO} $$i | ${SED} -e 's/[^:]*://'`; \
+	  target=${DEPENDS_TARGET}; \
+	  if ${PKGINFO_PROG} -q $$pkg; then \
+	    ${ECHO_MSG} "===>   ${PKGNAME} depends on package: $$pkg - found"; \
+	    notfound=0; \
+	  else \
+	    ${ECHO_MSG} "===>   ${PKGNAME} depends on package: $$pkg - not found"; \
+	    notfound=1; \
+	  fi; \
+	  if [ $$notfound != 0 ]; then \
+	    ${ECHO_MSG} "===>   Verifying $$target for $$pkg in $$dir"; \
+	    if [ ! -d "$$dir" ]; then \
+	      ${ECHO_MSG} "     >> No directory for $$pkg.  Skipping..."; \
+	    else \
+	      (cd $$dir; ${MAKE} $$target); \
+	      ${ECHO_MSG} "===>   Returning to build of ${PKGNAME}"; \
+	    fi; \
+	  fi; \
+	done
+.else
+	@${NOTHING_TO_DO}
+.endif
+
+build-depends:	_DEPENDS_USE
+lib-depends:	_DEPENDS_USE
+run-depends:	_DEPENDS_USE
+
+.endif
+
+.if !target(gen-depend-pkg-list)
+gen-depend-pkg-list:
+.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
+.for entry in ${LIB_DEPENDS} ${RUN_DEPENDS}
+	@${ECHO} ${entry}
+	@dir=`${ECHO} ${entry} | ${SED} -e 's/[^:]*://'`; \
+	  (cd $${dir} && ${MAKE} gen-depend-pkg-list)
+.endfor
+.endif
+.endif
+
+.if !target(print-pkg)
+print-pkg:
+	@${ECHO} -n ${PKG}
+.endif
+.if !target(print-name)
+print-name:
+	@${ECHO} ${NAME}
+.endif
+
+.if !target(gen-depend)
+gen-depend:
+.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
+	@${ECHO_MSG} "===>  Generating depend"
+	@for entry in `cd ${MASTERDIR} && ${MAKE} gen-depend-pkg-list`; do \
+	  pkg=`${ECHO} $${entry} | ${SED} -e 's/:.*//'`; \
+	  dir=`${ECHO} $${entry} | ${SED} -e 's/[^:]*://'`; \
+	  name=`cd $${dir} && ${MAKE} print-name`; \
+	  ${ECHO} "P $${pkg} $${name}" >> ${DEPEND}; \
+	done
+.else
+	@${NOTHING_TO_DO}
+.endif
+.endif
+
 .for sub in ${PROTOTYPE_SUB}
 _sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
 			val=`${ECHO} "${sub}" | ${SED} -e 's/^[^=][^=]*=//'`; \
@@ -629,7 +729,7 @@ gen-pkginfo:
 .if !target(clean)
 clean:
 	@${ECHO_MSG} "===> Cleaning for ${PKGNAME}"
-	@${RM} -rf ${WRKDIR} ${PKGDIR}/pkginfo ${PROTOTYPE}
+	@${RM} -rf ${WRKDIR} ${PKGINFO} ${PROTOTYPE} ${DEPEND}
 .endif
 
 .if !target(pkgclean)
@@ -657,32 +757,29 @@ makesum:	fetch
 .endif
 
 .if !target(gen-prototype-in)
+PROTOTYPE_IN_BASE!=	${BASENAME} ${PROTOTYPE_IN}
 gen-prototype-in:	${INSTALL_COOKIE}
 	@${MAKE} install
-	@${ECHO_MSG} "===> Building prototype.in"
+	@${ECHO_MSG} "===> Building ${PROTOTYPE_IN_BASE}"
 	@${MKDIR} ${PKGDIR}
 	@if test -f ${PROTOTYPE_IN}; then \
-		${ECHO_MSG} "===>  Backing up old prototype.in"; \
+		${ECHO_MSG} "===>  Backing up old ${PROTOTYPE_IN_BASE}"; \
 		${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.bak; \
 	fi
+	@${ECHO} 'i pkginfo=%%PKGDIR%%/pkginfo' >> ${PROTOTYPE_IN}
+.if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
+	@${ECHO} 'i depend=%%PKGDIR%%/depend' >> ${PROTOTYPE_IN}
+.endif
+.if defined(USE_INSTALL_INFO)
+	@${ECHO} 'i i.info=%%TEMPLATEDIR%%/i.info' >> ${PROTOTYPE_IN}
+	@${ECHO} 'i r.info=%%TEMPLATEDIR%%/r.info' >> ${PROTOTYPE_IN}
+.endif
 	@(cd ${WRKDIR}${PREFIX} && find . -print | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
 		-e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
 		-e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
-		-e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%INSTPREFIX%%/\2 \3?' | \
-	  ${AWK} 'BEGIN { printf("i pkginfo=%%%%PKGDIR%%%%/pkginfo\n");} \
-		  { print; }' \
-	  > ${PROTOTYPE_IN}
-.if defined(USE_INSTALL_INFO)
-	@${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.orig
-	@${CAT} ${PROTOTYPE_IN}.orig | ${AWK} \
-		'{ print; }\
-		 NR==1 { printf("i i.info=%%%%TEMPLATEDIR%%%%/i.info\n"); \
-			 printf("i r.info=%%%%TEMPLATEDIR%%%%/r.info\n"); }\
-		'\
-	  > ${PROTOTYPE_IN}
-	@${RM} ${PROTOTYPE_IN}.orig
-.endif
-	@${ECHO_MSG} "===> prototype.in template was successfully made."
+		-e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%INSTPREFIX%%/\2 \3?' \
+		>> ${PROTOTYPE_IN}
+	@${ECHO_MSG} "===> ${PROTOTYPE_IN_BASE} template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
 .endif
