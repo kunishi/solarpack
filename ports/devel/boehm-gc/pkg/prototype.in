@@ -1,0 +1,12 @@
+d none include=%%INSTPREFIX%%/include 0755 root bin
+f none include/gc.h=%%INSTPREFIX%%/include/gc.h 0644 root bin
+f none include/gc_cpp.h=%%INSTPREFIX%%/include/gc_cpp.h 0644 root bin
+d none lib=%%INSTPREFIX%%/lib 0755 root bin
+f none lib/libgc.a=%%INSTPREFIX%%/lib/libgc.a 0644 root bin
+f none lib/libgc.la=%%INSTPREFIX%%/lib/libgc.la 0755 root bin
+f none lib/libgc.so.1.0.1=%%INSTPREFIX%%/lib/libgc.so.1.0.1 0755 root bin
+s none lib/libgc.so.1=libgc.so.1.0.1
+s none lib/libgc.so=libgc.so.1.0.1
+d none man=%%INSTPREFIX%%/man 0755 root bin
+d none man/man3=%%INSTPREFIX%%/man/man3 0755 root bin
+f none man/man3/gc.3=%%INSTPREFIX%%/man/man3/gc.3 0644 root bin
