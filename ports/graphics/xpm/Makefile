@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.5 2000/09/27 01:27:51 kunishi Exp $
+# $Id: Makefile,v 1.6 2001/03/02 05:34:51 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	xpm
 VERSION=	3.4k
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENxpm
 NAME=		X PixMap library and its tools
