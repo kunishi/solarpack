@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.10 1999/05/21 05:13:28 kunishi Exp $
+# $Id: port.mk,v 1.11 1999/05/21 08:32:20 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -67,6 +67,25 @@ WRK_BASEDIR?=	${WRKDIR}${PREFIX}
 SPOOLDIR?=	${WRKDIR}/spool
 PKGDIR=		${.CURDIR}/pkg
 
+EXTRACT_COOKIE=		${WRKDIR}/.extract_done
+PATCH_COOKIE=		${WRKDIR}/.patch_done
+CONFIGURE_COOKIE=	${WRKDIR}/.configure_done
+BUILD_COOKIE=		${WRKDIR}/.build_done
+INSTALL_COOKIE=		${WRKDIR}/.install_done
+PACKAGE_COOKIE=		${WRKDIR}/.package_done
+INSTPKG_COOKIE=		${WRKDIR}/.instpkg_done
+RELEASE_COOKIE=		${WRKDIR}/.release_done
+
+MASTER_SITES_GNU+=	\
+	ftp://prep.ai.mit.edu/pub/gnu/@SUBDIR@/ \
+	ftp://wuarchive.wustl.edu/systems/gnu/@SUBDIR@/ \
+	ftp://ftp.kddlabs.co.jp/pub/gnu/@SUBDIR@/ \
+	ftp://ftp.cdrom.com/pub/gnu/@SUBDIR@/ \
+	ftp://tron.um.u-tokyo.ac.jp/pub/GNU/prep/@SUBDIR@/
+
+MASTER_SITES?=	
+PATCH_SITES?=	
+
 EXTRACT_SUFX?=	.tar.gz
 DISTFILES?=	${DISTNAME}${EXTRACT_SUFX}
 PKGNAME?=	${DISTNAME}
@@ -81,22 +100,13 @@ PATCH_DIST_ARGS=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_ST
 CONFIGURE_ENV=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-INSTALL_TARGET?=	install
-
-EXTRACT_COOKIE=		${WRKDIR}/.extract_done
-PATCH_COOKIE=		${WRKDIR}/.patch_done
-CONFIGURE_COOKIE=	${WRKDIR}/.configure_done
-BUILD_COOKIE=		${WRKDIR}/.build_done
-INSTALL_COOKIE=		${WRKDIR}/.install_done
-PACKAGE_COOKIE=		${WRKDIR}/.package_done
-INSTPKG_COOKIE=		${WRKDIR}/.instpkg_done
-RELEASE_COOKIE=		${WRKDIR}/.release_done
-
 MAKEFILE?=	Makefile
 MAKE_FLAGS?=	-f ${MAKEFILE}
 MAKE_ENV+=	PREFIX=${PREFIX} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC=${CC}
+
+INSTALL_TARGET?=	install
 MAKE_INSTALL_ENV+=	PREFIX=${WRK_BASEDIR} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC=${CC}
