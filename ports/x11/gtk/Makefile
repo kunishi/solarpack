@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.2 2000/09/27 01:27:59 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/03/22 08:46:59 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	gtk
-VERSION=	1.2.8
+VERSION=	1.2.9
 PORTREV=	1
 
 PKG=		GNUgtk
