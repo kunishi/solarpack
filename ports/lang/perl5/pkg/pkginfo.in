@@ -1,10 +1,9 @@
 PKG=OPENperl
 NAME=Perl Programming Language
-ARCH=sparc
+ARCH=%%ARCH%%
 VERSION=5.00503
 CATEGORY=application
 VENDOR=Larry Wall
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/local
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none

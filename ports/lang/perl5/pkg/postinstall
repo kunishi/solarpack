@@ -1,0 +1,1 @@
+(cd /usr/bin && /usr/bin/ln -s $CLIENT_BASEDIR/bin/perl perl)
