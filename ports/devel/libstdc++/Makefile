@@ -1,13 +1,14 @@
-include ../../../conf/pkgbuild.conf
+#
+# $Id: Makefile,v 1.3 1999/06/03 12:30:03 kunishi Exp $
+#
 
-include ${PKGBUILD_CCS_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_CCS_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_gmake.mk
-
-DISTNAME =	libstdc++-2.8.1.1
-MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/libstdc++/ \
+DISTNAME=	libstdc++-2.8.1.1
+MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/libstdc++/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/libstdc++/
 
-CORE_TOOLS =	yes
+GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
 
-include ${PKGBUILD_CCS_MAKEFILE_DIR}/pkgbuild.mk
+CORE_TOOLS=	yes
+
+.include <port.mk>
