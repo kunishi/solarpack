@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.16 2000/05/16 07:17:29 kunishi Exp $
+# $Id: Makefile,v 1.17 2000/05/17 03:26:43 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
-PKG=		PKGBgcc
-NAME=		pkgbuild core tools: GNU compiler collection
+PKG=		SOAPgcc
+NAME=		Solaris Application Packaging tools: GNU compiler collection
 .else
 PKG=		GNUcc
 NAME=		GNU compiler collection

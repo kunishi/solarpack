@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.11 2000/05/16 07:17:29 kunishi Exp $
+# $Id: Makefile,v 1.12 2000/05/17 03:26:44 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
-PKG=		PKGBgzip
-NAME=		pkgbuild core tools: GNU compress utilities
+PKG=		SOAPgzip
+NAME=		Solaris Application Packaging tools: GNU compress utilities
 .else
 PKG=		GNUgzip
 NAME=		GNU compress utilities

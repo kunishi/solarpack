@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.10 2000/05/16 07:17:29 kunishi Exp $
+# $Id: Makefile,v 1.11 2000/05/17 03:26:44 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
-PKG=		PKGBtxinf
-NAME=		pkgbuild core tools: GNU texinfo tools
+PKG=		SOAPtxinf
+NAME=		Solaris Application Packaging tools: GNU texinfo tools
 .else
 PKG=		GNUtxinf
 NAME=		GNU texinfo tools

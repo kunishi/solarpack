@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.13 2000/05/16 07:17:29 kunishi Exp $
+# $Id: Makefile,v 1.14 2000/05/17 03:26:43 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
-PKG=		PKGBbmake
-NAME=		pkgbuild core tools: BSD make tool
+PKG=		SOAPbmake
+NAME=		Solaris Application Packaging tools: BSD make tool
 .else
 PKG=		OPENbmake
 NAME=		BSD make tool
