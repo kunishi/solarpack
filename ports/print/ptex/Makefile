@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/23 07:23:51 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/05/23 09:49:27 kunishi Exp $
 #
 
 PORTNAME=	ja-ptex
@@ -27,6 +27,7 @@ WRKSRC=		${WRKDIR}/web2c-7.2
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
+USE_PERL5=	yes
 
 ALL_TARGET=	all
 MAKE_ARGS+=	texmf=${INSTPREFIX}/share/texmf
@@ -63,5 +64,7 @@ post-install:
 	  ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
 	${MV} ${INSTPREFIX}/share/texmf/metapost/support/charlib/~= \
 	  ${INSTPREFIX}/share/texmf/metapost/support/charlib/tilde-equal
+	${PERL} -pi -e 's|${INSTPREFIX}|${PREFIX}|g;' \
+	  ${INSTPREFIX}/share/texmf/web2c/texmf.cnf
 
 .include <port.mk>
