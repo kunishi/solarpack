@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.1 2000/01/19 06:56:04 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/01/19 11:40:59 kunishi Exp $
 #
 
 PKG=		OPENntpbm
 NAME=	A toolkit for conversion of images between different formats
 VERSION=	8.0
-VENDOR=		aaa
+VENDOR=		SunSITE, http://metalab.unc.edu/
 
 DISTNAME=	netpbm-${VERSION}
 MASTER_SITES=	ftp://metalab.unc.edu/pub/Linux/apps/graphics/convert/
