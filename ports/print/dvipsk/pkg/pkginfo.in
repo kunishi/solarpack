@@ -1,9 +1,0 @@
-PKG=OPENadvps
-NAME=dvipsk for ASCII pTeX
-VERSION=5.78
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=TeX Users Group
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

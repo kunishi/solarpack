@@ -1,11 +1,11 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/afm2tfm=%%WRK_BASEDIR%%/bin/afm2tfm 0755 root staff
 f none bin/dvips=%%WRK_BASEDIR%%/bin/dvips 0755 root staff
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/dvips.info=%%WRK_BASEDIR%%/info/dvips.info 0644 root staff
+f info info/dvips.info=%%WRK_BASEDIR%%/info/dvips.info 0644 root staff
 f none info/dvips.info-1=%%WRK_BASEDIR%%/info/dvips.info-1 0644 root staff
 f none info/dvips.info-2=%%WRK_BASEDIR%%/info/dvips.info-2 0644 root staff
 f none info/dvips.info-3=%%WRK_BASEDIR%%/info/dvips.info-3 0644 root staff
