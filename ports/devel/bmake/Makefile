@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 1999/08/27 02:11:35 kunishi Exp $
+# $Id: Makefile,v 1.9 1999/08/27 11:50:55 kunishi Exp $
 #
 
 PKG=		OPENbmake
@@ -14,8 +14,6 @@ WRKSRC=		${WRKDIR}/bmake
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKEFILE=	makefile.boot
-
-CORE_TOOLS=	yes
 
 pre-install:
 	@${MKDIR} ${INSTPREFIX}/bin
