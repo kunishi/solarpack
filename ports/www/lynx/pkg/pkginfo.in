@@ -1,9 +1,0 @@
-PKG=OPENlynx
-NAME=lynx, a non-graphical, text-based World Wide Web client.
-VERSION=2.8.1
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=lynx-dev@sig.net <http://www.slcc.edu/lynx/>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

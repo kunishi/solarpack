@@ -1,9 +1,14 @@
 #
-# $Id: Makefile,v 1.1 1999/05/21 04:50:58 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/06 06:47:18 kunishi Exp $
 #
 
+PKG=		OPENvxdvi
+NAME=		Xdvik with VFlib support
+VERSION=	20c+j1.0p0d
+VENDOR=		kb@mail.tug.org
+
 DISTNAME=	xdvik-20c
-PKGNAME=	ja-xdvik-vflib-20c+j1.0p0d
+PKGNAME=	ja-xdvik-vflib-${VERSION}
 MASTER_SITES=	ftp://ftp.ipc.chiba-u.ac.jp/pub/pub.yamaga/xdvik-20c/
 
 PATCHFILES=	xdvik20c-j1.0p0d.patch.gz

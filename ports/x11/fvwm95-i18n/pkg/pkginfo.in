@@ -1,9 +1,0 @@
-PKG=OPENfv95i
-NAME=fvwm95, with I18N patch
-ARCH=%%ARCH%%
-VERSION=2.0.43
-CATEGORY=application
-VENDOR=Hector Peraza <peraza@mitac11.uia.ac.be>, <http://www.linux-kheops.com/pub/fvwm95>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

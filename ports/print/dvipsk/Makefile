@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/06 06:26:37 kunishi Exp $
+# $Id: Makefile,v 1.4 1999/06/06 06:36:00 kunishi Exp $
 #
 
 PKG=		OPENadvps
@@ -20,7 +20,7 @@ MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR} texmf=${WRK_BASEDIR}/share/texmf
 USE_INSTALL_INFO=	yes
 
 post-extract:
-	@cd ${WRKSRC}; ${GTAR} xzf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
+	@cd ${WRKSRC}; ${TAR} xzf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
 
 pre-patch:
 	${PATCH} -p1 -s -d ${WRKSRC}/dvipsk < ${WRKDIR}/dvipsk.patch

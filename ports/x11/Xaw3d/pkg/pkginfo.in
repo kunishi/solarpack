@@ -1,9 +1,0 @@
-PKG=OPENxaw3d
-NAME=Three-D Athena Widgets
-VERSION=1.5
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Kaleb S. Keithley <kaleb@opengroup.org>
-NAME=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

@@ -1,9 +1,0 @@
-PKG=GNUroff
-NAME=GNU roff package
-VERSION=1.11a
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Free Software Foundation
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

@@ -1,12 +1,17 @@
 #
-# $Id: Makefile,v 1.2 1999/05/17 12:15:43 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/06 06:53:31 kunishi Exp $
 #
 
-DISTNAME =	fvwm-2.2
-PKGNAME =	fvwm-i18n-2.2
+PKG=		OPENfvwm
+NAME=		fvwm version 2
+VERSION=	2.2
+VENDOR=		Robert Nation, <http://www.fvwm.org/>
+
+DISTNAME =	fvwm-${VERSION}
+PKGNAME =	fvwm-i18n-${VERSION}
 MASTER_SITES =	ftp://ftp.fvwm.org/pub/fvwm/version-2/
 PATCH_SITES =	ftp://ftp.ics.es.osaka-u.ac.jp/pub/CFAN/fvwm-users-jp/I18N_MB/
-PATCHFILES =	fvwm-2.2-I18N_MB-1999042001.patch
+PATCHFILES =	${DISTNAME}-I18N_MB-1999042001.patch
 
 USE_X_PREFIX=		yes
 USE_GMAKE=		yes
@@ -21,7 +26,7 @@ INSTALL_TARGET+=	install-data
 RC_FILES =	decor_examples new-features system.fvwm2rc \
 		system.fvwm2rc-sample-1 system.fvwm2rc-sample-2
 
-post-install::
+post-install:
 	@${MKDIR} ${WRK_BASEDIR}/share/icons/fvwm
 	@${INSTALL} -c -m 644 -o root -g bin \
 		${WRKSRC}/icons/*.xpm ${WRKSRC}/icons/*.xbm \

@@ -1,9 +1,0 @@
-PKG=OPENvxdvi
-NAME=Xdvik with VFlib support
-VERSION=20c+j1.0p0d
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=kb@mail.tug.org
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

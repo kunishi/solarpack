@@ -1,9 +1,0 @@
-PKG=OPENft
-NAME=Freetype, the Free TrueType Font Engine
-VERSION=1.2
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Robert Wilhelm and Werner Lemberg <http://www.freetype.org/>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

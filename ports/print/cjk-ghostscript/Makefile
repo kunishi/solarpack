@@ -1,8 +1,13 @@
 #
-# $Id: Makefile,v 1.1 1999/05/20 04:33:38 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/06 06:44:00 kunishi Exp $
 #
 
-DISTNAME=	ghostscript-5.10
+PKG=		GNUgsvf
+NAME=		GNU Ghostscript, with vflib and jpdf support
+VERSION=	5.10
+VENDOR=		Aladdin Enterprises <http://www.cs.wisc.edu/~ghost/>
+
+DISTNAME=	ghostscript-${VERSION}
 MASTER_SITES=	ftp://ftp.cs.wisc.edu/ghost/gnu/gs510/ \
 		http://www.ldl.jaist.ac.jp/~akr/nonresearch/free-software/ghostscript/ \
 		http://www.rd.nacsis.ac.jp/~katayama/homepage/ghostscript/jpdf/ \

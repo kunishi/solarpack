@@ -1,11 +1,16 @@
 #
-# $Id: Makefile,v 1.1 1999/05/21 02:17:40 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/06 06:45:28 kunishi Exp $
 #
 
+PKG=		PTEXjvf
+NAME=		Japanese virtual fonts for ASCII pTeX
+VERSION=	1.0
+VENDOR=		ASCII Corp., Inc. <http://www.ascii.co.jp/pb/ptex/>
+
 DISTNAME=	standard
-PKGNAME=	ja-ptex-vf-1.0
+PKGNAME=	ja-ptex-vf-${VERSION}
 MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/jvf/
-DISTFILES=	standard.tar.gz jis.tar.gz morisawa.tar.gz nmin-ngoth.tar.gz
+DISTFILES=	${DISTNAME}.tar.gz jis.tar.gz morisawa.tar.gz nmin-ngoth.tar.gz
 
 WRKSRC=		${WRKDIR}
 NO_BUILD=	yes

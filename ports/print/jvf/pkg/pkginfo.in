@@ -1,9 +1,0 @@
-PKG=PTEXjvf
-NAME=Japanese virtual fonts for ASCII pTeX
-VERSION=1.0
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=ASCII Corp., Inc. <http://www.ascii.co.jp/pb/ptex/>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

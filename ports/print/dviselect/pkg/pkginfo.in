@@ -1,9 +1,0 @@
-PKG=OPENdvsel
-NAME=dviselect, dvi selecting utility
-VERSION=1.3
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Univ. Maryland Department of Comp. Sci.
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
