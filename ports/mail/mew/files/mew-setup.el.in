@@ -1,3 +1,0 @@
-(setq load-path
-      (cons "%%PREFIX%%/share/emacs/site-lisp/mew" load-path))
-(provide 'mew-setup)
