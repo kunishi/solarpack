@@ -1,9 +1,9 @@
---- Makefile.orig	Tue Jun  8 14:03:28 1999
-+++ Makefile	Tue Jun  8 14:05:50 1999
+--- Makefile~	Wed May 17 21:27:32 2000
++++ Makefile	Wed May 17 21:28:01 2000
 @@ -7,7 +7,7 @@
  CC=gcc
  
- # where make install puts libpng.a, libpng.so*, and png.h
+ # Where make install puts libpng.a, libpng.so*, and png.h
 -prefix=/usr/local
 +prefix=${PREFIX}
  
@@ -19,4 +19,4 @@
 +ZLIBINC=${prefix}/include
  
  WARNMORE=-Wwrite-strings -Wpointer-arith -Wshadow \
-          -Wmissing-declarations -Wtraditional -Wcast-align \
+ 	-Wmissing-declarations -Wtraditional -Wcast-align \
