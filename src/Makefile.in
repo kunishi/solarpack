@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.14 2000/05/15 22:14:59 kunishi Exp $
+# $Id: Makefile.in,v 1.15 2000/05/16 01:44:21 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
@@ -128,4 +128,4 @@ releaseclean:
 distclean:
 	${RM} -f Makefile
 	${RM} -rf ${RELEASEDIR}
-	${RM} -f ${DISTDIR}/*.tar ${DISTDIR}/*.tar.gz ${DISTDIR}/*.tar.Z
+#	${RM} -f ${DISTDIR}/*.tar ${DISTDIR}/*.tar.gz ${DISTDIR}/*.tar.Z
