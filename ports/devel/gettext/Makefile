@@ -1,6 +1,11 @@
 #
-# $Id: Makefile,v 1.1 1999/05/21 08:56:24 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/05 04:47:29 kunishi Exp $
 # 
+
+PKG=		GNUgetxt
+NAME=		GNU gettext package
+VERSION=	0.10.35
+VENDOR=		${VENDOR_GNU}
 
 DISTNAME=	gettext-0.10.35
 MASTER_SITES=	ftp://alpha.gnu.ai.mit.edu/gnu/ \
@@ -8,5 +13,6 @@ MASTER_SITES=	ftp://alpha.gnu.ai.mit.edu/gnu/ \
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
+USE_INSTALL_INFO=	yes
 
 .include <port.mk>
