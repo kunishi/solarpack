@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/07 05:51:46 kunishi Exp $
 #
 
 PORTNAME=	ja-less
@@ -12,12 +12,14 @@ NAME=		less, a paginator
 VENDOR=		Kazushi Marukawa (jam@pobox.com), http://www.pobox.com/~jam/less/
 DISTNAME=	less-332
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/less/ \
-		ftp://hiroshima.isdn.uiuc.edu/less/contrib/
+		ftp://hiroshima.isdn.uiuc.edu/less/contrib/ \
+		ftp://ftp.jp.freebsd.org/pub/FreeBSD/ports/distfiles/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		regex_cs-lwp9k.shar.gz
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-PATCH_SITES=	ftp://hiroshima.isdn.uiuc.edu/less/
+PATCH_SITES=	ftp://hiroshima.isdn.uiuc.edu/less/ \
+		ftp://ftp.jp.freebsd.org/pub/FreeBSD/ports/distfiles/
 PATCHFILES=	less-332-iso242.patch.gz \
 		less-332-iso242-243.patch.gz \
 		less-332-iso243-244.patch.gz \
