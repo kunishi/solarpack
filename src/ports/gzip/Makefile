@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.6 1999/08/20 10:35:35 kunishi Exp $
+# $Id: Makefile,v 1.7 1999/08/27 12:10:53 kunishi Exp $
 #
 
-PKG=		GNUzip
-NAME=		GNU compress utilities
+PKG=		PKGBgzip
+NAME=		pkgbuild core tools: GNU compress utilities
 VERSION=	1.2.4
 VENDOR=		${VENDOR_GNU}
 

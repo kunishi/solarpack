@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.8 1999/06/05 05:30:15 kunishi Exp $
+# $Id: Makefile,v 1.9 1999/08/27 12:10:46 kunishi Exp $
 #
 
-PKG=		GNUcc
-NAME=		GNU compilers
+PKG=		PKGBgcc
+NAME=		pkgbuild core tools: GNU compilers
 VERSION=	2.8.1
-VENDOR		${VENDOR_GNU}
+VENDOR=		${VENDOR_GNU}
 
 DISTNAME=	gcc-2.8.1
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \

@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.8 1999/08/27 02:11:35 kunishi Exp $
+# $Id: Makefile,v 1.9 1999/08/27 12:10:43 kunishi Exp $
 #
 
-PKG=		OPENbmake
-NAME=		BSD make tool
+PKG=		PKGBbmake
+NAME=		pkgbuild core tools: BSD make tool
 VERSION=	2.2.1
 VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 

@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.1 1999/08/20 11:06:24 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/08/27 12:11:05 kunishi Exp $
 #
 
 
-PKG=		OPENzlib
-NAME=		zlib, A general purpose data compression library
+PKG=		PKGBzlib
+NAME=		pkgbuild core tools: zlib, A general purpose data compression library
 VERSION=	1.1.3
 VENDOR=		Jean-loup Gailly (jloup@gzip.org) and Mark Adler (madler@alumni.caltech.edu)
 

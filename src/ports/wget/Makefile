@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.11 1999/06/09 02:34:12 kunishi Exp $
+# $Id: Makefile,v 1.12 1999/08/27 12:11:03 kunishi Exp $
 #
 
-PKG=		GNUwget
-NAME=		GNU wget, a free network utility to retrieve files from the WWW
+PKG=		PKGBwget
+NAME=		pkgbuild core tools: GNU wget, a free network utility to retrieve files from the WWW
 VERSION=	1.5.3
 VENDOR=		${VENDOR_GNU}
 

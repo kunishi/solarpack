@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.7 1999/08/20 11:28:01 kunishi Exp $
+# $Id: Makefile,v 1.8 1999/08/27 12:11:02 kunishi Exp $
 #
 
-PKG=		GNUtxinf
-NAME=		GNU texinfo tools
+PKG=		PKGBtxinf
+NAME=		pkgbuild core tools: GNU texinfo tools
 VERSION=	3.12
 VENDOR=		${VENDOR_GNU}
 
@@ -12,7 +12,7 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/texinfo/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/texinfo/
 MAKE_ENV+=	LD_LIBRARY_PATH=${PREFIX}/lib LD_RUN_PATH=${PREFIX}/lib
 
-LIB_DEPENDS=	OPENzlib:${PORTSDIR}/devel-core/zlib
+LIB_DEPENDS=	PKGBzlib:${PORTSDIR}/coretools/zlib
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes

@@ -1,16 +1,18 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:34:11 kunishi Exp $
+# $Id: Makefile,v 1.4 1999/08/27 12:10:57 kunishi Exp $
 #
 
-PKG=		OPENmd5
-NAME=		A program to calculate checksum for a file
+PKG=		PKGBmd5
+NAME=		pkgbuild core tools: a program to calculate checksum for a file
 VERSION=	1.0
 VENDOR=		Jim Ellis <jte@cert.org>
 
 DISTNAME=	MD5
-PKGNAME=	md5-${VERSION}
-MASTER_SITES=	ftp://ftp.tut.ac.jp/pub/Security/tool/md5/
+PKGNAME=	core-md5-${VERSION}
+MASTER_SITES=	ftp://ftp.mei.co.jp/free/Network/security/MD5/
 WRKSRC=		${WRKDIR}
+
+CORE_TOOLS=	yes
 
 test:
 	@cd ${WRKSRC} && ${CCSMAKE} test
