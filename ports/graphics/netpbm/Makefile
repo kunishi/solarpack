@@ -1,16 +1,16 @@
 #
-# $Id: Makefile,v 1.6 2000/06/02 08:17:14 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/07/01 10:48:04 kunishi Exp $
 #
 
 PORTNAME=	netpbm
-VERSION=	8.4
-PORTREV=	3
+VERSION=	9.5
+PORTREV=	4
 
 PKG=		OPENntpbm
 NAME=	A toolkit for conversion of images between different formats
 
 VENDOR=		SunSITE, http://metalab.unc.edu/
-MASTER_SITES=	ftp://metalab.unc.edu/pub/Linux/apps/graphics/convert/
+MASTER_SITES=	http://download.sourceforge.net/netpbm/
 EXTRACT_SUFX=	.tgz
 
 BUILD_DEPENDS=	GNUmake:${PORTSDIR}/devel/gmake
@@ -19,7 +19,8 @@ LIB_DEPENDS=	OPENtiff:${PORTSDIR}/graphics/tiff \
 		OPENpng:${PORTSDIR}/graphics/png \
 		OPENzlib:${PORTSDIR}/devel/zlib
 
-USE_IMAKE=	yes
+USE_GMAKE=	yes
+MAKEFILE=	GNUmakefile
 
 PREFIX=		${LOCALBASE}
 

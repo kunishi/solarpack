@@ -1,0 +1,13 @@
+--- ppm/ppmtompeg/parallel.c~	Sat Jul  1 18:39:59 2000
++++ ppm/ppmtompeg/parallel.c	Sat Jul  1 18:40:24 2000
+@@ -70,8 +70,8 @@
+  *
+  */
+ 
+-#define _POSIX_SOURCE
+-#define _POSIX_C_SOURCE 2
++/* #define _POSIX_SOURCE */
++/* #define _POSIX_C_SOURCE 2 */
+     /* This makes sure pclose() is in stdio.h */
+ 
+ /*==============*

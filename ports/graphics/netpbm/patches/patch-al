@@ -1,0 +1,31 @@
+--- pnm/Makefile~	Sat Jul  1 19:41:13 2000
++++ pnm/Makefile	Sat Jul  1 19:42:34 2000
+@@ -44,7 +44,7 @@
+ ifeq ($(JPEGLIB_DIR),NONE)
+   JPEGLD =
+ else
+-  JPEGLD = -L$(JPEGLIB_DIR) -ljpeg
++  JPEGLD = -L$(JPEGLIB_DIR) -ljpeg -lz
+ endif
+ 
+ # We tend to separate out the build targets so that we don't have
+@@ -131,7 +131,7 @@
+ 
+ # The Tiff library references math functions.
+ tifftopnm pnmtotiff pnmtotiffcmyk: %: %.o \
+-  $(NETPBMLIBS) $(TIFFLIB_DIR)/libtiff.$(LIBTIFFSUFFIX) $(LIBOPT)
++  $(NETPBMLIBS) $(TIFFLIB_DEP) $(LIBOPT)
+ 	$(LD) $(LDFLAGS) -o $@ $@.o `$(LIBOPT) $(NETPBMLIBS)` \
+ 	  -L$(TIFFLIB_DIR) -ltiff $(JPEGLD) -lm $(CDEBUG)
+ 
+@@ -162,8 +162,8 @@
+ 	$(MAKE) -C $(PGMDIR) $(LIBPGM)
+ $(PPMDIR)/$(LIBPPM): FORCE
+ 	$(MAKE) -C $(PPMDIR) $(LIBPPM)
+-$(TIFFDIR)/$(LIBTIFF): FORCE
+-	$(MAKE) -C $(TIFFDIR) $(LIBTIFF)
++#$(TIFFDIR)/$(LIBTIFF): FORCE
++#	$(MAKE) -C $(TIFFDIR) $(LIBTIFF)
+ $(URTDIR)/$(LIBURT): FORCE
+ 	$(MAKE) -C $(URTDIR) $(LIBURT)
+ 
