@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2000/07/01 10:48:04 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/07/01 11:22:16 kunishi Exp $
 #
 
 PORTNAME=	netpbm
@@ -22,7 +22,12 @@ LIB_DEPENDS=	OPENtiff:${PORTSDIR}/graphics/tiff \
 USE_GMAKE=	yes
 MAKEFILE=	GNUmakefile
 
-PREFIX=		${LOCALBASE}
+COMMON_INCLUDE=	pbmplus.h
+PBM_INCLUDE=	pbm.h
+PGM_INCLUDE=	pgm.h
+PNM_INCLUDE=	pnm.h
+PPM_INCLUDE=	ppm.h ppmcmap.h ppmdraw.h
+SHHOPT_INCLUDE=	shhopt.h
 
 post-patch:
 	${MV} ${WRKSRC}/Pbmplus.tmpl ${WRKSRC}/Pbmplus.tmpl.orig
@@ -35,5 +40,14 @@ pre-build:
 
 pre-install:
 	cd ${WRKSRC}/shhopt && ${ENV} ${MAKE_INSTALL_ENV} ${GMAKE} install ${MAKE_INSTALL_ARGS} INSTBASEDIR=${INSTPREFIX} MKDIR="${MKDIR}"
+
+post-install:
+	${MKDIR} ${INSTPREFIX}/include
+	cd ${WRKSRC} && ${INSTALL_DATA} ${COMMON_INCLUDE} ${INSTPREFIX}/include
+	cd ${WRKSRC}/pbm && ${INSTALL_DATA} ${PBM_INCLUDE} ${INSTPREFIX}/include
+	cd ${WRKSRC}/pgm && ${INSTALL_DATA} ${PGM_INCLUDE} ${INSTPREFIX}/include
+	cd ${WRKSRC}/pnm && ${INSTALL_DATA} ${PNM_INCLUDE} ${INSTPREFIX}/include
+	cd ${WRKSRC}/ppm && ${INSTALL_DATA} ${PPM_INCLUDE} ${INSTPREFIX}/include
+	cd ${WRKSRC}/shhopt && ${INSTALL_DATA} ${SHHOPT_INCLUDE} ${INSTPREFIX}/include
 
 .include <port.mk>
