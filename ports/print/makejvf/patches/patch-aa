@@ -1,9 +1,11 @@
---- Makefile.orig	Thu Jan 28 12:41:57 1999
-+++ Makefile	Thu May 20 13:42:25 1999
-@@ -1,5 +1,5 @@
- makejvf:	main.o tfmread.o  write.o tool.o
+--- Makefile~	Wed Feb  2 16:18:19 2000
++++ Makefile	Tue Jun  6 22:27:25 2000
+@@ -3,7 +3,7 @@
+ PROGRAM = makejvf
+ 
+ $(PROGRAM):	main.o tfmread.o  write.o tool.o
 -	cc -o makejvf main.o tfmread.o write.o tool.o
-+	${CC} -o makejvf main.o tfmread.o write.o tool.o
++	$(CC) -o makejvf main.o tfmread.o write.o tool.o
  
  main.o:	main.c
  tfmread.o:	tfmread.c
