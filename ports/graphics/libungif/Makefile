@@ -1,25 +1,16 @@
 #
-# $Id: Makefile,v 1.1 2000/05/17 12:13:46 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/07/01 07:44:09 kunishi Exp $
 #
 
 PORTNAME=	libungif
-VERSION=	4.1.0
+VERSION=	4.1.0b1
 PORTREV=	1
 
 PKG=	OPENungif
 NAME=	Tools and library routines for working GIF images
+VENDOR=	Toshio Kuratomi <badger@prtr-13.ucsc.edu>
 
-VENDOR=	http://prtr-13.ucsc.edu/~badger/software/libungif/
-MASTER_SITES=	ftp://metalab.unc.edu/pub/Linux/libs/graphics/ \
-		ftp://prtr-13.ucsc.edu/pub/libungif/
-
-PATCH_SITES=	http://www.arrakeen.demon.co.uk/giflib/ \
-		ftp://ftp.jp.freebsd.org/pub/FreeBSD/distfiles/
-PATCHFILES=	libungif-4.1.0-19990224.patch.gz \
-		libungif-4.1.0-19990305.patch.gz \
-		libungif-4.1.0-19990322.patch.gz \
-		libungif-4.1.0-19990523.patch.gz
-PATCH_DIST_STRIP=	-p1
+MASTER_SITES=	ftp://prtr-13.ucsc.edu/pub/libungif/
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
