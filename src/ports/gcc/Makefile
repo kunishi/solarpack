@@ -1,28 +1,24 @@
 #
-# $Id: Makefile,v 1.9 1999/08/27 12:10:46 kunishi Exp $
+# $Id: Makefile,v 1.10 2000/01/05 10:25:38 kunishi Exp $
 #
 
-PKG=		PKGBgcc
-NAME=		pkgbuild core tools: GNU compilers
-VERSION=	2.8.1
+PKG=		GNUcc
+NAME=		GNU compilers
+VERSION=	2.95.2
 VENDOR=		${VENDOR_GNU}
 
-DISTNAME=	gcc-2.8.1
+DISTNAME=	gcc-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gcc/
 
-CORE_TOOLS=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--build=${GNU_HOSTTYPE}
 USE_INSTALL_INFO=	yes
+ALL_TARGET=	bootstrap
+PROTOTYPE_SUB+=	GCC_VER=${VERSION}
 
-do-build:
-	-cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} LANGUAGES=c
-	-cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} stage1
-	-cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} CC="stage1/xgcc -Bstage1/" CFLAGS="-g -O2"
-	-cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} stage2
-	-cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} CC="stage2/xgcc -Bstage2/" CFLAGS="-g -O2"
-	-cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} compare
+pre-install:
+	${MKDIR} ${INSTPREFIX}/include/g++-3
+	${MKDIR} ${INSTPREFIX}/include/g++-3/std
 
 .include <port.mk>
