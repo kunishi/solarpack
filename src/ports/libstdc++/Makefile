@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 1999/06/05 05:46:31 kunishi Exp $
+# $Id: Makefile,v 1.5 1999/06/05 05:49:58 kunishi Exp $
 #
 
 PKG=		GNUlstdc+
@@ -7,7 +7,7 @@ NAME=		GNU standard C++ library
 VERSION=	2.8.1.1
 VENDOR=		${VENDOR_GNU}
 
-DISTNAME=	libstdc++-2.8.1.1
+DISTNAME=	libstdc++-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/libstdc++/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/libstdc++/
 
