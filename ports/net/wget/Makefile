@@ -1,14 +1,14 @@
 #
-# $Id: Makefile,v 1.15 2000/09/27 01:27:53 kunishi Exp $
+# $Id: Makefile,v 1.16 2001/11/08 14:08:44 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	wget
-VERSION=	1.5.3
+VERSION=	1.7
 PORTREV=	1
 
-PKG=		GNUwget
+PKG=		OPUCwget
 NAME=		GNU wget, a free network utility to retrieve files from the WWW
 
 VENDOR=		${VENDOR_GNU}
