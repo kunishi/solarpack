@@ -1,0 +1,1 @@
+exec $CLIENT_BASEDIR/apache/bin/apxs -i -a -n php3 $CLIENT_BASEDIR/libexec/mod_php3/libphp3.so
