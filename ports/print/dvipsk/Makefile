@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 1999/05/19 13:00:26 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/05/31 13:33:35 kunishi Exp $
 #
 
 DISTNAME=	dvipsk-5.78
@@ -11,7 +11,7 @@ EXTRACT_ONLY=	web2c-7.2.tar.gz web-7.2.tar.gz dvipsk-jpatch-p1.4c.tar.gz
 
 WRKSRC=		${WRKDIR}/web2c-7.2
 GNU_CONFIGURE=	yes
-MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
+MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR} texmf=${WRK_BASEDIR}/share/texmf
 
 post-extract:
 	@cd ${WRKSRC}; ${GTAR} xzf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
