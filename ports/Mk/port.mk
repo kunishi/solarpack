@@ -1,13 +1,13 @@
 #
-# $Id: port.mk,v 1.86 2001/05/28 13:56:52 kunishi Exp $
+# $Id: port.mk,v 1.87 2001/11/12 13:56:11 kunishi Exp $
 #
 
-# ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
-# (${SOAP_BINDIR}/bmake automatically searches ${SOAP_DIR}/share/mk 
+# ${APDK_DIR} and ${APDK_BINDIR} are set in ${APDK_DIR}/share/mk/soap.conf.
+# (${APDK_BINDIR}/bmake automatically searches ${APDK_DIR}/share/mk 
 #  as makefile directory.)
-# ${SOAP_SRCDIR} is set in ${SOAP_DIR}/share/mk/port.mk.
+# ${PORTS_TOPDIR} is set in ${APDK_DIR}/share/mk/port.mk.
 
-.include "soap.conf"
+.include "/etc/solarpack.conf"
 
 SOAP_PREFIX?=	soap
 
@@ -24,27 +24,29 @@ MASTERDIR?=	${.CURDIR}
 LOCALBASE?=	/usr/local
 X11BASE?=	/usr/openwin
 
-DISTDIR?=	${SOAP_SRCDIR}/distfiles
-PORTSDIR?=	${SOAP_SRCDIR}/ports
+DISTDIR?=	${PORTS_TOPDIR}/distfiles
+PORTSDIR?=	${PORTS_TOPDIR}
 .if defined(USE_BZIP2)
 EXTRACT_SUFX?=	.tar.bz2
+.elif defined(USE_ZIP)
+EXTRACT_SUFX?=	.zip
 .else
 EXTRACT_SUFX?=	.tar.gz
 .endif
-RELEASE_PKG_DIR?=	${SOAP_SRCDIR}/packages
+RELEASE_PKG_DIR?=	${PORTS_TOPDIR}/packages
 
 PATCHDIR?=	${MASTERDIR}/patches
-TOOLSDIR?= 	${SOAP_SRCDIR}/tools
+TOOLSDIR?= 	${PORTS_TOPDIR}/tools
 FILESDIR?=	${MASTERDIR}/files
 SCRIPTDIR?=	${MASTERDIR}/scripts
 PKGDIR?=	${MASTERDIR}/pkg
-TEMPLATEDIR?=	${SOAP_SRCDIR}/ports/Template
+TEMPLATEDIR?=	${PORTS_TOPDIR}/Template
 
 .if defined(USE_IMAKE)
 USE_X_PREFIX=	yes
 .endif
 .if defined(CORE_TOOLS)
-PREFIX?=	${SOAP_DIR}
+PREFIX?=	${APDK_DIR}
 .else
 .if defined(USE_X_PREFIX)
 PREFIX?=	${X11BASE}
@@ -59,7 +61,7 @@ CC=		gcc -B${LOCALBASE}/${GNU_HOSTTYPE}/bin/
 CXX=		c++ -B${LOCALBASE}/${GNU_HOSTTYPE}/bin/
 .endif
 .if defined(USE_BZIP2)
-BUILD_DEPENDS+=	OPENbzip2:${PORTSDIR}/archivers/bzip2
+BUILD_DEPENDS+=	OPUCbzip2:${PORTSDIR}/archivers/bzip2
 .endif
 .if defined(USE_INSTALL_INFO)
 RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
@@ -68,6 +70,15 @@ RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
 .if ${OSREL} <= 5.7
 LIB_DEPENDS+=	OPENzlib:${PORTSDIR}/devel/zlib
 .endif
+.endif
+.if defined(USE_AUTOCONF)
+BUILD_DEPENDS+=	GNUautcnf:${PORTSDIR}/devel/autoconf
+AUTOCONF=	${LOCALBASE}/bin/autoconf
+.endif
+.if defined(USE_LIBTOOL)
+BUILD_DEPENDS+=	GNUlibtl:${PORTSDIR}/devel/libtool
+MAKE_ARGS+=	LIBTOOL=${LOCALBASE}/bin/libtool
+MAKE_INSTALL_ARGS+=	LIBTOOL=${LOCALBASE}/bin/libtool
 .endif
 #.if defined(USE_GMAKE)
 #BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel/gmake
@@ -170,21 +181,22 @@ CC?=		/opt/sfw/bin/gcc
 CXX?=		/opt/sfw/bin/g++
 GMAKE?=		/opt/sfw/bin/gmake
 .else
-CC?=		${SOAP_BINDIR}/gcc
-CXX?=		${SOAP_BINDIR}/c++
-GMAKE?=		${SOAP_BINDIR}/gmake
+CC?=		${APDK_BINDIR}/gcc
+CXX?=		${APDK_BINDIR}/c++
+GMAKE?=		${APDK_BINDIR}/gmake
 .endif
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 CFLAGS?=	-O2
 CXXFLAGS?=	-O2
 
+CONFIGURE_WRKSRC?=	${WRKSRC}
 CONFIGURE_ENV+=	CC="${CC}" \
 		CXX="${CXX}" \
 		CFLAGS="${CFLAGS}" \
 		CXXFLAGS="${CXXFLAGS}" \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-MD5?=		${SOAP_BINDIR}/md5
+MD5?=		${APDK_BINDIR}/md5
 MD5_FILE=	${FILESDIR}/md5
 
 MAKEFILE?=	Makefile
@@ -215,7 +227,7 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
-FETCH_CMD?=	${SOAP_BINDIR}/ftp
+FETCH_CMD?=	${APDK_BINDIR}/ftp
 FETCH_FLAGS?=	
 FETCH_ENV?=	FTPANONPASS=${PKG_MAINTAINER}
 
@@ -226,10 +238,12 @@ PATCH_ARGS?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
-TAR?=		${SOAP_BINDIR}/gtar
+TAR?=		${APDK_BINDIR}/gtar
 
 .if defined(USE_BZIP2)
 EXTRACT_CMD?=	${LOCALBASE}/bin/bzip2 -dc
+.elif defined(USE_ZIP)
+EXTRACT_CMD?=	${UNZIP} -q
 .else
 EXTRACT_CMD?=	${GZCAT}
 .endif
@@ -271,8 +285,8 @@ GREP?=		/usr/bin/grep
 GZCAT?=		/usr/bin/gzip -cd
 GZIP?=		/usr/bin/gzip
 .else
-GZCAT?=		${SOAP_BINDIR}/gzip -cd
-GZIP?=		${SOAP_BINDIR}/gzip
+GZCAT?=		${APDK_BINDIR}/gzip -cd
+GZIP?=		${APDK_BINDIR}/gzip
 .endif
 INSTALL?=	/usr/ucb/install
 LN?=		/usr/bin/ln
@@ -350,7 +364,11 @@ CONFIGURE_TARGET?=	${GNU_HOSTTYPE}
 CONFIGURE_ARGS+=	--prefix=${PREFIX} ${CONFIGURE_TARGET}
 HAS_CONFIGURE=		yes
 MAKE_ARGS+=		prefix=${PREFIX}
+.if !defined(PREFIX_AS_INSTPREFIX)
 MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX}
+.else
+MAKE_INSTALL_ARGS+=	prefix=${PREFIX}
+.endif
 .endif
 
 .if defined(USE_GMAKE)
@@ -359,13 +377,18 @@ MAKE_ENV+=	MAKE=${GMAKE}
 
 .if defined(USE_IMAKE)
 MAKE_ARGS+=	DESTDIR=${PREFIX}
-MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR} PREFIX=${PREFIX} \
+.if !defined(PREFIX_AS_INSTPREFIX)
+MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
+.endif
+MAKE_INSTALL_ARGS+=	PREFIX=${PREFIX} \
 		LOCALBASE=${LOCALBASE} X11BASE=${X11BASE}
 .if !defined(NO_INSTALL_MAN)
 INSTALL_TARGET+=	install.man
 .endif
 .else
+.if !defined(PREFIX_AS_INSTPREFIX)
 MAKE_INSTALL_ENV+=	PREFIX=${INSTPREFIX}
+.endif
 .endif
 
 ### rule definitions
@@ -636,10 +659,17 @@ do-fetch:
 do-extract:
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
+.if defined(USE_ZIP)
+	@for file in ${EXTRACT_ONLY}; do \
+	    ${ECHO_MSG} "===>  Extracting $${file}"; \
+	    cd ${WRKDIR} && (${EXTRACT_CMD} ${DISTDIR}/$${file}); \
+	done
+.else
 	@for file in ${EXTRACT_ONLY}; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
 	    cd ${WRKDIR} && (${EXTRACT_CMD} ${DISTDIR}/$${file} | ${TAR} xf -); \
 	done
+.endif
 .endif
 
 .if !target(do-patch)
@@ -678,15 +708,18 @@ do-patch:
 
 .if !target(do-configure)
 do-configure:
+.if defined(USE_AUTOCONF)
+	@cd ${CONFIGURE_WRKSRC} && ${AUTOCONF}
+.endif
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
 	  cd ${.CURDIR} && ${SH} ${SCRIPTDIR}/configure; \
 	fi
 .if defined(HAS_CONFIGURE)
-	@cd ${WRKSRC} && \
+	@cd ${CONFIGURE_WRKSRC} && \
 	  ${ENV} ${CONFIGURE_ENV} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
 .endif
 .if defined(USE_IMAKE)
-	@cd ${WRKSRC} && ${XMKMF}
+	@cd ${CONFIGURE_WRKSRC} && ${XMKMF}
 .endif
 .endif
 
@@ -1045,7 +1078,7 @@ ELIMINATE_FILES?=	${EGREP} -v '^./(${_elimfiles})$$'
 .for sub in ${PROTOTYPE_SUB}
 _sedsubprotorevlist!=	sym=`${ECHO} "${sub}" | ${CUT} -d= -f1`; \
 			val=`${ECHO} "${sub}" | ${CUT} -d= -f2`; \
-			echo "${_sedsubprotorevlist} -e \"s!$${val}!%%$${sym}%%!g\""
+			echo "${_sedsubprotorevlist} -e 's|$${val}|%%$${sym}%%|g'"
 .endfor
 
 PROTOTYPE_IN_BASE!=	${BASENAME} ${PROTOTYPE_IN}
@@ -1059,11 +1092,11 @@ gen-prototype-in:	${INSTALL_COOKIE}
 		${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.bak; \
 	fi
 	@(cd ${INSTPREFIX} && \
-	  ${FIND} . -print | ${ELIMINATE_FILES} | ${PKGPROTO}) | \
+	  ${FIND} . | ${ELIMINATE_FILES} | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
-	  -e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
-	  -e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
-	  -e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%INSTPREFIX%%/\2 \3?' \
+	  -e 's|^\(f .*\) \(0[0-9]*\) .* .*|\1 \2 ${BINOWN} ${BINGRP}|' \
+	  -e 's|^\(d .*\) .* .*|\1 ${BINOWN} ${BINGRP}|' \
+	  -e 's|^\(. none\) \(.*\) \([0-9]* .*\)|\1 \2=%%INSTPREFIX%%/\2 \3|' \
 	  ${_sedsubprotoinlist} ${_sedsubprotorevlist} >> ${PROTOTYPE_IN}
 	@${ECHO_MSG} "===> ${PROTOTYPE_IN_BASE} template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
