@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/21 12:28:53 kunishi Exp $
 #
 
 PORTNAME=	auctex
@@ -11,6 +11,8 @@ NAME=		A much enhanced LaTeX mode for GNU Emacs
 
 VENDOR=auc-tex_mgr@sunsite.auc.dk
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/text/CTAN/support/auctex/
+
+BUILD_DEPENDS=	mule:${PORTSDIR}/editors/mule-canna+wnn6
 
 USE_GMAKE=	yes
 
