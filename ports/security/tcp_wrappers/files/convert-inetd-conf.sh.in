@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/bin/sed -e 's:/usr/sbin/[a-zA-Z.]*:%%PREFIX%%/sbin/tcpd:g'
