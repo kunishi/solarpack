@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2000/05/18 10:22:14 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/21 12:34:15 kunishi Exp $
 #
 
 PORTNAME=	rxvt
-VERSION=	2.7.3
+VERSION=	2.7.5
 PORTREV=	1
 
 PKG=		OPENjrxvt
@@ -17,14 +17,13 @@ LIB_DEPENDS=	OPENxpm:${PORTSDIR}/graphics/xpm
 USE_X_PREFIX=	yes
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
+USE_GMAKE=	yes
 CONFIGURE_ENV+=	CPPFLAGS="-DSVR4"
 CONFIGURE_ARGS+= \
 	--enable-xpm-background --enable-transparency \
 	--enable-menubar --enable-graphics --enable-xim \
-	--enable-languages --with-encoding=eucj \
-	--disable-backspace-key --disable-delete-key \
-	--enable-utmp --enable-wtmp
-MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
+	--enable-languages --with-encoding=EUCJ \
+	--disable-backspace-key --disable-delete-key
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/bin ${INSTPREFIX}/man/man1
