@@ -1,0 +1,11 @@
+--- configure.in~	Tue Nov 20 16:13:57 2001
++++ configure.in	Tue Nov 20 16:14:10 2001
+@@ -1871,7 +1871,7 @@
+       tifflibs="-lz -lm"
+       # At least one tiff package requires the jpeg library.
+       if test "${HAVE_JPEG}" = yes; then tifflibs="-ljpeg $tifflibs"; fi
+-      AC_CHECK_LIB(tiff, TIFFGetVersion, HAVE_TIFF=yes, , $tifflibs))
++      AC_CHECK_LIB(tiff, TIFFOpen, HAVE_TIFF=yes, , $tifflibs))
+   fi
+ 
+   if test "${HAVE_TIFF}" = "yes"; then
