@@ -1,5 +1,9 @@
-PKGNAME:=	wget-1.5.3
-BASEDIR:=	/usr/local
+include pre.mk
+
+DISTNAME=	wget-1.5.3
+MASTER_SITES=	ftp://psi.c.oka-pu.ac.jp/pub/ \
+		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/wget/
+GNU_CONFIGURE=	yes
 
 post-install:
 	${MKDIR} ${WRK_BASEDIR}/share/examples/wget
