@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.26 1999/06/05 09:32:39 kunishi Exp $
+# $Id: port.mk,v 1.27 1999/06/09 02:25:28 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -685,17 +685,4 @@ gen-prototype-in:	${INSTALL_COOKIE}
 .endif
 	@${ECHO_MSG} "===> prototype.in template was successfully made."
 	@${ECHO_MSG} "===> You must edit the file by hand."
-.endif
-
-.if !target(gen-instinfo)
-gen-instinfo:
-.if defined(INST_INFO_FILES)
-	@${MKDIR} ${PKGDIR}
-	@${ECHO_MSG} "===>  Generating postinstall"
-	${TOOLSDIR}/gen-info-postinstall.sh "${INST_INFO_FILES}" >> ${PKGDIR}/postinstall
-	@${ECHO_MSG} "===>  Generating preremove"
-	${TOOLSDIR}/gen-info-preremove.sh "${INST_INFO_FILES}" >> ${PKGDIR}/preremove
-.else
-	@${ECHO_MSG} ">> Define INST_INFO_FILES definitely."
-.endif
 .endif
