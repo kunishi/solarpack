@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.1 2000/07/14 09:49:31 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/07/14 11:33:04 kunishi Exp $
 #
 
 PORTNAME=	emcws20-canna+wnn6
 
-PKG=		GNUemcw6
+PKG=		GNUemcws
 NAME=		Emacs20, with Canna and Wnn6 support
 
 MASTERDIR=	${.CURDIR}/../../editors/emcws20
