@@ -1,0 +1,9 @@
+PKG=GNUautmak
+NAME=GNU automake utilitites
+VERSION=1.4
+ARCH=%%ARCH%%
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none
