@@ -1,0 +1,19 @@
+*** lst.h.orig	Sun Sep  8 17:17:13 1996
+--- lst.h	Fri May 14 21:40:12 1999
+***************
+*** 47,53 ****
+  #define _LST_H_
+  
+  #include	<sprite.h>
+! #include	<sys/cdefs.h>
+  #if __STDC__
+  #include	<stdlib.h>
+  #endif
+--- 47,53 ----
+  #define _LST_H_
+  
+  #include	<sprite.h>
+! #include	<floatingpoint.h>
+  #if __STDC__
+  #include	<stdlib.h>
+  #endif
