@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.49 2000/01/19 01:54:19 kunishi Exp $
+# $Id: port.mk,v 1.50 2000/01/19 02:19:27 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -70,6 +70,8 @@ PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
 PROTOTYPE?=	${PKGDIR}/prototype
 PROTOTYPE_IN?=	${PKGDIR}/prototype.in
 DEPEND?=	${PKGDIR}/depend
+PROCEDURE_SCRIPTS?=	request checkinstall \
+			preinstall postinstall preremove postremove
 
 PKGINFO?=	${PKGDIR}/pkginfo
 PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
@@ -851,11 +853,11 @@ gen-prototype-in:	${INSTALL_COOKIE}
 		${MV} ${PROTOTYPE_IN} ${PROTOTYPE_IN}.bak; \
 	fi
 	@${ECHO} 'i pkginfo=%%PKGDIR%%/pkginfo' >> ${PROTOTYPE_IN}
-.if defined(PROCEDURE_SCRIPTS)
 .for script in ${PROCEDURE_SCRIPTS}
+.if exists(${PKGDIR}/${script})
 	@${ECHO} 'i ${script}=%%PKGDIR%%/${script}' >> ${PROTOTYPE_IN}
-.endfor
 .endif
+.endfor
 .if defined(LIB_DEPENDS) || defined(RUN_DEPENDS)
 	@${ECHO} 'i depend=%%PKGDIR%%/depend' >> ${PROTOTYPE_IN}
 .endif
