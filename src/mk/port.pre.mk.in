@@ -1,0 +1,4 @@
+.include "soap.conf"
+
+SOAP_SRCDIR?=	@soap_topdir@
+.include "${SOAP_SRCDIR}/ports/Mk/port.pre.mk"

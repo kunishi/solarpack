@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/06/06 04:51:29 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/09/27 01:25:19 kunishi Exp $
 #
 
 INSTALL=	/usr/ucb/install
@@ -9,7 +9,7 @@ SED=	/usr/bin/sed
 
 SYSMKDIR=	${INSTDIR}${LOCALBASE}/share/mk/
 
-TARGET=	port.mk port.subdir.mk soap.conf
+TARGET=	port.mk port.pre.mk port.subdir.mk soap.conf
 
 install:
 	${INSTALL_DATA} ${TARGET} ${SYSMKDIR}

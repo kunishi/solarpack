@@ -6,4 +6,5 @@ f none share/patches/sun.cf.patch=%%INSTPREFIX%%/contrib/patches/sun.cf.patch 06
 d none share/mk=%%INSTPREFIX%%/mk 0755 root bin
 e none share/mk/soap.conf=%%INSTPREFIX%%/mk/soap.conf 0644 root bin
 e none share/mk/port.mk=%%INSTPREFIX%%/mk/port.mk 0644 root bin
+e none share/mk/port.pre.mk=%%INSTPREFIX%%/mk/port.pre.mk 0644 root bin
 e none share/mk/port.subdir.mk=%%INSTPREFIX%%/mk/port.subdir.mk 0644 root bin
