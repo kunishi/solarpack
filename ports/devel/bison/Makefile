@@ -1,19 +1,20 @@
 #
-# $Id: Makefile,v 1.7 2000/09/27 01:27:40 kunishi Exp $
+# $Id: Makefile,v 1.8 2001/11/28 11:53:58 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	bison
-VERSION=	1.27
+VERSION=	1.30
 PORTREV=	1
 
-PKG=		GNUbison
+PKG=		OPUCbison
 NAME=		GNU project parser generator (yacc replacement)
 
 VENDOR=		${VENDOR_GNU}
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/bison/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/bison/
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	${PORTNAME}
+
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
