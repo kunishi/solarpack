@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 2001/04/14 04:15:47 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/04/17 05:52:19 kunishi Exp $
 #
 
 PORTNAME=	openssl
@@ -15,7 +15,7 @@ USE_BINUTILS=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	config
 CONFIGURE_ARGS+=	shared
-MAKE_ARGS+=		CC=${CC}
+MAKE_ARGS+=		CC="${CC}"
 MAKE_INSTALL_ARGS+=	INSTALL_PREFIX=${WRKDIR}
 
 post-configure:
