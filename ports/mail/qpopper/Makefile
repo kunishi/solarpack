@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/05 09:24:52 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:34:21 kunishi Exp $
 #
 
 PKG=		OPENqpop
@@ -24,16 +24,16 @@ post-patch:
 	${CP} ${FILESDIR}/sendto.c ${WRKSRC}
 
 pre-install:
-	${MKDIR} ${WRK_BASEDIR}/bin
-	${MKDIR} ${WRK_BASEDIR}/sbin
-	${MKDIR} ${WRK_BASEDIR}/man/man8
+	${MKDIR} ${INSTPREFIX}/bin
+	${MKDIR} ${INSTPREFIX}/sbin
+	${MKDIR} ${INSTPREFIX}/man/man8
 
 do-install:
 	cd ${WRKSRC} && \
-	  ${INSTALL_PROGRAM} -o root -m 4111 popauth ${WRK_BASEDIR}/bin
+	  ${INSTALL_PROGRAM} -o root -m 4111 popauth ${INSTPREFIX}/bin
 	cd ${WRKSRC} && \
-	  ${INSTALL_PROGRAM} popper ${WRK_BASEDIR}/sbin
+	  ${INSTALL_PROGRAM} popper ${INSTPREFIX}/sbin
 	cd ${WRKSRC} && \
-	  ${INSTALL_MAN} popauth.8 popper.8 ${WRK_BASEDIR}/man/man8
+	  ${INSTALL_MAN} popauth.8 popper.8 ${INSTPREFIX}/man/man8
 
 .include <port.mk>

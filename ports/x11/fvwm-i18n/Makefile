@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/06 06:53:31 kunishi Exp $
+# $Id: Makefile,v 1.4 1999/06/09 02:35:59 kunishi Exp $
 #
 
 PKG=		OPENfvwm
@@ -20,22 +20,22 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--enable-extras --enable-kanji
 CONFIGURE_ARGS+=	--with-iconpath=${PREFIX}/share/icons/fvwm:/usr/include/X11/bitmaps:/usr/include/X11/pixmaps
 MAKE_ENV+=		prefix=${PREFIX}
-MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
+MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX}
 INSTALL_TARGET+=	install-data
 
 RC_FILES =	decor_examples new-features system.fvwm2rc \
 		system.fvwm2rc-sample-1 system.fvwm2rc-sample-2
 
 post-install:
-	@${MKDIR} ${WRK_BASEDIR}/share/icons/fvwm
+	@${MKDIR} ${INSTPREFIX}/share/icons/fvwm
 	@${INSTALL} -c -m 644 -o root -g bin \
 		${WRKSRC}/icons/*.xpm ${WRKSRC}/icons/*.xbm \
 		${WRKSRC}/icons/*.bitmap ${WRKSRC}/icons/*.icon \
-		${WRK_BASEDIR}/share/icons/fvwm
-	@${MKDIR} ${WRK_BASEDIR}/lib/X11/fvwm/2.2
+		${INSTPREFIX}/share/icons/fvwm
+	@${MKDIR} ${INSTPREFIX}/lib/X11/fvwm/2.2
 	@for file in ${RC_FILES}; do \
 		${INSTALL} -c -m 644 -o root -g bin \
-			${WRKSRC}/sample.fvwmrc/$${file} ${WRK_BASEDIR}/lib/X11/fvwm/2.2; \
+			${WRKSRC}/sample.fvwmrc/$${file} ${INSTPREFIX}/lib/X11/fvwm/2.2; \
 	done
 
 .include <port.mk>

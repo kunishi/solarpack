@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 1999/06/06 07:02:30 kunishi Exp $
+# $Id: Makefile,v 1.6 1999/06/09 02:36:00 kunishi Exp $
 #
 
 PKG=		OPENkterm
@@ -13,8 +13,8 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/X/opengroup/contrib/applications/ \
 USE_IMAKE=	yes
 
 post-install:
-	@${MKDIR} ${WRK_BASEDIR}/share/kterm
+	@${MKDIR} ${INSTPREFIX}/share/kterm
 	@${INSTALL} -c -m 644 -o root -g bin ${WRKSRC}/terminfo.kt \
-		${WRK_BASEDIR}/share/kterm
+		${INSTPREFIX}/share/kterm
 
 .include <port.mk>

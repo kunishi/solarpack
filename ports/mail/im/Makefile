@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/05 09:21:39 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:34:18 kunishi Exp $
 #
 
 PKG=		OPENim
@@ -20,9 +20,9 @@ DOCS=	00changes 00copyright 00copyright.jis 00perl 00readme 00usage \
 	man/imsetup.jis man/imsort.jis man/imstore.jis man/imtar.jis
 
 post-install:
-	${MKDIR} ${WRK_BASEDIR}/share/doc/im
+	${MKDIR} ${INSTPREFIX}/share/doc/im
 .for doc in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${WRK_BASEDIR}/share/doc/im
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${INSTPREFIX}/share/doc/im
 .endfor
 
 .include <port.mk>

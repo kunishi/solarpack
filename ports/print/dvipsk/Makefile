@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 1999/06/06 06:36:00 kunishi Exp $
+# $Id: Makefile,v 1.5 1999/06/09 02:34:22 kunishi Exp $
 #
 
 PKG=		OPENadvps
@@ -16,7 +16,7 @@ EXTRACT_ONLY=	web2c-7.2.tar.gz web-7.2.tar.gz dvipsk-jpatch-p1.4c.tar.gz
 
 WRKSRC=		${WRKDIR}/web2c-7.2
 GNU_CONFIGURE=	yes
-MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR} texmf=${WRK_BASEDIR}/share/texmf
+MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX} texmf=${INSTPREFIX}/share/texmf
 USE_INSTALL_INFO=	yes
 
 post-extract:

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/06 07:04:02 kunishi Exp $
+# $Id: Makefile,v 1.4 1999/06/09 02:36:00 kunishi Exp $
 #
 
 PKG=		OPENxpbyb
@@ -30,11 +30,11 @@ do-extract:
 	@(cd ${WRKDIR}; ${TAR} -xzf ${DISTDIR}/${DISTNAME}.tar.gz)
 
 post-install:
-	@${MKDIR} ${WRK_BASEDIR}/lib/X11/app-defaults
+	@${MKDIR} ${INSTPREFIX}/lib/X11/app-defaults
 	@${INSTALL} -c -m 644 -o root -g staff \
-	  ${WRKSRC}/XPbiff*.ad ${WRK_BASEDIR}/lib/X11/app-defaults
-	@${MKDIR} ${WRK_BASEDIR}/share/doc/xpbiff
+	  ${WRKSRC}/XPbiff*.ad ${INSTPREFIX}/lib/X11/app-defaults
+	@${MKDIR} ${INSTPREFIX}/share/doc/xpbiff
 	@${INSTALL} -c -m 644 -o root -g staff \
-	  ${WRKSRC}/README* ${WRK_BASEDIR}/share/doc/xpbiff
+	  ${WRKSRC}/README* ${INSTPREFIX}/share/doc/xpbiff
 
 .include <port.mk>

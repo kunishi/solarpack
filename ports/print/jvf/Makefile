@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/06 06:45:28 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:35:58 kunishi Exp $
 #
 
 PKG=		PTEXjvf
@@ -21,18 +21,18 @@ VF_FONTS=	goth5.vf goth6.vf goth7.vf goth8.vf goth9.vf goth10.vf \
 		tmin5.vf tmin6.vf tmin7.vf tmin8.vf tmin9.vf tmin10.vf
 
 do-install:
-	${MKDIR} ${WRK_BASEDIR}/share/texmf/fonts/tfm/dvips
+	${MKDIR} ${INSTPREFIX}/share/texmf/fonts/tfm/dvips
 .for font in ${TFM_FONTS_DVIPS}
 	${INSTALL_DATA} ${WRKSRC}/standard/tfm/dvips/${font} \
-	  ${WRK_BASEDIR}/share/texmf/fonts/tfm/dvips
+	  ${INSTPREFIX}/share/texmf/fonts/tfm/dvips
 .endfor
-	${MKDIR} ${WRK_BASEDIR}/share/texmf/fonts/vf/standard
+	${MKDIR} ${INSTPREFIX}/share/texmf/fonts/vf/standard
 .for font in ${VF_FONTS}
 	${INSTALL_DATA} ${WRKSRC}/standard/vf/${font} \
-	  ${WRK_BASEDIR}/share/texmf/fonts/vf/standard
+	  ${INSTPREFIX}/share/texmf/fonts/vf/standard
 .endfor
-	${MKDIR} ${WRK_BASEDIR}/share/texmf/dvips/base
+	${MKDIR} ${INSTPREFIX}/share/texmf/dvips/base
 	${INSTALL_DATA} ${WRKSRC}/standard/standard.map \
-	  ${WRK_BASEDIR}/share/texmf/dvips/base
+	  ${INSTPREFIX}/share/texmf/dvips/base
 
 .include <port.mk>

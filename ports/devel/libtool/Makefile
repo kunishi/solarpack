@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/05 04:57:57 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:34:08 kunishi Exp $
 #
 
 PKG=		GNUlibtl
@@ -16,6 +16,6 @@ USE_GMAKE=	yes
 USE_INSTALL_INFO=	yes
 
 post-install:
-	${CHOWN} -R ${BINOWN}:${BINGRP} ${WRK_BASEDIR}/share/libtool
+	${CHOWN} -R ${BINOWN}:${BINGRP} ${INSTPREFIX}/share/libtool
 
 .include <port.mk>

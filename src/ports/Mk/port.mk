@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.27 1999/06/09 02:25:28 kunishi Exp $
+# $Id: port.mk,v 1.28 1999/06/09 02:34:04 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -49,11 +49,11 @@ PREFIX?=	${LOCALBASE}
 
 WRKDIR?=	${MASTERDIR}/work
 WRKSRC?=	${WRKDIR}/${DISTNAME}
-WRK_BASEDIR?=	${WRKDIR}${PREFIX}
+INSTPREFIX?=	${WRKDIR}${PREFIX}
 SPOOLDIR?=	${WRKDIR}/spool
 
 PROTOTYPE_SUB+=	PKGDIR=${PKGDIR} \
-		WRK_BASEDIR=${WRK_BASEDIR} \
+		INSTPREFIX=${INSTPREFIX} \
 		TEMPLATEDIR=${TEMPLATEDIR} \
 		GNU_HOSTTYPE=${GNU_HOSTTYPE}
 PROTOTYPE?=	${PKGDIR}/prototype
@@ -105,7 +105,7 @@ MAKE_ENV+=	PREFIX=${PREFIX} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC=${CC}
 
-MAKE_INSTALL_ENV+=	PREFIX=${WRK_BASEDIR} \
+MAKE_INSTALL_ENV+=	PREFIX=${INSTPREFIX} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC=${CC}
 MAKE_INSTALL_ARGS+=	INSTALL=${INSTALL}
@@ -219,7 +219,7 @@ CONFIGURE_TARGET?=	${GNU_HOSTTYPE}
 CONFIGURE_ARGS+=	--prefix=${PREFIX} ${CONFIGURE_TARGET}
 HAS_CONFIGURE=		yes
 MAKE_ARGS+=		prefix=${PREFIX}
-MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
+MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX}
 .endif
 
 .if defined(USE_GMAKE)
@@ -515,7 +515,7 @@ do-build:
 
 .if !target(do-install)
 do-install:
-	@${MKDIR} ${WRK_BASEDIR}
+	@${MKDIR} ${INSTPREFIX}
 .if defined(USE_GMAKE)
 	@cd ${MAKE_INSTALL_EXEC_DIR} && ${ENV} ${MAKE_INSTALL_ENV} ${GMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
 .else
@@ -669,7 +669,7 @@ gen-prototype-in:	${INSTALL_COOKIE}
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
 		-e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
 		-e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
-		-e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%WRK_BASEDIR%%/\2 \3?' | \
+		-e 's?^\(. none\) \(.*\) \([0-9]* .*\)?\1 \2=%%INSTPREFIX%%/\2 \3?' | \
 	  ${AWK} 'BEGIN { printf("i pkginfo=%%%%PKGDIR%%%%/pkginfo\n");} \
 		  { print; }' \
 	  > ${PROTOTYPE_IN}

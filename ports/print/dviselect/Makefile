@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/06 06:37:01 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:34:24 kunishi Exp $
 #
 
 PKG=		OPENdvsel
@@ -14,7 +14,7 @@ MASTER_SITES=	ftp://ftp.ee.duke.edu/archives/
 USE_GMAKE=	yes
 
 pre-install:
-	${MKDIR} ${WRK_BASEDIR}/bin
-	${MKDIR} ${WRK_BASEDIR}/man/man1
+	${MKDIR} ${INSTPREFIX}/bin
+	${MKDIR} ${INSTPREFIX}/man/man1
 
 .include <port.mk>

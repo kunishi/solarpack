@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/05 05:48:59 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:34:11 kunishi Exp $
 #
 
 PKG=		OPENmd5
@@ -16,9 +16,9 @@ test:
 	@cd ${WRKSRC} && ${CCSMAKE} test
 
 do-install:
-	${MKDIR} ${WRK_BASEDIR}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/md5 ${WRK_BASEDIR}/bin
-	${MKDIR} ${WRK_BASEDIR}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/md5.1 ${WRK_BASEDIR}/man/man1
+	${MKDIR} ${INSTPREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/md5 ${INSTPREFIX}/bin
+	${MKDIR} ${INSTPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/md5.1 ${INSTPREFIX}/man/man1
 
 .include <port.mk>

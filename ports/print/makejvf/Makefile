@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/06 06:46:12 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:35:58 kunishi Exp $
 #
 
 PKG=		OPENmkjvf
@@ -11,9 +11,9 @@ DISTNAME=	makejvf-${VERSION}
 MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/jvf/
 
 do-install:
-	${MKDIR} ${WRK_BASEDIR}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/makejvf ${WRK_BASEDIR}/bin
-	${MKDIR} ${WRK_BASEDIR}/share/doc/makejvf
-	${INSTALL_DATA} ${WRKSRC}/README.txt ${WRK_BASEDIR}/share/doc/makejvf
+	${MKDIR} ${INSTPREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/makejvf ${INSTPREFIX}/bin
+	${MKDIR} ${INSTPREFIX}/share/doc/makejvf
+	${INSTALL_DATA} ${WRKSRC}/README.txt ${INSTPREFIX}/share/doc/makejvf
 
 .include <port.mk>

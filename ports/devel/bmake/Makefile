@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.6 1999/06/05 05:25:24 kunishi Exp $
+# $Id: Makefile,v 1.7 1999/06/09 02:34:09 kunishi Exp $
 #
 
 PKG=		OPENbmake
@@ -18,12 +18,12 @@ MAKEFILE=	makefile.boot
 CORE_TOOLS=	yes
 
 pre-install:
-	@${MKDIR} ${WRK_BASEDIR}/bin
+	@${MKDIR} ${INSTPREFIX}/bin
 
 post-install:
-	@${MKDIR} ${WRK_BASEDIR}/share/doc/bmake
+	@${MKDIR} ${INSTPREFIX}/share/doc/bmake
 	@${INSTALL} -c -m 644 -o root -g bin \
 		${WRKDIR}/help/*.html ${WRKDIR}/help/*.htm \
-		${WRK_BASEDIR}/share/doc/bmake
+		${INSTPREFIX}/share/doc/bmake
 
 .include <port.mk>

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.2 1999/06/06 06:52:14 kunishi Exp $
+# $Id: Makefile,v 1.3 1999/06/09 02:35:58 kunishi Exp $
 #
 
 PKG=		OPENxaw3d
@@ -14,8 +14,8 @@ WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
 USE_IMAKE=	yes
 
 post-install:
-	${MKDIR} ${WRK_BASEDIR}/share/doc/Xaw3d
+	${MKDIR} ${INSTPREFIX}/share/doc/Xaw3d
 	${INSTALL} -c -m 644 -o root -g bin \
-	  ${WRKSRC}/README.XAW3D ${WRK_BASEDIR}/share/doc/Xaw3d
+	  ${WRKSRC}/README.XAW3D ${INSTPREFIX}/share/doc/Xaw3d
 
 .include <port.mk>

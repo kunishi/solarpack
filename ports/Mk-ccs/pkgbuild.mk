@@ -1,5 +1,5 @@
 #
-# $Id: pkgbuild.mk,v 1.12 1999/05/14 13:09:39 kunishi Exp $
+# $Id: pkgbuild.mk,v 1.13 1999/06/09 02:34:06 kunishi Exp $
 #
 
 ### rule definitions
@@ -116,7 +116,7 @@ ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
 ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${PKGMAKE} build
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
-	@${MKDIR} ${WRK_BASEDIR}
+	@${MKDIR} ${INSTPREFIX}
 	@${PKGMAKE} pre-install
 	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
 	@${PKGMAKE} post-install
@@ -170,7 +170,7 @@ post-install::
 generate-prototype::
 	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?g" \
 	    -e 's?%%GNU_HOSTTYPE%%?${GNU_HOSTTYPE}?g' \
-	    -e 's?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g' \
+	    -e 's?%%INSTPREFIX%%?${INSTPREFIX}?g' \
 	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
 
 generate-pkginfo::

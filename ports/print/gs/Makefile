@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/06 07:04:50 kunishi Exp $
+# $Id: Makefile,v 1.4 1999/06/09 02:35:57 kunishi Exp $
 #
 
 PKG=		GNUgsvf
@@ -31,7 +31,7 @@ EXTRACT_ONLY+=	ghostscript-5.10zlib.tar.gz
 WRKSRC=		${WRKDIR}/gs5.10
 MAKEFILE=	unix-gcc.mak
 MAKE_ARGS+=	prefix=${PREFIX}
-MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR} INSTALL="${INSTALL} -c"
+MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX} INSTALL="${INSTALL} -c"
 
 post-extract:
 	cd ${WRKSRC}; find . -type f -exec chmod 644 '{}' ';'
@@ -50,20 +50,20 @@ pre-patch:
 	  ${GZCAT} ${DISTDIR}/gs5.10-VFlibBM-PL2.diff.gz | ${PATCH} -p0
 
 pre-install:
-	${MKDIR} ${WRK_BASEDIR}/share/ghostscript/fonts
-	${TAR} -C ${WRK_BASEDIR}/share/ghostscript/fonts -xzf \
+	${MKDIR} ${INSTPREFIX}/share/ghostscript/fonts
+	${TAR} -C ${INSTPREFIX}/share/ghostscript/fonts -xzf \
 	  ${DISTDIR}/ghostscript-fonts-std-5.10.tar.gz
-	${TAR} -C ${WRK_BASEDIR}/share/ghostscript/fonts -xzf \
+	${TAR} -C ${INSTPREFIX}/share/ghostscript/fonts -xzf \
 	  ${DISTDIR}/ghostscript-fonts-other-5.10.tar.gz
-	${CHOWN} -R root:bin ${WRK_BASEDIR}/share/ghostscript/fonts
+	${CHOWN} -R root:bin ${INSTPREFIX}/share/ghostscript/fonts
 
 post-install:
-	${MKDIR} ${WRK_BASEDIR}/share/doc/ghostscript
-	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/README ${WRK_BASEDIR}/share/doc/ghostscript/README.gs5.10-vflib
-	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/README.CID ${WRK_BASEDIR}/share/doc/ghostscript/README.CID.gs5.10-vflib
-	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/OLD-DOC/gs261d13-doc/* ${WRK_BASEDIR}/share/doc/ghostscript
-	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/OLD-DOC/gs261j10-doc/* ${WRK_BASEDIR}/share/doc/ghostscript
-	${INSTALL_DATA} ${WRKSRC}/gs5.10-jpdf-0.2/README ${WRK_BASEDIR}/share/doc/ghostscript/README.gs5.10-jpdf
-	${INSTALL_DATA} ${DISTDIR}/pdf_sec.ps ${WRK_BASEDIR}/share/ghostscript/5.10vflib
+	${MKDIR} ${INSTPREFIX}/share/doc/ghostscript
+	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/README ${INSTPREFIX}/share/doc/ghostscript/README.gs5.10-vflib
+	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/README.CID ${INSTPREFIX}/share/doc/ghostscript/README.CID.gs5.10-vflib
+	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/OLD-DOC/gs261d13-doc/* ${INSTPREFIX}/share/doc/ghostscript
+	${INSTALL_DATA} ${WRKSRC}/gs5.10-vflib-1.2/OLD-DOC/gs261j10-doc/* ${INSTPREFIX}/share/doc/ghostscript
+	${INSTALL_DATA} ${WRKSRC}/gs5.10-jpdf-0.2/README ${INSTPREFIX}/share/doc/ghostscript/README.gs5.10-jpdf
+	${INSTALL_DATA} ${DISTDIR}/pdf_sec.ps ${INSTPREFIX}/share/ghostscript/5.10vflib
 
 .include <port.mk>
