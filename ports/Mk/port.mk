@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.42 2000/01/07 02:33:59 kunishi Exp $
+# $Id: port.mk,v 1.43 2000/01/07 04:12:39 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -171,9 +171,11 @@ CAT?=		/usr/bin/cat
 CCSMAKE?=	/usr/ccs/bin/make
 CHOWN?=		/usr/bin/chown
 CP?=		/usr/bin/cp
+CPIO?=		/usr/bin/cpio
 ECHO?=		/usr/bin/echo
 ENV?=		/usr/bin/env
 EXPR?=		/usr/bin/expr
+FIND?=		/usr/bin/find
 GREP?=		/usr/bin/grep
 GZCAT?=		${SOLPKGDIR}/bin/gzip -cd
 GZIP?=		${SOLPKGDIR}/bin/gzip
@@ -807,7 +809,7 @@ gen-prototype-in:	${INSTALL_COOKIE}
 	@${ECHO} 'i i.shell=%%TEMPLATEDIR%%/i.shell' >> ${PROTOTYPE_IN}
 	@${ECHO} 'i r.shell=%%TEMPLATEDIR%%/r.shell' >> ${PROTOTYPE_IN}
 .endif
-	@(cd ${WRKDIR}${PREFIX} && find . -print | ${PKGPROTO}) | \
+	@(cd ${INSTPREFIX} && find . -print | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
 		-e 's?^\(f .*\) \(0[0-9]*\) .* .*?\1 \2 ${BINOWN} ${BINGRP}?' \
 		-e 's?^\(d .*\) .* .*?\1 ${BINOWN} ${BINGRP}?' \
