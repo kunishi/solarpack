@@ -1,15 +1,18 @@
-include ../../include/pre.mk
+include ../../conf/pkgbuild.conf
+
+include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
+include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
+include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
 
 DISTNAME=	wget-1.5.3
 MASTER_SITES=	ftp://psi.c.oka-pu.ac.jp/pub/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/wget/
-GNU_CONFIGURE=	yes
 
-post-install:
+CORE_TOOLS=	yes
+
+post-install::
 	${MKDIR} ${WRK_BASEDIR}/share/examples/wget
 	${INSTALL} -c ${WRKSRC}/doc/sample.wgetrc \
 	    ${WRK_BASEDIR}/share/examples/wget/sample.wgetrc
 
-CORE_TOOLS=	yes
-
-include ../../include/pkgbuild.mk
+include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
