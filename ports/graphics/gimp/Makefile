@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.6 2001/11/12 13:43:31 kunishi Exp $
+# $Id: Makefile,v 1.7 2001/11/20 04:39:04 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	gimp
 VERSION=	1.2.2
-PORTREV=	2
+PORTREV=	3
 
 PKG=		OPUCgimp
 NAME=		GNU Image Manipulation Program, beta release
@@ -19,10 +19,10 @@ MASTER_SITES=	ftp://ftp.gimp.org/pub/gimp/v1.2/v${VERSION}/ \
 BUILD_DEPENDS=	OPUCmpglb:${PORTSDIR}/graphics/mpeg-lib
 LIB_DEPENDS=	OPENxpm:${PORTSDIR}/graphics/xpm \
 		OPENaalib:${PORTSDIR}/graphics/aalib \
-		OPENjpeg:${PORTSDIR}/graphics/jpeg \
+		OPUCjpeg:${PORTSDIR}/graphics/jpeg \
 		GNUgtk:${PORTSDIR}/x11/gtk \
 		OPUCpng:${PORTSDIR}/graphics/png \
-		OPENtiff:${PORTSDIR}/graphics/tiff
+		OPUCtiff:${PORTSDIR}/graphics/tiff
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes

@@ -1,0 +1,13 @@
+--- plug-ins/common/jpeg.c~	Fri Jul 20 23:20:37 2001
++++ plug-ins/common/jpeg.c	Tue Nov 20 12:18:39 2001
+@@ -805,7 +805,9 @@
+       local_save_vals.optimize    = DEFAULT_OPTIMIZE;
+       
+ #ifdef HAVE_PROGRESSIVE_JPEG 
+-      local_save_vals.progressive = cinfo.progressive_mode;
++      if (cinfo.process == JPROC_PROGRESSIVE) {
++          local_save_vals.progressive = 1;
++      }
+ #else
+       local_save_vals.progressive = 0;
+ #endif /* HAVE_PROGRESSIVE_JPEG */
