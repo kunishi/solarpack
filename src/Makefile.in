@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.16 2000/05/16 06:36:09 kunishi Exp $
+# $Id: Makefile.in,v 1.17 2000/05/16 06:38:19 kunishi Exp $
 #
 
 include version.mk
@@ -39,7 +39,7 @@ OSREL:sh=	/usr/bin/uname -r
 STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/sbin
 
 RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
-RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
+RELEASE_DATE:sh=	/usr/bin/date +%Y%m%d
 
 MAKEFLAGS=	TOPDIR=${CWD} \
 		BOOTSTRAPDIR=${BOOTSTRAPDIR}
@@ -48,13 +48,13 @@ CORE_TOOLS=	bmake gcc gmake gtar gzip lukemftp md5 patch texinfo
 
 BUILD_OPTS=		SOLPKGSRCDIR=${CWD} \
 			SOLPKGDIR=${SOLPKGDIR} \
-			SOLPKGBINDIR=${WRKDIR}/usr/local/bin \
+			SOLPKGBINDIR=${WRKDIR}${LOCALBASE}/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR} \
 			CORE_TOOLS=yes 
 
 BUILD_PACKAGE_OPTS=	SOLPKGSRCDIR=${CWD} \
 			SOLPKGDIR=${SOLPKGDIR} \
-			SOLPKGBINDIR=${WRKDIR}/usr/local/bin \
+			SOLPKGBINDIR=${WRKDIR}${LOCALBASE}/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR} \
 			CORE_TOOLS=yes 
 
@@ -81,26 +81,26 @@ build-strap-tools::
 
 prepare-for-package::
 	cd ${TOPDIR} && \
-	  (${RM} -f bin && ${LN} -s ${WRKDIR}/usr/local/bin)
+	  (${RM} -f bin && ${LN} -s ${WRKDIR}${LOCALBASE}/bin)
 	${MKDIR} ${RELEASE_PKG_DIR}
 	${CP} ${BOOTSTRAPDIR}/solpkg.conf ${BOOTSTRAPDIR}/port.mk \
-	  ${WRKDIR}/usr/local/share/mk
+	  ${WRKDIR}${LOCALBASE}/share/mk
 
 build-tools::
 	for tool in ${CORE_TOOLS}; do \
-	  (PATH=${WRKDIR}/usr/local/bin:${STANDARD_PATH}; export PATH; \
+	  (PATH=${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}; export PATH; \
 	   cd ${PORTSDIR}/$${tool} && \
 	     ${BMAKE} ${BUILD_OPTS} install); \
 	done
 
 build-package::
 	for tool in ${CORE_TOOLS}; do \
-	  (PATH=${WRKDIR}/usr/local/bin:${STANDARD_PATH}; export PATH; \
+	  (PATH=${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}; export PATH; \
 	   cd ${PORTSDIR}/$${tool} && \
 	     ${BMAKE} ${BUILD_PACKAGE_OPTS} package); \
 	done
 	for tool in ${CORE_TOOLS}; do \
-	  (PATH=${WRKDIR}/usr/local/bin:${STANDARD_PATH}; export PATH; \
+	  (PATH=${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}; export PATH; \
 	   cd ${PORTSDIR}/$${tool} && \
 	     ${BMAKE} ${BUILD_OPTS} release); \
 	done
