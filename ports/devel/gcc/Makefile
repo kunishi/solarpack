@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.25 2003/01/06 11:37:01 kunishi Exp $
+# $Id: Makefile,v 1.26 2003/02/27 06:07:08 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -7,7 +7,7 @@
 OSREL!=		/usr/bin/uname -r
 
 PORTNAME?=	gcc
-VERSION=	3.2.1
+VERSION=	3.2.2
 PORTREV?=	1
 
 PKG=		OPUCgcc
