@@ -2,7 +2,7 @@ include ${PKGBUILD_MAKEFILE_DIR}/use_x_prefix.mk
 include ${PKGBUILD_MAKEFILE_DIR}/use_ccsmake.mk
 
 CONFIGURE=	${X11BASE}/bin/xmkmf
-CONFIGURE_ARGS+=	-a
+CONFIGURE_ARGS +=	-a
 MAKE_ARGS +=	DESTDIR=${PREFIX}
 MAKE_INSTALL_ARGS +=	DESTDIR=${WRKDIR}
 INSTALL_TARGET +=	install.man
