@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.7 2000/09/27 01:28:00 kunishi Exp $
+# $Id: Makefile,v 1.8 2001/03/02 06:02:51 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	xpbiff
 VERSION=	1.27
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENxpbyb
 NAME=		Xpbiff with youbin support
@@ -36,9 +36,9 @@ do-extract:
 	@(cd ${WRKDIR}; ${TAR} -xzf ${DISTDIR}/${DISTNAME}.tar.gz)
 
 post-install:
-	@${MKDIR} ${INSTPREFIX}/lib/X11/app-defaults
+	@${MKDIR} ${INSTPREFIX}/lib/app-defaults
 	@${INSTALL} -c -m 644 -o root -g staff \
-	  ${WRKSRC}/XPbiff*.ad ${INSTPREFIX}/lib/X11/app-defaults
+	  ${WRKSRC}/XPbiff*.ad ${INSTPREFIX}/lib/app-defaults
 	@${MKDIR} ${INSTPREFIX}/share/doc/xpbiff
 	@${INSTALL} -c -m 644 -o root -g staff \
 	  ${WRKSRC}/README* ${INSTPREFIX}/share/doc/xpbiff

@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.8 2000/09/27 01:28:00 kunishi Exp $
+# $Id: Makefile,v 1.9 2001/03/02 05:58:34 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	kterm
 VERSION=	6.2.0
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENkterm
 NAME=		X11 kanji terminal emulator
