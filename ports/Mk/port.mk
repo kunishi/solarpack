@@ -1,11 +1,12 @@
 #
-# $Id: port.mk,v 1.12 1999/05/21 10:15:40 kunishi Exp $
+# $Id: port.mk,v 1.13 1999/05/21 10:53:45 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
 
 CCSMAKE=	/usr/ccs/bin/make
 CHOWN=		/usr/bin/chown
+CP=		/usr/bin/cp
 ECHO=		/usr/bin/echo
 ENV=		/usr/bin/env
 GMAKE=		/usr/local/bin/gmake
@@ -34,6 +35,7 @@ POSTPROTO=	${PKGBUILDDIR}/tools/postproto.sh
 
 INSTALL_PROGRAM= ${INSTALL} -c -s -m 755 -o root -g bin
 INSTALL_DATA=	${INSTALL} -c -m 644 -o root -g bin
+INSTALL_MAN=	${INSTALL} -c -m 644 -o root -g bin
 INSTALL_SCRIPT=	${INSTALL} -c -m 755 -o root -g bin
 
 .if !defined(ARCH)
@@ -97,7 +99,7 @@ PATCH_ARGS=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
-CONFIGURE_ENV=	CC=${CC} \
+CONFIGURE_ENV+=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
 MAKEFILE?=	Makefile
