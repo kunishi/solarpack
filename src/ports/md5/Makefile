@@ -1,9 +1,14 @@
 #
-# $Id: Makefile,v 1.1 1999/06/03 09:56:02 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/06/05 05:48:59 kunishi Exp $
 #
 
+PKG=		OPENmd5
+NAME=		A program to calculate checksum for a file
+VERSION=	1.0
+VENDOR=		Jim Ellis <jte@cert.org>
+
 DISTNAME=	MD5
-PKGNAME=	md5-1.0
+PKGNAME=	md5-${VERSION}
 MASTER_SITES=	ftp://ftp.tut.ac.jp/pub/Security/tool/md5/
 WRKSRC=		${WRKDIR}
 

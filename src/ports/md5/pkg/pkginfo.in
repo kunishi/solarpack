@@ -1,9 +1,0 @@
-PKG=OPENmd5
-NAME=A program to calculate checksum for a file
-VERSION=1.0
-CATEGORY=application
-ARCH=%%ARCH%%
-VENDOR=Jim Ellis <jte@cert.org>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

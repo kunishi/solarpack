@@ -1,9 +1,0 @@
-PKG=GNUlstdc+
-NAME=GNU standard C++ library
-VERSION=2.8.1.1
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Free Software Foundation
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

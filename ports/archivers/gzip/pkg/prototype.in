@@ -1,6 +1,6 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 l none bin/gunzip=gzip
 f none bin/gzexe=%%WRK_BASEDIR%%/bin/gzexe 0755 bin bin
@@ -13,7 +13,7 @@ f none bin/zgrep=%%WRK_BASEDIR%%/bin/zgrep 0755 bin bin
 f none bin/zmore=%%WRK_BASEDIR%%/bin/zmore 0755 bin bin
 f none bin/znew=%%WRK_BASEDIR%%/bin/znew 0755 bin bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/gzip.info=%%WRK_BASEDIR%%/info/gzip.info 0644 bin bin
+f info info/gzip.info=%%WRK_BASEDIR%%/info/gzip.info 0644 bin bin
 d none lib=%%WRK_BASEDIR%%/lib 0755 root bin
 d none man=%%WRK_BASEDIR%%/man 0755 root bin
 d none man/man1=%%WRK_BASEDIR%%/man/man1 0755 root bin

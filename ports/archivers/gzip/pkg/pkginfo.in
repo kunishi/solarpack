@@ -1,9 +1,0 @@
-PKG=GNUzip
-NAME=GNU compress utilities
-ARCH=%%ARCH%%
-VERSION=1.2.4
-CATEGORY=application
-VENDOR=Free Software Foundation
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

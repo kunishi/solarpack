@@ -1,9 +1,0 @@
-PKG=GNUtar
-NAME=GNU tar utilities
-ARCH=%%ARCH%%
-VERSION=1.12
-CATEGORY=application
-VENDOR=Free Software Foundation
-EMAIL=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
-BASEDIR=%%BASEDIR%%
-CLASSES=none

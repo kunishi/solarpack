@@ -1,10 +1,10 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/gtar=%%WRK_BASEDIR%%/bin/gtar 0755 bin bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/tar.info=%%WRK_BASEDIR%%/info/tar.info 0644 bin bin
+f info info/tar.info=%%WRK_BASEDIR%%/info/tar.info 0644 bin bin
 f none info/tar.info-1=%%WRK_BASEDIR%%/info/tar.info-1 0644 bin bin
 f none info/tar.info-2=%%WRK_BASEDIR%%/info/tar.info-2 0644 bin bin
 f none info/tar.info-3=%%WRK_BASEDIR%%/info/tar.info-3 0644 bin bin
