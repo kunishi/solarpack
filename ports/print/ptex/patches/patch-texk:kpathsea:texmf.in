@@ -1,0 +1,19 @@
+--- texk/kpathsea/texmf.in.orig	Thu Dec 26 01:18:39 2002
++++ texk/kpathsea/texmf.in	Fri Dec 27 20:06:23 2002
+@@ -225,7 +225,7 @@
+ GLYPHFONTS = .;$TEXMF/fonts
+ 
+ % A place to puth everything that doesn't fit the other font categories.
+-MISCFONTS = .;$TEXMF/fonts/misc//
++MISCFONTS = .;$TEXMF/fonts/misc//;@prefix@/share/ghostscript/Resource/CIDFont//;@prefix@/Acorbat4/Resource/CIDFont//
+ 
+ % For texfonts.map and included map files used by mktexpk.
+ % See ftp://ftp.tug.org/tex/fontname.tar.gz.
+@@ -296,6 +296,7 @@
+ % xdvik and dvipdfm can share some files with dvips
+ XDVIINPUTS = .;$TEXMF/{xdvi,dvips//}
+ DVIPDFMINPUTS = .;$TEXMF/{dvipdfm,dvips//}
++CMAPINPUTS = .;$TEXMF/{dvipdfm,dvips}//;@prefix@/share/ghostscript/Resource/Cmap//;@prefix@/Acrobat4/Resource/CMap//
+ 
+ % This definition isn't used from this .cnf file itself (that would be
+ % paradoxical), but the compile-time default in paths.h is built from it.

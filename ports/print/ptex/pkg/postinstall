@@ -1,3 +1,5 @@
 PATH=$CLIENT_BASEDIR/bin:$PATH; export PATH
 $CLIENT_BASEDIR/bin/mktexlsr
+$CLIENT_BASEDIR/bin/fmtutil --all
 $CLIENT_BASEDIR/bin/texconfig rehash
+$CLIENT_BASEDIR/bin/updmap
