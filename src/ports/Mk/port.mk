@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.3 1999/05/17 12:11:26 kunishi Exp $
+# $Id: port.mk,v 1.4 1999/05/19 02:45:42 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -40,39 +40,39 @@ OSREL_SOLARIS!=	/usr/bin/uname -r | /usr/bin/sed 's/^5/2/'
 .endif
 
 .if (${ARCH} == "sparc")
-GNU_HOSTTYPE=	${ARCH}-sun-solaris${OSREL_SOLARIS}
+GNU_HOSTTYPE?=	${ARCH}-sun-solaris${OSREL_SOLARIS}
 .elif (${ARCH} == "i386")
-GNU_HOSTTYPE=	${ARCH}--solaris${OSREL_SOLARIS}
+GNU_HOSTTYPE?=	${ARCH}--solaris${OSREL_SOLARIS}
 .endif
 
 LOCALBASE=	/usr/local
 X11BASE=	/usr/openwin
-PREFIX=		${LOCALBASE}
+PREFIX?=	${LOCALBASE}
 
 DISTDIR=	${PKGBUILDDIR}/distfiles
 TOOLSDIR = 	${PKGBUILDDIR}/tools
 FILESDIR=	${.CURDIR}/files
 PATCHDIR=	${.CURDIR}/patches
 WRKDIR=		${.CURDIR}/work
-WRKSRC=		${WRKDIR}/${DISTNAME}
-WRK_BASEDIR=	${WRKDIR}${PREFIX}
-SPOOLDIR=	${WRKDIR}/spool
+WRKSRC?=	${WRKDIR}/${DISTNAME}
+WRK_BASEDIR?=	${WRKDIR}${PREFIX}
+SPOOLDIR?=	${WRKDIR}/spool
 PKGDIR=		${.CURDIR}/pkg
 
-EXTRACT_SUFX=	.tar.gz
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-PKGNAME=	${DISTNAME}
-EXTRACT_ONLY=	${DISTFILES}
+EXTRACT_SUFX?=	.tar.gz
+DISTFILES?=	${DISTNAME}${EXTRACT_SUFX}
+PKGNAME?=	${DISTNAME}
+EXTRACT_ONLY?=	${DISTFILES}
 
-PATCH_STRIP=	-p0
-PATCH_DIST_STRIP=	-p0
+PATCH_STRIP?=	-p0
+PATCH_DIST_STRIP?=	-p0
 PATCH_ARGS=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_ARGS=	-d ${WRKSRC} --forward --quiet -E ${PATCH_DIST_STRIP}
 
 CONFIGURE_ENV=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-INSTALL_TARGET=	install
+INSTALL_TARGET?=	install
 
 EXTRACT_COOKIE=		${WRKDIR}/.extract_done
 PATCH_COOKIE=		${WRKDIR}/.patch_done
@@ -91,7 +91,7 @@ MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
 .endif
 
 .if defined(HAS_CONFIGURE)
-CONFIGURE=	${WRKSRC}/configure
+CONFIGURE?=	${WRKSRC}/configure
 .endif
 
 .if defined(USE_GMAKE)
@@ -104,7 +104,9 @@ CONFIGURE=	${X11BASE}/bin/xmkmf
 CONFIGURE_ARGS+=	-a
 MAKE_ARGS+=	DESTDIR=${PREFIX}
 MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
+.if !defined(NO_INSTALL_MAN)
 INSTALL_TARGET+=	install.man
+.endif
 .endif
 
 .if defined(USE_X_PREFIX)
@@ -125,13 +127,117 @@ package:	${PACKAGE_COOKIE}
 install-package:	${INSTPKG_COOKIE}
 release:	${RELEASE_COOKIE}
 
+###
+
 fetch:
 	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
-	@${RM} -rf ${WRKDIR}
-	@${MKDIR} ${WRKDIR}
 .if target(pre-fetch)
 	@${MAKE} pre-fetch
 .endif
+	@${MAKE} do-fetch
+.if target(post-fetch)
+	@${MAKE} post-fetch
+.endif
+
+${EXTRACT_COOKIE}:
+	@${MAKE} fetch
+	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
+.if target(pre-extract)
+	@${MAKE} pre-extract
+.endif
+	@${MAKE} do-extract
+.if target(post-extract)
+	@${MAKE} post-extract
+.endif
+	@${TOUCH} $@
+
+${PATCH_COOKIE}:	${EXTRACT_COOKIE}
+	@${MAKE} extract
+	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
+.if target(pre-patch)
+	@${MAKE} pre-patch
+.endif
+	@${MAKE} do-patch
+.if target(post-patch)
+	@${MAKE} post-patch
+.endif
+	@${TOUCH} $@
+
+${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
+	@${MAKE} patch
+	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
+.if target(pre-configure)
+	@${MAKE} pre-configure
+.endif
+	@${MAKE} do-configure
+.if target(post-configure)
+	@${MAKE} post-configure
+.endif
+	@${TOUCH} $@
+
+${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
+	@${MAKE} configure
+	@${ECHO_MSG} "===> Building for ${PKGNAME}"
+.if target(pre-build)
+	@${MAKE} pre-build
+.endif
+	@${MAKE} do-build
+.if target(post-build)
+	@${MAKE} post-build
+.endif
+	@${TOUCH} $@
+
+${INSTALL_COOKIE}:	${BUILD_COOKIE}
+	@${MAKE} build
+	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
+.if target(pre-install)
+	@${MAKE} pre-install
+.endif
+	@${MAKE} do-install
+.if target(post-install)
+	@${MAKE} post-install
+.endif
+	@${TOUCH} $@
+
+${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
+	@${MAKE} install
+	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
+.if target(pre-package)
+	@${MAKE} pre-package
+.endif
+	@${MAKE} do-package
+.if target(post-package)
+	@${MAKE} post-package
+.endif
+	@${TOUCH} $@
+
+${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
+	@${MAKE} package
+	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
+.if target(pre-install-package)
+	@${MAKE} pre-install-package
+.endif
+	@${MAKE} do-install-package
+.if target(post-install-package)
+	@${MAKE} post-install-package
+.endif
+	@${TOUCH} $@
+
+${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
+	@${MAKE} package
+	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
+.if target(pre-release)
+	@${MAKE} pre-release
+.endif
+	@${MAKE} do-release
+.if target(post-release)
+	@${MAKE} post-release
+.endif
+	@${TOUCH} $@
+
+###
+
+.if !target(do-fetch)
 	@(cd ${DISTDIR}; \
 	 for file in ${DISTFILES}; do \
 		if [ ! -f $$file ]; then \
@@ -156,25 +262,20 @@ fetch:
 		fi \
 	 done)
 .endif
-.if target(post-fetch)
-	@${MAKE} post-fetch
 .endif
 
-${EXTRACT_COOKIE}:
-	@${MAKE} fetch
-	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
+.if !target(do-extract)
+do-extract:
+	@${RM} -rf ${WRKDIR}
+	@${MKDIR} ${WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
 	    cd ${WRKDIR} && ${GTAR} xzf ${DISTDIR}/$${file}; \
 	done
-	@${TOUCH} $@
-
-${PATCH_COOKIE}:	${EXTRACT_COOKIE}
-	@${MAKE} extract
-	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
-.if target(pre-patch)
-	@${MAKE} pre-patch
 .endif
+
+.if !target(do-patch)
+do-patch:
 .if defined(PATCHFILES)
 	@(cd ${DISTDIR}; \
 	for file in ${PATCHFILES}; do \
@@ -205,76 +306,61 @@ ${PATCH_COOKIE}:	${EXTRACT_COOKIE}
 		done; \
 	    fi; \
 	fi
-.if target(post-patch)
-	@${MAKE} post-patch
 .endif
-	@${TOUCH} $@
 
-${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
-	@${MAKE} patch
-	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
+.if !target(do-configure)
+do-configure:
 	@cd ${WRKSRC} && ${ENV} ${CONFIGURE_ENV} ${CONFIGURE} ${CONFIGURE_ARGS}
-	@${TOUCH} $@
-
-${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
-	@${MAKE} configure
-	@${ECHO_MSG} "===> Building for ${PKGNAME}"
-	@${MAKE} do-build
-	@${TOUCH} $@
-
-${INSTALL_COOKIE}:	${BUILD_COOKIE}
-	@${MAKE} build
-	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
-	@${MKDIR} ${WRK_BASEDIR}
-.if target(pre-install)
-	@${MAKE} pre-install
-.endif
-.if defined(USE_GMAKE)
-	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
-.else
-	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
-.endif
-.if target(post-install)
-	@${MAKE} post-install
-.endif
-	@${TOUCH} $@
-
-${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
-	@${MAKE} install
-	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
-	@${MAKE} generate-prototype
-	@${MAKE} generate-pkginfo
-	@${MKDIR} ${SPOOLDIR}
-	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
-	@${PKGTRANS} -s ${SPOOLDIR} ${.CURDIR}/${PKGNAME} all
-	@${TOUCH} $@
-
-${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
-.if defined(CORE_TOOLS)
-	${ECHO_MSG} "===> This software is one of the core tools, which"
-	${ECHO_MSG} "===> is necessary during make process.  Hence it cannot"
-	${ECHO_MSG} "===> be installed by executing this target."
-	${ECHO_MSG} "===> Use pkgrm and pkgadd manually to install the package"
-	${ECHO_MSG} "===> of this software."
-.else
-	${MAKE} package
-	${ECHO_MSG} "===> Installing package for ${PKGNAME}"
-	${PKGADD} -d ${.CURDIR}/${PKGNAME} all
-	${TOUCH} $@
 .endif
 
-${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
-	@${MAKE} package
-	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
-	@${GZIP} -c -9 ${PKGNAME} > ${PKGNAME}.gz
-	@${TOUCH} $@
-
+.if !target(do-build)
 do-build:
 .if defined(USE_GMAKE)
 	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS}
 .else
 	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${MAKE_ARGS}
 .endif
+.endif
+
+.if !target(do-install)
+do-install:
+	@${MKDIR} ${WRK_BASEDIR}
+.if defined(USE_GMAKE)
+	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
+.else
+	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
+.endif
+.endif
+
+.if !target(do-package)
+do-package:
+	@${MAKE} generate-prototype
+	@${MAKE} generate-pkginfo
+	@${MKDIR} ${SPOOLDIR}
+	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype ${PKGMK_ARGS}
+	@${PKGTRANS} -s ${SPOOLDIR} ${.CURDIR}/${PKGNAME} all
+.endif
+
+.if !target(do-install-package)
+do-install-package:
+.if defined(CORE_TOOLS)
+	@${ECHO_MSG} "===>  This software is one of the core tools, which"
+	@${ECHO_MSG} "===>  is necessary during make process.  Hence it cannot"
+	@${ECHO_MSG} "===>  be installed by executing this target."
+	@${ECHO_MSG} "===>  Use pkgrm and pkgadd manually to install the package"
+	@${ECHO_MSG} "===>  of this software."
+	@exit 1
+.else
+	${PKGADD} -d ${.CURDIR}/${PKGNAME} all
+.endif
+.endif
+
+.if !target(do-release)
+do-release:
+	@${GZIP} -c -9 ${PKGNAME} > ${PKGNAME}.gz
+.endif
+
+###
 
 generate-prototype:
 	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?g" \
@@ -316,10 +402,10 @@ gen-prototype-in:	${INSTALL_COOKIE}
 
 gen-instinfo:
 .if defined(INST_INFO_FILES)
-	${ECHO_MSG} "===>  Generating postinstall"
+	@${ECHO_MSG} "===>  Generating postinstall"
 	${TOOLSDIR}/gen-info-postinstall.sh "${INST_INFO_FILES}" >> ${PKGDIR}/postinstall
-	${ECHO_MSG} "===>  Generating preremove"
+	@${ECHO_MSG} "===>  Generating preremove"
 	${TOOLSDIR}/gen-info-preremove.sh "${INST_INFO_FILES}" >> ${PKGDIR}/preremove
 .else
-	${ECHO_MSG} ">> Define INST_INFO_FILES definitely."
+	@${ECHO_MSG} ">> Define INST_INFO_FILES definitely."
 .endif
