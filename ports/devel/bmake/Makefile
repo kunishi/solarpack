@@ -1,19 +1,27 @@
 #
-# $Id: Makefile,v 1.9 1999/08/27 11:50:55 kunishi Exp $
+# $Id: Makefile,v 1.10 2000/01/06 11:07:46 kunishi Exp $
 #
 
+.if defined(CORE_TOOLS)
+PKG=		PKGBbmake
+.else
 PKG=		OPENbmake
-NAME=		BSD make tool
-VERSION=	2.2.1
+.endif
+NAME=		pkgbuild core tools: BSD make tool
+VERSION=	2.2.3
 VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 
 DISTNAME=	bmake-${VERSION}
+.if defined(CORE_TOOLS)
+PKGNAME=	core-${DISTNAME}
+.endif
 MASTER_SITES=	ftp://ftp.quick.com.au/pub/sjg/
 WRKSRC=		${WRKDIR}/bmake
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKEFILE=	makefile.boot
+MAKE_ARGS+=	XDEFS='-D_PATH_DEFSYSMK=\"${PREFIX}/share/mk/sys.mk\" -D_PATH_DEFSYSPATH=\"${PREFIX}/share/mk:/usr/local/share/mk:/opt/share/mk\"'
 
 pre-install:
 	@${MKDIR} ${INSTPREFIX}/bin
