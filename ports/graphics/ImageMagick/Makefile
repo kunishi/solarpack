@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2001/11/12 12:18:11 kunishi Exp $
+# $Id: Makefile,v 1.5 2001/11/12 14:08:38 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -8,7 +8,7 @@ PORTNAME=	ImageMagick
 VERSION=	5.4.0.5
 PORTREV=	1
 
-PKG=		OPENimgmg
+PKG=		OPUCimgmg
 NAME=		An X11 package for display and interactive manipulation of images
 VENDOR=		John Cristy <magick@wizards.dupont.com>
 
