@@ -1,0 +1,61 @@
+--- hdf/test/Makefile.in~	Mon Jun 19 16:31:15 2000
++++ hdf/test/Makefile.in	Mon Jun 19 16:37:03 2000
+@@ -310,11 +310,11 @@
+ #	cd $(HDFLIB); echo Making \`$(TARG)\' in `pwd`; \        
+ #	$(MAKE) $(MFLAGS) $(HDF_FLAGS) $(TARG); 
+ 
+-$(JPEGLIB)/libjpeg.a:
++$(JPEGLIB)/libjpeg.so:
+ #	cd $(JPEGLIB); echo Making \`$(TARG)\' in `pwd`; \        
+ #	$(MAKE) $(MFLAGS) $(HDF_FLAGS) $(TARG); 
+ 
+-$(ZLIBLIB)/libz.a:
++$(ZLIBLIB)/libz.so:
+ #	cd $(JPEGLIB); echo Making \`$(TARG)\' in `pwd`; \        
+ #	$(MAKE) $(MFLAGS) $(HDF_FLAGS) $(TARG); 
+ 
+@@ -331,8 +331,8 @@
+ 
+ $(FOBJS): fortest.inc
+ 
+-#$(FTESTS): $(FOBJS) $(CFORSUPOBJS) $(FFORSUPOBJS) $(HDFLIB)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a
+-#	$(FC) $(FFLAGS) $@.o -o $@ $(CFORSUPOBJS) $(FFORSUPOBJS) $(HDFLIB)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a
++#$(FTESTS): $(FOBJS) $(CFORSUPOBJS) $(FFORSUPOBJS) $(HDFLIB)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz
++#	$(FC) $(FFLAGS) $@.o -o $@ $(CFORSUPOBJS) $(FFORSUPOBJS) $(HDFLIB)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz
+ 
+ #$(FTESTS): $(FRC)
+ 
+@@ -360,26 +360,26 @@
+ 	@cmp fortest.out fortest.sav && echo "*** Fortran tests passed ***";
+ 
+ qtesthdf: $(COBJS) $(HDFLIB)/libdf.a
+-	quantify $(CC) $(ALL_CFLAGS) -o qtesthdf $(COBJS) $(HDFSRC)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a -lm
++	quantify $(CC) $(ALL_CFLAGS) -o qtesthdf $(COBJS) $(HDFSRC)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz -lm
+ 
+ ptesthdf: $(COBJS) $(HDFLIB)/libdf.a
+-	purify $(CC) $(ALL_CFLAGS) -o ptesthdf $(COBJS) $(HDFSRC)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a -lm
++	purify $(CC) $(ALL_CFLAGS) -o ptesthdf $(COBJS) $(HDFSRC)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz -lm
+ 
+ testhdf.tc: $(COBJS) $(HDFLIB)/libdf.a
+-	proof $(CC) $(ALL_CFLAGS) -o testhdf.tc $(COBJS) $(HDFLIB)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a -lm
++	proof $(CC) $(ALL_CFLAGS) -o testhdf.tc $(COBJS) $(HDFLIB)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz -lm
+ 
+ testhdf: $(COBJS) $(HDFLIB)/libdf.a
+-	$(CC) $(ALL_CFLAGS) -o testhdf $(COBJS) $(HDFLIB)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a -lm
++	$(CC) $(ALL_CFLAGS) -o testhdf $(COBJS) $(HDFLIB)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz -lm
+ 	test -d $(TESTDIR) || mkdir $(TESTDIR)
+ 
+ fortestF: $(FOBJS) $(HDFLIB)/libdf.a
+-	$(FC) $(FFLAGS) -o $@ $(FOBJS) $(HDFLIB)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a -lm
++	$(FC) $(FFLAGS) -o $@ $(FOBJS) $(HDFLIB)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz -lm
+ 
+ fortest: $(HDFLIB)/libdf.a fortest.c $(CHDRS)
+-	$(CC) $(ALL_CFLAGS) -o fortest fortest.c $(HDFLIB)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a -lm
++	$(CC) $(ALL_CFLAGS) -o fortest fortest.c $(HDFLIB)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz -lm
+ 
+ gentest: gentest.c $(HDFLIB)/libdf.a
+-	$(CC) $(ALL_CFLAGS) gentest.c -o gentest $(HDFLIB)/libdf.a $(JPEGLIB)/libjpeg.a $(ZLIBLIB)/libz.a -lm
++	$(CC) $(ALL_CFLAGS) gentest.c -o gentest $(HDFLIB)/libdf.a -L$(JPEGLIB) -R$(JPEGLIB) -ljpeg -L$(ZLIBLIB) -R$(ZLIBLIB) -lz -lm
+ 
+ ftests: $(FTESTS)
+ 

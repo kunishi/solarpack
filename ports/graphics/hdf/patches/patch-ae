@@ -1,0 +1,13 @@
+--- config/mh-solarisx86~	Thu Sep 17 04:31:18 1998
++++ config/mh-solarisx86	Mon Jun 19 16:44:12 2000
+@@ -20,8 +20,8 @@
+ #
+ # Compiliers:
+ # For gcc version
+-CC=gcc
+-CFLAGS=-ansi -O
++#CC=gcc
++#CFLAGS=-ansi -O
+ #
+ #Using ANSI compilier
+ #CC=cc
