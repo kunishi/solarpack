@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.4 1999/12/28 05:04:55 kunishi Exp $
+# $Id: Makefile.in,v 1.5 1999/12/28 12:02:24 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
@@ -8,6 +8,7 @@ LOCALBASE=	/usr/local
 PKGBUILDDIR=	@solpkg_topdir@
 
 CWD:sh=		pwd
+BOOTSTRAPDIR=	${CWD}/bootstrap
 MAKEFILEDIR=	${CWD}/mk
 PKGDIR=		${CWD}/pkg
 RELEASEDIR=	${CWD}/release
@@ -15,11 +16,13 @@ WRKDIR=		${CWD}/work
 
 COMPRESS=	/usr/bin/compress
 CP=		/usr/bin/cp
+ENV=		/usr/bin/env
 PKGMK=		/usr/bin/pkgmk
 PKGTRANS=	/usr/bin/pkgtrans
 MKDIR=		/usr/bin/mkdir -p
 RM=		/usr/bin/rm
 SED=		/usr/bin/sed
+SH=		/bin/sh
 TAR=		/usr/bin/tar
 
 ARCH:sh=	/usr/bin/mach
@@ -40,22 +43,13 @@ CORE_PACKAGES=	bmake-2.1.14.gz \
 		wget-1.5.3.gz
 
 all:
-	cd mk && ${MAKE} PKGBUILDDIR=${PKGBUILDDIR} LOCALBASE=${LOCALBASE}
-	cd pkg && ${SED} -e 's!%%INSTPREFIX%%!${CWD}!g' prototype.in > prototype
+	${MAKE} bootstrap
 
-release:	all
-	${MKDIR} ${WRKDIR}
-	${MKDIR} ${RELEASEDIR}
-	${PKGMK} -o -f ${PKGDIR}/prototype -b ${CWD} -d ${WRKDIR}
-	${PKGTRANS} ${WRKDIR} ${RELEASEDIR}/${PKGNAME} all
-	${COMPRESS} ${RELEASEDIR}/${PKGNAME}
-	cd ${RELEASE_PKG_DIR} && ${CP} ${CORE_PACKAGES} ${RELEASEDIR}
-	${TAR} cf ${RELEASEDIR}/ports-${RELEASE_DATE}.tar ports
-	${COMPRESS} ${RELEASEDIR}/ports-${RELEASE_DATE}.tar
-
-install:
-	cd mk && \
-	  ${MAKE} PKGBUILDDIR=${PKGBUILDDIR} LOCALBASE=${LOCALBASE} install
+bootstrap::
+	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIR}/install-lukemftp.sh && \
+	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIR}/install-gcc.sh && \
+	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIR}/install-gmake.sh && \
+	${ENV} TOPDIR=${CWD} ${SH} ${BOOTSTRAPDIRR}/install-bmake.sh
 
 clean:
 	${RM} -f config.cache config.log config.status
