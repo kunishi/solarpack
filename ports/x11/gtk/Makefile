@@ -1,14 +1,14 @@
 #
-# $Id: Makefile,v 1.3 2001/03/22 08:46:59 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/11/28 14:38:05 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	gtk
-VERSION=	1.2.9
+VERSION=	1.2.10
 PORTREV=	1
 
-PKG=		GNUgtk
+PKG=		OPUCgtk
 NAME=		General Toolkit for X11 GUI
 VENDOR=		http://www.gtk.org/
 
@@ -16,9 +16,10 @@ MASTER_SITES=	ftp://ftp.gimp.org/pub/gtk/v1.2/
 DISTNAME=	gtk+-${VERSION}
 
 LIB_DEPENDS=	GNUglib:${PORTSDIR}/devel/glib \
-		GNUgetxt:${PORTSDIR}/devel/gettext
+		OPUCgetxt:${PORTSDIR}/devel/gettext
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ENV+=	gt_cv_func_dgettext_libc=no
 USE_GMAKE=	yes
 
 CLASS_INFO=	info/gdk.info info/gtk.info
