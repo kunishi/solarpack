@@ -1,11 +1,13 @@
 i pkginfo=%%PKGDIR%%/pkginfo
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/libtool=%%WRK_BASEDIR%%/bin/libtool 0755 root staff
 f none bin/libtoolize=%%WRK_BASEDIR%%/bin/libtoolize 0755 root staff
 d none include=%%WRK_BASEDIR%%/include 0755 root bin
 f none include/ltdl.h=%%WRK_BASEDIR%%/include/ltdl.h 0644 root staff
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/libtool.info=%%WRK_BASEDIR%%/info/libtool.info 0644 root staff
+f info info/libtool.info=%%WRK_BASEDIR%%/info/libtool.info 0644 root staff
 f none info/libtool.info-1=%%WRK_BASEDIR%%/info/libtool.info-1 0644 root staff
 f none info/libtool.info-2=%%WRK_BASEDIR%%/info/libtool.info-2 0644 root staff
 f none info/libtool.info-3=%%WRK_BASEDIR%%/info/libtool.info-3 0644 root staff
