@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/23 07:23:51 kunishi Exp $
 #
 
 PORTNAME=	ja-ptex
@@ -29,6 +29,7 @@ GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
 ALL_TARGET=	all
+MAKE_ARGS+=	texmf=${INSTPREFIX}/share/texmf
 MAKE_INSTALL_ENV+=	TEXINPUTS=${INSTPREFIX}/share/texmf/tex//:
 MAKE_INSTALL_ARGS+=	texmf=${INSTPREFIX}/share/texmf
 
