@@ -1,20 +1,20 @@
 #
-# $Id: Makefile,v 1.2 2000/09/27 01:27:52 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/11/10 12:54:43 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	gnuplot
 VERSION=	3.7.1
-PORTREV=	1
+PORTREV=	2
 
-PKG=		GNUplot
+PKG=		OPUCgnupl
 NAME=		A command-driven interactive function plotting program
 VENDOR=		Thomas Williams and Lars Hecking
 
 MASTER_SITES=	ftp://ftp.gnuplot.vt.edu/pub/gnuplot/
 
-LIB_DEPENDS=	OPENpng:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	OPUCpng:${PORTSDIR}/graphics/png \
 		OPENgd:${PORTSDIR}/graphics/gd
 
 GNU_CONFIGURE=	yes
