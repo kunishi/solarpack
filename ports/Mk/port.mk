@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.79 2001/02/28 12:49:12 kunishi Exp $
+# $Id: port.mk,v 1.80 2001/03/02 05:59:05 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -200,6 +200,9 @@ MAKE_INSTALL_ENV+= \
 		CC="${CC}" \
 		CFLAGS="${CFLAGS}"
 MAKE_INSTALL_ARGS+=	INSTALL=${INSTALL}
+.if defined(USE_IMAKE)
+MAKE_INSTALL_ARGS+=	XAPPLOADDIR=${X11BASE}/lib/app-defaults
+.endif
 MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 
 TOUCH?=		/usr/bin/touch
