@@ -5,6 +5,7 @@ d none share=%%WRK_BASEDIR%%/share 0755 root bin
 d none share/doc=%%WRK_BASEDIR%%/share/doc 0755 root bin
 d none share/doc/bmake=%%WRK_BASEDIR%%/share/doc/bmake 0755 root bin
 f none share/doc/bmake/bmake.html=%%WRK_BASEDIR%%/share/doc/bmake/bmake.html 0644 root bin
+f none share/doc/bmake/bmake_1.htm=%%WRK_BASEDIR%%/share/doc/bmake/bmake_1.htm 0644 root bin
 f none share/doc/bmake/index.html=%%WRK_BASEDIR%%/share/doc/bmake/index.html 0644 root bin
 f none share/doc/bmake/install.html=%%WRK_BASEDIR%%/share/doc/bmake/install.html 0644 root bin
 f none share/doc/bmake/license.html=%%WRK_BASEDIR%%/share/doc/bmake/license.html 0644 root bin
