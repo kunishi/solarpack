@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.9 2000/06/02 14:14:51 kunishi Exp $
+# $Id: Makefile,v 1.10 2000/06/05 01:27:49 kunishi Exp $
 #
 
 PORTNAME=	dvipsk
 VERSION=	5.78a
-PORTREV=	2
+PORTREV=	3
 
 PKG=		OPENadvps
 NAME=		dvipsk for ASCII pTeX
@@ -22,6 +22,7 @@ GNU_CONFIGURE=	yes
 MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX} texmf=${INSTPREFIX}/share/texmf
 
 CLASS_INFO=	info/dvips.info
+EDITABLE_FILES=	share/texmf/dvips/config/config.ps
 
 DVIPSDIR=	${INSTPREFIX}/share/texmf/dvips
 TEXDIR=		${INSTPREFIX}/share/texmf/tex
@@ -60,6 +61,8 @@ post-install:
 	  for i in ${LATEX209_MACROS}; do \
 	    ${INSTALL_DATA} $$i ${TEXDIR}/latex209/dvips; \
 	  done
+	${MKDIR} ${DVIPSDIR}/config
+	${CP} ${DVIPSDIR}/contrib/config.proto ${DVIPSDIR}/config/config.ps
 	${MKDIR} ${INSTPREFIX}/share/doc/dvips
 	for i in ${DOCS}; do \
 	  ${INSTALL_DATA} ${WRKSRC}/$$i ${INSTPREFIX}/share/doc/dvips; \
