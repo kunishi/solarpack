@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.87 2001/11/12 13:56:11 kunishi Exp $
+# $Id: port.mk,v 1.88 2001/11/28 11:10:52 kunishi Exp $
 #
 
 # ${APDK_DIR} and ${APDK_BINDIR} are set in ${APDK_DIR}/share/mk/soap.conf.
@@ -71,9 +71,17 @@ RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
 LIB_DEPENDS+=	OPENzlib:${PORTSDIR}/devel/zlib
 .endif
 .endif
+.if defined(USE_AUTOMAKE)
+USE_AUTOCONF=	yes
+BUILD_DEPENDS+=	OPUCautmk:${PORTSDIR}/devel/automake
+AUTOMAKE=	${LOCALBASE}/bin/automake
+AUTOMAKE_ARGS?=	#
+.endif
 .if defined(USE_AUTOCONF)
+GNU_CONFIGURE=	yes
 BUILD_DEPENDS+=	GNUautcnf:${PORTSDIR}/devel/autoconf
 AUTOCONF=	${LOCALBASE}/bin/autoconf
+AUTOCONF_ARGS?=	#
 .endif
 .if defined(USE_LIBTOOL)
 BUILD_DEPENDS+=	GNUlibtl:${PORTSDIR}/devel/libtool
@@ -84,8 +92,8 @@ MAKE_INSTALL_ARGS+=	LIBTOOL=${LOCALBASE}/bin/libtool
 #BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel/gmake
 #.endif
 .if defined(USE_PERL5)
-BUILD_DEPENDS+=	OPENperl:${PORTSDIR}/lang/perl5
-RUN_DEPENDS+=	OPENperl:${PORTSDIR}/lang/perl5
+BUILD_DEPENDS+=	OPUCperl:${PORTSDIR}/lang/perl5
+RUN_DEPENDS+=	OPUCperl:${PORTSDIR}/lang/perl5
 .endif
 
 WRKDIR?=	${MASTERDIR}/work
@@ -137,6 +145,9 @@ CLASSES+=	backup
 .endif
 .if defined(CLASS_INITD)
 CLASSES+=	initd
+.endif
+.if defined(CLASS_SUITCASE)
+CLASSES+=	suitcase
 .endif
 CLASSES+=	none
 # NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
@@ -289,6 +300,7 @@ GZCAT?=		${APDK_BINDIR}/gzip -cd
 GZIP?=		${APDK_BINDIR}/gzip
 .endif
 INSTALL?=	/usr/ucb/install
+JAR?=		/usr/bin/jar
 LN?=		/usr/bin/ln
 MV?=		/usr/bin/mv
 MKDIR?=		/usr/bin/mkdir -p
@@ -327,19 +339,31 @@ MANOWN?=	root
 MANGRP?=	bin
 MANMODE?=	644
 
-MASTER_SITES_GNU+=	\
-	ftp://prep.ai.mit.edu/pub/gnu/@SUBDIR@/ \
-	ftp://wuarchive.wustl.edu/systems/gnu/@SUBDIR@/ \
-	ftp://ftp.kddlabs.co.jp/pub/gnu/@SUBDIR@/ \
-	ftp://ftp.cdrom.com/pub/gnu/@SUBDIR@/ \
-	ftp://tron.um.u-tokyo.ac.jp/pub/GNU/prep/@SUBDIR@/
-MASTER_SITES_GNOME+=	\
-	ftp://ftp.gnome.org/pub/gnome/@SUBDIR@/
+# common site definition
+.include "port.site.mk"
 
 VENDOR_GNU=	Free Software Foundation, Inc.
 
 MASTER_SITES?=	
 PATCH_SITES?=	
+
+# substitute subdirectory names
+.if defined(MASTER_SITE_SUBDIR)
+.for dir in ${MASTER_SITE_SUBDIR}
+MASTER_SITES_TMP+=	${MASTER_SITES:S^%SUBDIR%^${dir}^}
+.endfor
+.else
+MASTER_SITES_TMP=	${MASTER_SITES:S^%SUBDIR%/^^}
+.endif
+MASTER_SITES:=	${MASTER_SITES_TMP}
+.if defined(PATCH_SITE_SUBDIR)
+.for dir in ${PATCH_SITE_SUBDIR}
+PATCH_SITES_TMP+=	${PATCH_SITES:S^%SUBDIR%^${dir}^}
+.endfor
+.else
+PATCH_SITES_TMP=	${PATCH_SITES:S^%SUBDIR%/^^}
+.endif
+PATCH_SITES:=	${PATCH_SITES_TMP}
 
 DISTNAME?=	${PORTNAME}-${VERSION}
 DISTFILES?=	${DISTNAME}${EXTRACT_SUFX}
@@ -517,6 +541,13 @@ ${INSTPKG_COOKIE}:
 ${RELEASE_COOKIE}:
 	@cd ${.CURDIR} && ${MAKE} package
 	@cd ${.CURDIR} && ${MAKE} real-release
+
+.if !target(reinstall)
+reinstall:
+	${RM} -rf ${INSTALL_COOKIE}
+	${RM} -rf ${INSTPREFIX}
+	@cd ${.CURDIR} && ${MAKE} install
+.endif
 
 real-fetch:
 .if defined(NO_FETCH)
@@ -708,15 +739,18 @@ do-patch:
 
 .if !target(do-configure)
 do-configure:
+.if defined(USE_AUTOMAKE)
+	@cd ${CONFIGURE_WRKSRC} && ${AUTOMAKE} ${AUTOMAKE_ARGS}
+.endif
 .if defined(USE_AUTOCONF)
-	@cd ${CONFIGURE_WRKSRC} && ${AUTOCONF}
+	@cd ${CONFIGURE_WRKSRC} && ${AUTOCONF} ${AUTOCONF_ARGS}
 .endif
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
 	  cd ${.CURDIR} && ${SH} ${SCRIPTDIR}/configure; \
 	fi
 .if defined(HAS_CONFIGURE)
 	@cd ${CONFIGURE_WRKSRC} && \
-	  ${ENV} ${CONFIGURE_ENV} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
+	  ${ENV} ${CONFIGURE_ENV} ${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
 .endif
 .if defined(USE_IMAKE)
 	@cd ${CONFIGURE_WRKSRC} && ${XMKMF}
@@ -974,6 +1008,10 @@ gen-prototype:
 	@${ECHO} 'i i.initd=${PKGDIR}/i.initd' >> ${PROTOTYPE}
 	@${ECHO} 'i r.initd=${PKGDIR}/r.initd' >> ${PROTOTYPE}
 .endif
+.if defined(CLASS_SUITCASE)
+	@${ECHO} 'i i.suitcase=${TEMPLATEDIR}/i.suitcase' >> ${PROTOTYPE}
+	@${ECHO} 'i r.suitcase=${TEMPLATEDIR}/r.suitcase' >> ${PROTOTYPE}
+.endif
 	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} >> ${PROTOTYPE}
 .endif
 
@@ -1058,6 +1096,12 @@ _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
 .for file in ${CLASS_INITD}
 _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
 	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 initd \2?'"
+.endfor
+.endif
+.if defined(CLASS_SUITCASE)
+.for file in ${CLASS_SUITCASE}
+_sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
+	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 suitcase \2?'"
 .endfor
 .endif
 
