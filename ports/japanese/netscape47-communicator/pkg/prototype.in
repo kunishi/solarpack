@@ -1,7 +1,7 @@
 i pkginfo=%%PKGDIR%%/pkginfo
 d none local=%%INSTPREFIX%%/local 0755 root bin
 d none local/bin=%%INSTPREFIX%%/local/bin 0755 root bin
-s none local/bin/netscape=../netscape/netscape
+s none local/bin/netscape-current=../netscape/netscape
 d none local/netscape=%%INSTPREFIX%%/local/netscape 0755 root bin
 f none local/netscape/LICENSE=%%INSTPREFIX%%/local/netscape/LICENSE 0444 root bin
 f none local/netscape/Netscape.ad=%%INSTPREFIX%%/local/netscape/Netscape.ad 0444 root bin

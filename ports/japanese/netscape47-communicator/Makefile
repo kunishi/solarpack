@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.3 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/05/31 08:58:48 kunishi Exp $
 #
 
 PORTNAME=	ja-netscape-communicator
-VERSION=	4.72
+VERSION=	4.73
 PORTREV=	1
 
 PKG=		NSjacomm
@@ -12,7 +12,7 @@ VENDOR=		Netscape Communications Corporation
 
 ARCH!=		/usr/bin/mach
 
-NS_SHORTVERSION=	472
+NS_SHORTVERSION=	473
 
 .if (${ARCH} == "sparc")
 DISTNAME=	communicator-v${NS_SHORTVERSION}-export.sparc-sun-solaris2.5.1
@@ -45,6 +45,6 @@ do-install:
 post-install:
 	${CHOWN} -R ${BINOWN}:${BINGRP} ${INSTPREFIX} 
 	${MKDIR} ${INSTPREFIX}/local/bin
-	cd ${INSTPREFIX}/local/bin && ${LN} -s ../netscape/netscape
+	cd ${INSTPREFIX}/local/bin && ${LN} -s ../netscape/netscape netscape-current
 
 .include <port.mk>
