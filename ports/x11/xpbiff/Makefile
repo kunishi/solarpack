@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:49 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/21 12:38:07 kunishi Exp $
 #
 
 PORTNAME=	xpbiff
@@ -18,6 +18,8 @@ DISTFILES=	${DISTNAME}-${VERSION}-with-YOUBIN.tar.gz.uu
 PATCH_SITES=	ftp://ftp.ics.es.osaka-u.ac.jp/pub/xpbiff/
 PATCHFILES=	${DISTNAME}-${VERSION}-with-YOUBIN.patch-1
 PATCH_DIST_STRIP=	-p1
+
+RUN_DEPENDS=	OPENyoubi:${PORTSDIR}/mail/youbin
 
 USE_IMAKE=	yes
 NO_INSTALL_MAN=	yes
