@@ -1,10 +1,10 @@
 #
-# $Id: port.mk,v 1.28 1999/06/09 02:34:04 kunishi Exp $
+# $Id: port.mk,v 1.29 1999/06/09 03:18:18 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
 
-.include "${PKGBUILDDIR}/conf/pkgbuild.conf"
+.include "pkgbuild.conf"
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
