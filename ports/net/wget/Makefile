@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.11 1999/06/09 02:34:12 kunishi Exp $
+# $Id: Makefile,v 1.12 2000/01/19 01:29:04 kunishi Exp $
 #
 
 PKG=		GNUwget
@@ -13,9 +13,8 @@ MASTER_SITES=	ftp://psi.c.oka-pu.ac.jp/pub/ \
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
 
-CORE_TOOLS=	yes
+CLASS_INFO=	info/wget.info
 
 post-install:
 	${MKDIR} ${INSTPREFIX}/share/examples/wget

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 1999/09/01 10:49:12 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/01/19 01:31:20 kunishi Exp $
 #
 
 PKG=		OPENtex
@@ -21,11 +21,12 @@ WRKSRC=		${WRKDIR}/web2c-7.2
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
 
 ALL_TARGET=	all
 MAKE_INSTALL_ENV+=	TEXINPUTS=${INSTPREFIX}/share/texmf/tex//:
 MAKE_INSTALL_ARGS+=	texmf=${INSTPREFIX}/share/texmf
+
+CLASS_INFO=	info/kpathsea.info info/web2c.info
 
 post-extract:
 	${MKDIR} ${INSTPREFIX}/share
