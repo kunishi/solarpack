@@ -1,0 +1,4 @@
+CONFIGURE=	${WRKSRC}/configure
+CONFIGURE_ARGS +=	--prefix=${PREFIX}
+MAKE_ENV +=	prefix=${PREFIX}
+MAKE_INSTALL_ARGS +=	prefix=${WRK_BASEDIR}

@@ -1,0 +1,1 @@
+PREFIX=		${X11BASE}

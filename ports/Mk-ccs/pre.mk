@@ -1,4 +1,3 @@
-CC=		/usr/local/bin/gcc
 ECHO=		/usr/bin/echo
 ENV=		/usr/bin/env
 GMAKE=		/usr/local/bin/gmake
@@ -22,22 +21,20 @@ UNAME=		/usr/bin/uname
 WGET=		/usr/local/bin/wget
 
 ECHO_MSG=	${ECHO}
-PKGMAKE=	${GMAKE}
+PKGMAKE=	/usr/ccs/bin/make
 POSTPROTO=	${CURDIR}/../../tools/postproto.sh
 
-ARCH=		$(shell ${UNAME} -p)
-OSREL=		$(shell ${UNAME} -r)
-ifeq ($(ARCH),sparc)
-GNU_HOSTTYPE=	${ARCH}-sun-solaris$(shell ${UNAME} -r | ${SED} 's/^5/2/')
-else
-GNU_HOSTTYPE=	${ARCH}--solaris$(shell ${UNAME} -r | ${SED} 's/^5/2/')
-endif
+ARCH:sh=	/usr/ucb/mach
+OSREL:sh=		/usr/bin/uname -r
+OSREL_SOLARIS:sh=	/usr/bin/uname -r | /usr/bin/sed 's/^5/2/'
+include	${PKGBUILD_MAKEFILE_DIR}/${ARCH}.mk
 
 LOCALBASE=	/usr/local
 X11BASE=	/usr/openwin
+PREFIX=		${LOCALBASE}
 
-CURDIR=		$(shell ${PWD})
-DISTDIR=	/opt/local/pkgbuild/distfiles
+CURDIR:sh=	/usr/bin/pwd
+DISTDIR=	${PKGBUILDDIR}/distfiles
 FILESDIR=	${CURDIR}/files
 PATCHDIR=	${CURDIR}/patches
 WRKDIR=		${CURDIR}/work
@@ -70,7 +67,5 @@ INSTALL_COOKIE=		${WRKDIR}/.install_done
 PACKAGE_COOKIE=		${WRKDIR}/.package_done
 INSTPKG_COOKIE=		${WRKDIR}/.instpkg_done
 RELEASE_COOKIE=		${WRKDIR}/.release_done
-
-include ../../include/pkgbuild.conf
 
 all:	build

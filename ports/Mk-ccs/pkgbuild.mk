@@ -1,39 +1,6 @@
 #
-# $Id: pkgbuild.mk,v 1.7 1999/05/11 03:46:16 kunishi Exp $
+# $Id: pkgbuild.mk,v 1.8 1999/05/11 09:27:51 kunishi Exp $
 #
-
-ifeq ($(USE_IMAKE),yes)
-USE_X_PREFIX=	yes
-XMKMF=		${X11BASE}/bin/xmkmf
-XMKMF_ARGS+=	-a
-USE_CCSMAKE=	yes
-MAKE_ARGS+=	DESTDIR=${PREFIX}
-MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
-INSTALL_TARGET+=	install-man
-endif
-
-ifeq ($(USE_X_PREFIX),yes)
-PREFIX=		${X11BASE}
-else
-PREFIX=		${LOCALBASE}
-endif
-
-ifeq ($(GNU_CONFIGURE),yes)
-CONFIGURE=	${WRKSRC}/configure
-CONFIGURE_ARGS+=	--prefix=${PREFIX}
-MAKE_ENV+=	prefix=${PREFIX}
-MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
-endif
-
-ifeq ($(USE_GMAKE),yes)
-MAKE=		/usr/local/bin/gmake
-endif
-
-ifeq ($(USE_CCSMAKE),yes)
-MAKE=		/usr/ccs/bin/make
-endif
-
-MAKE_ENV+=	MAKE=${MAKE} MAKEFLAGS=
 
 ### rule definitions
 
@@ -71,19 +38,19 @@ ${FETCH_COOKIE}:
 			done; \
 		fi \
 	done)
-ifneq (${PATCHFILES},)
-	@(cd ${DISTDIR}; \
-	 for file in ${PATCHFILES}; do \
+	@if [ "${PATCHFILES}" != '' ]; then \
+	(cd ${DISTDIR}; \
+	 for file in "${PATCHFILES}"; do \
 		if [ ! -f $${file} ]; then \
-			for site in ${PATCH_SITES}; do \
+			for site in "${PATCH_SITES}"; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
 				if ${WGET} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
 		fi \
-	 done)
-endif
+	 done); \
+	fi
 	@${PKGMAKE} post-fetch
 	@${TOUCH} ${FETCH_COOKIE}
 
@@ -100,9 +67,9 @@ ${PATCH_COOKIE}:	${EXTRACT_COOKIE}
 	@${PKGMAKE} extract
 	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
 	@${PKGMAKE} pre-patch
-ifneq (${PATCHFILES},)
-	@(cd ${DISTDIR}; \
-	for file in ${PATCHFILES}; do \
+	@if [ "${PATCHFILES}" != '' ]; then \
+	(cd ${DISTDIR}; \
+	for file in "${PATCHFILES}"; do \
 	    case $${file} in \
 		*.Z|*.gz) \
 		    ${GZCAT} $${file} | ${PATCH} ${PATCH_DIST_ARGS}; \
@@ -111,9 +78,9 @@ ifneq (${PATCHFILES},)
 		    ${PATCH} ${PATCH_DIST_ARGS} < $${file}; \
 		    ;; \
 	    esac; \
-	done)
-endif
-	@if test -d ${PATCHDIR} ]; then \
+	done) \
+	fi
+	@if test -d ${PATCHDIR}; then \
 	    if [ "`${ECHO} ${PATCHDIR}/patch-*`" = "${PATCHDIR}/patch-*" ]; then \
 		${ECHO_MSG} "===>  Ignoring empty patch directory"; \
 	    else \
@@ -136,11 +103,7 @@ endif
 ${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
 	@${PKGMAKE} patch
 	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
-ifeq ($(USE_IMAKE),yes)
-	@cd ${WRKSRC} && ${ENV} ${CONFIGURE_ENV} ${XMKMF} ${XMKMF_ARGS}
-else
 	@cd ${WRKSRC} && ${ENV} ${CONFIGURE_ENV} ${CONFIGURE} ${CONFIGURE_ARGS}
-endif
 	@${TOUCH} $@
 
 ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
@@ -153,7 +116,7 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${PKGMAKE} build
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 	@${MKDIR} ${WRK_BASEDIR}
-	@cd ${WRKSRC} && ${MAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
 	@${PKGMAKE} post-install
 	@${TOUCH} $@
 
@@ -161,12 +124,12 @@ ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
 	@${PKGMAKE} install
 	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
 	@${SED} -e "s?%%PKGDIR%%?${PKGDIR}?g" \
-	    -e "s?%%GNU_HOSTTYPE%%?${GNU_HOSTTYPE}?g" \
-	    -e "s?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g" \
+	    -e 's?%%GNU_HOSTTYPE%%?${GNU_HOSTTYPE}?g' \
+	    -e 's?%%WRK_BASEDIR%%?${WRK_BASEDIR}?g' \
 	    ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
-	@${SED} -e "s?%%ARCH%%?${ARCH}?" \
-	    -e "s?%%BASEDIR%%?${PREFIX}?" \
-	    -e "s?%%PKG_MAINTAINER%%?${PKG_MAINTAINER}?" \
+	@${SED} -e 's?%%ARCH%%?${ARCH}?' \
+	    -e 's?%%BASEDIR%%?${PREFIX}?' \
+	    -e 's?%%PKG_MAINTAINER%%?${PKG_MAINTAINER}?' \
 	    ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	@${MKDIR} ${SPOOLDIR}
 	@${PKGMK} -d ${SPOOLDIR} -f ${PKGDIR}/prototype
@@ -174,18 +137,18 @@ ${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
 	@${TOUCH} $@
 
 ${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
-ifeq (${CORE_TOOLS},yes)
-	@${ECHO_MSG} "===> This software is one of the core tools, which"
-	@${ECHO_MSG} "===> is necessary during make process.  Hence it cannot"
-	@${ECHO_MSG} "===> be installed by executing this target."
-	@${ECHO_MSG} "===> Use pkgrm and pkgadd manually to install the package"
-	@${ECHO_MSG} "===> of this software."
-else
-	@${PKGMAKE} package
-	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
-	@${PKGADD} -d ${CURDIR}/${PKGNAME} all
-	@${TOUCH} $@
-endif
+	@if [ "${CORE_TOOLS}" = 'yes' ]; then \
+	${ECHO_MSG} "===> This software is one of the core tools, which"; \
+	${ECHO_MSG} "===> is necessary during make process.  Hence it cannot"; \
+	${ECHO_MSG} "===> be installed by executing this target."; \
+	${ECHO_MSG} "===> Use pkgrm and pkgadd manually to install the package"; \
+	${ECHO_MSG} "===> of this software."; \
+	else \
+	${PKGMAKE} package; \
+	${ECHO_MSG} "===> Installing package for ${PKGNAME}"; \
+	${PKGADD} -d ${CURDIR}/${PKGNAME} all; \
+	${TOUCH} $@; \
+	fi
 
 ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 	@${PKGMAKE} package
@@ -193,10 +156,18 @@ ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 	@${GZIP} -c -9 ${PKGNAME} > ${PKGNAME}.gz
 	@${TOUCH} $@
 
-ifneq ($(DO_BUILD_OVERRIDE),yes)
+pre-fetch::
+
+post-fetch::
+
+pre-patch::
+
+post-patch::
+
 do-build::
 	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${MAKE_ARGS}
-endif
+
+post-install::
 
 clean:
 	@${ECHO_MSG} "===> Cleaning for ${PKGNAME}"
