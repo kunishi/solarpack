@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.4 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/06/08 09:31:24 kunishi Exp $
 #
 
 PORTNAME=	freetype
-VERSION=	1.3
+VERSION=	1.3.1
 PORTREV=	1
 
 PKG=		OPENft
