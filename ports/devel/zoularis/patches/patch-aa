@@ -1,0 +1,13 @@
+--- Makefile.inc.orig	Thu Mar  9 11:57:33 2000
++++ Makefile.inc	Mon Jun  5 20:35:41 2000
+@@ -20,8 +20,8 @@
+ # i386 is "i386", Sparc is "sparc", others unknown
+ #MACHINE=i386
+ #MACHINE_ARCH=i386
+-MACHINE=sparc
+-MACHINE_ARCH=sparc
++#MACHINE=sparc
++#MACHINE_ARCH=sparc
+ 
+ ############################################################################
+ # You shouldn't need to change anything else

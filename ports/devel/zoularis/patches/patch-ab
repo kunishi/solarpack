@@ -1,0 +1,18 @@
+--- Makefile.orig	Thu Mar  9 11:56:59 2000
++++ Makefile	Tue Jun  6 12:14:10 2000
+@@ -54,7 +54,7 @@
+ 	@(PWD=`pwd`; for i in ${SUBDIR}; do \
+ 		cd $$i; \
+ 		${BMAKE} all; ${BMAKE} install; \
+-		cd ${PWD}; \
++		cd $$PWD; \
+ 	 done)
+ 
+ clean:
+@@ -64,5 +64,5 @@
+ 		if [ -f Makefile ]; then \
+ 		    ${BMAKE} clean;\
+ 		fi; \
+-		cd ${PWD}; \
++		cd $$PWD; \
+ 	done)
