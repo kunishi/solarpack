@@ -1,8 +1,0 @@
-INFODIR=$CLIENT_BASEDIR/info
-INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
-
-if test -x ${INSTALL_INFO}; then
-	${INSTALL_INFO} --delete --info-dir=${INFODIR} ${INFODIR}/cvs.info
-else
-	/usr/bin/echo ">> Remove cvs.info entry from ${INFODIR}/dir by hand."
-fi

@@ -1,9 +1,0 @@
-PKG=OPENcvs
-NAME=CVS, Concurrent Version System
-VERSION=1.10.6
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Cyclic Software, Com. <http://www.cyclic.com/>
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

@@ -1,12 +1,12 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/cvs=%%WRK_BASEDIR%%/bin/cvs 0755 bin bin
 f none bin/cvsbug=%%WRK_BASEDIR%%/bin/cvsbug 0755 bin bin
 f none bin/rcs2log=%%WRK_BASEDIR%%/bin/rcs2log 0755 bin bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/cvs.info=%%WRK_BASEDIR%%/info/cvs.info 0644 bin bin
+f info info/cvs.info=%%WRK_BASEDIR%%/info/cvs.info 0644 bin bin
 f none info/cvs.info-1=%%WRK_BASEDIR%%/info/cvs.info-1 0644 bin bin
 f none info/cvs.info-2=%%WRK_BASEDIR%%/info/cvs.info-2 0644 bin bin
 f none info/cvs.info-3=%%WRK_BASEDIR%%/info/cvs.info-3 0644 bin bin
