@@ -1,8 +1,9 @@
 #
-# $Id: Makefile,v 1.3 2000/06/16 11:24:26 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/22 12:07:13 kunishi Exp $
 #
 
 SUBDIR+=	Xaw3d
+SUBDIR+=	afterstep
 SUBDIR+=	fvwm-i18n
 SUBDIR+=	fvwm95-i18n
 SUBDIR+=	gtk
