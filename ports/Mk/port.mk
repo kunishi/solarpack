@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.70 2000/06/20 06:43:32 kunishi Exp $
+# $Id: port.mk,v 1.71 2000/06/23 11:24:51 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -162,7 +162,7 @@ CC?=		${SOAP_BINDIR}/gcc
 CXX?=		${SOAP_BINDIR}/c++
 GMAKE?=		${SOAP_BINDIR}/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
-CFLAGS?=	-g -O
+CFLAGS?=	-O2
 
 CONFIGURE_ENV+=	CC="${CC}" \
 		CFLAGS="${CFLAGS}" \
