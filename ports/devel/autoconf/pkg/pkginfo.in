@@ -1,9 +1,0 @@
-PKG=GNUautcnf
-NAME=GNU autoconf, a tool for generating configure script automatically.
-VERSION=2.13
-ARCH=%%ARCH%%
-CATEGORY=application
-VENDOR=Free Software Foundation
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
