@@ -1,0 +1,6 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%INSTPREFIX%%/bin 0755 root bin
+f none bin/nkf=%%INSTPREFIX%%/bin/nkf 0755 root bin
+d none man=%%INSTPREFIX%%/man 0755 root bin
+d none man/man1=%%INSTPREFIX%%/man/man1 0755 root bin
+f none man/man1/nkf.1=%%INSTPREFIX%%/man/man1/nkf.1 0644 root bin
