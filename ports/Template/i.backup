@@ -1,8 +1,10 @@
 while read src dst
 do
-	echo ">> Backup ${dst} to ${dst}.bak.  Be sure to merge"
-	echo ">> both files manually."
-	mv -f ${dst} ${dst}.bak
+	if [ -f ${dst} ]; then
+		echo ">> Backup ${dst} to ${dst}.bak.  Be sure to merge"
+		echo ">> both files manually."
+		mv -f ${dst} ${dst}.bak
+	fi
 	echo ${dst}
 	cp ${src} ${dst} || exit 2
 done
