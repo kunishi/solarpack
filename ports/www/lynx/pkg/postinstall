@@ -1,0 +1,1 @@
+cp $CLIENT_BASEDIR/lib/lynx.cfg.default $CLIENT_BASEDIR/lib/lynx.cfg
