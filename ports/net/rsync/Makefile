@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.2 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/06/02 03:39:11 kunishi Exp $
 #
 
 PORTNAME=	rsync
-VERSION=	2.3.2
+VERSION=	2.4.3
 PORTREV=	1
 
 PKG=	GNUrsync
