@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.4 2000/06/07 12:48:40 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/06/30 12:16:30 kunishi Exp $
 #
 
 ARCH!=		/usr/bin/mach
 
 PORTNAME=	ssh2
-VERSION=	2.0.13
+VERSION=	2.2.0
 PORTREV=	1
 
 PKG=		OPENssh2
@@ -13,8 +13,7 @@ NAME=		Secure shell version 2
 
 VENDOR=		SSH Communications Security Ltd., Finland <http://www.ssh.fi/>.
 DISTNAME=	ssh-${VERSION}
-MASTER_SITES=	ftp://ftp.cs.hut.fi/pub/ssh/ \
-		ftp://ftp.kyoto.wide.ad.jp/pub/security/ssh/
+MASTER_SITES=	ftp://ftp.ssh.com/pub/ssh/
 
 GNU_CONFIGURE=	yes
 .if (${ARCH} == "i386")
