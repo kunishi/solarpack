@@ -1,0 +1,51 @@
+# RCSid:
+#	$Id: makefile.boot.in,v 1.12 2000/04/02 05:23:15 sjg Exp $
+
+#
+# modify MACHINE and MACHINE_ARCH as appropriate for your target architecture
+#
+prefix=@prefix@
+srcdir=@srcdir@
+VPATH=.:$(srcdir)
+CC=@CC@
+MACHINE=`$(srcdir)/machine.sh`
+MACHINE_ARCH=`$(srcdir)/machine.sh arch`
+INSTALL=$(srcdir)/install-sh
+MKDEP=$(srcdir)/mkdeps.sh -n -i/usr/include
+MKDEP_OPTS=-A
+MK=${prefix}/share/mk
+
+CFLAGS=-I. -I$(srcdir) @DEFS@ @CPPFLAGS@ -DMAKE_BOOTSTRAP ${XDEFS}
+MDEFS="-DFORCE_MACHINE=\"${MACHINE}\"" "-DMACHINE_ARCH=\"${MACHINE_ARCH}\""
+
+OBJ=arch.o buf.o compat.o cond.o dir.o for.o hash.o job.o main.o make.o \
+    parse.o str.o suff.o targ.o var.o util.o getopt.o sigcompat.o @LIBOBJS@
+
+bmake: ${OBJ}
+	(cd lst.lib; $(MAKE) -f makefile.boot CC="$(CC)" CFLAGS="-I.. ${CFLAGS}" )
+	${CC} *.o lst.lib/*.o -o bmake @LIBS@
+
+install:
+	${INSTALL} -m755 bmake ${prefix}/bin
+
+install-man:
+	test -d ${prefix}/man/cat1 || ${INSTALL} -m755 -d ${prefix}/man/cat1
+	${INSTALL} -m444 ${srcdir}/bmake.0 ${prefix}/man/cat1/bmake.1
+
+install-mk:
+	test -d ${MK} || ${INSTALL} -m775 -d ${MK}
+	${INSTALL} -m644 ${srcdir}/mk/[d-s]*.mk ${MK}
+	test -s ${MK}/bsd.own.mk || ${INSTALL} -m644 ${srcdir}/mk/bsd*.mk ${MK}
+	test -s ${MK}/sys.mk || ${INSTALL} -m644 ${srcdir}/mk/`uname`.sys.mk ${MK}/sys.mk
+
+depend:
+	VPATH=${VPATH} ${MKDEP} $(MKDEP_OPTS) -f makefile.boot ${CFLAGS} ${OBJ:.o=.c}
+	(cd lst.lib; $(MAKE) -f makefile.boot depend MKDEP="$(MKDEP) $(MKDEP_OPTS)" CC="$(CC)" CFLAGS="-I.. ${CFLAGS}" )
+
+main.o: $(srcdir)/main.c
+	${CC} ${CFLAGS} ${MDEFS} -o $@ -c $(srcdir)/main.c
+
+${OBJ}: config.h
+
+clean:
+	rm -f bmake ${OBJ}

@@ -1,0 +1,34 @@
+Thu Apr 27 00:07:47 2000  Simon J. Gerraty  <sjg@zen.quick.com.au>
+
+	* util.c: don't provide signal() since we use sigcompat.c
+
+	* Makefile.in: added a build target.
+
+	* var.c (Var_Parse): added ODE modifiers :U, :D, :L, :P, :@ and :!
+	These allow some quite clever magic.
+
+	* main.c (main): added support for getenv(MAKESYSPATH).
+
+Mon Apr  2 16:25:13 2000  Simon J. Gerraty  <sjg@zen.quick.com.au>
+
+	* Disable $PWD overriding getcwd() if MAKEOBJDIRPREFIX is set.
+	This avoids objdir having a different value depending on how a
+	directory was reached (via command line, or subdir.mk).
+
+	* If FORCE_MACHINE is defined, ignore getenv("MACHINE").
+	
+Mon Apr  2 23:15:31 2000  Simon J. Gerraty  <sjg@zen.quick.com.au>
+
+	* Do a chdir(${.CURDIR}) before invoking ${.MAKE} or ${.MAKE:T} if
+	MAKEOBJDIRPREFIX is set and NOCHECKMAKECHDIR is not.
+	I've been testing this in NetBSD's make for some weeks.
+
+	* Turn Makefile into Makefile.in and make it useful.
+	
+Tue Feb 29 22:08:00 2000 Simon J. Gerraty  <sjg@zen.quick.com.au>
+
+	* Imported NetBSD's -current make(1) and resolve conflicts.
+	
+	* Applied autoconf patches from bmake v2
+
+	* Imported clean code base from NetBSD-1.0
