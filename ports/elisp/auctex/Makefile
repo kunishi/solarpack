@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.9 2001/11/20 14:49:25 kunishi Exp $
+# $Id: Makefile,v 1.10 2001/11/30 12:46:34 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -23,8 +23,6 @@ MAKE_ARGS+=	prefix=${PREFIX} EMACS=emacs
 MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX} EMACS=emacs
 INSTALL_TARGET=	install install-info install-contrib
 
-INFODIR=	${INSTPREFIX}/info
-SITELISPDIR=	${INSTPREFIX}/share/emacs/site-lisp
 DOCS=		README INSTALLATION CHANGES COPYING PROBLEMS ChangeLog
 CLASS_INFO=	info/auctex
 
@@ -32,14 +30,13 @@ post-build:
 	@(cd ${WRKSRC}; ${CCSMAKE} ${MAKE_ARGS} contrib)
 
 pre-install:
-	${MKDIR} ${INFODIR} ${SITELISPDIR}/${PORTNAME}
+	@${MKDIR} ${INFODIR_TMP} ${SITELISPDIR_TMP}/${PORTNAME}
 
 post-install:
-	${MKDIR} ${INSTPREFIX}/share/doc/auctex
+	@${MKDIR} ${DOCDIR_TMP}
 .for doc in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${INSTPREFIX}/share/doc/auctex
+	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCDIR_TMP}
 .endfor
-	${INSTALL_DATA} ${FILESDIR}/auctex-setup.el \
-	  ${INSTPREFIX}/share/emacs/site-lisp
+	${INSTALL_DATA} ${FILESDIR}/auctex-setup.el ${SITELISPDIR_TMP}
 
 .include <port.mk>
