@@ -1,5 +1,5 @@
---- ppm/Imakefile~	Thu Jun  1 21:22:39 2000
-+++ ppm/Imakefile	Thu Jun  1 21:23:00 2000
+--- ppm/Imakefile~	Sun Aug 13 14:25:18 1995
++++ ppm/Imakefile	Fri Jun  2 13:44:19 2000
 @@ -17,9 +17,9 @@
  #define DepLibPpm LibPpm
  #include <../Pbmplus.tmpl>
@@ -13,3 +13,10 @@
         DEFINES = -DRGB_DB=\"DefaultRGBDatabase\"
           MERGE = ppmmerge
  
+@@ -194,5 +194,5 @@
+ #endif
+ 
+ #if InstallIncludes
+-InstallMultipleFlags(ppm.h,$(PBMPLUSDIR)$(PBMPLUSINCDIR),$(INSTINCFLAGS))
++InstallMultipleFlags(ppm.h ppmcmap.h ppmdraw.h,$(PBMPLUSDIR)$(PBMPLUSINCDIR),$(INSTINCFLAGS))
+ #endif

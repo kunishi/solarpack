@@ -1,0 +1,22 @@
+--- shhopt/Makefile.orig	Fri Jun  2 13:15:24 2000
++++ shhopt/Makefile	Fri Jun  2 13:16:23 2000
+@@ -20,14 +20,14 @@
+ LIBHEAD		= $(DIST).h
+ TARGETS		= $(LIBTARGET)
+ 
+-INSTBASEDIR	= /usr/local
++#INSTBASEDIR	= /usr/local
+ INSTLIBDIR	= $(INSTBASEDIR)/lib
+ INSTINCDIR	= $(INSTBASEDIR)/include
+-INSTALL		= install -m 644
+-INSTALLPROG	= install -m 755
+-MKDIRP		= install -d -m 755
++INSTALL		= $(BSD_INSTALL_DATA)
++INSTALLPROG	= $(BSD_INSTALL_PROGRAM)
++MKDIRP		= $(MKDIR)
+ 
+-CC		= gcc
++#CC		= gcc
+ OPTIM		= -O2
+ 
+ INCDIR		= -I.
