@@ -1,0 +1,9 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none include=%%INSTPREFIX%%/include 0755 root bin
+f none include/proplist.h=%%INSTPREFIX%%/include/proplist.h 0644 root bin
+d none lib=%%INSTPREFIX%%/lib 0755 root bin
+f none lib/libPropList.a=%%INSTPREFIX%%/lib/libPropList.a 0644 root bin
+f none lib/libPropList.la=%%INSTPREFIX%%/lib/libPropList.la 0755 root bin
+f none lib/libPropList.so.0.2.2=%%INSTPREFIX%%/lib/libPropList.so.0.2.2 0755 root bin
+s none lib/libPropList.so.0=libPropList.so.0.2.2
+s none lib/libPropList.so=libPropList.so.0.2.2
