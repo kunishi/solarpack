@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.15 2000/05/17 03:59:58 kunishi Exp $
+# $Id: Makefile,v 1.16 2000/06/01 13:15:20 kunishi Exp $
 #
 
 PORTNAME=	bmake
-VERSION=	3.0.2
+VERSION=	3.1.0
 PORTREV=	1
 
 .if defined(CORE_TOOLS)
@@ -17,7 +17,7 @@ NAME=		BSD make tool
 VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 MASTER_SITES=	ftp://ftp.quick.com.au/pub/sjg/
 WRKSRC=		${WRKDIR}/${PORTNAME}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} mk-1.1.tar.gz
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} mk-1.2.1.tar.gz
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 GNU_CONFIGURE=	yes
@@ -25,10 +25,11 @@ USE_GMAKE=	yes
 MAKEFILE=	makefile.boot
 MAKE_ARGS+=	XDEFS='-D_PATH_DEFSYSMK=\"${PREFIX}/share/mk/sys.mk\" -D_PATH_DEFSYSPATH=\"${PREFIX}/share/mk:/usr/local/share/mk:/opt/share/mk\"'
 
+ALL_TARGET=	bmake
 INSTALL_TARGET=	install install-man install-mk
 
 post-extract:
-	${TAR} -C ${WRKSRC} -xzf ${DISTDIR}/mk-1.1.tar.gz
+	${TAR} -C ${WRKSRC} -xzf ${DISTDIR}/mk-1.2.1.tar.gz
 
 pre-install:
 	@${MKDIR} ${INSTPREFIX}/bin
