@@ -1,7 +1,6 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_imake.mk
+#
+# $Id: Makefile,v 1.3 1999/05/18 01:43:36 kunishi Exp $
+#
 
 DISTNAME=	fvwm95-2.0.43a-Imake
 PKGNAME=	fvwm95-i18n-2.0.43a
@@ -13,7 +12,9 @@ PATCH_SITES=	${MASTER_SITES}
 PATCHFILES=	fvwm95-2.0.43a-Imake.I18N.diff.gz
 PATCH_DIST_STRIP=	-p1
 
-pre-patch::
+USE_IMAKE=	yes
+
+pre-patch:
 	@cd ${WRKSRC}/fvwm; ${PATCH} -p0 -N < ${DISTDIR}/fvwm95-2.0.43a.patch
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+.include <port.mk>
