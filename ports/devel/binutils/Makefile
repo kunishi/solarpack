@@ -1,23 +1,22 @@
 #
-# $Id: Makefile,v 1.4 2000/09/28 02:45:03 kunishi Exp $
+# $Id: Makefile,v 1.5 2001/04/14 04:15:14 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	binutils
-VERSION=	2.9.1
-PORTREV=	2
+VERSION=	2.11
+PORTREV=	1
 
 PKG=	GNUbinut
 NAME=	GNU binutils
 VENDOR=	${VENDOR_GNU}
 
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/binutils/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/binutils/
-
-RUN_DEPENDS=	GNUcc:${PORTSDIR}/devel/gcc
+MASTER_SITES=	ftp://ftp.freesoftware.com/pub/sourceware/binutils/releases/ \
+		ftp://sourceware.cygnus.com/pub/binutils/releases/
 
 GNU_CONFIGURE=	yes
+USE_BZIP2=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS+=	--program-prefix=g
 
