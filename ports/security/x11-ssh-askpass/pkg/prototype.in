@@ -1,0 +1,13 @@
+d none local=%%INSTPREFIX%%/local 0755 root bin
+d none local/libexec=%%INSTPREFIX%%/local/libexec 0755 root bin
+s none local/libexec/ssh-askpass=x11-ssh-askpass
+f none local/libexec/x11-ssh-askpass=%%INSTPREFIX%%/local/libexec/x11-ssh-askpass 0755 root bin
+d none openwin=%%INSTPREFIX%%/openwin 0755 root bin
+d none openwin/lib=%%INSTPREFIX%%/openwin/lib 0755 root bin
+d none openwin/lib/app-defaults=%%INSTPREFIX%%/openwin/lib/app-defaults 0755 root bin
+f none openwin/lib/app-defaults/SshAskpass=%%INSTPREFIX%%/openwin/lib/app-defaults/SshAskpass 0444 root bin
+d none openwin/share=%%INSTPREFIX%%/openwin/share 0755 root bin
+d none openwin/share/man=%%INSTPREFIX%%/openwin/share/man 0755 root bin
+d none openwin/share/man/man1=%%INSTPREFIX%%/openwin/share/man/man1 0755 root bin
+s none openwin/share/man/man1/ssh-askpass.1=x11-ssh-askpass.1
+f none openwin/share/man/man1/x11-ssh-askpass.1=%%INSTPREFIX%%/openwin/share/man/man1/x11-ssh-askpass.1 0444 root bin
