@@ -3,7 +3,7 @@
 #
 
 PORTNAME=	openssh
-VERSION=	3.6.1p1
+VERSION=	3.7.1p1
 PORTREV=	1
 
 PKG=		OPUCopssh
