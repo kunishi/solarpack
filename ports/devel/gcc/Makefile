@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.24 2002/03/15 09:02:48 kunishi Exp $
+# $Id: Makefile,v 1.25 2003/01/06 11:37:01 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -7,7 +7,7 @@
 OSREL!=		/usr/bin/uname -r
 
 PORTNAME?=	gcc
-VERSION=	3.0.4
+VERSION=	3.2.1
 PORTREV?=	1
 
 PKG=		OPUCgcc
@@ -28,15 +28,18 @@ GNU_CONFIGURE=	yes
 .if (${OSREL} == "5.6")
 CONFIGURE_ENV+=	CFLAGS='-g -O0'
 .endif
+CONFIGURE_ARGS+=	--disable-nls
 .if defined(USE_BINUTILS)
 CONFIGURE_ARGS+=	--with-gnu-asm --with-gnu-ld
+.else
+CONFIGURE_ARGS+=	--with-as=/usr/ccs/bin/as --with-ld=/usr/ccs/bin/ld
 .endif
 ALL_TARGET=	bootstrap
 MAKE_ENV+=	LD_LIBRARY_PATH=${LOCALBASE}/lib LD_RUN_PATH=${LOCALBASE}/lib
 PROTOTYPE_SUB+=	GCC_VER=${VERSION}
 
 CLASS_INFO=	info/cpp.info info/cppinternals.info \
-		info/g77.info info/gcc.info info/gcj.info
+		info/g77.info info/gcc.info info/gccint.info info/gcj.info
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/include/g++-3
