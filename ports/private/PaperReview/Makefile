@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.1 2000/09/07 11:11:48 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/12 11:26:20 kunishi Exp $
 #
 
 PORTNAME=	PaperReview
 VERSION=	2.54
-PORTREV=	1
+PORTREV=	4
 
 PKG=		OPENpaprv
 NAME=		Paper Review System
@@ -25,11 +25,13 @@ MAKE_INSTALL_ARGS= \
 		CGI_BIN=${CONF_BASEDIR}/cgi-bin
 PROTOTYPE_SUB+=	CONFCODE=${CONFCODE}
 
-CONFCODE?=	conf99
-CONF_BASEDIR=	${INSTPREFIX}/apache/htdocs/${CONFCODE}
+PREFIX?=	${LOCALBASE}/apache/htdocs
+CONFCODE?=	ER2001
+CONF_BASEDIR=	${INSTPREFIX}/${CONFCODE}
 
 pre-configure:
 	${SED} -e "s|%%PREFIX%%|${PREFIX}|" \
+	       -e "s|%%LOCALBASE%%|${LOCALBASE}|" \
 	       -e "s|%%CONFCODE%%|${CONFCODE}|" \
 		${FILESDIR}/configure.in > ${WRKSRC}/configure
 	${CHMOD} 755 ${WRKSRC}/configure
@@ -39,19 +41,19 @@ do-build:
 
 do-install:
 	${MKDIR} ${CONF_BASEDIR}/cgi-bin
-	cd ${WRKSRC}/${CONFCODE} && ${ENV} ${MAKE_INSTALL_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
+	${MKDIR} ${CONF_BASEDIR}/doc
+	${MKDIR} ${CONF_BASEDIR}/examples
+	${MKDIR} ${CONF_BASEDIR}/images
 	${MKDIR} ${CONF_BASEDIR}/log
-	${MKDIR} ${CONF_BASEDIR}/reviews
-	${CHMOD} 753 ${CONF_BASEDIR}/log ${CONF_BASEDIR}/reviews
 	${MKDIR} ${CONF_BASEDIR}/php
+	${MKDIR} ${CONF_BASEDIR}/reviews
+	cd ${WRKSRC}/${CONFCODE} && ${ENV} ${MAKE_INSTALL_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
+	${CHMOD} 753 ${CONF_BASEDIR}/log ${CONF_BASEDIR}/reviews
 	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/php/* ${CONF_BASEDIR}/php
-	${MKDIR} ${CONF_BASEDIR}/image
-	${INSTALL_DATA} ${WRKSRC}/bgnd.gif ${CONF_BASEDIR}/image
+	${INSTALL_DATA} ${WRKSRC}/bgnd.gif ${CONF_BASEDIR}/images
 	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/sql/createdb.sql ${CONF_BASEDIR}/${CONFCODE}create.txt
-	${MKDIR} ${INSTPREFIX}/share/doc/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/README ${INSTPREFIX}/share/doc/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/sql/initdb.sql ${INSTPREFIX}/share/doc/${PORTNAME}
-	${MKDIR} ${INSTPREFIX}/share/examples/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/html/* ${INSTPREFIX}/share/examples/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/README ${CONF_BASEDIR}/doc
+	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/sql/initdb.sql ${CONF_BASEDIR}/doc
+	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/html/* ${CONF_BASEDIR}/examples
 
 .include <port.mk>

@@ -2,8 +2,9 @@
 
 LANG=C; export LANG
 
-PREFIX=%%PREFIX%%
 CONFCODE=%%CONFCODE%%
+LOCALBASE=%%LOCALBASE%%
+PREFIX=%%PREFIX%%
 
 EDIT_SED=edit.sed
 
@@ -16,11 +17,9 @@ EDIT_SED=edit.sed
 ADMIN_EMAIL="email@domain.edu"
 ADMIN_USER="admin"
 ADMIN_PASSWORD="password"
-BACKGROUND_IMAGE="/images/bgnd.gif"
 BASE_URL="http://www.conference.edu"	# Paper Review System URL
 CONF_URL="http://www.conference.edu"	# Conference URL
-CONFERENCE_CODE="CONF'99"
-DATABASE_NAME=$CONFCODE
+CONFERENCE_CODE="CONF99"
 SMTP_SERVER="mail.domain.edu"
 TOPIC_HEADER="Conceptual modeling as applied to:"
 WEB_CONTACT_NAME="Your Name"
@@ -32,17 +31,8 @@ WEB_CONTACT_URL="http://www.domain.edu/dir/page.html"
 BACKGROUND_COLOR="f8f8f8"
 MIN_DIFFERENCE="3"
 MAX_PC_MEMBERS="500"
-MYSQL_PATH="${PREFIX}"
-MYSQL_SOCK="/tmp/mysql.sock"	# May want /var/tmp/mysql.sock
-SERVER_DIR="${PREFIX}/apache"
-HTDOCS_DIR="${SERVER_DIR}/htdocs"
-CGI_BIN_DIR="${HTDOCS_DIR}/${DATABASE_NAME}/cgi-bin"
-CGI_PATH="${BASE_URL}/cgi-bin"
+HTDOCS_DIR="${PREFIX}"
 SMTP_PORT="25"
-URL_SUBMIT_PAPER="submit.html"
-URL_CM_LOGON="cm_logon.html"
-URL_HOME="index.html"
-URL_EMAIL="email.html"
 #
 # End of site-specific strings.
 #
@@ -50,7 +40,6 @@ URL_EMAIL="email.html"
 CUSTOM_VAR="ADMIN_EMAIL \
 	ADMIN_USER \
 	ADMIN_PASSWORD \
-	BACKGROUND_IMAGE \
 	BASE_URL \
 	CONF_URL \
 	CONFERENCE_CODE \
@@ -61,18 +50,19 @@ CUSTOM_VAR="ADMIN_EMAIL \
 	BACKGROUND_COLOR \
 	MIN_DIFFERENCE \
 	MAX_PC_MEMBERS \
-	MYSQL_PATH \
-	MYSQL_SOCK \
-	SERVER_DIR \
 	HTDOCS_DIR \
-	CGI_BIN_DIR \
-	CGI_PATH \
-	SMTP_PORT \
-	URL_SUBMIT_PAPER \
-	URL_CM_LOGON \
-	URL_HOME URL_EMAIL"
+	SMTP_PORT"
 
 rm -f ${EDIT_SED}
+
+COPYRIGHT=`cat copy.html`
+CCOPY=`cat ccopy.html`
+CURRENT_YEAR=`date +\%Y`
+SETUP_TIME=`date`
+echo "s|COPYRIGHT|$COPYRIGHT|g" >> ${EDIT_SED}
+echo "s|CCOPY|$CCOPY|g" >> ${EDIT_SED}
+echo "s|CURRENT_YEAR|$CURRENT_YEAR|g" >> ${EDIT_SED}
+echo "s|SETUP_TIME|$SETUP_TIME|g" >> ${EDIT_SED}
 
 for var in $CUSTOM_VAR; do
   echo "$var: [`eval echo '$'$var`] \c"
@@ -83,16 +73,33 @@ for var in $CUSTOM_VAR; do
   echo "s|$var|`eval echo '$'$var`|g" >> ${EDIT_SED}
 done
 
-echo "s|DATABASE_NAME|$DATABASE_NAME|g" >> ${EDIT_SED}
+#
+# The following variables can be customizable in PaperReview, but
+# the port maintainer recommends not to customize them.
+#
+BACKGROUND_IMAGE="/images/bgnd.gif"
+CGI_BIN_DIR="${HTDOCS_DIR}/${DATABASE_NAME}/cgi-bin"
+CGI_PATH="${BASE_URL}/cgi-bin"
+DATABASE_NAME=$CONFCODE
+MYSQL_PATH="${LOCALBASE}"
+MYSQL_SOCK="/tmp/mysql.sock"
+SERVER_DIR="${LOCALBASE}/apache"
+URL_SUBMIT_PAPER="submit.html"
+URL_CM_LOGON="cm_logon.html"
+URL_HOME="index.html"
+URL_EMAIL="email.html"
 
-COPYRIGHT=`cat copy.html`
-CCOPY=`cat ccopy.html`
-CURRENT_YEAR=`date +\%Y`
-SETUP_TIME=`date`
-echo "s|COPYRIGHT|$COPYRIGHT|g" >> ${EDIT_SED}
-echo "s|CCOPY|$CCOPY|g" >> ${EDIT_SED}
-echo "s|CURRENT_YEAR|$CURRENT_YEAR|g" >> ${EDIT_SED}
-echo "s|SETUP_TIME|$SETUP_TIME|g" >> ${EDIT_SED}
+echo "s|BACKGROUND_IMAGE|$BACKGROUND_IMAGE|g" >> ${EDIT_SED}
+echo "s|CGI_BIN_DIR|$CGI_BIN_DIR|g" >> ${EDIT_SED}
+echo "s|CGI_PATH|$CGI_PATH|g" >> ${EDIT_SED}
+echo "s|DATABASE_NAME|$DATABASE_NAME|g" >> ${EDIT_SED}
+echo "s|MYSQL_PATH|$MYSQL_PATH|g" >> ${EDIT_SED}
+echo "s|MYSQL_SOCK|$MYSQL_SOCK|g" >> ${EDIT_SED}
+echo "s|SERVER_DIR|$SERVER_DIR|g" >> ${EDIT_SED}
+echo "s|URL_SUBMIT_PAPER|$URL_SUBMIT_PAPER|g" >> ${EDIT_SED}
+echo "s|URL_CM_LOGON|$URL_CM_LOGIN|g" >> ${EDIT_SED}
+echo "s|URL_HOME|$URL_HOME|g" >> ${EDIT_SED}
+echo "s|URL_EMAIL|$URL_EMAIL|g" >> ${EDIT_SED}
 
 CGI_SRC="author.c abstract.c adhocsql.c editprofile.c email.c \
 	get.doc.c get1review.c getreview.c revbypaper.c revbypc.c \
