@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/19 12:17:29 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/21 12:29:41 kunishi Exp $
 #
 
 PORTNAME=	ImageMagick
@@ -21,14 +21,15 @@ LIB_DEPENDS=	OPENjpeg:${PORTSDIR}/graphics/jpeg \
 BUILD_DEPENDS=	OPENbzip2:${PORTSDIR}/archivers/bzip2 \
 		GNUgzip:${PORTSDIR}/archivers/gzip \
 		OPENhdf:${PORTSDIR}/graphics/hdf \
-		OPENjbig:${PORTSDIR}/graphcis/jbigkit \
+		OPENjbig:${PORTSDIR}/graphics/jbigkit \
 		OPENntpbm:${PORTSDIR}/graphics/netpbm \
 		GNUgsvf:${PORTSDIR}/print/gs
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-shared \
 			--build=${GNU_HOSTTYPE} --host=${GNU_HOSTTYPE} \
-			--target=${GNU_HOSTTYPE}
+			--target=${GNU_HOSTTYPE} \
+			--with-perl=${LOCALBASE}/bin/perl
 CONFIGURE_ENV+=	ac_cv_path_ZipDelegate="${LOCALBASE}/bin/gzip"
 CONFIGURE_TARGET=	# 
 USE_PERL5=	yes
