@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/09/27 01:27:39 kunishi Exp $
+# $Id: Makefile,v 1.9 2001/03/30 01:33:51 kunishi Exp $
 #
 
 SUBDIR+=	ORBit
@@ -17,6 +17,7 @@ SUBDIR+=	gcc
 SUBDIR+=	gettext
 SUBDIR+=	glib
 SUBDIR+=	gmake
+SUBDIR+=	gperf
 SUBDIR+=	javacc
 SUBDIR+=	libPropList
 SUBDIR+=	libreadline

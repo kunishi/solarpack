@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.82 2001/03/23 07:50:52 kunishi Exp $
+# $Id: port.mk,v 1.83 2001/03/30 01:33:51 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -202,7 +202,7 @@ MAKE_INSTALL_ENV+= \
 MAKE_INSTALL_ARGS+=	INSTALL=${INSTALL}
 .if defined(USE_IMAKE)
 _MFLAGS+=		XAPPLOADDIR=${X11BASE}/lib/app-defaults
-.if ${OSREL} <= 5.7
+.if ${OSREL} <= 5.8
 _MFLAGS+=		INCROOT=${X11BASE}/share/include
 .endif
 MAKE_INSTALL_ARGS+=	${_MFLAGS} MFLAGS='${_MFLAGS}'

@@ -1,7 +1,7 @@
 #
-# $Id: Makefile,v 1.1 2000/06/23 11:21:17 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/03/30 01:33:55 kunishi Exp $
 #
 
-SUBDIRS+=	gnuplot
+SUBDIR+=	gnuplot
 
 .include <port.subdir.mk>

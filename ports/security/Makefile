@@ -1,10 +1,11 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 08:58:39 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/03/30 01:33:56 kunishi Exp $
 #
 
 SUBDIR+=	md5
-SUBDIR+=	ssh1
-SUBDIR+=	ssh2
+SUBDIR+=	openssh
+SUBDIR+=	openssl
 SUBDIR+=	sudo
+SUBDIR+=	x11-ssh-askpass
 
 .include <port.subdir.mk>

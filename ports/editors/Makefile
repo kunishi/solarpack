@@ -1,8 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/07/14 11:23:25 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/03/30 01:33:52 kunishi Exp $
 #
 
-SUBDIR+=	emcws20-canna+wnn6
+SUBDIR+=	emcws20-wnn6
 SUBDIR+=	mule-canna+wnn6
 
 .include <port.subdir.mk>

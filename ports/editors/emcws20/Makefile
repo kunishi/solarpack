@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:43 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/03/30 01:33:53 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -7,7 +7,7 @@
 .if !defined(PORTNAME)
 PORTNAME=	emcws20
 .endif
-VERSION=	20.7
+VERSION=	${EMACS_VER}.${EMCWS_VER}
 PORTREV=	1
 
 .if !defined(PKG)
@@ -20,11 +20,12 @@ VENDOR=		${VENDOR_GNU}
 
 MASTER_SITES=	ftp://core.ring.gr.jp/pub/GNU/emacs/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/emacs/
-DISTNAME=	emacs-${VERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} leim-${VERSION}${EXTRACT_SUFX}
+DISTNAME=	emacs-${EMACS_VER}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} leim-${EMACS_VER}${EXTRACT_SUFX}
 
-PATCH_SITES=	ftp://ftp.ki.nu/pub/emcws/
-PATCHFILES=	emcws-${VERSION}-${EMCWS_VER}.gz
+PATCH_SITES=	ftp://ftp.ki.nu/pub/emcws/ \
+		ftp://ftp.kddlabs.co.jp/.6/Japan/ki.nu/emcws/
+PATCHFILES=	emcws-${EMACS_VER}-${EMCWS_VER}.gz
 PATCH_DIST_STRIP=	-p1
 
 GNU_CONFIGURE=	yes
@@ -58,7 +59,7 @@ PROTOTYPE_IN?=	${PKGDIR}/prototype.in
 PROTOTYPE_SUB+=	EMACS_VER=${EMACS_VER}
 
 EMACS_VER=	20.7
-EMCWS_VER=	20000614
+EMCWS_VER=	20010125
 WNN6_INCDIR=	/usr/lib/locale/ja/wnn/demo/include/wnn
 WNN6_LIBDIR=	/usr/lib/locale/ja/wnn/demo/lib
 CANNA_INCDIR=	${LOCALBASE}/canna/include

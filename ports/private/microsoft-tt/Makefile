@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:56 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/03/30 01:33:55 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -13,7 +13,7 @@ NAME=	Microsoft Japanese TrueType fonts
 VENDOR=	Microsoft Corp.
 
 DISTNAME=	#
-MASTER_SITES=	ftp://${USER}@bloodstone.c.oka-pu.ac.jp/%2Fexport/share/fonts/truetype/microsoft/
+MASTER_SITES=	file:///share/pub/fonts/truetype/microsoft/
 DISTFILES=	msmincho.ttc msgothic.ttc
 WRKSRC=		${WRKDIR}
 

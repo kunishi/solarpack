@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.20 2000/09/27 01:27:41 kunishi Exp $
+# $Id: Makefile,v 1.21 2001/03/30 01:33:51 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -19,8 +19,8 @@ NAME=		GNU compiler collection
 .endif
 
 VENDOR=		${VENDOR_GNU}
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gcc/
+MASTER_SITES=	ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gcc/ \
+		ftp://ftp.gnu.org/pub/gnu/gcc/
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
