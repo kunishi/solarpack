@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.83 2001/03/30 01:33:51 kunishi Exp $
+# $Id: port.mk,v 1.84 2001/04/14 04:13:30 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -53,6 +53,11 @@ PREFIX?=	${LOCALBASE}
 .endif
 .endif
 
+.if defined(USE_BINUTILS)
+BUILD_DEPENDS+=	GNUcc:${PORTSDIR}/devel/gcc-binutils
+CC=		${LOCALBASE}/bin/gcc
+CXX=		${LOCALBASE}/bin/c++
+.endif
 .if defined(USE_BZIP2)
 BUILD_DEPENDS+=	OPENbzip2:${PORTSDIR}/archivers/bzip2
 .endif
