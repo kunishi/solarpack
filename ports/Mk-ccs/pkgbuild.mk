@@ -1,17 +1,9 @@
-ifeq ($(USE_GMAKE),yes)
-MAKE=		/usr/local/bin/gmake
-endif
-
-ifeq ($(USE_CCSMAKE),yes)
-MAKE=		/usr/ccs/bin/make
-endif
-
-MAKE_ENV=	MAKE=${MAKE} MAKEFLAGS=
-
 ifeq ($(USE_IMAKE),yes)
 USE_X_PREFIX=	yes
 XMKMF=		${X11BASE}/bin/xmkmf
 XMKMF_ARGS+=	-a
+USE_CCSMAKE=	yes
+MAKE_FLAGS+=	DESTDIR=${PREFIX}
 endif
 
 ifeq ($(USE_X_PREFIX),yes)
@@ -20,12 +12,21 @@ else
 PREFIX=		${LOCALBASE}
 endif
 
-MAKE_ENV+=	prefix=${PREFIX}
-
 ifeq ($(GNU_CONFIGURE),yes)
 CONFIGURE=	${WRKSRC}/configure
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
+MAKE_ENV+=	prefix=${PREFIX}
 endif
+
+ifeq ($(USE_GMAKE),yes)
+MAKE=		/usr/local/bin/gmake
+endif
+
+ifeq ($(USE_CCSMAKE),yes)
+MAKE=		/usr/ccs/bin/make
+endif
+
+MAKE_ENV+=	MAKE=${MAKE} MAKEFLAGS=
 
 ### rule definitions
 
@@ -126,7 +127,7 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${PKGMAKE} build
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 	@${MKDIR} ${WRK_BASEDIR}
-	@cd ${WRKSRC} && ${MAKE} install prefix=${WRK_BASEDIR}
+	@cd ${WRKSRC} && ${MAKE} install prefix=${WRK_BASEDIR} DESTDIR=${WRKDIR}
 	@${PKGMAKE} post-install
 	@${TOUCH} $@
 
