@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/06/09 04:08:00 kunishi Exp $
 #
 
 PORTNAME=	ja-xdvik-vflib
@@ -18,6 +18,8 @@ PATCH_SITES=	ftp://ftp.ipc.chiba-u.ac.jp/pub/pub.yamaga/xdvik-20c/
 PATCH_DIST_STRIP=	-p1
 
 LIB_DEPENDS=	OPENvflib:${PORTSDIR}/print/VFlib2
+RUN_DEPENDS=	OPENadvps:${PORTSDIR}/print/dvipsk \
+		OPENdvsel:${PORTSDIR}/print/dviselect
 
 GNU_CONFIGURE=	yes
 MAKE_INSTALL_ARGS+=	texmf=${INSTPREFIX}/share/texmf
