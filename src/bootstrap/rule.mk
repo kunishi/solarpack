@@ -1,31 +1,27 @@
 #
 # common rule for soap, standard Solaris make version
-# $Id: rule.mk,v 1.2 2000/05/17 01:50:07 kunishi Exp $
+# $Id: rule.mk,v 1.3 2001/02/22 08:38:02 kunishi Exp $
 #
 
-.PHONY:	fetch extract patch configure build install
+.PHONY:	patch configure build install
 
-${FETCH_COOKIE}:
-	${MKDIR} ${DISTDIR} ${WORKDIR} ${TMPPREFIX}
-	${MAKE} -f ${MAKEFILE} fetch
-	${TOUCH} ${FETCH_COOKIE}
+install:=	PREFIX=${TMPPREFIX}
 
-${EXTRACT_COOKIE}:	${FETCH_COOKIE}
-	${MAKE} -f ${MAKEFILE} extract
-	${TOUCH} ${EXTRACT_COOKIE}
-
-${PATCH_COOKIE}:	${EXTRACT_COOKIE}
-	${MAKE} -f ${MAKEFILE} patch
+${PATCH_COOKIE}:
+	${MAKE_ENV} ${MAKE} ${MAKEFLAGS} patch
 	${TOUCH} ${PATCH_COOKIE}
 
 ${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
-	${MAKE} -f ${MAKEFILE} configure
+	${MAKE_ENV} ${MAKE} ${MAKEFLAGS} configure
 	${TOUCH} ${CONFIGURE_COOKIE}
 
 ${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
-	${MAKE} -f ${MAKEFILE} build
+	${MAKE_ENV} ${MAKE} ${MAKEFLAGS} build
 	${TOUCH} ${BUILD_COOKIE}
 
 ${INSTALL_COOKIE}:	${BUILD_COOKIE}
-	${MAKE} -f ${MAKEFILE} install
+	${MAKE_ENV} ${MAKE} ${MAKEFLAGS} install
 	${TOUCH} ${INSTALL_COOKIE}
+
+clean::
+	${RM} ${PATCH_COOKIE} ${CONFIGURE_COOKIE} ${BUILD_COOKIE} ${INSTALL_COOKIE}

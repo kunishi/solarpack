@@ -1,47 +1,51 @@
 #
-# $Id: Makefile.in,v 1.22 2000/09/27 11:10:04 kunishi Exp $
+# $Id: Makefile.in,v 1.23 2001/02/22 08:37:58 kunishi Exp $
 #
 
 include version.mk
+
+PATH=		/bin:/usr/bin:/usr/ccs/bin:/opt/sfw/bin:/usr/sbin:${TMPBINDIR}${EXTRA_PATH}
+
 PKGNAME=	soap
 
-LOCALBASE=	/usr/local
-SOAP_DIR=	@soap_topdir@
+LOCALBASE=	@soap_topdir@
+SOAP_DIR=	${LOCALBASE}
 
 CWD:sh=		pwd
 BOOTSTRAPDIR=	${CWD}/bootstrap
+CONTRIBDIR=	${CWD}/contrib
 DISTDIR=	${CWD}/distfiles
 MAKEFILEDIR=	${CWD}/mk
 PKGDIR=		${CWD}/pkg
 PORTSDIR=	${CWD}/ports
 RELEASEDIR=	${CWD}/release
+TOOLSDIR=	${CWD}/tools
 WRKDIR=		${CWD}/work
+TMPPREFIX=	${WRKDIR}${LOCALBASE}
+TMPBINDIR=	${TMPPREFIX}/bin
 
-COMPRESS=	/usr/bin/compress
-CP=		/usr/bin/cp
-ENV=		/usr/bin/env
-PKGMK=		/usr/bin/pkgmk
-PKGTRANS=	/usr/bin/pkgtrans
-LN=		/usr/bin/ln
-MKDIR=		/usr/bin/mkdir -p
-PKGMK=		/usr/bin/pkgmk -o
-PKGTRANS=	/usr/bin/pkgtrans -o
-RM=		/usr/bin/rm
-SED=		/usr/bin/sed
+COMPRESS=	compress
+CP=		cp
+ENV=		env
+LN=		ln
+MKDIR=		mkdir -p
+RM=		rm
+SED=		sed
 SH=		/bin/sh
-TAR=		/usr/bin/tar
+TAR=		tar
+GZIP_CMD=	gzip
+CC?=		gcc
+GMAKE?=		gmake	# defined in sunos.${OSREL}.mk
 
-GZIP_CMD=	/usr/bin/gzip
-SFW_CC=		/opt/sfw/bin/gcc
-SFW_GMAKE=	/opt/sfw/bin/gmake
+BMAKE=		bmake
+LNDIR=		${TOOLSDIR}/lndir.sh
 
-BMAKE=		${CWD}/bin/bmake
+PKGMK=		pkgmk -o
+PKGTRANS=	pkgtrans -o
+PKGINFO=	pkginfo -q
 
 ARCH:sh=	/usr/bin/mach
 OSREL:sh=	/usr/bin/uname -r
-
-STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/opt/sfw/bin:/usr/sbin
-PATH=		${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}
 
 RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%Y%m%d
@@ -54,17 +58,31 @@ SOAP_MKS=		${BOOTSTRAPDIR}/soap.conf \
 SOAP_PSTAMP=		${RELEASE_HOST}:${RELEASE_TIME}
 SOAP_CONF_PKG=		${PKGNAME}-conf-${SOAP_VERSION}-${SOAP_REV}
 
-MAKE_ENV=	PATH=${PATH}
-MAKEFLAGS=	TOPDIR=${CWD} \
-		BOOTSTRAPDIR=${BOOTSTRAPDIR}
+BOOTSTRAP_ENV=	TOPDIR=${CWD} \
+		PATH=${PATH} \
+		LOCALBASE=${LOCALBASE} \
+		GMAKE=${GMAKE} \
+		CC=${CC}
 
-CORE_TOOLS=	bmake gcc gmake gtar gzip lukemftp md5 patch texinfo
+MAKE_ENV=	${BOOTSTRAP_ENV}
 
-BUILD_OPTS=		SOAP_SRCDIR=${CWD} \
-			SOAP_DIR=${SOAP_DIR} \
-			SOAP_BINDIR=${WRKDIR}${LOCALBASE}/bin \
-			RELEASE_PKG_DIR=${RELEASEDIR} \
-			CORE_TOOLS=yes 
+#BOOTSTRAP_FLAGS=${MAKEFLAGS} \
+#		PREFIX=${TMPPREFIX} \
+#		prefix=${TMPPREFIX}
+
+#MAKEFLAGS=	TOPDIR=${CWD} \
+#		PATH=${PATH} \
+#		LOCALBASE=${LOCALBASE} \
+#		GMAKE=${GMAKE} \
+#		BOOTSTRAPDIR=${BOOTSTRAPDIR}
+
+include sunos.${OSREL}.mk
+
+DIST_PKGS?=	# none
+BOOTSTRAP_TOOLS?=	make texinfo gperf patch
+BUILD_PKGS_GNU?=	make gcc gperf tar gzip patch texinfo
+BUILD_PKGS_BSD?=	lukemftp bmake md5
+BUILD_PKGS=	${BUILD_PKGS_GNU} ${BUILD_PKGS_BSD}
 
 BUILD_PACKAGE_OPTS=	SOAP_SRCDIR=${CWD} \
 			SOAP_DIR=${SOAP_DIR} \
@@ -73,43 +91,53 @@ BUILD_PACKAGE_OPTS=	SOAP_SRCDIR=${CWD} \
 			CORE_TOOLS=yes 
 
 all:
-	${MAKE} bootstrap
-
-bootstrap::
-	${MAKE} build-strap-tools
-	${MAKE} prepare-for-package
+	@echo "Start build process under PATH=${PATH}"
+	${MAKE} check-required-packages
+	${MAKE} prepare-build-tree
+#	${MAKE} bootstrap-tools
 	${MAKE} build-tools
-	${MAKE}	build-package
-	${MAKE} build-misc-package
 
-build-strap-tools::
-	if [ ! -x ${GZIP_CMD} ]; then \
-	  ${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gzip install; \
+check-required-packages::
+	@if [ "${DIST_PKGS}" != "" ]; then \
+	  for pkg in "${DIST_PKGS}"; do \
+	    if [ `${PKGINFO} $$pkg` ]; then \
+	      echo "Solaris package $$pkg is required."; \
+	      echo "Install the package $$pkg before building this software."; \
+	      exit 1; \
+	    fi; \
+	  done; \
 	fi
-	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.lukemftp install
-	if [ ! -x ${SFW_CC} ]; then \
-	  ${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gcc install; \
-	fi
-	if [ ! -x ${SFW_GMAKE} ]; then \
-	  ${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gmake install; \
-	fi
-	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.patch install
-	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.bmake install
-	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gtar install
-	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.md5 install
-	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.texinfo install
+
+prepare-build-tree::
+	@${RM} -rf ${WRKDIR}
+	@${MKDIR} ${WRKDIR}
+	@${MKDIR} ${WRKDIR}${LOCALBASE}
+	@for pkg in ${BUILD_PKGS_GNU}; do \
+	  ${MKDIR} ${WRKDIR}/$$pkg; \
+	  cd ${WRKDIR}/$$pkg; \
+	  ${LNDIR} ${CONTRIBDIR}/gnu/$$pkg; \
+	done
+	@for pkg in ${BUILD_PKGS_BSD}; do \
+	  ${MKDIR} ${WRKDIR}/$$pkg; \
+	  cd ${WRKDIR}/$$pkg; \
+	  ${LNDIR} ${CONTRIBDIR}/bsd/$$pkg; \
+	done
+
+bootstrap-tools::
+	for pkg in ${BOOTSTRAP_TOOLS}; do \
+	  cd ${BOOTSTRAPDIR}/$$pkg && ${ENV} ${BOOTSTRAP_ENV} ${MAKE} ${BOOTSTRAP_FLAGS} install; \
+	done
+
+build-tools::
+	@for pkg in ${BUILD_PKGS}; do \
+	  cd ${BOOTSTRAPDIR}/$$pkg && ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} install; \
+	done
 
 prepare-for-package::
 	cd ${TOPDIR} && \
 	  (${RM} -f bin && ${LN} -s ${WRKDIR}${LOCALBASE}/bin)
 	${MKDIR} ${RELEASE_PKG_DIR}
 	${CP} ${SOAP_MKS} ${WRKDIR}${LOCALBASE}/share/mk
-
-build-tools::
-	for tool in ${CORE_TOOLS}; do \
-	  (cd ${PORTSDIR}/$${tool} && \
-	    ${ENV} PATH=${PATH} ${BMAKE} ${BUILD_OPTS} install); \
-	done
 
 build-package::
 	for tool in ${CORE_TOOLS}; do \
@@ -133,15 +161,10 @@ build-misc-package::
 	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG} all
 	${GZIP_CMD} ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG}
 
-clean:
-	${RM} -rf config.cache config.log config.status
-	${RM} -f ${PKGDIR}/pkginfo ${PKGDIR}/prototype
-	cd mk && ${MAKE} clean
-	for tool in ${CORE_TOOLS}; do \
-	  (cd ${PORTSDIR}/$${tool} && ${BMAKE} ${BUILD_PACKAGE_OPTS} pkgclean); \
+clean::
+	@for pkg in ${BUILD_PKGS}; do \
+	  cd ${BOOTSTRAPDIR}/$$pkg && ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} clean; \
 	done
-	${RM} -rf ${WRKDIR}
-	${RM} ${CWD}/bin
 
 releaseclean:
 	${RM} -rf ${RELEASEDIR}

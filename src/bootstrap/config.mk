@@ -1,36 +1,41 @@
 #
 # Makefile configuration file for standard Solaris make
-# $Id: config.mk,v 1.4 2000/09/27 11:10:06 kunishi Exp $
+# $Id: config.mk,v 1.5 2001/02/22 08:38:01 kunishi Exp $
 #
 
 WORKDIR=	${TOPDIR}/work
 DISTDIR=	${TOPDIR}/distfiles
-TMPPREFIX=	${WORKDIR}/usr/local
+LOCALBASE=	/usr/pkg
+PREFIX=		${LOCALBASE}
+TMPPREFIX=	${WORKDIR}${LOCALBASE}
 BOOTSTRAPDIR=	${TOPDIR}/bootstrap
 
-ECHO_MSG=	/usr/bin/echo
-ENV=		/usr/bin/env
-EXTRACT_CMD=	/usr/bin/tar xf
-MAKE=		/usr/ccs/bin/make
-MKDIR=		/usr/bin/mkdir -p
-PATCH=		/usr/bin/patch
-TOUCH=		/usr/bin/touch
-DO_NADA=	/usr/bin/true
+ECHO_MSG=	echo
+ENV=		env
+EXTRACT_CMD=	tar xf
+MAKE?=		make
+MKDIR=		mkdir -p
+PATCH=		patch
+TOUCH=		touch
+DO_NADA=	true
 INSTALL_PROGRAM=	/usr/ucb/install -c -m 755
 
-FTP=		${TMPPREFIX}/bin/ftp
 GUNZIP=		gzip -c -d
-GNUPATCH=	${TMPPREFIX}/bin/patch
+GNUPATCH=	gpatch
 
-CFLAGS=		-g -O
+CC?=		gcc
 
-MAKEFILE=	${BOOTSTRAPDIR}/Makefile.${TARGET_CMD}
+PATCH_COOKIE=		.patch_done
+CONFIGURE_COOKIE=	.configure_done
+BUILD_COOKIE=		.build_done
+INSTALL_COOKIE=		.install_done
 
-FETCH_COOKIE=		${WORKDIR}/.${TARGET_CMD}_fetch_done
-EXTRACT_COOKIE=		${WORKDIR}/.${TARGET_CMD}_extract_done
-PATCH_COOKIE=		${WORKDIR}/.${TARGET_CMD}_patch_done
-CONFIGURE_COOKIE=	${WORKDIR}/.${TARGET_CMD}_configure_done
-BUILD_COOKIE=		${WORKDIR}/.${TARGET_CMD}_build_done
-INSTALL_COOKIE=		${WORKDIR}/.${TARGET_CMD}_install_done
+CONFIGURE_ENV=	LANG=C
+MAKE_ENV=	TOPDIR=${TOPDIR} \
+		LANG=C \
+		LOCALBASE=${LOCALBASE} \
+		PATH=${PATH}
+INSTALL_ENV=	${MAKE_ENV}
+MAKE_INSTALL_ARGS=	PREFIX=${TMPPREFIX} prefix=${TMPPREFIX}
 
 MAINTAINER=	kunishi@c.oka-pu.ac.jp

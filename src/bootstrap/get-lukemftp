@@ -1,5 +1,0 @@
-user anonymous kunishi@c.oka-pu.ac.jp
-binary
-cd /pub/NetBSD/misc/lukemftp
-get lukemftp-1.4.tar.gz
-quit
