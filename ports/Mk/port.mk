@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.39 2000/01/06 07:39:39 kunishi Exp $
+# $Id: port.mk,v 1.40 2000/01/06 08:45:08 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -341,7 +341,6 @@ ${RELEASE_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} real-release
 
 real-fetch:
-	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
 .if defined(NO_FETCH)
 	@${ECHO_MSG} ">> ${NO_FETCH}"
 .endif
