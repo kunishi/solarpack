@@ -1,14 +1,14 @@
 #
-# $Id: Makefile,v 1.2 2000/09/27 01:27:51 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/11/19 12:38:59 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	xv
 VERSION=	3.10a+jp5.3.3
-PORTREV=	1
+PORTREV=	2
 
-PKG=		SHARExv
+PKG=		OPUCxv
 NAME=		XV, a X image displaying program.
 VENDOR=		John Bradley <xv@devo.dccs.upenn.edu>
 MASTER_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/ \
@@ -21,8 +21,8 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 PATCH_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/
 PATCHFILES=	${DISTNAME}.JPEG-patch ${DISTNAME}.TIFF-patch
 
-LIB_DEPENDS=	OPENjpeg:${PORTSDIR}/graphics/jpeg \
-		OPENtiff:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS=	OPUCjpeg:${PORTSDIR}/graphics/jpeg \
+		OPUCtiff:${PORTSDIR}/graphics/tiff
 
 USE_IMAKE=	yes
 XMKMF=		${X11BASE}/bin/xmkmf
