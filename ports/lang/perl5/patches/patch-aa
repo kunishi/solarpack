@@ -1,0 +1,33 @@
+--- installperl.orig	Sun Jan 17 01:31:26 1999
++++ installperl	Sat Jun  5 17:57:11 1999
+@@ -39,9 +39,15 @@
+ # Allow ``make install PERLNAME=something_besides_perl'':
+ my $perl = defined($ENV{PERLNAME}) ? $ENV{PERLNAME} : 'perl';
+ 
++my $installprefix=$Config{prefix};
++
+ while (@ARGV) {
+     $nonono = 1 if $ARGV[0] eq '-n';
+     $versiononly = 1 if $ARGV[0] eq '-v';
++    if ($ARGV[0] eq '-p') {
++	shift;
++	$installprefix = $ARGV[0];
++    }
+     shift;
+ }
+ 
+@@ -106,6 +112,14 @@
+ 
+ my $d_dosuid = $Config{d_dosuid};
+ my $binexp = $Config{binexp};
++
++$installbin =~ s|/usr/local|$installprefix|;
++$installscript =~ s|/usr/local|$installprefix|;
++$installprivlib =~ s|/usr/local|$installprefix|;
++$installarchlib =~ s|/usr/local|$installprefix|;
++$installsitelib =~ s|/usr/local|$installprefix|;
++$installsitearch =~ s|/usr/local|$installprefix|;
++$installman1dir =~ s|/usr/local|$installprefix|;
+ 
+ if ($Is_VMS) {  # Hang in there until File::Spec hits the big time
+     foreach ( \$installbin,     \$installscript,  \$installprivlib,

@@ -1,0 +1,17 @@
+--- Makefile.SH.orig	Thu Mar  4 11:35:25 1999
++++ Makefile.SH	Sat Jun  5 17:30:32 1999
+@@ -408,10 +408,12 @@
+ 		cd ../pod; $(MAKE) compile; \
+ 	else :; \
+ 	fi
+-	$(LDLIBPTH) ./perl installperl
++	$(LDLIBPTH) ./perl installperl -p $(PREFIX)
+ 
+ install.man:	all installman
+-	$(LDLIBPTH) ./perl installman
++	$(LDLIBPTH) ./perl installman \
++		--man1dir=$(PREFIX)/man/man1 \
++		--man3dir=$(PREFIX)/lib/perl5/5.00503/man/man3
+ 
+ # XXX Experimental. Hardwired values, but useful for testing.
+ # Eventually Configure could ask for some of these values.
