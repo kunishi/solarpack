@@ -13,6 +13,9 @@ MAKE_INSTALL_ARGS +=	-f makefile.boot
 
 CORE_TOOLS =	yes
 
+pre-install::
+	@${MKDIR} ${WRK_BASEDIR}/bin
+
 post-install::
 	@${MKDIR} ${WRK_BASEDIR}/share/doc/bmake
 	@${INSTALL} -c -m 644 -o root -g bin \
