@@ -1,0 +1,11 @@
+--- pnmtopng.c.orig	Mon Dec  6 03:51:35 1999
++++ pnmtopng.c	Sat Mar 11 23:22:20 2000
+@@ -473,7 +473,7 @@
+         } else {
+           if (verbose)
+             pm_message ("rescaling to 16-bit");
+-          scaleval = 65535;
++          scaleval = (xelval)65535;
+         }
+       }
+       for (y = 0 ; y < rows ; y++)

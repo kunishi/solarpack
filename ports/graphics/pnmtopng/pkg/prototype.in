@@ -1,0 +1,11 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+i depend=%%PKGDIR%%/depend
+d none bin=%%INSTPREFIX%%/bin 0755 root bin
+f none bin/pngtopnm=%%INSTPREFIX%%/bin/pngtopnm 0755 root bin
+f none bin/pngtopnm-static=%%INSTPREFIX%%/bin/pngtopnm-static 0755 root bin
+f none bin/pnmtopng=%%INSTPREFIX%%/bin/pnmtopng 0755 root bin
+f none bin/pnmtopng-static=%%INSTPREFIX%%/bin/pnmtopng-static 0755 root bin
+d none man=%%INSTPREFIX%%/man 0755 root bin
+d none man/man1=%%INSTPREFIX%%/man/man1 0755 root bin
+f none man/man1/pngtopnm.1=%%INSTPREFIX%%/man/man1/pngtopnm.1 0644 root bin
+f none man/man1/pnmtopng.1=%%INSTPREFIX%%/man/man1/pnmtopng.1 0644 root bin

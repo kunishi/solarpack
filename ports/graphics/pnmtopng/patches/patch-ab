@@ -1,0 +1,61 @@
+--- Makefile~	Fri Jun  2 17:18:59 2000
++++ Makefile	Fri Jun  2 17:20:20 2000
+@@ -1,7 +1,7 @@
+ # Makefile for pnmtopng/pngtopnm for gcc 2.7 or later (Linux, Solaris, etc.)
+ # Copyright (C) 1995-1998 Willem van Schaik
+ 
+-CC = gcc
++#CC = gcc
+ CP = cp
+ RM = rm
+ 
+@@ -16,25 +16,26 @@
+ # set the "LIB2" variables to /usr/lib/lib<whatever>.a
+ 
+ #PNGDIR = ../libgr2/png
+-PNGDIR = ../libpng
+-PNGINC = -I$(PNGDIR)
+-PNGLIB = -L$(PNGDIR) -lpng
+-PNGLIB2 = $(PNGDIR)/libpng.a
++PNGDIR = %%LOCALBASE%%
++PNGINC = -I$(PNGDIR)/include
++PNGLIB = -L$(PNGDIR)/lib -R$(PNGDIR)/lib -lpng
++PNGLIB2 = $(PNGDIR)/lib/libpng.a
+ 
+ #PNGDIR = ../libgr2/zlib
+-ZDIR = ../zlib
+-ZINC = -I$(ZDIR)
+-ZLIB = -L$(ZDIR) -lz
+-ZLIB2 = $(ZDIR)/libz.a
++ZDIR = %%LOCALBASE%%
++ZINC = -I$(ZDIR)/include
++ZLIB = -L$(ZDIR)/lib -R$(ZDIR)/lib -lz
++ZLIB2 = $(ZDIR)/lib/libz.so
+ 
+ #PBMDIR = /usr/local/netpbm
+ #PBMDIR = ../libgr2
+-PBMDIR = ../netpbm
+-PBMINC = -I$(PBMDIR)/pnm -I$(PBMDIR)/ppm -I$(PBMDIR)/pgm -I$(PBMDIR)/pbm
+-PBMLIB = -L$(PBMDIR)/pnm -L$(PBMDIR)/ppm -L$(PBMDIR)/pgm -L$(PBMDIR)/pbm \
+-	 -lpnm -lppm -lpgm -lpbm
+-PBMLIB2 = $(PBMDIR)/pnm/libpnm.a $(PBMDIR)/ppm/libppm.a \
+-	  $(PBMDIR)/pgm/libpgm.a $(PBMDIR)/pbm/libpbm.a
++PBMDIR = %%LOCALBASE%%
++PBMINC = -I$(PBMDIR)/include
++PBMLIB = -L$(PBMDIR)/include \
++	 -lpnm -lppm -lpgm -lpbm -lshhopt
++PBMLIB2 = $(PBMDIR)/lib/libpnm.a $(PBMDIR)/lib/libppm.a \
++	  $(PBMDIR)/lib/libpgm.a $(PBMDIR)/lib/libpbm.a \
++	  $(PBMDIR)/lib/libshhopt.a
+ 
+ ## # GRR 19991205:  use this section instead for the new/coming pbmplus release
+ ## PBMDIR = ../pbmplus-19991128
+@@ -46,7 +47,7 @@
+ # where "make install" puts pnmtopng and pngtopnm
+ 
+ #INSTDIR = $(PBMDIR)/pnm
+-INSTDIR = /usr/local
++INSTDIR = %%PREFIX%%
+ 
+ 
+ CFLAGS = -O3 -Wall -D_BSD_SOURCE $(PNGINC) $(ZINC) $(PBMINC)
