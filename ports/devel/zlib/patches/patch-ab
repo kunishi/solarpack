@@ -1,5 +1,23 @@
---- configure.orig	Thu Jul  9 03:19:35 1998
-+++ configure	Fri Aug 20 20:00:48 1999
+--- configure~	Thu Jul  9 03:19:35 1998
++++ configure	Wed Jun 14 13:04:58 2000
+@@ -61,7 +61,7 @@
+ 
+ test -z "$CC" && echo Checking for gcc...
+ cc=${CC-gcc}
+-cflags=${CFLAGS-"-O3"}
++cflags=${CFLAGS-"-g -O"}
+ # to force the asm version use: CFLAGS="-O3 -DASMV" ./configure
+ case "$cc" in
+   *gcc*) gcc=1;;
+@@ -69,7 +69,7 @@
+ 
+ if test "$gcc" -eq 1 && ($cc -c $cflags $test.c) 2>/dev/null; then
+   CC="$cc"
+-  SFLAGS=${CFLAGS-"-fPIC -O3"}
++  SFLAGS=${CFLAGS-"-fPIC -g -O"}
+   CFLAGS="$cflags"
+   case `(uname -s || echo unknown) 2>/dev/null` in
+   Linux | linux) LDSHARED=${LDSHARED-"gcc -shared -Wl,-soname,libz.so.1"};;
 @@ -205,7 +205,6 @@
  /^AR *=/s%=.*%=$AR%
  /^RANLIB *=/s%=.*%=$RANLIB%
