@@ -1,12 +1,11 @@
 #
-# $Id: Makefile,v 1.5 1999/06/04 03:46:49 kunishi Exp $
+# $Id: Makefile,v 1.6 1999/06/05 04:01:49 kunishi Exp $
 #
 
 PKG=	GNUautcnf
 NAME=	GNU autoconf, a tool for generating configure script automatically.
 VERSION=	2.13
-CATEGORY=	application
-VENDOR=		Free Software Foundation
+VENDOR=		${VENDOR_GNU}
 MAINTAINER=	kunishi@c.oka-pu.ac.jp
 
 DISTNAME=	autoconf-${VERSION}
