@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.22 2001/04/14 04:14:46 kunishi Exp $
+# $Id: Makefile,v 1.23 2001/11/08 13:38:43 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -7,15 +7,15 @@
 OSREL!=		/usr/bin/uname -r
 
 PORTNAME?=	gcc
-VERSION=	2.95.3
+VERSION=	3.0.2
 PORTREV?=	1
 
-PKG=		GNUcc
+PKG=		OPUCgcc
 NAME=		GNU compiler collection
 
 VENDOR=		${VENDOR_GNU}
-MASTER_SITES=	ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/gcc/ \
-		ftp://ftp.gnu.org/pub/gnu/gcc/
+MASTER_SITES=	ftp://ftp.dnsbalance.ring.gr.jp/pub/GNU/gcc/gcc-${VERSION}/ \
+		ftp://ftp.gnu.org/pub/gnu/gcc/gcc-${VERSION}/
 DISTNAME=	gcc-${VERSION}
 
 .if defined(USE_BINUTILS)
@@ -34,7 +34,8 @@ CONFIGURE_ARGS+=	--with-gnu-asm --with-gnu-ld
 ALL_TARGET=	bootstrap
 PROTOTYPE_SUB+=	GCC_VER=${VERSION}
 
-CLASS_INFO=	info/chill.info info/cpp.info info/g77.info info/gcc.info
+CLASS_INFO=	info/cpp.info info/cppinternals.info \
+		info/g77.info info/gcc.info info/gcj.info
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/include/g++-3
