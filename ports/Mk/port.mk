@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.69 2000/06/08 04:33:43 kunishi Exp $
+# $Id: port.mk,v 1.70 2000/06/20 06:43:32 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -162,8 +162,10 @@ CC?=		${SOAP_BINDIR}/gcc
 CXX?=		${SOAP_BINDIR}/c++
 GMAKE?=		${SOAP_BINDIR}/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
+CFLAGS?=	-g -O
 
 CONFIGURE_ENV+=	CC="${CC}" \
+		CFLAGS="${CFLAGS}" \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
 MD5?=		${SOAP_BINDIR}/md5
@@ -175,11 +177,13 @@ MAKE_ENV+=	PREFIX=${PREFIX} \
 		LOCALBASE=${LOCALBASE} \
 		X11BASE=${X11BASE} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
-		CC=${CC}
+		CC="${CC}" \
+		CFLAGS="${CFLAGS}"
 
 MAKE_INSTALL_ENV+=	PREFIX=${INSTPREFIX} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
-		CC=${CC}
+		CC="${CC}" \
+		CFLAGS="${CFLAGS}"
 MAKE_INSTALL_ARGS+=	INSTALL=${INSTALL}
 MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 
@@ -918,13 +922,16 @@ distclean:	pkgclean
 .if !target(makesum)
 makesum:	fetch
 	@${MKDIR} ${FILESDIR}
+.if defined(MERGE_MD5) && (${MERGE_MD5} == "yes") && exists(${MD5_FILE})
+	@${MV} ${MD5_FILE} ${MD5_FILE}.bak
+	@(cd ${DISTDIR} && ${MD5} ${CKSUMFILES}) | ${CAT} ${MD5_FILE}.bak - | \
+	  ${SORT} | ${UNIQ} >> ${MD5_FILE}
+	@${RM} -rf ${MD5_FILE}.bak
+.else
 	@if [ -f ${MD5_FILE} ]; then ${RM} -f ${MD5_FILE}; fi
-	@cd ${DISTDIR}; \
-	  for file in ${CKSUMFILES}; do \
-		${MD5} $$file >> ${MD5_FILE}; \
-	  done
+	@cd ${DISTDIR} && ${MD5} ${CKSUMFILES} | ${SORT} >> ${MD5_FILE}
 .endif
-
+.endif
 
 ## class processing
 .if defined(CLASS_INFO)
