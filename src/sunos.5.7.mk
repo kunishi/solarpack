@@ -1,8 +1,7 @@
 #
 # Macro definitions for SunOS 5.7.
-# $Id: sunos.5.7.mk,v 1.1 2001/02/22 08:37:58 kunishi Exp $
+# $Id: sunos.5.7.mk,v 1.2 2001/02/22 13:15:33 kunishi Exp $
 #
-BOOTSTRAP_TOOLS=	make texinfo gperf patch
 BUILD_PKGS_GNU=		make texinfo gperf patch gcc tar gzip
 BUILD_PKGS_BSD=		lukemftp bmake md5
 # If you don't have any C compiler, you should install gcc from 
