@@ -1,14 +1,14 @@
 #
-# $Id: Makefile,v 1.4 2000/09/27 01:28:01 kunishi Exp $
+# $Id: Makefile,v 1.5 2001/11/14 06:02:07 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	xt
 VERSION=	19991105
-PORTREV=	1
+PORTREV=	2
 
-PKG=		JCLxt
+PKG=		OPUCxt
 NAME=		XSL Transformation tool for Java
 
 VENDOR=		James Clark, http://www.jclark.com/
@@ -18,23 +18,18 @@ MASTER_SITES=	ftp://ftp.jclark.com/pub/xml/
 
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}
+USE_ZIP=	yes
 
-INSTFILES=	copying.txt xt.htm com demo
-
-do-extract:
-	@${RM} -rf ${WRKDIR}
-	@${MKDIR} ${WRKDIR}
-	@cd ${WRKDIR} && unzip ${DISTDIR}/${DISTFILES}
+SYSTEM_JAR_DIR=	${INSTPREFIX}/share/java/classes/${PORTNAME}
+SYSTEM_DOC_DIR=	${INSTPREFIX}/share/doc/${PORTNAME}
+JAR_FILES=	xt.jar sax.jar
+DOC_FILES=	copying.txt xt.htm com demo
 
 do-install:
-	${MKDIR} ${INSTPREFIX}/share/java/classes
-	${INSTALL_DATA} ${WRKSRC}/xt.jar ${INSTPREFIX}/share/java/classes
-	${INSTALL_DATA} ${WRKSRC}/sax.jar ${INSTPREFIX}/share/java/classes
-	${MKDIR} ${INSTPREFIX}/share/java/xt
-	cd ${WRKSRC}; ${TAR} cf - ${INSTFILES} | \
-	  (cd ${INSTPREFIX}/share/java/xt; ${TAR} xfBp -)
-
-post-install:
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/java/xt
+	${MKDIR} ${SYSTEM_JAR_DIR}
+	cd ${WRKSRC}; ${INSTALL_DATA} ${JAR_FILES} ${SYSTEM_JAR_DIR}
+	${MKDIR} ${SYSTEM_DOC_DIR}
+	cd ${WRKSRC}; \
+	  ${TAR} cf - ${DOC_FILES} | (cd ${SYSTEM_DOC_DIR}; ${TAR} xfBp -)
 
 .include <port.mk>
