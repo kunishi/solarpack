@@ -1,22 +1,22 @@
 #
-# $Id: Makefile,v 1.19 2001/05/28 13:56:53 kunishi Exp $
+# $Id: Makefile,v 1.20 2003/01/07 10:33:11 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	gmake
-VERSION=	3.79.1
+VERSION=	3.80
 PORTREV=	1
 
-PKG=		GNUmake
+PKG=		OPUCgmake
 NAME=		GNU make utility
 
 VENDOR=		${VENDOR_GNU}
 DISTNAME=	make-${VERSION}
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/make/ \
-		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/make/
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	make
 
-LIB_DEPENDS+=	GNUgetxt:${PORTSDIR}/devel/gettext
+LIB_DEPENDS+=	OPUCgetxt:${PORTSDIR}/devel/gettext
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
