@@ -1,1 +1,0 @@
-GNU_HOSTTYPE=	${ARCH}--solaris${OSREL_SOLARIS}
