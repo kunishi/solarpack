@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2001/03/02 14:34:06 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/04/14 04:43:45 kunishi Exp $
 #
 
 PORTNAME=	x11-ssh-askpass
-VERSION=	1.2.0
+VERSION=	1.2.2
 PORTREV=	1
 
 PKG=		OPENaskpx
