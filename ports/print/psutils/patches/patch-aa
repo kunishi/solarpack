@@ -1,0 +1,67 @@
+--- Makefile.unix~	Wed Mar 12 07:52:59 1997
++++ Makefile.unix	Mon Jun 19 13:57:27 2000
+@@ -25,10 +25,10 @@
+ 
+ OS = UNIX
+ 
+-BINDIR = /usr/local/bin
++BINDIR = ${PREFIX}/bin
+ SCRIPTDIR = $(BINDIR)
+-INCLUDEDIR = /usr/local/share/psutils
+-PERL = /usr/local/bin/perl
++INCLUDEDIR = ${PREFIX}/share/psutils
++PERL = ${PREFIX}/bin/perl
+ 
+ BINMODE = 0755
+ MANMODE = 0644
+@@ -36,9 +36,9 @@
+ INSTALL = install -c -m $(BINMODE)
+ INSTALLMAN = install -c -m $(MANMODE)
+ MANEXT = 1
+-MANDIR = /usr/local/share/man/man$(MANEXT)
++MANDIR = ${PREFIX}/man/man$(MANEXT)
+ 
+-CC = gcc
++#CC = gcc
+ CFLAGS = -DPAPER=\"$(PAPER)\" -DUNIX -O -Wall
+ 
+ BIN = psbook psselect pstops epsffit psnup \
+@@ -219,30 +219,30 @@
+ install: install.bin install.script install.man install.include
+ 
+ install.bin: $(BIN)
+-	-mkdir $(BINDIR)
++	-mkdir -p $(BINDIR)
+ 	@for i in $(BIN); do \
+ 		echo Installing $$i; \
+-		$(INSTALL) $$i $(BINDIR); \
++		$(BSD_INSTALL_PROGRAM) $$i $(BINDIR); \
+ 	done
+ 
+ install.script: $(PERLSCRIPTS) $(SHELLSCRIPTS)
+-	-mkdir $(SCRIPTDIR)
++	-mkdir -p $(SCRIPTDIR)
+ 	@for i in $(PERLSCRIPTS) $(SHELLSCRIPTS); do \
+ 		echo Installing $$i; \
+-		$(INSTALL) $$i $(SCRIPTDIR); \
++		$(BSD_INSTALL_SCRIPT) $$i $(SCRIPTDIR); \
+ 	done
+ 
+ install.include: $(INCLUDES)
+-	-mkdir $(INCLUDEDIR)
++	-mkdir -p $(INCLUDEDIR)
+ 	@for i in $(INCLUDES); do \
+ 		echo Installing $$i; \
+-		$(INSTALLMAN) $$i $(INCLUDEDIR); \
++		$(BSD_INSTALL_DATA) $$i $(INCLUDEDIR); \
+ 	done
+ 
+ install.man: $(MANPAGES)
+-	-mkdir $(MANDIR)
++	-mkdir -p $(MANDIR)
+ 	@for i in $(MANPAGES); do \
+ 		echo Installing manual page for $$i; \
+-		$(INSTALLMAN) $$i $(MANDIR)/$$i; \
++		$(BSD_INSTALL_MAN) $$i $(MANDIR)/$$i; \
+ 	done
+ 
