@@ -1,0 +1,11 @@
+--- make/paths.make.orig	Sat Feb 14 05:15:30 1998
++++ make/paths.make	Wed Sep  1 16:53:42 1999
+@@ -43,7 +43,7 @@
+ # corresponding changes to texmf.in or texmf.cnf yourself.
+ 
+ # The root of the main tree.
+-texmf = @texmfmain@
++texmf = $(prefix)/share/texmf
+ 
+ # The directory used by varfonts.
+ vartexfonts = /var/tmp/texfonts
