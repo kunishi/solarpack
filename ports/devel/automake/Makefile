@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.7 2001/11/30 12:50:33 kunishi Exp $
+# $Id: Makefile,v 1.8 2002/03/15 11:38:58 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	automake
-VERSION=	1.5
+VERSION=	1.6
 PORTREV=	1
 
 PKG=		OPUCautmk
