@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building bmake
-# $Id: Makefile.bmake,v 1.6 2000/05/12 09:14:01 kunishi Exp $
+# $Id: Makefile.bmake,v 1.7 2000/06/01 13:22:25 kunishi Exp $
 #
 
 TARGET_CMD=	bmake
@@ -8,7 +8,7 @@ TARGET_CMD=	bmake
 include ${BOOTSTRAPDIR}/config.mk
 
 DISTNAME=	bmake
-DISTFILES=	bmake-3.0.2.tar.gz mk-1.1.tar.gz
+DISTFILES=	bmake-3.1.0.tar.gz mk-1.2.1.tar.gz
 SRCURL=		ftp://ftp.quick.com.au/pub/sjg/
 
 include ${BOOTSTRAPDIR}/rule.mk
@@ -22,9 +22,9 @@ fetch:
 
 extract:	${FETCH_COOKIE}
 	cd ${WORKDIR} && \
-	  (${GUNZIP} ${DISTDIR}/bmake-3.0.2.tar.gz | ${EXTRACT_CMD} -)
+	  (${GUNZIP} ${DISTDIR}/bmake-3.1.0.tar.gz | ${EXTRACT_CMD} -)
 	cd ${WORKDIR}/bmake && \
-	  (${GUNZIP} ${DISTDIR}/mk-1.1.tar.gz | ${EXTRACT_CMD} -)
+	  (${GUNZIP} ${DISTDIR}/mk-1.2.1.tar.gz | ${EXTRACT_CMD} -)
 
 patch:		${EXTRACT_COOKIE}
 	${DO_NADA}
