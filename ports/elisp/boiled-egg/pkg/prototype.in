@@ -1,0 +1,13 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+i depend=%%PKGDIR%%/depend
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/doc=%%INSTPREFIX%%/share/doc 0755 root bin
+d none share/doc/boiled-egg=%%INSTPREFIX%%/share/doc/boiled-egg 0755 root bin
+f none share/doc/boiled-egg/COPYING=%%INSTPREFIX%%/share/doc/boiled-egg/COPYING 0644 root bin
+f none share/doc/boiled-egg/ChangeLog=%%INSTPREFIX%%/share/doc/boiled-egg/ChangeLog 0644 root bin
+f none share/doc/boiled-egg/README.Eng=%%INSTPREFIX%%/share/doc/boiled-egg/README.Eng 0644 root bin
+f none share/doc/boiled-egg/README.be=%%INSTPREFIX%%/share/doc/boiled-egg/README.be 0644 root bin
+d none share/emacs=%%INSTPREFIX%%/share/emacs 0755 root bin
+d none share/emacs/site-lisp=%%INSTPREFIX%%/share/emacs/site-lisp 0755 root bin
+f none share/emacs/site-lisp/boiled-egg.el=%%INSTPREFIX%%/share/emacs/site-lisp/boiled-egg.el 0644 root bin
+f none share/emacs/site-lisp/boiled-egg.elc=%%INSTPREFIX%%/share/emacs/site-lisp/boiled-egg.elc 0644 root bin
