@@ -1,0 +1,11 @@
+--- dviselect.c.orig	Fri Mar 15 05:53:21 1991
++++ dviselect.c	Fri May 21 13:57:53 1999
+@@ -124,8 +124,6 @@
+ 
+ #ifdef	_AIX
+ char	*malloc(), *realloc();
+-#else
+-char	*malloc(), *realloc(), *sprintf();
+ #endif
+ 
+ /*

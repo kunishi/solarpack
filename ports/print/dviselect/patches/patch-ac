@@ -1,0 +1,10 @@
+--- lib/Makefile.orig	Wed Nov 15 21:19:54 1989
++++ lib/Makefile	Fri May 21 14:04:17 1999
+@@ -10,7 +10,6 @@
+ DESTDIR=
+ # Alas, -R makes ALL initialised variables read-only, and we cannot
+ # use it on font files; hence, FCFLAGS.
+-CC=cc
+ CFLAGS=	-O -I../h 
+ FCFLAGS=-O -I../h
+ 

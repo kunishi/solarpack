@@ -1,0 +1,26 @@
+--- Makefile.orig	Fri Sep 10 06:32:45 1993
++++ Makefile	Fri May 21 14:03:44 1999
+@@ -1,10 +1,9 @@
+ DESTDIR=
+ CFLAGS=	-O -I./h
+-MAKE=	make
+ 
+-BINDIR	= /opt/local/bin
++BINDIR	= ${PREFIX}/bin
+ IPRBIN  = /usr/local
+-MANDIR	= /opt/local/man
++MANDIR	= ${PREFIX}/man
+ 
+ CSRCS	= dviselect.c
+ SRCS	= $(CSRCS) dviselect.1
+@@ -19,8 +18,8 @@
+ 	-rm -f core *.o dviselect imagen1 dviselect.shar*
+ 
+ install: dviselect dviselect.1
+-	install -s dviselect ${BINDIR}/dviselect
+-	-install -c -m 444 dviselect.1 ${MANDIR}/man1/dviselect.1
++	${INSTALL} -s dviselect ${BINDIR}/dviselect
++	-${INSTALL} -c -m 444 dviselect.1 ${MANDIR}/man1/dviselect.1
+ 
+ dviselect: dviselect.o lib/lib.a
+ 	${CC} ${CFLAGS} -o dviselect dviselect.o lib/lib.a
