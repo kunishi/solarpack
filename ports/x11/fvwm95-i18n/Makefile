@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 1999/06/06 06:54:30 kunishi Exp $
+# $Id: Makefile,v 1.5 1999/10/26 03:44:42 kunishi Exp $
 #
 
 PKG=		OPENfv95i
@@ -22,5 +22,10 @@ USE_IMAKE=	yes
 
 pre-patch:
 	@cd ${WRKSRC}/fvwm; ${PATCH} -p0 -N < ${DISTDIR}/fvwm95-2.0.43a.patch
+
+post-install:
+	${MKDIR} ${INSTPREFIX}/share/icons/fvwm95
+	cd ${WRKSRC}/icons && ${INSTALL_DATA} *.xpm ${INSTPREFIX}/share/icons/fvwm95
+	cd ${WRKSRC}/mini-icons && ${INSTALL_DATA} *.xpm ${INSTPREFIX}/share/icons/fvwm95
 
 .include <port.mk>
