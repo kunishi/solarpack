@@ -1,12 +1,12 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+#
+# $Id: Makefile,v 1.2 1999/05/17 11:54:22 kunishi Exp $
+#
 
 DISTNAME =	diffutils-2.7
 MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/diffutils/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/diffutils/
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS +=	--program-prefix=g
+USE_GMAKE=	yes
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+.include <port.mk>

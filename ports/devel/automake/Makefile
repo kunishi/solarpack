@@ -1,11 +1,11 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+#
+# $Id: Makefile,v 1.2 1999/05/17 11:54:19 kunishi Exp $
+#
 
 DISTNAME =	automake-1.4
 MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/automake/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/automake/
+GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+.include <port.mk>

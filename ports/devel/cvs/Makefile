@@ -1,10 +1,10 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+#
+# $Id: Makefile,v 1.3 1999/05/17 11:54:20 kunishi Exp $
+#
 
 DISTNAME=	cvs-1.10.5
 MASTER_SITES=	http://download.cyclic.com/pub/cvs-1.10.5/
+GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+.include <port.mk>

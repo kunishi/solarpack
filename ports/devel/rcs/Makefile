@@ -1,11 +1,11 @@
-include ../../conf/pkgbuild.conf
-
-include ${PKGBUILD_MAKEFILE_DIR}/pre.mk
-include ${PKGBUILD_MAKEFILE_DIR}/gnu_configure.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_gmake.mk
+#
+# $Id: Makefile,v 1.2 1999/05/17 11:54:25 kunishi Exp $
+#
 
 DISTNAME =	rcs-5.7
 MASTER_SITES = 	ftp://ring.nacsis.ac.jp/pub/GNU/rcs/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/rcs/
+GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
 
-include ${PKGBUILD_MAKEFILE_DIR}/pkgbuild.mk
+.include <port.mk>
