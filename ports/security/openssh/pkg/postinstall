@@ -7,3 +7,5 @@ fi
 if test ! -f $CLIENT_BASEDIR/etc/ssh_host_rsa_key; then
 	$CLIENT_BASEDIR/bin/ssh-keygen -t rsa -f $CLIENT_BASEDIR/etc/ssh_host_rsa_key -N ""
 fi
+
+rm -f /var/tmp/$PKGINST-installf
