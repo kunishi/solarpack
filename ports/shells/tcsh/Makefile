@@ -1,20 +1,21 @@
 #
-# $Id: Makefile,v 1.7 2000/09/27 01:27:57 kunishi Exp $
+# $Id: Makefile,v 1.8 2001/11/08 14:02:36 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	tcsh
-VERSION=	6.09.03
+VERSION=	6.11
 PORTREV=	1
 
-PKG=		OPENtcsh
+PKG=		OPUCtcsh
 NAME=		tcsh, and extended C-shell with many useful features
 VENDOR=		Christos Zoulas <christos@gw.com>
 
-MASTER_SITES =	ftp://ftp.astron.com/pri/
+MASTER_SITES =	ftp://ftp.astron.com/pub/tcsh/
 
 OSREL!=		/usr/bin/uname -r
+WRKSRC=		${WRKDIR}/${DISTNAME}.00
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=		install install.man
