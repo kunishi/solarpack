@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.13 1999/05/21 10:53:45 kunishi Exp $
+# $Id: port.mk,v 1.14 1999/05/31 12:57:10 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -52,6 +52,10 @@ OSREL_SOLARIS!=	/usr/bin/uname -r | /usr/bin/sed 's/^5/2/'
 GNU_HOSTTYPE?=	${ARCH}-sun-solaris${OSREL_SOLARIS}
 .elif (${ARCH} == "i386")
 GNU_HOSTTYPE?=	${ARCH}--solaris${OSREL_SOLARIS}
+.endif
+
+.if defined(USE_X_PREFIX)
+PREFIX?=		${X11BASE}
 .endif
 
 LOCALBASE=	/usr/local
@@ -140,10 +144,6 @@ MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR} PREFIX=${PREFIX} \
 .if !defined(NO_INSTALL_MAN)
 INSTALL_TARGET+=	install.man
 .endif
-.endif
-
-.if defined(USE_X_PREFIX)
-PREFIX?=		${X11BASE}
 .endif
 
 ### rule definitions
