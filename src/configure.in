@@ -18,4 +18,4 @@ AC_ARG_WITH(topdir,
 dnl Checks for library functions.
 
 AC_OUTPUT(Makefile 
-	mk/port.mk mk/soap.conf)
+	mk/port.mk mk/port.subdir.mk mk/soap.conf)
