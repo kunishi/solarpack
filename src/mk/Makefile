@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 10:37:13 kunishi Exp $
+# $Id: Makefile,v 1.4 1999/06/09 10:43:01 kunishi Exp $
 #
 
 INSTALL=	/usr/ucb/install
@@ -14,7 +14,7 @@ TARGET=	port.mk pkgbuild.conf
 port.mk:	port.mk.in
 	${SED} -e 's!@PKGBUILDDIR@!${PKGBUILDDIR}!' $@.in > $@
 
-install:
+install:	port.mk
 	${INSTALL_DATA} ${TARGET} ${SYSMKDIR}
 
 clean:
