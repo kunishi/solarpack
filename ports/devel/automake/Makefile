@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/05 04:09:05 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/01/18 11:53:53 kunishi Exp $
 #
 
 PKG=		GNUautmak
@@ -12,6 +12,7 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/automake/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/automake/
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/automake.info
 
 .include <port.mk>

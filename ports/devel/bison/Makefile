@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 1999/06/05 04:17:19 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/01/18 11:54:25 kunishi Exp $
 #
 
 PKG=		GNUbison
@@ -12,6 +12,7 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/bison/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/bison/
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/bison.info
 
 .include <port.mk>

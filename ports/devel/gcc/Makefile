@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.13 2000/01/06 11:11:33 kunishi Exp $
+# $Id: Makefile,v 1.14 2000/01/18 11:57:30 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -20,9 +20,10 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_INSTALL_INFO=	yes
 ALL_TARGET=	bootstrap
 PROTOTYPE_SUB+=	GCC_VER=${VERSION}
+
+CLASS_INFO=	info/chill.info info/cpp.info info/g77.info info/gcc.info
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/include/g++-3
