@@ -1,9 +1,0 @@
-PKG=OPENperl
-NAME=Perl Programming Language
-ARCH=%%ARCH%%
-VERSION=5.00503
-CATEGORY=application
-VENDOR=Larry Wall
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
