@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/23 11:18:25 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/21 12:30:13 kunishi Exp $
 #
 
 PORTNAME=	gd
@@ -19,7 +19,7 @@ LIB_DEPENDS=	OPENpng:${PORTSDIR}/graphics/png \
 		OPENxpm:${PORTSDIR}/graphics/xpm
 
 USE_XLIB=	yes
-MAKE_ARGS+=	COMPILER=${CC}
+MAKE_ARGS+=	COMPILER="${CC}"
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/bin ${INSTPREFIX}/lib ${INSTPREFIX}/include
