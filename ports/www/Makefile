@@ -1,7 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 08:58:39 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/08 05:42:59 kunishi Exp $
 #
 
+SUBDIR+=	apache
 SUBDIR+=	lynx
 
 .include <port.subdir.mk>
