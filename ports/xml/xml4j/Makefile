@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.3 2000/06/06 07:46:32 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/29 04:45:28 kunishi Exp $
 #
 
 PORTNAME=	xml4j
 VERSION=	3.0.1
-PORTREV=	1
+PORTREV=	2
 
 PKG=		IBMxml4j
 NAME=		IBM XML Parser for Java
@@ -17,7 +17,7 @@ DISTFILES=	XML4J-bin.${VERSION}${EXTRACT_SUFX}
 NO_FETCH=	Fetch ${DISTFILES} manually from ${MASTER_SITES}.
 NO_BUILD=	yes
 
-INSTFILES=	Readme.html data docs
+INSTFILES=	Readme.html data
 
 do-install:
 	${MKDIR} ${INSTPREFIX}/share/java/classes
@@ -27,6 +27,14 @@ do-install:
 	${MKDIR} ${INSTPREFIX}/share/java/xml4j
 	(cd ${WRKSRC}; ${TAR} cf - ${INSTFILES} | \
 	  (cd ${INSTPREFIX}/share/java/xml4j; ${TAR} xfBp -))
+	${MKDIR} ${INSTPREFIX}/share/java/xml4j/docs
+	(cd ${WRKSRC}/docs/docs/html; ${TAR} cf - * | \
+	  (cd ${INSTPREFIX}/share/java/xml4j/docs; ${TAR} xfBp -))
+	(cd ${WRKSRC}/docs; ${TAR} cf - apiDocs | \
+	  (cd ${INSTPREFIX}/share/java/xml4j; ${TAR} xfBp -))
+	${MKDIR} ${INSTPREFIX}/share/java/xml4j/docs-src
+	(cd ${WRKSRC}/docs/docs; ${TAR} cf - * | \
+	  (cd ${INSTPREFIX}/share/java/xml4j/docs-src; ${TAR} xfBp -))
 
 post-install:
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}
