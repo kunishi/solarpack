@@ -1,0 +1,8 @@
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+if test -x ${INSTALL_INFO}; then
+	${INSTALL_INFO} --info-dir=${INFODIR} ${INFODIR}/gzip.info
+else
+	/usr/bin/echo ">> Add gzip.info entry to ${INFODIR}/dir by hand."
+fi
