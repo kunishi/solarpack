@@ -1,0 +1,11 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/xdaliclock=%%WRK_BASEDIR%%/bin/xdaliclock 0755 root staff
+d none lib=%%WRK_BASEDIR%%/lib 0755 root bin
+d none lib/X11=%%WRK_BASEDIR%%/lib/X11 0755 root bin
+d none lib/X11/app-defaults=%%WRK_BASEDIR%%/lib/X11/app-defaults 0755 root bin
+f none lib/X11/app-defaults/XDaliClock=%%WRK_BASEDIR%%/lib/X11/app-defaults/XDaliClock 0444 root staff
+d none share=%%WRK_BASEDIR%%/share 0755 root bin
+d none share/man=%%WRK_BASEDIR%%/share/man 0755 root bin
+d none share/man/man1=%%WRK_BASEDIR%%/share/man/man1 0755 root bin
+f none share/man/man1/xdaliclock.1=%%WRK_BASEDIR%%/share/man/man1/xdaliclock.1 0444 root staff

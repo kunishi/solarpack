@@ -1,0 +1,9 @@
+PKG=OPENxdlcl
+NAME=X melting digital clock
+VERSION=2.13
+CATEGORY=application
+ARCH=%%ARCH%%
+VENDOR=Jamie Zawinski <jwz@jwz.org>
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none
