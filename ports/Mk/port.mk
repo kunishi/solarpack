@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.23 1999/06/05 04:02:10 kunishi Exp $
+# $Id: port.mk,v 1.24 1999/06/05 07:37:14 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -316,99 +316,99 @@ ${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
 
 real-fetch:
 	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-fetch)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-fetch)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 
 real-extract:
 	@${ECHO_MSG} "===> Extracting for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-extract)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} checksum
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-extract)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-patch:
 	@${ECHO_MSG} "===> Patching for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-patch)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-patch)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-configure:
 	@${ECHO_MSG} "===> Configuring for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-configure)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-configure)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-build:
 	@${ECHO_MSG} "===> Building for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-build)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-build)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-install:
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-install)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-install)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-package:
 	@${ECHO_MSG} "===> Building package for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-package)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-package)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-instpkg:
 	@${ECHO_MSG} "===> Installing package for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-instpkg)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-instpkg)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
 
 real-release:
 	@${ECHO_MSG} "===> Releasing package for ${PKGNAME}"
-.if target(${.TARGET:S/^real-/pre-/})
+.if target(pre-release)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/do-/}
-.if target(${.TARGET:S/^real-/post-/})
+.if target(post-release)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/post-/}
 .endif
 	@${TOUCH} ${TOUCH_FLAGS} ${WRKDIR}/.${.TARGET:S/^real-//}_done
@@ -598,7 +598,7 @@ checksum:
 .for sub in ${PROTOTYPE_SUB}
 _sedsubprotolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
 			val=`${ECHO} "${sub}" | ${SED} -e 's/^[^=][^=]*=//'`; \
-			echo "${_sedsubprotolist} -e s!%%$${sym}%%!$${val}!g"
+			echo "${_sedsubprotolist} -e \"s!%%$${sym}%%!$${val}!g\""
 .endfor
 
 .if !target(gen-prototype)
@@ -610,17 +610,17 @@ gen-prototype:
 .for sub in ${PKGINFO_SUB}
 _sedsubpkginfolist!=	sym=`${ECHO} "${sub}" | ${SED} -e 's/=.*//'`; \
 			val=`${ECHO} "${sub}" | ${SED} -e 's/^[^=][^=]*=//'`; \
-			echo "${_sedsubpkginfolist} -e s!%%$${sym}%%!$${val}!g"
+			echo "${_sedsubpkginfolist} -e \"s!%%$${sym}%%!$${val}!g\""
 .endfor
 
 .if !target(gen-pkginfo)
 gen-pkginfo:
 	@${ECHO_MSG} "===>  Generating pkginfo file"
 	@${SED} ${_sedsubpkginfolist} \
-		-e 's!%%NAME%%!${NAME}!g' \
-		-e 's!%%VENDOR%%!${VENDOR}!g' \
-		-e 's!%%MAINTAINER%%!${MAINTAINER}!g' \
-		-e 's!%%CLASSES%%!${CLASSES}!g' ${PKGINFO_IN} > ${PKGINFO}
+		-e "s!%%NAME%%!${NAME}!g" \
+		-e "s!%%VENDOR%%!${VENDOR}!g" \
+		-e "s!%%MAINTAINER%%!${MAINTAINER}!g" \
+		-e "s!%%CLASSES%%!${CLASSES}!g" ${PKGINFO_IN} > ${PKGINFO}
 .endif
 
 .if !target(clean)
