@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/06/07 05:47:06 kunishi Exp $
 #
 
 PORTNAME=	jpeg
@@ -13,7 +13,7 @@ VENDOR=		The Independent JPEG Group
 DISTNAME=	jpegsrc.v6b
 MASTER_SITES=	ftp://ftp.uu.net/graphics/jpeg/
 
-WRKSRC=		${WRKDIR}/${PKGNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${VERSION}
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
 
