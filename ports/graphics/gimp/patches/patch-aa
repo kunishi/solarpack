@@ -1,0 +1,35 @@
+--- gimptool.in.orig	Fri Jun 16 22:38:19 2000
++++ gimptool.in	Fri Jun 16 22:40:15 2000
+@@ -191,9 +191,9 @@
+       ;;
+     --libs | --libs-nogimpui)
+       my_gtk_libs=
+-      libdirs=-L@libdir@
++      libdirs="-L@libdir@ -R@libdir@"
+       for i in $gtk_libs ; do
+-        if test $i != -L@libdir@ ; then
++        if test $i != -L@libdir@ -a $i != -R@libdir@; then
+           if test -z "$my_gtk_libs" ; then
+             my_gtk_libs="$i"
+           else
+@@ -215,9 +215,9 @@
+       fi 
+       glib_libs="$glib_ldflags `echo $gtk_libs | sed 's/^.*\(-lglib[^ ]*\).*$/\1/'`"
+       my_glib_libs=
+-      libdirs=-L@libdir@
++      libdirs="-L@libdir@ -R@libdir@"
+       for i in $glib_libs ; do
+-        if test $i != -L@libdir@ ; then
++        if test $i != -L@libdir@ -a $i != -R@libdir@ ; then
+           if test -z "$my_glib_libs" ; then
+             my_glib_libs="$i"
+           else
+@@ -225,7 +225,7 @@
+           fi
+         fi
+       done
+-      echo -L@libdir@ -lgimp $my_glib_libs
++      echo -L@libdir@ -R@libdir@ -lgimp $my_glib_libs
+       ;;
+     --install-bin | --install-admin-bin \
+     | --install-bin-strip | --install-admin-bin-strip \
