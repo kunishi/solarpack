@@ -1,0 +1,7 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/makejvf=%%WRK_BASEDIR%%/bin/makejvf 0755 root bin
+d none share=%%WRK_BASEDIR%%/share 0755 root bin
+d none share/doc=%%WRK_BASEDIR%%/share/doc 0755 root bin
+d none share/doc/makejvf=%%WRK_BASEDIR%%/share/doc/makejvf 0755 root bin
+f none share/doc/makejvf/README.txt=%%WRK_BASEDIR%%/share/doc/makejvf/README.txt 0644 root bin

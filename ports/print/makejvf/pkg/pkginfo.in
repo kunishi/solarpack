@@ -1,0 +1,9 @@
+PKG=OPENmkjvf
+NAME=A utility for making Japanese virtual fonts for ASCII pTeX
+VERSION=1.0
+ARCH=%%ARCH%%
+CATEGORY=application
+VENDOR=ASCII Corp., Inc. <http://www.ascii.co.jp/>
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none
