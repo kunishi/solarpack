@@ -1,0 +1,14 @@
+--- texk/web2c/ptex-3.0.5/configure.orig	Thu Oct 24 16:21:34 2002
++++ texk/web2c/ptex-3.0.5/configure	Fri Dec 27 12:04:44 2002
+@@ -31,9 +31,8 @@
+ sed -f $CONFIGSED kanji.h.in > kanji.h
+ 
+ # Makefile ¤ÎºîÀ®
+-CONFIG_FILES=Makefile
+-CONFIG_HEADERS=..
+-export CONFIG_FILES CONFIG_HEADERS
++CONFIG_FILES=Makefile:ptex-3.0.5/Makefile.in
++export CONFIG_FILES
+ ../config.status
+ TMPFILE=`mktemp /tmp/makefile.XXXXXX` || exit 1
+ sed -f $CONFIGSED Makefile > $TMPFILE
