@@ -7,15 +7,15 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--build=${GNU_HOSTTYPE}
 USE_GMAKE=	yes
 
-DO_BUILD_OVERRIDE=	yes
+#DO_BUILD_OVERRIDE=	yes
 CORE_TOOLS=	yes
 
-do-build:
-	-cd ${WRKSRC} && ${MAKE} LANGUAGES=c
-	-cd ${WRKSRC} && ${MAKE} stage1
-	-cd ${WRKSRC} && ${MAKE} CC="stage1/xgcc -Bstage1/" CFLAGS="-g -O2"
-	-cd ${WRKSRC} && ${MAKE} stage2
-	-cd ${WRKSRC} && ${MAKE} CC="stage2/xgcc -Bstage2/" CFLAGS="-g -O2"
-	cd ${WRKSRC} && ${MAKE} compare
+do-build::
+	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} LANGUAGES=c
+	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} stage1
+	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} CC="stage1/xgcc -Bstage1/" CFLAGS="-g -O2"
+	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} stage2
+	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} CC="stage2/xgcc -Bstage2/" CFLAGS="-g -O2"
+	-cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} compare
 
 include ../../include/pkgbuild.mk
