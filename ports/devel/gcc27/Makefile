@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/14 07:34:57 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/23 11:28:59 kunishi Exp $
 #
 
 PORTNAME=	gcc
@@ -20,6 +20,7 @@ CONFIGURE_ARGS+=	--with-gxx-include-dir=${PREFIX}/lib/gcc-lib/${GNU_HOSTTYPE}/${
 USE_GMAKE=	yes
 ALL_TARGET=	bootstrap
 PROTOTYPE_SUB=	GCC_VER=${GCC_VER}
+PROTOTYPE_IN=	${PKGDIR}/prototype.in.${ARCH}
 
 XGCC=	"${WRKSRC}/stage2/xgcc -B${WRKSRC}/stage2/"
 
