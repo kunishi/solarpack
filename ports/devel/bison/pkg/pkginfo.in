@@ -4,6 +4,6 @@ ARCH=%%ARCH%%
 VERSION=1.27
 CATEGORY=application
 VENDOR=Free Software Foundation, Inc.
-EMAIL=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
+EMAIL=%%PKG_MAINTAINER%%
 BASEDIR=%%BASEDIR%%
 CLASSES=none
