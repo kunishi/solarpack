@@ -13,7 +13,7 @@ dnl Checks for typedefs, structures, and compiler characteristics.
 AC_ARG_WITH(topdir,
 [  --with-topdir	pkgbuild top directory.],
 [pkgbuild_topdir="$with_topdir"],
-[pkgbuild_topdir="/opt/local/pkgbuild"])
+[pkgbuild_topdir="/usr/solpkg"])
 
 dnl Checks for library functions.
 

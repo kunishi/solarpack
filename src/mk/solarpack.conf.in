@@ -1,9 +1,9 @@
 ###
 # pkgbuild root directory.
-PKGBUILDDIR=	/opt/pkgbuild
+PKGBUILDDIR=	/usr/solpkg
 #
 # C compiler for building packages. (comment out when using 'cc'.)
-CC=	/usr/local/bin/gcc
+CC=	${PKGBUILDDIR}/bin/gcc
 #
 # package maintainer.
 #
