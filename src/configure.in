@@ -18,5 +18,4 @@ AC_ARG_WITH(topdir,
 dnl Checks for library functions.
 
 AC_OUTPUT(Makefile 
-	mk/port.mk mk/solpkg.conf
-	pkg/pkginfo)
+	mk/port.mk mk/solpkg.conf)

@@ -1,8 +1,9 @@
 #
-# $Id: Makefile.in,v 1.15 2000/05/16 01:44:21 kunishi Exp $
+# $Id: Makefile.in,v 1.16 2000/05/16 06:36:09 kunishi Exp $
 #
 
-PKGNAME=	solpkg-0.1
+include version.mk
+PKGNAME=	solpkg
 
 LOCALBASE=	/usr/local
 SOLPKGDIR=	@solpkg_topdir@
@@ -35,7 +36,7 @@ BMAKE=		${CWD}/bin/bmake
 ARCH:sh=	/usr/bin/mach
 OSREL:sh=	/usr/bin/uname -r
 
-STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:/usr/ucb
+STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/sbin
 
 RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
@@ -107,10 +108,14 @@ build-package::
 
 build-misc-package::
 	${MKDIR} ${WRKDIR}/spool
-	${SED} -e 's!%%INSTPREFIX%%!${CWD}!' ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
+	${SED} -e 's!%%INSTPREFIX%%!${CWD}!' \
+	       ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
+	${SED} -e 's!%%SOLPKGDIR%%!${SOLPKGDIR}!' \
+	       -e 's!%%SOLPKG_VERSION%%!${SOLPKG_VERSION}!' \
+	       ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
-	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/solpkg-misc-0.1.1 all
-	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/solpkg-misc-0.1.1
+	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOLPKG_VERSION} all
+	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOLPKG_VERSION}
 
 clean:
 	${RM} -rf config.cache config.log config.status

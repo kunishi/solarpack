@@ -652,8 +652,7 @@ done
 ac_given_srcdir=$srcdir
 
 trap 'rm -fr `echo "Makefile 
-	mk/port.mk mk/solpkg.conf
-	pkg/pkginfo" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
+	mk/port.mk mk/solpkg.conf" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
 cat >> $CONFIG_STATUS <<EOF
 
@@ -728,8 +727,7 @@ EOF
 cat >> $CONFIG_STATUS <<EOF
 
 CONFIG_FILES=\${CONFIG_FILES-"Makefile 
-	mk/port.mk mk/solpkg.conf
-	pkg/pkginfo"}
+	mk/port.mk mk/solpkg.conf"}
 EOF
 cat >> $CONFIG_STATUS <<\EOF
 for ac_file in .. $CONFIG_FILES; do if test "x$ac_file" != x..; then
