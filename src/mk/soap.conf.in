@@ -1,6 +1,3 @@
-#
-# $Id: soap.conf.in,v 1.8 1999/06/05 07:37:54 kunishi Exp $
-#
 ###
 # pkgbuild root directory.
 PKGBUILDDIR=	/opt/local/pkgbuild
