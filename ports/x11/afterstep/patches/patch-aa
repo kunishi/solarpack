@@ -1,0 +1,20 @@
+--- configure~	Thu Jun 22 20:42:11 2000
++++ configure	Thu Jun 22 20:42:48 2000
+@@ -3631,7 +3631,7 @@
+   fi
+   JPEG_LIBS="-ljpeg"
+   if test -n "$vt_jpeg_libraries"; then
+-    JPEG_LIBS="-L$vt_jpeg_libraries $JPEG_LIBS"
++    JPEG_LIBS="-L$vt_jpeg_libraries -R$vt_jpeg_libraries $JPEG_LIBS"
+   fi
+ fi
+ 
+@@ -3942,7 +3942,7 @@
+   fi
+   PNG_LIBS="-lpng -lz -lm"
+   if test -n "$vt_png_libraries"; then
+-    PNG_LIBS="-L$vt_png_libraries $PNG_LIBS"
++    PNG_LIBS="-L$vt_png_libraries -R$vt_png_libraries $PNG_LIBS"
+   fi
+ fi
+ 
