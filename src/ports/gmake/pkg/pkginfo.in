@@ -1,9 +1,0 @@
-PKG=GNUmake
-NAME=GNU make utility
-ARCH=%%ARCH%%
-VERSION=3.77
-CATEGORY=application
-VENDOR=Free Software Foundation, Inc.
-EMAIL=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
-BASEDIR=%%BASEDIR%%
-CLASSES=none
