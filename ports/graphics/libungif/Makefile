@@ -1,18 +1,18 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:50 kunishi Exp $
+# $Id: Makefile,v 1.4 2003/02/27 06:36:00 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	libungif
-VERSION=	4.1.0b1
+VERSION=	4.1.0
 PORTREV=	1
 
-PKG=	OPENungif
+PKG=	OPUCungif
 NAME=	Tools and library routines for working GIF images
 VENDOR=	Toshio Kuratomi <badger@prtr-13.ucsc.edu>
 
-MASTER_SITES=	ftp://prtr-13.ucsc.edu/pub/libungif/
+MASTER_SITES=	http://metalab.unc.edu/pub/Linux/libs/graphics/
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
