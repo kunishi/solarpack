@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 05:26:38 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/07/01 11:31:50 kunishi Exp $
 #
 
 PORTNAME=	ja-tgif
 VERSION=	3.0.18+j12
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENtgifj
 NAME=		tgif, an Xlib base 2-D drawing facility under X11, with JP extension.
@@ -19,8 +19,7 @@ PATCH_SITES=	ftp://ftp.hipecs.hokudai.ac.jp/pub/X11/contrib/applications/tgif/jp
 PATCHFILES=	tgif-3.0J0.12-p18-patch.gz \
 		tgif-3.0J0.12-p18-PSJISr1.gz
 
-RUN_DEPENDS=	OPENntpbm:${PORTSDIR}/graphics/netpbm/ \
-		OPENpngcv:${PORTSDIR}/graphics/pnmtopng/
+RUN_DEPENDS=	OPENntpbm:${PORTSDIR}/graphics/netpbm/
 
 WRKSRC=		${WRKDIR}/tgif-3.0.18
 PATCH_DIST_STRIP=-p1
