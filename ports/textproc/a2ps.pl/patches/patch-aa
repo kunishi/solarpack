@@ -1,0 +1,11 @@
+--- a2ps.orig	Tue Nov 13 18:45:19 2001
++++ a2ps	Tue Nov 13 18:46:07 2001
+@@ -29,7 +29,7 @@
+ ;# Please change the next line to specify the default paper.
+ ;# ('us' for US letter size, 'a4' for A4 size, 'b4' for B4 size)
+ ;#
+-;;	$default_paper = 'a4';
++$default_paper = 'a4';
+ ;#
+ ;# Change the next line to specify the default action of JIS code
+ ;# conversion.  If you never use Japanese text or always using JIS coded
