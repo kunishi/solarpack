@@ -1,2 +1,2 @@
 PKGBUILDDIR?=	/opt/local/pkgbuild
-.include "${PKGBUILDDIR}/ports/Mk/port.mk
+.include "${PKGBUILDDIR}/ports/Mk/port.mk"
