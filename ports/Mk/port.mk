@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.14 1999/05/31 12:57:10 kunishi Exp $
+# $Id: port.mk,v 1.15 1999/06/02 11:05:20 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -54,8 +54,35 @@ GNU_HOSTTYPE?=	${ARCH}-sun-solaris${OSREL_SOLARIS}
 GNU_HOSTTYPE?=	${ARCH}--solaris${OSREL_SOLARIS}
 .endif
 
+.if defined(GNU_CONFIGURE)
+HAS_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
+MAKE+ARGS+=		prefix=${PREFIX}
+MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
+.endif
+
+.if defined(HAS_CONFIGURE)
+CONFIGURE?=	${WRKSRC}/configure
+.endif
+
+.if defined(USE_GMAKE)
+MAKE_ENV+=	MAKE=${GMAKE}
+.endif
+
+.if defined(USE_IMAKE)
+USE_X_PREFIX=	yes
+CONFIGURE?=	${X11BASE}/bin/xmkmf
+CONFIGURE_ARGS+=	-a
+MAKE_ARGS+=	DESTDIR=${PREFIX}
+MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR} PREFIX=${PREFIX} \
+		LOCALBASE=${LOCALBASE} X11BASE=${X11BASE}
+.if !defined(NO_INSTALL_MAN)
+INSTALL_TARGET+=	install.man
+.endif
+.endif
+
 .if defined(USE_X_PREFIX)
-PREFIX?=		${X11BASE}
+PREFIX=		${X11BASE}
 .endif
 
 LOCALBASE=	/usr/local
@@ -99,9 +126,9 @@ EXTRACT_ONLY?=	${DISTFILES}
 
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
-PATCH_ARGS=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
+PATCH_ARGS=	-d ${WRKSRC} --backup --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
-PATCH_DIST_ARGS=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
+PATCH_DIST_ARGS=	-d ${PATCH_DIST_APPLY_DIR} --backup --forward --quiet -E ${PATCH_DIST_STRIP}
 
 CONFIGURE_ENV+=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
@@ -118,33 +145,6 @@ MAKE_INSTALL_ENV+=	PREFIX=${WRK_BASEDIR} \
 		CC=${CC}
 MAKE_INSTALL_ARGS+=	INSTALL=${INSTALL}
 MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
-
-.if defined(GNU_CONFIGURE)
-HAS_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--prefix=${PREFIX}
-MAKE+ARGS+=		prefix=${PREFIX}
-MAKE_INSTALL_ARGS+=	prefix=${WRK_BASEDIR}
-.endif
-
-.if defined(HAS_CONFIGURE)
-CONFIGURE?=	${WRKSRC}/configure
-.endif
-
-.if defined(USE_GMAKE)
-MAKE_ENV+=	MAKE=${GMAKE}
-.endif
-
-.if defined(USE_IMAKE)
-USE_X_PREFIX?=	yes
-CONFIGURE?=	${X11BASE}/bin/xmkmf
-CONFIGURE_ARGS+=	-a
-MAKE_ARGS+=	DESTDIR=${PREFIX}
-MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR} PREFIX=${PREFIX} \
-		LOCALBASE=${LOCALBASE} X11BASE=${X11BASE}
-.if !defined(NO_INSTALL_MAN)
-INSTALL_TARGET+=	install.man
-.endif
-.endif
 
 ### rule definitions
 
