@@ -1,0 +1,9 @@
+PKG=SOAPgzip
+NAME=Solaris Application Packaging tools: GNU compress utilities
+VERSION=1.2.4a
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=kunishi@c.oka-pu.ac.jp
+BASEDIR=%%SOAP_DIR%%
+CLASSES=none
+PSTAMP=%%SOAP_PSTAMP%%

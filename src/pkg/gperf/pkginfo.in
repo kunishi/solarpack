@@ -1,0 +1,9 @@
+PKG=SOAPgperf
+NAME=Solaris Application Packaging system: gperf
+VERSION=2.7.2
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=kunishi@c.oka-pu.ac.jp
+BASEDIR=%%SOAP_DIR%%
+CLASSES=none
+PSTAMP=%%SOAP_PSTAMP%%

@@ -1,0 +1,9 @@
+PKG=SOAPmd5
+NAME=Solaris Application Packaging tools: a program to calculate checksum for a file
+VERSION=1.0-1
+CATEGORY=application
+VENDOR=Jim Ellis <jte@cert.org>
+EMAIL=kunishi@c.oka-pu.ac.jp
+BASEDIR=%%SOAP_DIR%%
+CLASSES=none
+PSTAMP=%%SOAP_PSTAMP%%

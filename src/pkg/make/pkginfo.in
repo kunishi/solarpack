@@ -1,0 +1,9 @@
+PKG=SOAPgmake
+NAME=Solaris Application Packaging tools: GNU make utility
+VERSION=3.79.1
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=kunishi@c.oka-pu.ac.jp
+BASEDIR=%%SOAP_DIR%%
+CLASSES=none
+PSTAMP=%%SOAP_PSTAMP%%

@@ -1,6 +1,6 @@
 #
 # Makefile configuration file for standard Solaris make
-# $Id: config.mk,v 1.6 2001/02/22 13:04:21 kunishi Exp $
+# $Id: config.mk,v 1.7 2001/03/23 06:56:26 kunishi Exp $
 #
 
 WORKDIR=	${TOPDIR}/work
@@ -29,6 +29,7 @@ PKGTRANS=	pkgtrans -o
 DO_NADA=	true
 GNU_CONFIGURE=	./configure
 INSTALL_PROGRAM=	/usr/ucb/install -c -m 755
+INSTALL_DATA=		/usr/ucb/install -c -m 644
 
 PATCH_COOKIE=		.patch_done
 CONFIGURE_COOKIE=	.configure_done

@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building bmake
-# $Id: Makefile,v 1.2 2001/02/22 13:04:21 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/03/23 06:56:27 kunishi Exp $
 #
 
 TARGET_CMD=	bmake
@@ -29,6 +29,10 @@ build:		${CONFIGURE_COOKIE}
 install:	${BUILD_COOKIE}
 	@cd ${WORKDIR}/${TARGET_CMD} && \
 	  ${INSTALL_ENV} ${GMAKE} ${EXTRA_MAKEFLAGS} ${MAKE_INSTALL_ARGS} ${INSTALL_TARGET}
+	@${MKDIR} ${TMPPREFIX}/man/cat1
+	@${INSTALL_DATA} -c -m 644 ${WORKDIR}/${TARGET_CMD}/make.1 ${TMPPREFIX}/man/cat1/bmake.1
+	@${MKDIR} ${TMPPREFIX}/share/doc/bmake
+	@${INSTALL_DATA} -c -m 644 ${WORKDIR}/${TARGET_CMD}/PSD.doc/tutorial.ms ${TMPPREFIX}/share/doc/bmake
 
 clean::
 	@cd ${WORKDIR}/${TARGET_CMD} && \

@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building md5
-# $Id: Makefile,v 1.2 2001/02/22 13:04:22 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/03/23 06:56:27 kunishi Exp $
 #
 
 TARGET_CMD=	md5
@@ -19,6 +19,7 @@ build:		${CONFIGURE_COOKIE}
 
 install:	${BUILD_COOKIE}
 	${INSTALL_PROGRAM} ${WORKDIR}/${TARGET_CMD}/md5 ${TMPPREFIX}/bin
+	${INSTALL_DATA} ${WORKDIR}/${TARGET_CMD}/md5.1 ${TMPPREFIX}/man/man1
 
 clean::
 	@cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE} ${CLEAN_TARGET}

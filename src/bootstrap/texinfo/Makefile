@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building texinfo
-# $Id: Makefile,v 1.2 2001/02/22 13:04:23 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/03/23 06:56:27 kunishi Exp $
 #
 
 TARGET_CMD=	texinfo
@@ -8,7 +8,9 @@ TARGET_CMD=	texinfo
 include ../config.mk
 include ../rule.mk
 
-EXTRA_CONFIGURE_ENV=	CFLAGS="-g -O" CXXFLAGS="-g -O"
+EXTRA_CONFIGURE_ENV=	CFLAGS="-g -O" CXXFLAGS="-g -O" \
+			ac_cv_header_ncurses_termcap_h="no" \
+			ac_cv_lib_ncurses_tgetent="no"
 EXTRA_CONFIGURE_ARGS=	--with-included-gettext
 CLEAN_TARGET=		distclean
 

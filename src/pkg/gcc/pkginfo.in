@@ -1,0 +1,9 @@
+PKG=SOAPgcc
+NAME=Solaris Application Packaging tools: GNU compiler collection
+VERSION=2.95.2
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=kunishi@c.oka-pu.ac.jp
+BASEDIR=%%SOAP_DIR%%
+CLASSES=none
+PSTAMP=%%SOAP_PSTAMP%%
