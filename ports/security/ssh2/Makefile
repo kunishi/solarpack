@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.1 1999/08/26 07:59:36 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/08/26 10:21:07 kunishi Exp $
 #
 
 PKG=		OPENssh2
 NAME=		Secure shell version 2
-VERSION=	2.0.12
+VERSION=	2.0.13
 VENDOR=		SSH Communications Security Ltd., Finland <http://www.ssh.fi/>.
 
 DISTNAME=	ssh-2.0.13
