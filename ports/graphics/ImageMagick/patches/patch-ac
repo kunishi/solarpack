@@ -1,0 +1,11 @@
+--- configure.in~	Sat Feb  5 07:41:00 2000
++++ configure.in	Mon Jun 19 21:26:47 2000
+@@ -1143,7 +1143,7 @@
+ fi
+ 
+ # Determine path to pick up ImageMagick library from for use with building PerlMagick
+-MAGICKLIB="-L${LIB_DIR} -lMagick"
++MAGICKLIB="-L${LIB_DIR} -R${LIB_DIR} -lMagick"
+ if test $with_perl_static = 'yes'
+ then
+   MAGICKLIB="-L${builddir}/magick -lMagick"

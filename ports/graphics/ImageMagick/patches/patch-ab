@@ -1,0 +1,11 @@
+--- magick/Magick-config.in~	Mon Jun 19 21:20:25 2000
++++ magick/Magick-config.in	Mon Jun 19 21:21:33 2000
+@@ -61,7 +61,7 @@
+     --ldflags)
+       if test $exec_prefix_set = yes || test $prefix_set = yes
+       then
+-	echo "-L$exec_prefix/lib "'@LDFLAGS@'
++	echo "-L$exec_prefix/lib -R$exec_prefix/lib "'@LDFLAGS@'
+       else
+ 	echo '@LDFLAGS@'
+       fi
