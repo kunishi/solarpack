@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/06/07 05:48:07 kunishi Exp $
 #
 
 PORTNAME=	tiff
@@ -23,5 +23,6 @@ CONFIGURE_ARGS+=	--noninteractive \
 			--with-DIR_GZLIB=${LOCALBASE}/lib \
 			--with-DIR_JPEGLIB=${LOCALBASE}/lib \
 			--target=${GNU_HOSTTYPE}
+INSTALL=	'${SHELL} ../port/install.sh'
 
 .include <port.mk>
