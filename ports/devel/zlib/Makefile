@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 1999/08/20 11:06:24 kunishi Exp $
+# $Id: Makefile,v 1.2 1999/08/27 11:51:21 kunishi Exp $
 #
 
 
@@ -15,7 +15,6 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/graphics/ImageMagick/delegates/ \
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--shared --prefix=${PREFIX}
 
-CORE_TOOLS=	yes
 PKG_WITHOUT_GZIP=	yes
 
 .include <port.mk>
