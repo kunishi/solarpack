@@ -1,0 +1,4 @@
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/emacs=%%INSTPREFIX%%/share/emacs 0755 root bin
+d none share/emacs/site-lisp=%%INSTPREFIX%%/share/emacs/site-lisp 0755 root bin
+f none share/emacs/site-lisp/boiling-egg.el=%%INSTPREFIX%%/share/emacs/site-lisp/boiling-egg.el 0644 root bin
