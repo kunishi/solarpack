@@ -1,4 +1,4 @@
-include pre.mk
+include ../../include/pre.mk
 
 DISTNAME=	gcc-2.8.1
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/gcc/ \
@@ -17,4 +17,4 @@ do-build:
 	-cd ${WRKSRC} && ${MAKE} CC="stage2/xgcc -Bstage2/" CFLAGS="-g -O2"
 	cd ${WRKSRC} && ${MAKE} compare
 
-include pkgbuild.mk
+include ../../include/pkgbuild.mk

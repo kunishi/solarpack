@@ -1,4 +1,4 @@
-include pre.mk
+include ../../include/pre.mk
 
 DISTNAME=	wget-1.5.3
 MASTER_SITES=	ftp://psi.c.oka-pu.ac.jp/pub/ \
@@ -10,4 +10,4 @@ post-install:
 	${INSTALL} -c ${WRKSRC}/doc/sample.wgetrc \
 	    ${WRK_BASEDIR}/share/examples/wget/sample.wgetrc
 
-include pkgbuild.mk
+include ../../include/pkgbuild.mk
