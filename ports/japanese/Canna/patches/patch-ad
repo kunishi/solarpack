@@ -1,0 +1,23 @@
+--- dic/ideo/words/Imakefile.orig	Thu Sep 21 12:17:03 2000
++++ dic/ideo/words/Imakefile	Thu Sep 21 12:21:41 2000
+@@ -69,13 +69,13 @@
+ #endif
+ 
+ install::
+-	$(CHGRP) $(cannaGroup) $(CANNADICDIR)
+-	$(CHOWN) $(cannaOwner) $(CANNADICDIR)
+-	$(CHMOD) ug+w $(CANNADICDIR)
+-	$(CHGRP) $(cannaGroup) $(DicDir)
+-	$(CHOWN) $(cannaOwner) $(DicDir)
+-	$(CHMOD) ug+w $(DicDir)
+-	$(CHMOD) -w $(CANNADICDIR)/dics.dir
++	$(CHGRP) $(cannaGroup) $(DESTDIR)$(CANNADICDIR)
++	$(CHOWN) $(cannaOwner) $(DESTDIR)$(CANNADICDIR)
++	$(CHMOD) ug+w $(DESTDIR)$(CANNADICDIR)
++	$(CHGRP) $(cannaGroup) $(DESTDIR)$(DicDir)
++	$(CHOWN) $(cannaOwner) $(DESTDIR)$(DicDir)
++	$(CHMOD) ug+w $(DESTDIR)$(DicDir)
++	$(CHMOD) -w $(DESTDIR)$(CANNADICDIR)/dics.dir
+ 
+ #ifndef USE_OBSOLETE_STYLE_FILENAME
+ InstallNamedNonExec(necgaiji.t,necgaiji.ctd,$(CANNADICDIR))

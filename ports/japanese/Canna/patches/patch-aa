@@ -1,7 +1,7 @@
---- Canna.conf.orig	Thu Nov 28 19:27:01 1996
-+++ Canna.conf	Wed Aug  4 16:13:45 1999
+--- Canna.conf~	Thu Nov 28 19:27:01 1996
++++ Canna.conf	Mon Sep 18 19:00:44 2000
 @@ -128,12 +128,12 @@
-  * $Id: patch-aa,v 1.1 1999/08/04 07:38:55 kunishi Exp $
+  * $Id: patch-aa,v 1.2 2000/09/21 12:25:38 kunishi Exp $
   */
  
 -cannaBinDir = /usr/local/canna/bin
