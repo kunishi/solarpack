@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.78 2000/09/27 06:44:24 kunishi Exp $
+# $Id: port.mk,v 1.79 2001/02/28 12:49:12 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -926,8 +926,8 @@ gen-prototype:
 	@${ECHO} 'i r.backup=${TEMPLATEDIR}/r.backup' >> ${PROTOTYPE}
 .endif
 .if defined(CLASS_INITD)
-	@${ECHO} 'i i.initd=${TEMPLATEDIR}/i.initd' >> ${PROTOTYPE}
-	@${ECHO} 'i r.initd=${TEMPLATEDIR}/r.initd' >> ${PROTOTYPE}
+	@${ECHO} 'i i.initd=${PKGDIR}/i.initd' >> ${PROTOTYPE}
+	@${ECHO} 'i r.initd=${PKGDIR}/r.initd' >> ${PROTOTYPE}
 .endif
 	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} >> ${PROTOTYPE}
 .endif
