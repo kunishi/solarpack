@@ -1,17 +1,17 @@
 #
-# $Id: Makefile,v 1.1 2001/11/12 12:26:43 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/11/19 12:14:48 kunishi Exp $
 #
 
 PORTNAME=	jasper
 VERSION=	1.500.3
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPUCjasp
 NAME=		a software-based impl. of the codec JPEG-2000 Part-1
 
 MASTER_SITES=	http://www.ece.ubc.ca/~mdadams/jasper/software/
 
-LIB_DEPENDS=	OPENjpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	OPUCjpeg:${PORTSDIR}/graphics/jpeg
 
 USE_ZIP=	yes
 GNU_CONFIGURE=	yes
