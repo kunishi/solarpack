@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.2 2000/09/06 11:02:45 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/08 09:06:56 kunishi Exp $
 #
 
 PORTNAME=	mysql
 VERSION=	3.22.32
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENmysql
 NAME=		Multithreaded SQL database
@@ -16,5 +16,12 @@ GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
 CLASS_INFO=	info/mysql.info
+CLASS_INITD=	share/mysql/mysql.server
+EDITABLE_FILES=	etc/my.cnf
+
+post-install:
+	${MKDIR} ${INSTPREFIX}/etc
+	${INSTALL_DATA} ${INSTPREFIX}/share/mysql/my-example.cnf \
+		${INSTPREFIX}/etc/my.cnf
 
 .include <port.mk>
