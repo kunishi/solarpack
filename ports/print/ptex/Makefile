@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.6 2000/05/23 09:49:27 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/06/02 14:15:32 kunishi Exp $
 #
 
 PORTNAME=	ja-ptex
 VERSION=	2.1.8
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENptexj
 NAME=		ASCII pTeX, JIS version
@@ -38,13 +38,14 @@ CLASS_INFO=	info/kpathsea.info info/web2c.info
 
 post-extract:
 	${MKDIR} ${INSTPREFIX}/share
-	${TAR} -xzf ${DISTDIR}/texmflib-7.3.tar.gz -C ${INSTPREFIX}/share
+	${TAR} -C ${INSTPREFIX}/share -xzf ${DISTDIR}/texmflib-7.3.tar.gz
 	${RM} -rf ${INSTPREFIX}/share/texmf/tex/latex/base
+	${RM} -rf ${INSTPREFIX}/share/texmf/dvips
+	${RM} -rf ${INSTPREFIX}/share/texmf/tex/plain/dvips
 	${TAR} -xzf ${DISTDIR}/plib-1.4-jis.tar.gz -C ${INSTPREFIX}/share
 	${TAR} -xzf ${DISTDIR}/ptex218.tar.gz -C ${WRKSRC}/web2c
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/texmf
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${WRKSRC}
-
 
 post-patch:
 	cd ${WRKSRC}/web2c/ptex218 && \
