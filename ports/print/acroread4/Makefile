@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/06/07 07:34:34 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/06/07 12:47:55 kunishi Exp $
 #
 
 ARCH!=	/usr/bin/mach
@@ -27,6 +27,7 @@ WRKSRC=		${WRKDIR}/SS86RS.install
 
 NO_BUILD=	yes
 
+PROTOTYPE_IN=	${PKGDIR}/prototype.in.${ARCH}
 .if (${ARCH} == "sparc")
 PROTOTYPE_SUB+=	AR_ARCH=sparcsolaris
 .elif (${ARCH} == "i386")
