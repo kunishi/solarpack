@@ -1,18 +1,18 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:58 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/04/17 04:01:48 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	apache
-VERSION=	1.3.12
-PORTREV=	2
+VERSION=	1.3.19
+PORTREV=	1
 
 PKG=		APACapche
 NAME=		Apache Web Server
 VENDOR=		The Apache Software Foundation <http://www.apache.org/httpd.html>
 
-MASTER_SITES=	http://www.apache.org/dist/
+MASTER_SITES=	http://www.apache.org/dist/httpd/
 DISTNAME=	${PORTNAME}_${VERSION}
 
 HAS_CONFIGURE=	yes
@@ -30,5 +30,6 @@ EDITABLE_FILES=	apache/conf/access.conf \
 post-install:
 	${MKDIR} ${INSTPREFIX}/share/examples/apache
 	${SED} -e 's!%%PREFIX%%!${PREFIX}!g' ${FILESDIR}/apache > ${INSTPREFIX}/share/examples/apache/apache
+	${CHOWN} -R root:sys ${INSTPREFIX}
 
 .include <port.mk>
