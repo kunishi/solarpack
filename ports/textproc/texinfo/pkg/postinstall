@@ -8,5 +8,5 @@ if test -f $CLIENT_BASEDIR/info/dir; then
 	$INSTALL_INFO --info-dir=$INFODIR $INFODIR/texinfo
 else
 	/usr/ucb/install -c -m 0644 -o bin -g bin \
-		$EXAMPLE_DIR/dir-example $CLIENT_BASEDIR/info/dir
+		$EXAMPLE_DIR/dir $CLIENT_BASEDIR/info/dir
 fi

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/01/06 11:38:09 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/01/19 03:52:42 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -21,15 +21,16 @@ MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/texinfo/ \
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_INSTALL_INFO=	yes
 
-.if defined(CORE_TOOLS)
 PKG_WITHOUT_GZIP=	yes
-.endif
+EDITABLE_FILES=		info/dir
+LICENSE_FILES=		%%WRKSRC%%/COPYING
 
 post-install:
-	${MKDIR} ${WRKDIR}${PREFIX}/share/examples/texinfo
-	${INSTALL} -c -m 0644 ${WRKSRC}/dir-example \
-	    ${WRKDIR}${PREFIX}/share/examples/texinfo
+	${MKDIR} ${INSTPREFIX}/share/examples/texinfo
+	${INSTALL} -c -m 0644 ${FILESDIR}/dir \
+	  ${INSTPREFIX}/share/examples/texinfo
+	${MKDIR} ${INSTPREFIX}/info
+	${INSTALL} -c -m 0644 ${FILESDIR}/dir ${INSTPREFIX}/info
 
 .include <port.mk>

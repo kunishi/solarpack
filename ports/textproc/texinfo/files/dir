@@ -1,0 +1,32 @@
+This is the directory file `dir' a.k.a. `DIR', which contains the
+  topmost node of the Info hierarchy.
+This particular dir file is merely made available for your hacking
+  pleasure, not official or standard in any way.  If it doesn't make sense
+  to you, or you don't like it, ignore it.
+If you have dir entries for Texinfo manuals you'd like to be added here,
+  please send them to karl@gnu.org.
+
+$Id: dir,v 1.1 2000/01/19 03:52:42 kunishi Exp $
+
+File: dir,	Node: Top,	This is the top of the INFO tree.
+
+This is the Info main menu (aka directory node).
+A few useful Info commands:
+
+  `q' quits;
+  `?' lists all Info commands;
+  `h' starts the Info tutorial;
+  `mTexinfo RET' visits the Texinfo manual, etc.
+
+Not all of the topics shown below may be available on this system.
+
+* Menu:
+
+Texinfo documentation system
+* Info: (info).                 Documentation browsing system.
+* Texinfo: (texinfo).           The GNU documentation format.
+* info program: (info-stnd).    Standalone Info-reading program.
+* install-info: (texinfo)Invoking install-info. Updating info/dir entries.
+* texi2dvi: (texinfo)Format with texi2dvi.      Printing Texinfo documentation.
+* texindex: (texinfo)Format with tex/texindex.  Sorting Texinfo index files.
+* makeinfo: (texinfo)makeinfo options.  Translate Texinfo source.
