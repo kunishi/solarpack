@@ -1,5 +1,5 @@
 #
-# $Id: pkgbuild.mk,v 1.11 1999/05/14 12:52:56 kunishi Exp $
+# $Id: pkgbuild.mk,v 1.12 1999/05/14 13:09:39 kunishi Exp $
 #
 
 ### rule definitions
@@ -7,7 +7,7 @@
 .PHONY: extract configure build package install-package \
 	pre-fetch fetch post-fetch \
 	pre-patch patch post-patch \
-	do-build post-install install-package release \
+	do-build pre-install post-install install-package release \
 	generate-prototype generate-pkginfo \
 	clean pkgclean distclean \
 	gen-prototype-in gen-instinfo
@@ -117,6 +117,7 @@ ${INSTALL_COOKIE}:	${BUILD_COOKIE}
 	@${PKGMAKE} build
 	@${ECHO_MSG} "===> Installing temporarily for ${PKGNAME}"
 	@${MKDIR} ${WRK_BASEDIR}
+	@${PKGMAKE} pre-install
 	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS}
 	@${PKGMAKE} post-install
 	@${TOUCH} $@
@@ -161,6 +162,8 @@ post-patch::
 
 do-build::
 	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${MAKE_ARGS}
+
+pre-install::
 
 post-install::
 
