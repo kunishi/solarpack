@@ -26,6 +26,7 @@ f none include/tiffio.h=%%INSTPREFIX%%/include/tiffio.h 0444 root bin
 d none lib=%%INSTPREFIX%%/lib 0755 root bin
 f none lib/libtiff.a=%%INSTPREFIX%%/lib/libtiff.a 0444 root bin
 f none lib/libtiff.so.3=%%INSTPREFIX%%/lib/libtiff.so.3 0555 root bin
+s none lib/libtiff.so=libtiff.so.3
 d none man=%%INSTPREFIX%%/man 0755 root bin
 d none man/man1=%%INSTPREFIX%%/man/man1 0755 root bin
 f none man/man1/fax2ps.1=%%INSTPREFIX%%/man/man1/fax2ps.1 0444 root bin

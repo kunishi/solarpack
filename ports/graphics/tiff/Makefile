@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.6 2000/06/07 05:48:07 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/07/01 10:14:12 kunishi Exp $
 #
 
 PORTNAME=	tiff
 VERSION=	3.5.5
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENtiff
 NAME=		TIFF Software Distribution
@@ -24,5 +24,8 @@ CONFIGURE_ARGS+=	--noninteractive \
 			--with-DIR_JPEGLIB=${LOCALBASE}/lib \
 			--target=${GNU_HOSTTYPE}
 INSTALL=	'${SHELL} ../port/install.sh'
+
+post-install:
+	${LN} -sf libtiff.so.3 ${INSTPREFIX}/lib/libtiff.so
 
 .include <port.mk>
