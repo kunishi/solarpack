@@ -1,5 +1,5 @@
---- unix-gcc.mak.org	Thu May 20 13:05:08 1999
-+++ unix-gcc.mak	Thu May 20 13:07:48 1999
+--- unix-gcc.mak.orig	Thu May 18 22:29:48 2000
++++ unix-gcc.mak	Thu May 18 22:30:10 2000
 @@ -214,7 +214,7 @@
  # We don't include -ansi, because this gets in the way of the platform-
  #   specific stuff that <math.h> typically needs; nevertheless, we expect
@@ -9,6 +9,15 @@
  
  CFLAGS=-O $(GCFLAGS) $(XCFLAGS)
  
+@@ -223,7 +223,7 @@
+ # XLDFLAGS can be set from the command line.
+ XLDFLAGS=
+ 
+-LDFLAGS=$(XLDFLAGS)
++LDFLAGS=$(XLDFLAGS) -L/usr/local/lib -R/usr/local/lib
+ 
+ # Define any extra libraries to link into the executable.
+ # ISC Unix 2.2 wants -linet.
 @@ -231,7 +231,7 @@
  # SVR4 may need -lnsl.
  # (Libraries required by individual drivers are handled automatically.)
@@ -65,7 +74,7 @@
  
  # ---------------- Kanji Font(VFlib) ---------------- #
  
-@@ -5520,8 +5523,9 @@
+@@ -5520,10 +5523,12 @@
  kfvflib.dev: $(kfvflib_) kanji.dev
  	$(SETMOD) kfvflib $(kfvflib_)
  	$(ADDMOD) kfvflib -oper zkfVFlib
@@ -76,8 +85,11 @@
 +	$(ADDMOD) kfvflib -lib ttf
  
  zkfvflib.$(OBJ): zkfvflib.c 
++	${CC} ${CFLAGS} -I${PREFIX}/include/ -c zkfvflib.c
  
-@@ -5667,7 +5671,7 @@
+ #    Copyright (C) 1990, 1995, 1996, 1997 Aladdin Enterprises.  All rights reserved.
+ # 
+@@ -5667,7 +5672,7 @@
  	./echogs -a ldt.tr -n -s gs.$(OBJ) -s
  	cat ld.tr >>ldt.tr
  	./echogs -a ldt.tr -s - $(EXTRALIBS) -lm

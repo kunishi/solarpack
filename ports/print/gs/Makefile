@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/05/18 13:34:42 kunishi Exp $
 #
 
 PORTNAME=	vfghostscript
@@ -15,7 +15,8 @@ MASTER_SITES=	ftp://ftp.cs.wisc.edu/ghost/gnu/gs510/ \
 		http://www.ldl.jaist.ac.jp/~akr/nonresearch/free-software/ghostscript/ \
 		http://www.rd.nacsis.ac.jp/~katayama/homepage/ghostscript/jpdf/ \
 		http://itohws03.ee.noda.sut.ac.jp/~matsuda/VFlib-FT/ \
-		http://www.ozemail.com.au/~geoffk/pdfencrypt/
+		http://www.ozemail.com.au/~geoffk/pdfencrypt/ \
+		ftp://ftp.jp.freebsd.org/pub/FreeBSD/distfiles/
 DISTFILES=	ghostscript-${VERSION}.tar.gz
 DISTFILES+=	ghostscript-fonts-std-${VERSION}.tar.gz
 DISTFILES+=	ghostscript-fonts-other-${VERSION}.tar.gz
@@ -30,6 +31,8 @@ EXTRACT_ONLY=	ghostscript-${VERSION}.tar.gz
 EXTRACT_ONLY+=	ghostscript-${VERSION}jpeg.tar.gz
 EXTRACT_ONLY+=	ghostscript-${VERSION}libpng.tar.gz
 EXTRACT_ONLY+=	ghostscript-${VERSION}zlib.tar.gz
+
+LIB_DEPENDS=	OPENvflib:${PORTSDIR}/print/VFlib2
 
 WRKSRC=		${WRKDIR}/gs${VERSION}
 MAKEFILE=	unix-gcc.mak
