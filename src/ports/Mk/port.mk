@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.24 1999/06/05 07:37:14 kunishi Exp $
+# $Id: port.mk,v 1.25 1999/06/05 07:58:57 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -113,6 +113,9 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
+WGET?=		${LOCALBASE}/bin/wget
+WGET_FLAGS?=	-nv
+
 PATCH?=		${LOCALBASE}/bin/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
@@ -169,7 +172,6 @@ SH?=		/bin/sh
 SORT?=		/usr/bin/sort
 UNAME?=		/usr/bin/uname
 UNIQ?=		/usr/bin/uniq
-WGET?=		${LOCALBASE}/bin/wget
 
 ECHO_MSG?=	${ECHO}
 
@@ -422,7 +424,7 @@ do-fetch:
 		if [ ! -f $$file ]; then \
 			for site in ${MASTER_SITES}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${WGET} $${site}$${file}; then \
+				if ${WGET} ${WGET_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
@@ -434,7 +436,7 @@ do-fetch:
 		if [ ! -f $${file} ]; then \
 			for site in ${PATCH_SITES}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${WGET} $${site}$${file}; then \
+				if ${WGET} ${WGET_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
