@@ -1,0 +1,146 @@
+#!/bin/sh
+
+LANG=C; export LANG
+
+PREFIX=%%PREFIX%%
+CONFCODE=%%CONFCODE%%
+
+EDIT_SED=edit.sed
+
+#
+# These are the site-specific settings you need to customize
+# to use the Paper Review System.  Note that you need to protect
+# certain characters (like forward slash "/") with a backslash
+# because sed interprets them as special characters.
+#
+ADMIN_EMAIL="email@domain.edu"
+ADMIN_USER="admin"
+ADMIN_PASSWORD="password"
+BACKGROUND_IMAGE="/images/bgnd.gif"
+BASE_URL="http://www.conference.edu"	# Paper Review System URL
+CONF_URL="http://www.conference.edu"	# Conference URL
+CONFERENCE_CODE="CONF'99"
+DATABASE_NAME=$CONFCODE
+SMTP_SERVER="mail.domain.edu"
+TOPIC_HEADER="Conceptual modeling as applied to:"
+WEB_CONTACT_NAME="Your Name"
+WEB_CONTACT_URL="http://www.domain.edu/dir/page.html"
+#
+# The following variables might not need to be changed, but you
+# are welcome to set them as you wish.
+#
+BACKGROUND_COLOR="f8f8f8"
+MIN_DIFFERENCE="3"
+MAX_PC_MEMBERS="500"
+MYSQL_PATH="${PREFIX}"
+MYSQL_SOCK="/tmp/mysql.sock"	# May want /var/tmp/mysql.sock
+SERVER_DIR="${PREFIX}/apache"
+HTDOCS_DIR="${SERVER_DIR}/htdocs"
+CGI_BIN_DIR="${HTDOCS_DIR}/${DATABASE_NAME}/cgi-bin"
+CGI_PATH="${BASE_URL}/cgi-bin"
+SMTP_PORT="25"
+URL_SUBMIT_PAPER="submit.html"
+URL_CM_LOGON="cm_logon.html"
+URL_HOME="index.html"
+URL_EMAIL="email.html"
+#
+# End of site-specific strings.
+#
+
+CUSTOM_VAR="ADMIN_EMAIL \
+	ADMIN_USER \
+	ADMIN_PASSWORD \
+	BACKGROUND_IMAGE \
+	BASE_URL \
+	CONF_URL \
+	CONFERENCE_CODE \
+	SMTP_SERVER \
+	TOPIC_HEADER \
+	WEB_CONTACT_NAME \
+	WEB_CONTACT_URL \
+	BACKGROUND_COLOR \
+	MIN_DIFFERENCE \
+	MAX_PC_MEMBERS \
+	MYSQL_PATH \
+	MYSQL_SOCK \
+	SERVER_DIR \
+	HTDOCS_DIR \
+	CGI_BIN_DIR \
+	CGI_PATH \
+	SMTP_PORT \
+	URL_SUBMIT_PAPER \
+	URL_CM_LOGON \
+	URL_HOME URL_EMAIL"
+
+rm -f ${EDIT_SED}
+
+for var in $CUSTOM_VAR; do
+  echo "$var: [`eval echo '$'$var`] \c"
+  read answer
+  if [ "$answer" != "" ]; then
+    eval `eval echo $var`=$answer
+  fi
+  echo "s|$var|`eval echo '$'$var`|g" >> ${EDIT_SED}
+done
+
+echo "s|DATABASE_NAME|$DATABASE_NAME|g" >> ${EDIT_SED}
+
+COPYRIGHT=`cat copy.html`
+CCOPY=`cat ccopy.html`
+CURRENT_YEAR=`date +\%Y`
+SETUP_TIME=`date`
+echo "s|COPYRIGHT|$COPYRIGHT|g" >> ${EDIT_SED}
+echo "s|CCOPY|$CCOPY|g" >> ${EDIT_SED}
+echo "s|CURRENT_YEAR|$CURRENT_YEAR|g" >> ${EDIT_SED}
+echo "s|SETUP_TIME|$SETUP_TIME|g" >> ${EDIT_SED}
+
+CGI_SRC="author.c abstract.c adhocsql.c editprofile.c email.c \
+	get.doc.c get1review.c getreview.c revbypaper.c revbypc.c \
+	revreport.c reviewform.c reviseform.c submitabs.c \
+	submitpaper.c submitrev.c updaterev.c"
+OTHER_SRC="makepass.c util.c util.h dbutil.c dbutil.h sendemail.c Makefile"
+EMAIL_SRC="notifypc.email ad1.email ackabstr.email"
+HTML_SRC="$URL_SUBMIT_PAPER $URL_HOME $URL_CM_LOGON $URL_EMAIL"
+SQL_SRC="createdb.sql initdb.sql"
+PHP_SRC="assign_rev.php auth_admin.php auth_pc.php author.php \
+	averify.php browse_abstr.php browse_title.php editprop.php \
+	editprop_action.php edit_profile.php email.php fill_lists.php \
+	get_all_papers.php get_pc_info.php get_pc_topic.php \
+	get_prop.php getreview.php get_unassigned.php menu.php \
+	auth_fail.php auth_paper.php get.doc.php register_interest.php \
+	update_rev.php view_all.php view_unassigned.php"
+
+if [ -d ${DATABASE_NAME} -a "$1" != "nowarn" ]; then
+  echo "WARNING: About to remove ${DATABASE_NAME} and all its contents."
+  echo "Continue (Y/N) <N>? \c"
+  read answer
+  if [ "$answer" != "y" -a "$answer" != "Y" ]; then exit; fi
+fi
+rm -rf ${DATABASE_NAME} && mkdir -p ${DATABASE_NAME}
+
+for CFILE in $CGI_SRC; do
+  sed -f ${EDIT_SED} < $CFILE > ${DATABASE_NAME}/${DATABASE_NAME}${CFILE}
+done
+
+for OFILE in $OTHER_SRC; do
+  sed -f ${EDIT_SED} < $OFILE > ${DATABASE_NAME}/${OFILE}
+done
+
+for EFILE in $EMAIL_SRC; do
+  sed -f ${EDIT_SED} < $EFILE > ${DATABASE_NAME}/${EFILE}
+done
+
+rm -rf ${DATABASE_NAME}/php && mkdir -p ${DATABASE_NAME}/php
+for PFILE in $PHP_SRC; do
+  sed -f ${EDIT_SED} < $PFILE > ${DATABASE_NAME}/php/$PFILE
+done
+
+rm -rf ${DATABASE_NAME}/html && mkdir -p ${DATABASE_NAME}/html
+for HFILE in $HTML_SRC; do
+  sed -f ${EDIT_SED} < $HFILE > ${DATABASE_NAME}/html/$HFILE
+done
+
+rm -rf ${DATABASE_NAME}/sql && mkdir -p ${DATABASE_NAME}/sql
+for SFILE in $SQL_SRC; do
+  sed -f ${EDIT_SED} < $SFILE > ${DATABASE_NAME}/sql/$SFILE
+done

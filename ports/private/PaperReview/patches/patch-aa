@@ -1,0 +1,14 @@
+--- Makefile.orig	Thu Sep  7 18:55:55 2000
++++ Makefile	Thu Sep  7 18:57:39 2000
+@@ -25,9 +25,9 @@
+ # Ported to mySQL.
+ #
+ 
+-CC=gcc -g
++#CC=gcc -g
+ 
+-MYSQL     = MYSQL_PATH/mysql
++MYSQL     = MYSQL_PATH
+ INCDIR    = $(MYSQL)/include/mysql
+ LIBDIR    = $(MYSQL)/lib/mysql
+ INCLUDE   = -I. -I$(INCDIR)
