@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2002/03/18 11:12:55 kunishi Exp $
+# $Id: Makefile,v 1.8 2002/12/27 12:13:00 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -38,8 +38,8 @@ CONFIGURE_ARGS+=	--enable-shared \
 USE_PERL5=	yes
 USE_GMAKE=	yes
 MAKE_ARGS+=	CFLAGS="-g -O0"
-MAKE_INSTALL_ARGS+=	MagickSharePath=${INSTPREFIX}/share/ImageMagick \
-			pkgdocdir=${INSTPREFIX}/share/ImageMagick
+MAKE_INSTALL_ARGS+=	MagickSharePath=${INSTPREFIX}/share/ImageMagick/ \
+			pkgdocdir=${INSTPREFIX}/share/ImageMagick/
 
 PERL_VER=	5.6.1
 PERL_ARCH!=	/usr/bin/echo `/usr/bin/arch`-solaris
