@@ -1,6 +1,6 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/gettext=%%WRK_BASEDIR%%/bin/gettext 0755 root staff
 f none bin/gettextize=%%WRK_BASEDIR%%/bin/gettextize 0755 root staff
@@ -11,7 +11,7 @@ f none bin/msgmerge=%%WRK_BASEDIR%%/bin/msgmerge 0755 root staff
 f none bin/msgunfmt=%%WRK_BASEDIR%%/bin/msgunfmt 0755 root staff
 f none bin/xgettext=%%WRK_BASEDIR%%/bin/xgettext 0755 root staff
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/gettext.info=%%WRK_BASEDIR%%/info/gettext.info 0644 root staff
+f info info/gettext.info=%%WRK_BASEDIR%%/info/gettext.info 0644 root staff
 f none info/gettext.info-1=%%WRK_BASEDIR%%/info/gettext.info-1 0644 root staff
 f none info/gettext.info-2=%%WRK_BASEDIR%%/info/gettext.info-2 0644 root staff
 f none info/gettext.info-3=%%WRK_BASEDIR%%/info/gettext.info-3 0644 root staff
