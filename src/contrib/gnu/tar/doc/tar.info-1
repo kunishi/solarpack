@@ -1,4 +1,5 @@
-This is tar.info, produced by makeinfo version 4.0 from tar.texi.
+This is Info file tar.info, produced by Makeinfo version 1.68 from the
+input file tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -44,7 +45,7 @@ File: tar.info,  Node: Top,  Next: Introduction,  Prev: (dir),  Up: (dir)
 * Media::
 * Index::
 
- --- The Detailed Node Listing ---
+ -- The Detailed Node Listing --
 
 Introduction
 
@@ -309,7 +310,7 @@ will recur throughout the book.  It also tells you who has worked on GNU
 `tar' and its documentation, and where you should send bug reports or
 comments.
 
-   The second chapter is a tutorial (*note Tutorial::) which provides a
+   The second chapter is a tutorial (*note Tutorial::.) which provides a
 gentle introduction for people who are new to using `tar'.  It is meant
 to be self contained, not requiring any reading from subsequent
 chapters to make sense.  It moves from topic to topic in a logical,
@@ -324,7 +325,7 @@ tutorial frequently; however, if a section discusses something which is
 a complex variant of a basic concept, there may be a cross reference to
 that basic concept.  (The entire book, including the tutorial, assumes
 that the reader understands some basic concepts of using a Unix-type
-operating system; *note Tutorial::.)
+operating system; *note Tutorial::..)
 
    The third chapter presents the remaining five operations, and
 information about using `tar' options and option syntax.
@@ -333,9 +334,9 @@ information about using `tar' options and option syntax.
 chapter presents everything that needs to be said about a specific
 topic.
 
-   One of the chapters (*note Date input formats::) exists in its
+   One of the chapters (*note Date input formats::.) exists in its
 entirety in other GNU manuals, and is mostly self-contained.  In
-addition, one section of this manual (*note Standard::) contains a big
+addition, one section of this manual (*note Standard::.) contains a big
 quote which is taken directly from `tar' sources.
 
    In general, we give both the long and short (abbreviated) option
@@ -550,7 +551,7 @@ manual, and the hardware you will be using:
 
    * Before you start to work through this tutorial, you should
      understand what the terms "archive" and "archive member" mean
-     (*note Definitions::).  In addition, you should understand
+     (*note Definitions::.).  In addition, you should understand
      something about how Unix-type operating systems work, and you
      should know how to use some basic utilities.  For example, you
      should know how to create, list, copy, rename, edit, and delete
@@ -581,7 +582,6 @@ manual, and the hardware you will be using:
      tutorial does not cover working with tape drives.  *Note Media::,
      for complete information on using `tar' archives with tape drives.
 
-
 
 File: tar.info,  Node: stylistic conventions,  Next: basic tar options,  Prev: assumptions,  Up: Tutorial
 
@@ -610,7 +610,7 @@ operations, and options.
 
    Some arguments fall into a class called "operations"; exactly one of
 these is both allowed and required for any instance of using `tar'; you
-may _not_ specify more than one.  People sometimes speak of "operating
+may *not* specify more than one.  People sometimes speak of "operating
 modes".  You are in a particular operating mode when you have specified
 the operation which specifies it; there are eight operations in total,
 and thus there are eight operating modes.
@@ -652,7 +652,7 @@ discussions in the text, when we name an option by its long form, we
 also give the corresponding short option in parentheses.
 
    The term, "option", can be confusing at times, since "operations"
-are often lumped in with the actual, _optional_ "options" in certain
+are often lumped in with the actual, *optional* "options" in certain
 general class statements.  For example, we just talked about "short and
 long forms of options and operations".  However, experienced `tar'
 users often refer to these by shorthand terms such as, "short and long
@@ -666,7 +666,7 @@ in two different ways.  People sometimes refer to `tar' "commands".  A
 (file names, pipes, other commands, etc).  However, you will also
 sometimes hear the term "the `tar' command".  When the word "command"
 is used specifically like this, a person is usually referring to the
-`tar' _operation_, not the whole line.  Again, use context to figure
+`tar' *operation*, not the whole line.  Again, use context to figure
 out which of the meanings the speaker intends.
 
 
@@ -701,7 +701,7 @@ Two Frequently Used Options
    To understand how to run `tar' in the three operating modes listed
 previously, you also need to understand how to use two of the options to
 `tar': `--file' (which takes an archive file as an argument) and
-`--verbose'.  (You are usually not _required_ to specify either of
+`--verbose'.  (You are usually not *required* to specify either of
 these options when you run `tar', but they can be very useful in making
 things more clear and helping you avoid errors.)
 
@@ -801,7 +801,7 @@ File: tar.info,  Node: create,  Next: list,  Prev: Two Frequent Options,  Up: Tu
 How to Create Archives
 ======================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    One of the basic operations of `tar' is `--create' (`-c'), which you
 use to create a `tar' archive.  We will explain `--create' first
@@ -810,7 +810,7 @@ useful to have an archive available to practice on.
 
    To make this easier, in this section you will first create a
 directory containing three files.  Then, we will show you how to create
-an _archive_ (inside the new directory).  Both the directory, and the
+an *archive* (inside the new directory).  Both the directory, and the
 archive are specifically for you to practice on.  The rest of this
 chapter and the next chapter will show many examples using this
 directory and the files you will create: some of those files may be
@@ -847,7 +847,7 @@ lengths.  Our examples assume that `practice' is a subdirectory of your
 home directory.
 
    Now `cd' to the directory named `practice'; `practice' is now your
-"working directory".  (_Please note_: Although the full path name of
+"working directory".  (*Please note*: Although the full path name of
 this directory is `/HOMEDIR/practice', in our examples we will refer to
 this directory as `practice'; the HOMEDIR is presumed.
 
@@ -877,8 +877,8 @@ Creating the Archive
 
      $ tar --create --file=collection.tar blues folk jazz
 
-   The order of the arguments is not very important, _when using long
-option forms_.  You could also say:
+   The order of the arguments is not very important, *when using long
+option forms*.  You could also say:
 
      $ tar blues --create folk --file=collection.tar jazz
 
@@ -888,7 +888,7 @@ easiest to understand (and we encourage you to do the same when you use
 `tar', to avoid errors).
 
    Note that the part of the command which says,
-`--file=collection.tar' is considered to be _one_ argument.  If you
+`--file=collection.tar' is considered to be *one* argument.  If you
 substituted any other string of characters for ``collection.tar'',
 then that string would become the name of the archive file you create.
 
@@ -905,9 +905,9 @@ the operation which creates the new archive (`collection.tar'), and
 files, `blues', `folk', and `jazz', are now members of the archive,
 `collection.tar' (they are "file name arguments" to the `--create'
 operation) .  Now that they are are in the archive, they are called
-_archive members_, not files .
+*archive members*, not files .
 
-   When you create an archive, you _must_ specify which files you want
+   When you create an archive, you *must* specify which files you want
 placed in the archive.  If you do not specify any archive members, GNU
 `tar' will complain.
 
@@ -925,7 +925,7 @@ run and will prompt you for one.  If you don't name any files, `tar'
 will complain.  You must have write access to the working directory, or
 else you will not be able to create an archive in that directory.
 
-   _Caution_: Do not attempt to use `--create' (`-c') to add files to
+   *Caution*: Do not attempt to use `--create' (`-c') to add files to
 an existing archive; it will delete the archive and write a new one.
 Use `--append' (`-r') instead.  *Note append::.
 
@@ -1016,7 +1016,7 @@ written out mnemonically can affect how well you remember which option
 does what, and therefore where different names have to be placed.
 (Placing options in an unusual order can also cause `tar' to report an
 error if you have set the shell environment variable,
-`POSIXLY_CORRECT'; *note posix compliance:: for more information on
+`POSIXLY_CORRECT'; *note posix compliance::. for more information on
 this.)
 
 
@@ -1076,7 +1076,7 @@ to add all the files in the directory `.' to the archive, it notices
 that the file `foo.tar' is the same as the archive, and skips it.  (It
 makes no sense to put an archive into itself.)  GNU `tar' will continue
 in this case, and create the archive normally, except for the exclusion
-of that one file.  (_Please note:_ Other versions of `tar' are not so
+of that one file.  (*Please note:* Other versions of `tar' are not so
 clever; they will enter an infinite loop when this happens, so you
 should not depend on this behavior unless you are certain you are
 running GNU `tar'.  )
@@ -1133,7 +1133,7 @@ member names to `tar' that you give the exact member names.  For
 example, `tar --list --file=bfiles birds' would produce an error message
 something like `tar: birds: Not found in archive', because there is no
 member named `birds', only one named `./birds'.  While the names
-`birds' and `./birds' name the same file, _member_ names are compared
+`birds' and `./birds' name the same file, *member* names are compared
 using a simplistic name comparison, in which an exact match is
 necessary.  *Note absolute::.
 
@@ -1154,7 +1154,7 @@ File: tar.info,  Node: list dir,  Prev: list,  Up: list
 Listing the Contents of a Stored Directory
 ------------------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    To get information about the contents of an archived directory, use
 the directory name as a file name argument in conjunction with `--list'
@@ -1183,7 +1183,7 @@ File: tar.info,  Node: extract,  Next: going further,  Prev: list,  Up: Tutorial
 How to Extract Members from an Archive
 ======================================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Creating an archive is only half the job--there is no point in
 storing files in an archive if you can't retrieve them.  The act of
@@ -1251,7 +1251,7 @@ If you list the files in the directory again, you will see that the file
 times, and owner.   (These parameters will be identical to those which
 the file had when you originally placed it in the archive; any changes
 you may have made before deleting the file from the file system,
-however, will _not_ have been made to the archive member.)  The archive
+however, will *not* have been made to the archive member.)  The archive
 file, `collection.tar', is the same as it was before you extracted
 `blues'.  You can confirm this by running `tar' with `--list' (`-t').
 
@@ -1260,7 +1260,7 @@ name is important.  `tar --extract --file=bfiles.tar birds' will fail,
 because there is no member named `birds'.  To extract the member named
 `./birds', you must specify `tar --extract --file=bfiles.tar ./birds'.
 To find the exact member names of the members of an archive, use
-`--list' (`-t') (*note list::).
+`--list' (`-t') (*note list::.).
 
    If you give the `--verbose' (`-v') option, then `--extract'
 (`--get', `-x') will print the names of the archive members as it

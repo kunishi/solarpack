@@ -1,6 +1,6 @@
 #
-# common rule for soap, standard Solaris make version
-# $Id: rule.mk,v 1.4 2001/02/22 13:04:21 kunishi Exp $
+# common rule for Solaris APDK, standard Solaris make version
+# $Id: rule.mk,v 1.5 2001/04/18 14:33:07 kunishi Exp $
 #
 
 .PHONY:	patch configure build install

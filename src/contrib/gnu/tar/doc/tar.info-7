@@ -1,4 +1,5 @@
-This is tar.info, produced by makeinfo version 4.0 from tar.texi.
+This is Info file tar.info, produced by Makeinfo version 1.68 from the
+input file tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -34,7 +35,7 @@ File: tar.info,  Node: Blocking,  Next: Many,  Prev: Common Problems and Solutio
 Blocking
 ========
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    "Block" and "record" terminology is rather confused, and it is also
 confusing to the expert reader.  On the other hand, readers who are new
@@ -66,7 +67,7 @@ quite consistent way.
    The term "physical block" means the basic transfer chunk from or to
 a device, after which reading or writing may stop without anything
 being lost.  In this manual, the term "block" usually refers to a disk
-physical block, _assuming_ that each disk block is 512 bytes in length.
+physical block, *assuming* that each disk block is 512 bytes in length.
 It is true that some disk devices have different physical blocks, but
 `tar' ignore these differences in its own format, which is meant to be
 portable, so a `tar' block is always 512 bytes in length, and "block"
@@ -77,7 +78,7 @@ only barely used in GNU `tar'.
 
    The term "physical record" is another way to speak of a physical
 block, those two terms are somewhat interchangeable.  In this manual,
-the term "record" usually refers to a tape physical block, _assuming_
+the term "record" usually refers to a tape physical block, *assuming*
 that the `tar' archive is kept on magnetic tape.  It is true that
 archives may be put on disk or used with pipes, but nevertheless, `tar'
 tries to read and write the archive one "record" at a time, whatever
@@ -156,7 +157,7 @@ File: tar.info,  Node: Format Variations,  Next: Blocking Factor,  Prev: Blockin
 Format Variations
 -----------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Format parameters specify how an archive is written on the archive
 media.  The best choice of format parameters will vary depending on the
@@ -168,7 +169,7 @@ you can use the options described in the following sections.  If you do
 not specify any format parameters, `tar' uses default parameters.  You
 cannot modify a compressed archive.  If you create an archive with the
 `--blocking-factor=512-SIZE' (`-b 512-SIZE') option specified
-(*note Blocking Factor::), you must specify that blocking-factor when
+(*note Blocking Factor::.), you must specify that blocking-factor when
 operating on the archive.  *Note Formats::, for other examples of
 format parameter considerations.
 
@@ -178,7 +179,7 @@ File: tar.info,  Node: Blocking Factor,  Prev: Format Variations,  Up: Blocking
 The Blocking Factor of an Archive
 ---------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The data in an archive is grouped into blocks, which are 512 bytes.
 Blocks are read and written in whole number multiples called "records".
@@ -322,7 +323,7 @@ more detailed explanation of that option.
           in turn.  `tar' might ignore the exit status returned, but I
           hate doing that, as it weakens the protection `tar' offers
           users against other possible problems at decompression time.
-          If `gzip' was silently skipping trailing zeros _and_ also
+          If `gzip' was silently skipping trailing zeros *and* also
           avoiding setting the exit status in this innocuous case, that
           would solve this situation.
 
@@ -419,8 +420,8 @@ entries that come in pairs, which differ only in the minor number for
 this device.  Let's take for example `/dev/tape', which often points to
 the only or usual tape device of a given system.  There might be a
 corresponding `/dev/nrtape' or `/dev/ntape'.  The simpler name is the
-_rewinding_ version of the device, while the name having `nr' in it is
-the _no rewinding_ version of the same device.
+*rewinding* version of the device, while the name having `nr' in it is
+the *no rewinding* version of the same device.
 
    A rewinding tape device will bring back the tape to its beginning
 point automatically when this device is opened or closed.  Since `tar'
@@ -444,7 +445,7 @@ devices and limit themselves to one file per tape, precisely to avoid
 the risk of such errors.  Be fully aware that writing at the wrong
 position on a tape loses all information past this point and most
 probably until the end of the tape, and this destroyed information
-_cannot_ be recovered.
+*cannot* be recovered.
 
    To save DIRECTORY-1 as a first archive at the beginning of a tape,
 and leave that tape ready for a second archive, you should use:
@@ -497,7 +498,7 @@ File: tar.info,  Node: Tape Positioning,  Next: mt,  Prev: Many,  Up: Many
 Tape Positions and Tape Marks
 -----------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Just as archives can store more than one file from the file system,
 tapes can store more than one archive file.  To keep track of where
@@ -538,7 +539,7 @@ File: tar.info,  Node: mt,  Prev: Tape Positioning,  Up: Many
 The `mt' Utility
 ----------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    *Note Blocking Factor::.
 
@@ -596,7 +597,7 @@ File: tar.info,  Node: Using Multiple Tapes,  Next: label,  Prev: Many,  Up: Med
 Using Multiple Tapes
 ====================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Often you might want to write a large archive, one larger than will
 fit on the actual tape you are using.  In such a case, you can run
@@ -663,7 +664,7 @@ file already containing a decimal number.  That number will be used as
 the volume number of the first volume written.  When `tar' is finished,
 it will rewrite the file with the now-current volume number.  (This
 does not change the volume number written on a tape label, as per
-*Note label::, it _only_ affects the number used in the prompt.)
+*Note label::, it *only* affects the number used in the prompt.)
 
    If you want `tar' to cycle through a series of tape drives, then you
 can use the `n' response to the tape-change prompt.  This is error
@@ -709,11 +710,11 @@ File: tar.info,  Node: Multi-Volume Archives,  Next: Tape Files,  Prev: Using Mu
 Archives Longer than One Tape or Disk
 -------------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    To create an archive that is larger than will fit on a single unit of
 the media, use the `--multi-volume' (`-M') option in conjunction with
-the `--create' (`-c') option (*note create::).  A "multi-volume"
+the `--create' (`-c') option (*note create::.).  A "multi-volume"
 archive can be manipulated like any other archive (provided the
 `--multi-volume' (`-M') option is specified), but is stored on more
 than one tape or disk.
@@ -755,11 +756,11 @@ of the archive media (and new volumes, if needed).  For all other
 operations, you need to use the entire archive.
 
    If a multi-volume archive was labeled using `--label=ARCHIVE-LABEL'
-(`-V ARCHIVE-LABEL') (*note label::) when it was created, `tar' will not
-automatically label volumes which are added later.  To label subsequent
-volumes, specify `--label=ARCHIVE-LABEL' (`-V ARCHIVE-LABEL') again in
-conjunction with the `--append' (`-r'), `--update' (`-u') or
-`--concatenate' (`--catenate', `-A') operation.
+(`-V ARCHIVE-LABEL') (*note label::.) when it was created, `tar' will
+not automatically label volumes which are added later.  To label
+subsequent volumes, specify `--label=ARCHIVE-LABEL' (`-V
+ARCHIVE-LABEL') again in conjunction with the `--append' (`-r'),
+`--update' (`-u') or `--concatenate' (`--catenate', `-A') operation.
 
 `--multi-volume'
 `-M'
@@ -773,7 +774,7 @@ conjunction with the `--append' (`-r'), `--update' (`-u') or
      Creates a multi-volume archive via a script.  Used in conjunction
      with `--create' (`-c').
 
-   Beware that there is _no_ real standard about the proper way, for a
+   Beware that there is *no* real standard about the proper way, for a
 `tar' archive, to span volume boundaries.  If you have a multi-volume
 created by some vendor's `tar', there is almost no chance you could
 read all the volumes with GNU `tar'.  The converse is also true: you
@@ -790,7 +791,7 @@ File: tar.info,  Node: Tape Files,  Prev: Multi-Volume Archives,  Up: Using Mult
 Tape Files
 ----------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    To give the archive a name which will be recorded in it, use the
 `--label=ARCHIVE-LABEL' (`-V ARCHIVE-LABEL') option.  This will write a
@@ -823,7 +824,7 @@ File: tar.info,  Node: label,  Next: verify,  Prev: Using Multiple Tapes,  Up: M
 Including a Label in the Archive
 ================================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
 `-V NAME'
 `--label=NAME'

@@ -1,9 +1,9 @@
-PKG=SOAPgperf
-NAME=Solaris Application Packaging system: gperf
+PKG=APDKgperf
+NAME=Solaris Application Package Development Kit: GNU perf
 VERSION=2.7.2
 CATEGORY=application
 VENDOR=Free Software Foundation, Inc.
-EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=%%SOAP_DIR%%
+EMAIL=kunishi@acm.org
+BASEDIR=%%APDK_DIR%%
 CLASSES=none
-PSTAMP=%%SOAP_PSTAMP%%
+PSTAMP=%%APDK_PSTAMP%%

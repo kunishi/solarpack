@@ -1,15 +1,15 @@
 #
-# $Id: Makefile.in,v 1.26 2001/03/23 06:56:26 kunishi Exp $
+# $Id: Makefile.in,v 1.27 2001/04/18 14:33:06 kunishi Exp $
 #
 
 include version.mk
 
-PATH=		/bin:/usr/bin:/usr/ccs/bin:/opt/sfw/bin:/usr/sbin:${TMPBINDIR}${EXTRA_PATH}
+PATH=		/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:${TMPBINDIR}${EXTRA_PATH}
 
-PKGNAME=	soap
+PKGNAME=	solarpack
 
-LOCALBASE=	@soap_topdir@
-SOAP_DIR=	${LOCALBASE}
+LOCALBASE=	@solarpack_topdir@
+APDK_DIR=	${LOCALBASE}
 
 CWD:sh=		pwd
 BOOTSTRAPDIR=	${CWD}/bootstrap
@@ -58,17 +58,15 @@ RELEASE_DATE:sh=	/usr/bin/date +%Y%m%d
 RELEASE_TIME:sh=	/usr/bin/date +%Y.%m.%d.%H.%M
 RELEASE_HOST:sh=	/usr/bin/hostname
 
-SOAP_MKS=		${BOOTSTRAPDIR}/soap.conf \
-			${BOOTSTRAPDIR}/port.mk \
-			${BOOTSTRAPDIR}/port.pre.mk
-SOAP_PSTAMP=		${RELEASE_HOST}:${RELEASE_TIME}
-SOAP_CONF_PKG=		${PKGNAME}-conf-${SOAP_VERSION}-${SOAP_REV}
+APDK_PSTAMP=		${RELEASE_HOST}:${RELEASE_TIME}
+APDK_CONF_PKG=		${PKGNAME}-conf-${APDK_VERSION}-${APDK_REV}
 
 BOOTSTRAP_ENV=	TOPDIR=${CWD} \
 		PATH=${PATH} \
 		LOCALBASE=${LOCALBASE} \
 		GMAKE=${GMAKE} \
-		CC=${CC}
+		CC="${CC}" \
+		CXX="${CXX}"
 
 MAKE_ENV=	${BOOTSTRAP_ENV}
 
@@ -81,22 +79,23 @@ BUILD_PKGS=	${BUILD_PKGS_GNU} ${BUILD_PKGS_BSD}
 NOBUILD_PKGS=	config
 
 PKG_CONFIGURE=	${SED} \
-		-e 's|%%SOAP_DIR%%|${SOAP_DIR}|g' \
-		-e 's|%%SOAP_PSTAMP%%|${HOSTNAME}:${TS}|g' \
-		-e 's|%%SOAP_VERSION%%|${SOAP_VERSION}|g' \
+		-e 's|%%APDK_DIR%%|${APDK_DIR}|g' \
+		-e 's|%%APDK_PSTAMP%%|${HOSTNAME}:${TS}|g' \
+		-e 's|%%APDK_VERSION%%|${APDK_VERSION}|g' \
 		-e 's|%%INSTPREFIX%%|${WRKDIR}${LOCALBASE}|g' \
 		-e 's|%%GNU_HOSTTYPE%%|${GNU_HOSTTYPE}|g' \
 		-e 's|%%GCC_VER%%|${GCC_VER}|g' \
 		-e 's|%%CONTRIBDIR%%|${CONTRIBDIR}|g'
 
-BUILD_PACKAGE_OPTS=	SOAP_SRCDIR=${CWD} \
-			SOAP_DIR=${SOAP_DIR} \
-			SOAP_BINDIR=${WRKDIR}${LOCALBASE}/bin \
+BUILD_PACKAGE_OPTS=	APDK_SRCDIR=${CWD} \
+			APDK_DIR=${APDK_DIR} \
+			APDK_BINDIR=${WRKDIR}${LOCALBASE}/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR}
 
 all:
 	@echo "Start build process under PATH=${PATH}"
 	${MAKE} check-required-packages
+	${MAKE} cookieclean
 	${MAKE} prepare-build-tree
 	${MAKE} build-tools
 	${MAKE} package-tools
@@ -149,18 +148,23 @@ build-misc-package::
 	${MKDIR} ${WRKDIR}/spool
 	${SED} -e 's!%%INSTPREFIX%%!${CWD}!' \
 	       ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
-	${SED}	-e 's!%%SOAP_DIR%%!${SOAP_DIR}!' \
-	      	-e 's!%%SOAP_VERSION%%!${SOAP_VERSION}!' \
-		-e 's!%%SOAP_PSTAMP%%!${SOAP_PSTAMP}!' \
+	${SED}	-e 's!%%APDK_DIR%%!${APDK_DIR}!' \
+	      	-e 's!%%APDK_VERSION%%!${APDK_VERSION}!' \
+		-e 's!%%APDK_PSTAMP%%!${APDK_PSTAMP}!' \
 	       ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
-	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG} all
-	${GZIP_CMD} ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG}
+	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${APDK_CONF_PKG} all
+	${GZIP_CMD} ${RELEASE_PKG_DIR}/${APDK_CONF_PKG}
 
 clean::
 	@for pkg in ${BUILD_PKGS}; do \
 	  echo "===> $$pkg"; \
 	  cd ${BOOTSTRAPDIR}/$$pkg && ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} clean; \
+	done
+
+cookieclean:
+	@for pkg in ${BUILD_PKGS}; do \
+	  ${RM} -f ${BOOTSTRAPDIR}/$$pkg/.*_done; \
 	done
 
 releaseclean:

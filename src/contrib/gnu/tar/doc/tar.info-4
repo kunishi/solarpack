@@ -1,4 +1,5 @@
-This is tar.info, produced by makeinfo version 4.0 from tar.texi.
+This is Info file tar.info, produced by Makeinfo version 1.68 from the
+input file tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -34,7 +35,7 @@ File: tar.info,  Node: Full Dumps,  Next: Inc Dumps,  Prev: Backups,  Up: Backup
 Using `tar' to Perform Full Dumps
 =================================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Full dumps should only be made when no other people or programs are
 modifying files in the filesystem.  If files are modified while `tar'
@@ -105,7 +106,7 @@ newline to indicate the end of the data.
    If the `--incremental' (`-G') option is used with `--extract'
 (`--get', `-x'), then when the entry for a directory is found, all
 files that currently exist in that directory but are not listed in the
-archive _are deleted from the directory_.
+archive *are deleted from the directory*.
 
    This behavior is convenient when you are restoring a damaged file
 system from a succession of incremental backups: it restores the entire
@@ -146,7 +147,7 @@ File: tar.info,  Node: Inc Dumps,  Next: incremental and listed-incremental,  Pr
 Using `tar' to Perform Incremental Dumps
 ========================================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Performing incremental dumps is similar to performing full dumps,
 although a few more options will usually be needed.
@@ -155,9 +156,9 @@ although a few more options will usually be needed.
 store files that have been modified since DATE.  DATE should be the
 date and time of the last full/incremental dump.
 
-   A standard scheme is to do a _monthly_ (full) dump once a month, a
-_weekly_ dump once a week of everything since the last monthly and a
-_daily_ every day of everything since the last (weekly or monthly) dump.
+   A standard scheme is to do a *monthly* (full) dump once a month, a
+*weekly* dump once a week of everything since the last monthly and a
+*daily* every day of everything since the last (weekly or monthly) dump.
 
    Here is a copy of the script used to dump the filesystems of the
 machines here at the Free Software Foundation.  This script is run via
@@ -166,7 +167,7 @@ machines.  This script dumps several filesystems from several machines
 at once (via NFS).  The operator is responsible for ensuring that all
 the machines will be up at the time the dump happens.  If a machine is
 not running, its files will not be dumped, and the next day's
-incremental dump will _not_ store files that would have gone onto that
+incremental dump will *not* store files that would have gone onto that
 dump.
 
      #!/bin/csh
@@ -203,7 +204,7 @@ File: tar.info,  Node: incremental and listed-incremental,  Next: Backup Levels,
 The Incremental Options
 =======================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    `--incremental' (`-G') is used in conjunction with `--create' (`-c'),
 `--extract' (`--get', `-x') or `--list' (`-t') when backing up and
@@ -226,7 +227,7 @@ that may not be readable by non-GNU versions of the `tar' program.
 
    `--incremental' (`-G') in conjunction with `--extract' (`--get',
 `-x') causes `tar' to read the lists of directory contents previously
-stored in the archive, _delete_ files in the file system that did not
+stored in the archive, *delete* files in the file system that did not
 exist in their directories when the archive was created, and then
 extract the files in the archive.
 
@@ -277,7 +278,7 @@ File: tar.info,  Node: Backup Levels,  Next: Backup Parameters,  Prev: increment
 Levels of Backups
 =================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    An archive containing all the files in the file system is called a
 "full backup" or "full dump".  You could insure your data by creating a
@@ -317,7 +318,7 @@ changed according to your backup schedule.  , for more information on
 running the restoration script.  , for more information on running the
 backup scripts.
 
-   _Please Note:_ The backup scripts and the restoration scripts are
+   *Please Note:* The backup scripts and the restoration scripts are
 designed to be used together.  While it is possible to restore files by
 hand from an archive which was created using a backup script, and to
 create an archive by hand which could then be extracted using the
@@ -330,7 +331,7 @@ File: tar.info,  Node: Backup Parameters,  Next: Scripted Backups,  Prev: Backup
 Setting Parameters for Backups and Restoration
 ==============================================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The file `backup-specs' specifies backup parameters for the backup
 and restoration scripts provided with `tar'.  You must edit
@@ -390,7 +391,7 @@ File: tar.info,  Node: backup-specs example,  Next: Script Syntax,  Prev: Backup
 An Example Text of `Backup-specs'
 ---------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The following is the text of `backup-specs' as it appears at FSF:
 
@@ -425,7 +426,7 @@ File: tar.info,  Node: Script Syntax,  Prev: backup-specs example,  Up: Backup P
 Syntax for `Backup-specs'
 -------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    `backup-specs' is in shell script syntax.  The following conventions
 should be considered when editing the script:
@@ -445,7 +446,7 @@ File: tar.info,  Node: Scripted Backups,  Next: Scripted Restoration,  Prev: Bac
 Using the Backup Scripts
 ========================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The syntax for running a backup script is:
 
@@ -486,9 +487,9 @@ File: tar.info,  Node: Scripted Restoration,  Prev: Scripted Backups,  Up: Backu
 Using the Restore Script
 ========================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
-     *Warning:* The GNU `tar' distribution does _not_ provide any such
+     *Warning:* The GNU `tar' distribution does *not* provide any such
      `restore' script yet.  This section is only listed here for
      documentation maintenance purposes.  In any case, all contents is
      subject to change as things develop.
@@ -524,7 +525,7 @@ File: tar.info,  Node: Choosing,  Next: Date input formats,  Prev: Backups,  Up:
 Choosing Files and Names for `tar'
 **********************************
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Certain options to `tar' enable you to specify a name for your
 archive.  Other options let you decide which files to include or exclude
@@ -549,7 +550,7 @@ File: tar.info,  Node: file,  Next: Selecting Archive Members,  Prev: Choosing, 
 Choosing and Naming Archive Files
 =================================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    By default, `tar' uses an archive file name that was compiled when
 it was built on the system; usually this name refers to some physical
@@ -570,7 +571,7 @@ use as the archive instead of the default archive file location.
      $ tar -cvf collection.tar blues folk jazz
 
 `collection.tar' is the name of the archive.  It must directly follow
-the `-f' option, since whatever directly follows `-f' _will_ end up
+the `-f' option, since whatever directly follows `-f' *will* end up
 naming the archive.  If you neglect to specify an archive name, you may
 end up overwriting a file in the working directory with the archive you
 create since `tar' will use this file's name for the archive name.
@@ -656,7 +657,7 @@ File: tar.info,  Node: files,  Next: exclude,  Prev: Selecting Archive Members, 
 Reading Names from a File
 =========================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Instead of giving the names of files or archive members on the
 command line, you can put the names into a file, and then use the
@@ -682,7 +683,7 @@ files smaller than 400K in length and put that list into a file called
 `small-files'.  You can then use the `-T' option to `tar' to specify
 the files from that file, `small-files', to create the archive
 `little.tgz'.  (The `-z' option to `tar' compresses the archive with
-`gzip'; *note gzip:: for more information.)
+`gzip'; *note gzip::. for more information.)
 
      $ find . -size -400 -print > small-files
      $ tar -c -v -z -T small-files -f little.tgz
@@ -730,7 +731,7 @@ File: tar.info,  Node: exclude,  Next: Wildcards,  Prev: files,  Up: Choosing
 Excluding Some Files
 ====================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    To avoid operating on files whose names match a particular pattern,
 use the `--exclude=PATTERN' or `--exclude-from=FILE-OF-PATTERNS' (`-X
@@ -776,7 +777,7 @@ pitfalls:
      exclusion which would otherwise affect them.  In the example
      above, if you create an archive and exclude files that end with
      `*.o', but explicitly name the file `catc.o' after all the options
-     have been listed, `catc.o' _will_ be included in the archive.
+     have been listed, `catc.o' *will* be included in the archive.
 
    * You can sometimes confuse the meanings of `--exclude=PATTERN' and
      `--exclude-from=FILE-OF-PATTERNS' (`-X FILE-OF-PATTERNS').  Be
@@ -813,7 +814,6 @@ pitfalls:
      `--exclude-from=FILE-OF-PATTERNS' applies to patterns listed in a
      file.
 
-
 
 File: tar.info,  Node: Wildcards,  Next: after,  Prev: exclude,  Up: Choosing
 
@@ -835,7 +835,7 @@ match only `a', and not `A'.  The character `?' in the pattern matches
 any single character in the matched string.  The character `*' in the
 pattern matches zero, one, or more single characters in the matched
 string.  The character `\' says to take the following character of the
-pattern _literally_; it is useful when one needs to match the `?', `*',
+pattern *literally*; it is useful when one needs to match the `?', `*',
 `[' or `\' characters, themselves.
 
    The character `[', up to the matching `]', introduces a character
@@ -846,11 +846,11 @@ within a character class, all of the "special characters" listed above
 other than `\' lose their special meaning; for example, `[-\\[*?]]'
 would match any of the characters, `-', `\', `[', `*', `?', or `]'.
 (Due to parsing constraints, the characters `-' and `]' must either
-come _first_ or _last_ in a character class.)
+come *first* or *last* in a character class.)
 
    If the first character of the class after the opening `[' is `!' or
 `^', then the meaning of the class is reversed.  Rather than listing
-character to match, it lists those characters which are _forbidden_ as
+character to match, it lists those characters which are *forbidden* as
 the next single character of the matched string.
 
    Other characters of the class stand for themselves.  The special
@@ -867,7 +867,7 @@ modifications in the way GNU `tar' accomplishes wildcard matches.  We
 perceive any change of semantics in this area as a delicate thing to
 impose on GNU `tar' users.  On the other hand, the GNU project should be
 progressive enough to correct any ill design: compatibility at all price
-is not always a good attitude.  In conclusion, it is _possible_ that
+is not always a good attitude.  In conclusion, it is *possible* that
 slight amendments be later brought to the previous description.  Your
 opinions on the matter are welcome.
 
@@ -877,7 +877,7 @@ File: tar.info,  Node: after,  Next: recurse,  Prev: Wildcards,  Up: Choosing
 Operating Only on New Files
 ===========================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The `--after-date=DATE' (`--newer=DATE', `-N DATE') option causes
 `tar' to only work on files whose modification or inode-changed times
@@ -921,7 +921,7 @@ permissions, etc) fields, while `--newer-mtime=DATE' tests only `mtime'
 field.
 
    To be precise, `--after-date=DATE' (`--newer=DATE', `-N DATE')
-checks _both_ `mtime' and `ctime' and processes the file if either one
+checks *both* `mtime' and `ctime' and processes the file if either one
 is more recent than DATE, while `--newer-mtime=DATE' only checks
 `mtime' and disregards `ctime'.  Neither uses `atime' (the last time the
 contents of the file were looked at).
@@ -953,7 +953,7 @@ File: tar.info,  Node: recurse,  Next: one,  Prev: after,  Up: Choosing
 Descending into Directories
 ===========================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Usually, `tar' will recursively explore all directories (either
 those given on the command line or through the
@@ -975,9 +975,9 @@ archive; see *Note files:: for more information on using `find' with
    When you use `--no-recursion', GNU `tar' grabs directory entries
 themselves, but does not descend on them recursively.  Many people use
 `find' for locating files they want to back up, and since `tar'
-_usually_ recursively descends on directories, they have to use the
+*usually* recursively descends on directories, they have to use the
 `! -d' option to `find'  as they usually do not want all the files in a
-directory.  They then use the {No value for `op-file-from'} option to
+directory.  They then use the {No Value For "op-file-from"} option to
 archive the files located via `find'.
 
    The problem when restoring files archived in this manner is that the
@@ -993,7 +993,7 @@ File: tar.info,  Node: one,  Prev: recurse,  Up: Choosing
 Crossing Filesystem Boundaries
 ==============================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    `tar' will normally automatically cross file system boundaries in
 order to archive files which are part of a directory tree.  You can
@@ -1035,7 +1035,7 @@ File: tar.info,  Node: directory,  Next: absolute,  Prev: one,  Up: one
 Changing the Working Directory
 ------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    To change the working directory in the middle of a list of file
 names, either on the command line or in a file specified using
@@ -1058,7 +1058,7 @@ several widely separated files that you want to store in the same
 archive.
 
    Note that the file `cherry' is recorded in the archive under the
-precise name `cherry', _not_ `food/cherry'.  Thus, the archive will
+precise name `cherry', *not* `food/cherry'.  Thus, the archive will
 contain three files that all appear to have come from the same
 directory; if the archive is extracted with plain `tar --extract', all
 three files will be written in the current directory.
@@ -1089,7 +1089,7 @@ relative to the then current directory, which might not be the same as
 the original current working directory of `tar', due to a previous
 `--directory' option.
 
-   When using `--files-from' (*note files::), you can put `-C' options
+   When using `--files-from' (*note files::.), you can put `-C' options
 in the file list.  Unfortunately, you cannot put `--directory' options
 in the file list.  (This interpretation can be disabled by using the
 `--null' option.)
@@ -1100,7 +1100,7 @@ File: tar.info,  Node: absolute,  Prev: directory,  Up: one
 Absolute File Names
 -------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
 `-P'
 `--absolute-names'

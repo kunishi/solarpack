@@ -1,9 +1,9 @@
-PKG=SOAPtxinf
-NAME=Solaris Application Packaging tools: GNU texinfo tools
+PKG=APDKtxinf
+NAME=Solaris Application Package Development Kit: GNU texinfo tools
 VERSION=4.0
 CATEGORY=application
 VENDOR=Free Software Foundation, Inc.
-EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=%%SOAP_DIR%%
+EMAIL=kunishi@acm.org
+BASEDIR=%%APDK_DIR%%
 CLASSES=none
-PSTAMP=%%SOAP_PSTAMP%%
+PSTAMP=%%APDK_PSTAMP%%

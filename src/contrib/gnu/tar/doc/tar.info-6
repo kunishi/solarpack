@@ -1,4 +1,5 @@
-This is tar.info, produced by makeinfo version 4.0 from tar.texi.
+This is Info file tar.info, produced by Makeinfo version 1.68 from the
+input file tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -34,13 +35,13 @@ File: tar.info,  Node: Attributes,  Next: Standard,  Prev: Compression,  Up: For
 Handling File Attributes
 ========================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    When `tar' reads files, this causes them to have the access times
 updated.  To have `tar' attempt to set the access times back to what
 they were before they were read, use the `--atime-preserve' option.
 This doesn't work for files that you don't own, unless you're root, and
-it doesn't interact with incremental dumps nicely (*note Backups::),
+it doesn't interact with incremental dumps nicely (*note Backups::.),
 but it is good enough for some purposes.
 
    Handling of file attributes
@@ -96,7 +97,7 @@ but it is good enough for some purposes.
      with no password file or put your disk into another machine to do
      the restore.
 
-     The numeric ids are _always_ saved into `tar' archives.  The
+     The numeric ids are *always* saved into `tar' archives.  The
      identifying names are added at create time when provided by the
      system, unless `--old-archive' (`-o') is used.  Numeric ids could
      be used when moving archives between a collection of machines using
@@ -144,7 +145,7 @@ File: tar.info,  Node: Standard,  Next: Extensions,  Prev: Attributes,  Up: Form
 The Standard Format
 ===================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    While an archive may contain many files, the archive itself is a
 single ordinary file.  Like any other file, an archive file can be
@@ -450,7 +451,7 @@ the mode bit(s) specifying those special permissions are ignored.
 Modes which are not supported by the operating system restoring files
 from the archive will be ignored.  Unsupported modes should be faked up
 when creating or updating an archive; e.g. the group permission could
-be copied from the _other_ permission.
+be copied from the *other* permission.
 
    The `uid' and `gid' fields are the numeric user and group ID of the
 file owners, respectively.  If the operating system does not support
@@ -608,7 +609,7 @@ File: tar.info,  Node: Extensions,  Next: cpio,  Prev: Standard,  Up: Formats
 GNU Extensions to the Archive Format
 ====================================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The GNU format uses additional file types to describe new types of
 files in an archive.  These are listed below.
@@ -664,7 +665,7 @@ File: tar.info,  Node: cpio,  Prev: Extensions,  Up: Formats
 Comparison of `tar' and `cpio'
 ==============================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The `cpio' archive formats, like `tar', do have maximum pathname
 lengths.  The binary and old ASCII formats have a max path length of
@@ -706,7 +707,7 @@ between them.
 
    `tar's way of handling multiple hard links to a file places only one
 copy of the link on the tape, but the name attached to that copy is the
-_only_ one you can use to retrieve the file; `cpio's way puts one copy
+*only* one you can use to retrieve the file; `cpio's way puts one copy
 for every link, but you can retrieve it using any of the names.
 
      What type of check sum (if any) is used, and how is this
@@ -721,7 +722,7 @@ for a file; `cpio' uses no checksum.
 
    It wasn't.  `cpio' first showed up in PWB/UNIX 1.0; no
 generally-available version of UNIX had `tar' at the time.  I don't
-know whether any version that was generally available _within AT&T_ had
+know whether any version that was generally available *within AT&T* had
 `tar', or, if so, whether the people within AT&T who did `cpio' knew
 about it.
 
@@ -768,7 +769,7 @@ File: tar.info,  Node: Media,  Next: Index,  Prev: Formats,  Up: Top
 Tapes and Other Archive Media
 *****************************
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    A few special cases about tape handling warrant more detailed
 description.  These special cases are discussed below.
@@ -816,7 +817,7 @@ File: tar.info,  Node: Device,  Next: Remote Tape Server,  Prev: Media,  Up: Med
 Device Selection and Switching
 ==============================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
 `-f [HOSTNAME:]FILE'
 `--file=[HOSTNAME:]FILE'
@@ -853,7 +854,7 @@ supporting automatic device detection at installation time.  This was
 failing really in too many cases, it was hopeless.  This is now
 completely left to the installer to override standard input and standard
 output for default device, if this seems preferrable to him/her.
-Further, I think _most_ actual usages of `tar' are done with pipes or
+Further, I think *most* actual usages of `tar' are done with pipes or
 disks, not really tapes, cartridges or diskettes.
 
    Some users think that using standard input and output is running
@@ -864,7 +865,7 @@ of output.  We had so many bug reports in that area of configuring
 default tapes automatically, and so many contradicting requests, that
 we finally consider the problem to be portably intractable.  We could
 of course use something like `/dev/tape' as a default, but this is
-_also_ running after various kind of trouble, going from hung processes
+*also* running after various kind of trouble, going from hung processes
 to accidental destruction of real tapes.  After having seen all this
 mess, using standard input and output as a default really sounds like
 the only clean choice left, and a very useful one too.
@@ -886,8 +887,8 @@ could also check for `DEFTAPE' in `<sys/mtio.h>'.
      `tar' program was installed is used instead.  This is the first
      found of `/usr/ucb/rsh', `/usr/bin/remsh', `/usr/bin/rsh',
      `/usr/bsd/rsh' or `/usr/bin/nsh'.  The installer may have
-     overriden this by defining the environment variable `RSH' _at
-     installation time_.
+     overriden this by defining the environment variable `RSH' *at
+     installation time*.
 
 `-[0-7][lmh]'
      Specify drive and density.

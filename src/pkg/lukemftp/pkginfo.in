@@ -1,9 +1,9 @@
-PKG=SOAPlukft
-NAME=Solaris Application Packaging tools: Luke Mewburn's ftp
+PKG=APDKlukft
+NAME=Solaris Application Package Development Kit: Luke Mewburn's ftp
 VERSION=1.5-1
 CATEGORY=application
 VENDOR=NetBSD Users' Group, http://www.netbsd.org/
-EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=%%SOAP_DIR%%
+EMAIL=kunishi@acm.org
+BASEDIR=%%APDK_DIR%%
 CLASSES=none
-PSTAMP=%%SOAP_PSTAMP%%
+PSTAMP=%%APDK_PSTAMP%%

@@ -1,17 +1,16 @@
 ###
 # solpkg root directory. 
-SOAP_DIR=	@soap_topdir@
-SOAP_BINDIR=	${SOAP_DIR}/bin
+APDK_DIR=	@solarpack_topdir@
+APDK_BINDIR=	${APDK_DIR}/bin
 #
 # The directory where solpkg ports tree are in.
 # Edit by yourself to fit your own environment.
-#SOAP_SRCDIR=	${SOAP_DIR}
-SOAP_SRCDIR=	/export/home/soap
+PORTS_TOPDIR=	/opt/ports
 #
 # C compiler for building packages.
-CC=	${SOAP_BINDIR}/gcc
+CC=	${APDK_BINDIR}/gcc
 CFLAGS=		-O
-CXX=	${SOAP_BINDIR}/c++
+CXX=	${APDK_BINDIR}/c++
 CXXFLAGS=	-O
 #
 # package maintainer.
@@ -19,7 +18,7 @@ CXXFLAGS=	-O
 PKG_MAINTAINER=	root@localhost
 #
 # the root directory to put the released packages
-#RELEASE_PKG_DIR=	${SOAP_DIR}/packages
+#RELEASE_PKG_DIR=	${PORTS_TOPDIR}/packages
 
 ## Master sites lists
 # GNU
@@ -31,4 +30,4 @@ MASTER_SITES_LOCAL=	\
 	file:///share/pub/distfiles/
 
 ### do not modify below
-SOAP_MAKEFILE_DIR=	${SOAP_DIR}/ports/Mk
+APDK_MAKEFILE_DIR=	${APDK_DIR}/ports/Mk

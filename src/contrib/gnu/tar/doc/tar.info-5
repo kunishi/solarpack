@@ -1,4 +1,5 @@
-This is tar.info, produced by makeinfo version 4.0 from tar.texi.
+This is Info file tar.info, produced by Makeinfo version 1.68 from the
+input file tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -196,7 +197,7 @@ is a number between 0 and 59, and SECOND is a number between 0 and 59.
 Alternatively, `:SECOND' can be omitted, in which case it is taken to
 be zero.
 
-   If the time is followed by `am' or `pm' (or `a.m.' or `p.m.'), HOUR
+   If the time is followed by `am' or `pm' (or `a.m.'  or `p.m.'), HOUR
 is restricted to run from 1 to 12, and `:MINUTE' may be omitted (taken
 to be zero).  `am' indicates the first half of the day, `pm' indicates
 the second half of the day.  In this notation, 12 is the predecessor of
@@ -432,7 +433,7 @@ Pure numbers in date strings
 the context in the date string.
 
    If the decimal number is of the form YYYYMMDD and no other calendar
-date item (*note Calendar date item::) appears before it in the date
+date item (*note Calendar date item::.) appears before it in the date
 string, then YYYY is read as the year, MM as the month number and DD as
 the day of the month, for the specified calendar date.
 
@@ -510,9 +511,9 @@ File: tar.info,  Node: Portable Names,  Next: dereference,  Prev: Portability,  
 Portable Names
 --------------
 
-   Use _straight_ file and directory names, made up of printable ASCII
+   Use *straight* file and directory names, made up of printable ASCII
 characters, avoiding colons, slashes, backslashes, spaces, and other
-_dangerous_ characters.  Avoid deep directory nesting.  Accounting for
+*dangerous* characters.  Avoid deep directory nesting.  Accounting for
 oldish System V machines, limit your file and directory names to 14
 characters or less.
 
@@ -544,7 +545,7 @@ linked to a file name that no longer exists in the file system.
 
    If a linked-to file is encountered again by `tar' while creating the
 same archive, an entire second copy of it will be stored.  (This
-_might_ be considered a bug.)
+*might* be considered a bug.)
 
    So, for portable archives, do not archive symbolic links as such,
 and use `--dereference' (`-h'): many systems do not support symbolic
@@ -569,7 +570,7 @@ by group and user IDs instead of group and user names.
    When updating an archive, do not use `--old-archive' (`-o') unless
 the archive was created with using this option.
 
-   In most cases, a _new_ format archive can be read by an _old_ `tar'
+   In most cases, a *new* format archive can be read by an *old* `tar'
 program without serious trouble, so this option should seldom be
 needed.  On the other hand, most modern `tar's are able to read old
 format archives, so it might be safer for you to always use
@@ -631,7 +632,7 @@ something like `@LongName', with the true file name in it.  `tar's not
 protecting themselves may segment violate!
 
    Compatibility concerns make all this thing more difficult, as we
-will have to support _all_ these things together, for a while.  GNU
+will have to support *all* these things together, for a while.  GNU
 `tar' should be able to produce and read true POSIX format files, while
 being able to detect old GNU `tar' formats, besides old V7 format, and
 process them conveniently.  It would take years before this whole area
@@ -658,7 +659,7 @@ should do.
    POSIX mandates that, when a file name cannot fit within 100 to 256
 characters (the variance comes from the fact a `/' is ideally needed as
 the 156'th character), or a link name cannot fit within 100 characters,
-a warning should be issued and the file _not_ be stored.  Unless some
+a warning should be issued and the file *not* be stored.  Unless some
 `--posix' option is given (or `POSIXLY_CORRECT' is set), I suspect that
 GNU `tar' should disobey this specification, and automatically switch
 to using GNU extensions to overcome file name or link name length
@@ -731,7 +732,7 @@ using only POSIX mandated extension techniques).
 
    So, a future `tar' will have a `--posix' flag forcing the usage of
 truly POSIX headers, and so, producing archives previous GNU `tar' will
-not be able to read.  So, _once_ pretest will announce that feature, it
+not be able to read.  So, *once* pretest will announce that feature, it
 would be particularly useful that users test how exchangeable will be
 archives between GNU `tar' with `--posix' and other POSIX `tar'.
 
@@ -775,7 +776,7 @@ missing files with an incompatible file extractor, or vice versa.
    GNU `tar' compute checksums both ways, and accept any on read, so
 GNU tar can read Sun tapes even with their wrong checksums.  GNU `tar'
 produces the standard checksum, however, raising incompatibilities with
-Sun.  That is to say, GNU `tar' has not been modified to _produce_
+Sun.  That is to say, GNU `tar' has not been modified to *produce*
 incorrect archives to be read by buggy `tar''s.  I've been told that
 more recent Sun `tar' now read standard archives, so maybe Sun did a
 similar patch, after all?
@@ -809,7 +810,7 @@ File: tar.info,  Node: gzip,  Next: sparse,  Prev: Compression,  Up: Compression
 Creating and Reading Compressed Archives
 ----------------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
 `-z'
 `--gzip'
@@ -958,7 +959,7 @@ File: tar.info,  Node: sparse,  Prev: gzip,  Up: Compression
 Archiving Sparse Files
 ----------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
 `-S'
 `--sparse'
@@ -1033,7 +1034,7 @@ megabytes, but with only about 3 megabytes of actual data, took about 9
 minutes on a Sun Sparstation ELC, with full CPU utilisation.)
 
    This reading is required in all cases and is not related to the fact
-the `--sparse' (`-S') option is used or not, so by merely _not_ using
+the `--sparse' (`-S') option is used or not, so by merely *not* using
 the option, you are not saving time(1).
 
    Programs like `dump' do not have to read the entire file; by
@@ -1047,7 +1048,7 @@ be fairly difficult that it does otherwise.  Elizabeth Zwicky writes to
      What I did say is that you cannot tell the difference between a
      hole and an equivalent number of nulls without reading raw blocks.
      `st_blocks' at best tells you how many holes there are; it
-     doesn't tell you _where_.  Just as programs may, conceivably, care
+     doesn't tell you *where*.  Just as programs may, conceivably, care
      what `st_blocks' is (care to name one that does?), they may also
      care where the holes are (I have no examples of this one either,
      but it's equally imaginable).

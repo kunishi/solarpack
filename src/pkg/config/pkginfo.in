@@ -1,9 +1,9 @@
-PKG=SOAPconf
-NAME=SOAP, Solaris Application Packaging Tools: conf files.
-VERSION=%%SOAP_VERSION%%
+PKG=APDKconf
+NAME=Solaris Application Package Development Kit: conf files.
+VERSION=%%APDK_VERSION%%
 CATEGORY=application
-VENDOR=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
-EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=%%SOAP_DIR%%
+VENDOR=Takeo Kunishima <kunishi@acm.org>
+EMAIL=kunishi@acm.org
+BASEDIR=%%APDK_DIR%%
 CLASSES=none
-PSTAMP=%%SOAP_PSTAMP%%
+PSTAMP=%%APDK_PSTAMP%%

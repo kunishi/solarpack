@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.10 2001/03/23 06:56:27 kunishi Exp $
+# $Id: Makefile,v 1.11 2001/04/18 14:33:11 kunishi Exp $
 #
 
 WORKDIR=	${TOPDIR}/work
@@ -10,11 +10,15 @@ RM=	/usr/bin/rm -f
 SED=	/usr/bin/sed
 
 SYSMKDIR=	${WORKDIR}${LOCALBASE}/share/mk/
+ETCDIR=		${WORKDIR}/etc/
 
-TARGET=	port.mk port.pre.mk port.subdir.mk soap.conf
+SYSMKTARGET=	port.mk port.pre.mk port.subdir.mk
+ETCTARGET=	solarpack.conf
+TARGET=		${SYSMKTARGET} ${ETCTARGET}
 
 install:
-	${INSTALL_DATA} ${TARGET} ${SYSMKDIR}
+	${INSTALL_DATA} ${SYSMKTARGET} ${SYSMKDIR}
+	${INSTALL_DATA} ${ETCTARGET} ${ETCDIR}
 
 clean:
 	${RM} ${TARGET}

@@ -1,9 +1,9 @@
-PKG=SOAPpatch
-NAME=Solaris Application Packaging tools: patch
+PKG=APDKpatch
+NAME=Solaris Application Package Development Kit: GNU patch
 VERSION=2.5.4
 CATEGORY=application
 VENDOR=Free Software Foundation, Inc.
-EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=%%SOAP_DIR%%
+EMAIL=kunishi@acm.org
+BASEDIR=%%APDK_DIR%%
 CLASSES=none
-PSTAMP=%%SOAP_PSTAMP%%
+PSTAMP=%%APDK_PSTAMP%%

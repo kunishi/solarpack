@@ -1,4 +1,4 @@
-.include "soap.conf"
+.include "/etc/solarpack.conf"
 
-SOAP_SRCDIR?=	@soap_topdir@
-.include "${SOAP_SRCDIR}/ports/Mk/port.subdir.mk"
+PORTS_TOPDIR?=	@solarpack_topdir@/ports
+.include "${PORTS_TOPDIR}/Mk/port.subdir.mk"

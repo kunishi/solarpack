@@ -12,7 +12,7 @@ ac_help=
 ac_default_prefix=/usr/local
 # Any additions from configure.in:
 ac_help="$ac_help
-  --with-topdir	Solaris pkgtools top directory."
+  --with-topdir	Solaris APDK top directory."
 
 # Initialize some variables set by options.
 # The variables have the same names as the options, with
@@ -532,9 +532,9 @@ fi
 # Check whether --with-topdir or --without-topdir was given.
 if test "${with_topdir+set}" = set; then
   withval="$with_topdir"
-  soap_topdir="$with_topdir"
+  solarpack_topdir="$with_topdir"
 else
-  soap_topdir="/usr/pkg"
+  solarpack_topdir="/usr/pkg"
 fi
 
 
@@ -652,7 +652,7 @@ done
 ac_given_srcdir=$srcdir
 
 trap 'rm -fr `echo "Makefile 
-	mk/port.mk mk/port.pre.mk mk/port.subdir.mk mk/soap.conf" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
+	mk/port.mk mk/port.pre.mk mk/port.subdir.mk mk/solarpack.conf" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
 cat >> $CONFIG_STATUS <<EOF
 
@@ -684,7 +684,7 @@ s%@includedir@%$includedir%g
 s%@oldincludedir@%$oldincludedir%g
 s%@infodir@%$infodir%g
 s%@mandir@%$mandir%g
-s%@soap_topdir@%$soap_topdir%g
+s%@solarpack_topdir@%$solarpack_topdir%g
 
 CEOF
 EOF
@@ -727,7 +727,7 @@ EOF
 cat >> $CONFIG_STATUS <<EOF
 
 CONFIG_FILES=\${CONFIG_FILES-"Makefile 
-	mk/port.mk mk/port.pre.mk mk/port.subdir.mk mk/soap.conf"}
+	mk/port.mk mk/port.pre.mk mk/port.subdir.mk mk/solarpack.conf"}
 EOF
 cat >> $CONFIG_STATUS <<\EOF
 for ac_file in .. $CONFIG_FILES; do if test "x$ac_file" != x..; then

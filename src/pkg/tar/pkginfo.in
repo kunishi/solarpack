@@ -1,9 +1,9 @@
-PKG=SOAPgtar
-NAME=Solaris Application Packaging tools: GNU tar utilities
+PKG=APDKgtar
+NAME=Solaris Application Package Development Kit: GNU tar utilities
 VERSION=1.13
 CATEGORY=application
 VENDOR=Free Software Foundation, Inc.
-EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=%%SOAP_DIR%%
+EMAIL=kunishi@acm.org
+BASEDIR=%%APDK_DIR%%
 CLASSES=none
-PSTAMP=%%SOAP_PSTAMP%%
+PSTAMP=%%APDK_PSTAMP%%

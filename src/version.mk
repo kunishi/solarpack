@@ -1,5 +1,5 @@
 #
-# $Id: version.mk,v 1.8 2001/03/23 06:56:26 kunishi Exp $
+# $Id: version.mk,v 1.9 2001/04/18 14:33:06 kunishi Exp $
 #
-SOAP_VERSION=	0.4.0
-SOAP_REV=	1
+APDK_VERSION=	0.4.1
+APDK_REV=	1

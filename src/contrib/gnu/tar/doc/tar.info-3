@@ -1,4 +1,5 @@
-This is tar.info, produced by makeinfo version 4.0 from tar.texi.
+This is Info file tar.info, produced by Makeinfo version 1.68 from the
+input file tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -67,7 +68,7 @@ complementary notes for these operations.
      these errors, GNU `tar' now takes some distance from elegance, and
      cowardly refuses to create an archive when `--create' (`-c')
      option is given, there are no arguments besides options, and
-     `--files-from=FILE-OF-NAMES' (`-T FILE-OF-NAMES') option is _not_
+     `--files-from=FILE-OF-NAMES' (`-T FILE-OF-NAMES') option is *not*
      used.  To get around the cautiousness of GNU `tar' and
      nevertheless create an archive with nothing in it, one may still
      use, as the value for the `--files-from=FILE-OF-NAMES' (`-T
@@ -90,7 +91,7 @@ complementary notes for these operations.
      being localisable for dates should prefer international dates,
      that's really the way to go.
 
-     Look up <http://www.ft.uni-erlangen.de/~mskuhn/iso-time.html> if
+     Look up `http://www.ft.uni-erlangen.de/~mskuhn/iso-time.html' if
      you are curious, it contains a detailed explanation of the ISO
      8601 standard.
 
@@ -133,7 +134,7 @@ File: tar.info,  Node: Operations,  Next: current state,  Prev: Advanced tar,  U
 The Five Advanced `tar' Operations
 ----------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    In the last chapter, you learned about the first three operations to
 `tar'.  This chapter presents the remaining five operations to `tar':
@@ -205,19 +206,19 @@ File: tar.info,  Node: append,  Next: update,  Prev: current state,  Up: Advance
 How to Add Files to Existing Archives: `--append'
 -------------------------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    If you want to add files to an existing archive, you don't need to
 create a new archive; you can use `--append' (`-r').  The archive must
 already exist in order to use `--append'.  (A related operation is the
 `--update' operation; you can use this to add newer versions of archive
 members to an existing archive.  To learn how to do this with
-`--update', *note update::.)
+`--update', *note update::..)
 
    If you use `--append' (`-r') to add a file that has the same name as
 an archive member to an archive containing that archive member, then the
 old member is not deleted.  What does happen, however, is somewhat
-complex.  `tar' _allows_ you to have infinite numbers of files with the
+complex.  `tar' *allows* you to have infinite numbers of files with the
 same name.  Some operations treat these same-named members no
 differently than any other set of archive members: for example, if you
 view an archive with `--list' (`-t'), you will see all of those members
@@ -230,7 +231,7 @@ same name as four other members would end up in the working directory.
 This is because `--extract' extracts an archive in the order the
 members appeared in the archive; the most recently archived members
 will be extracted last.  Additionally, an extracted member will
-_overwrite_ a file of the same name which existed in the directory
+*overwrite* a file of the same name which existed in the directory
 already, and `tar' will not prompt you about this.  Thus, only the most
 recently archived member will end up being extracted, as it will
 overwrite the one extracted before it, and so on.
@@ -257,12 +258,12 @@ File: tar.info,  Node: appending files,  Next: multiple,  Prev: append,  Up: app
 Appending Files to an Archive
 .............................
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The simplest way to add a file to an already existing archive is the
 `--append' (`-r') operation, which writes specified files into the
 archive whether or not they are already among the archived files.  When
-you use `--append', you _must_ specify file name arguments, as there is
+you use `--append', you *must* specify file name arguments, as there is
 no default.  If you specify a file that already exists in the archive,
 another copy of the file will be added to the end of the archive.  As
 with other operations, the member names of the newly added files will
@@ -300,8 +301,8 @@ Multiple Files with the Same Name
    You can use `--append' (`-r') to add copies of files which have been
 updated since the archive was created.  (However, we do not recommend
 doing this since there is another `tar' option called `--update'; *note
-update:: for more information.  We describe this use of `--append' here
-for the sake of completeness.)   When you extract the archive, the
+update::. for more information.  We describe this use of `--append'
+here for the sake of completeness.)   When you extract the archive, the
 older version will be effectively lost.  This works because files are
 extracted from an archive in the order in which they were archived.
 Thus, when the archive is extracted, a file archived later in time will
@@ -339,7 +340,7 @@ the different creation dates and file sizes).  If you extract the
 archive, the older version of the file `blues' will be overwritten by
 the newer version.  You can confirm this by extracting the archive and
 running `ls' on the directory.  *Note Writing::, for more information.
-(_Please note:_ This is the case unless you employ the `--backup'
+(*Please note:* This is the case unless you employ the `--backup'
 option; .)
 
 
@@ -348,7 +349,7 @@ File: tar.info,  Node: update,  Next: concatenate,  Prev: append,  Up: Advanced 
 Updating an Archive
 -------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    In the previous section, you learned how to use `--append' (`-r') to
 add a file to an existing archive.  A related operation is `--update'
@@ -487,7 +488,7 @@ to using the `cat' utility, use the `--ignore-zeros' (`-i') option.
 improperly combined using the `cat' shell utility.
 
    You must specify the source archives using `--file=ARCHIVE-NAME'
-(`-f ARCHIVE-NAME') (*note file::).  If you do not specify the target
+(`-f ARCHIVE-NAME') (*note file::.).  If you do not specify the target
 archive, `tar' uses the value of the environment variable `TAPE', or,
 if this has not been set, the default archive name.
 
@@ -497,7 +498,7 @@ File: tar.info,  Node: delete,  Next: compare,  Prev: concatenate,  Up: Advanced
 Removing Archive Members Using `--delete'
 -----------------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    You can remove members from an archive by using the `--delete'
 option.  Specify the name of the archive with `--file=ARCHIVE-NAME'
@@ -550,12 +551,12 @@ File: tar.info,  Node: compare,  Prev: delete,  Up: Advanced tar
 Comparing Archive Members with the File System
 ----------------------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The `--compare' (`-d'), or `--diff' operation compares specified
 archive members against files with the same names, and then reports
 differences in file size, mode, owner, modification date and contents.
-You should _only_ specify archive member names, not file names.  If you
+You should *only* specify archive member names, not file names.  If you
 do not name any members, then `tar' will compare the entire archive.
 If a file is represented in the archive but does not exist in the file
 system, `tar' reports a difference.
@@ -592,7 +593,7 @@ File: tar.info,  Node: extract options,  Next: backup,  Prev: Advanced tar,  Up:
 Options Used by `--extract'
 ===========================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    The previous chapter showed how to use `--extract' (`--get', `-x')
 to extract an archive into the filesystem.  Various options cause `tar'
@@ -615,7 +616,7 @@ File: tar.info,  Node: Reading,  Next: Writing,  Prev: extract options,  Up: ext
 Options to Help Read Archives
 -----------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    Normally, `tar' will request data in full record increments from an
 archive storage device.  If the device cannot return a full record,
@@ -698,7 +699,7 @@ File: tar.info,  Node: Writing,  Next: Scarce,  Prev: Reading,  Up: extract opti
 Changing How `tar' Writes Files
 -------------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
 * Menu:
 
@@ -734,21 +735,21 @@ files in conflict instead of overwriting the file with the
 corresponding extracted archive member.
 
    The `--unlink-first' (`-U') option removes existing files, symbolic
-links, empty directories, devices, etc., _prior_ to extracting over
+links, empty directories, devices, etc., *prior* to extracting over
 them.  In particular, using this option will prevent replacing an
 already existing symbolic link by the name of an extracted file, since
 the link itself is removed prior to the extraction, rather than the
 file it points to.  On some systems, the backing store for the
-executable _is_ the original program text.  You could use the
+executable *is* the original program text.  You could use the
 `--unlink-first' (`-U') option to prevent segmentation violations or
 other woes when extracting arbitrary executables over currently running
 copies.  Note that if something goes wrong with the extraction and you
-_did_ use this option, you might end up with no file at all.  Without
+*did* use this option, you might end up with no file at all.  Without
 this option, if something goes wrong with the extraction, the existing
 file is not overwritten and preserved.
 
    If you specify the `--recursive-unlink' option, `tar' removes
-_anything_ that keeps you from extracting a file as far as current
+*anything* that keeps you from extracting a file as far as current
 permissions will allow it.  This could include removal of the contents
 of a full directory hierarchy.  For example, someone using this feature
 may be very surprised at the results when extracting a directory entry
@@ -795,8 +796,8 @@ Recursive Unlink
 
 `--recursive-unlink'
      When this option is specified, try removing files and directory
-     hierarchies before extracting over them.  _This is a dangerous
-     option!_
+     hierarchies before extracting over them.  *This is a dangerous
+     option!*
 
    Some people argue that GNU `tar' should not hesitate to overwrite
 files with other files when extracting.  When extracting a `tar'
@@ -808,9 +809,9 @@ maybe the site removed the link and renamed the whole hierarchy from
 `/usr/local2' to `/usr/local'.  Such things happen all the time.  I
 guess it would not be welcome at all that GNU `tar' removes the whole
 hierarchy just to make room for the link to be reinstated (unless it
-_also_ simultaneously restores the full `/usr/local2', of course!  GNU
+*also* simultaneously restores the full `/usr/local2', of course!  GNU
 `tar' is indeed able to remove a whole hierarchy to reestablish a
-symbolic link, for example, but _only if_ `--recursive-unlink' is
+symbolic link, for example, but *only if* `--recursive-unlink' is
 specified to allow this behaviour.  In any case, single files are
 silently removed.
 
@@ -892,7 +893,7 @@ File: tar.info,  Node: Scarce,  Prev: Writing,  Up: extract options
 Coping with Scarce Resources
 ----------------------------
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
 * Menu:
 
@@ -1017,7 +1018,7 @@ and the partially extracted file are kept.
     `simple'
           Always make simple backups.
 
-   Some people express the desire to _always_ use the OP-BACKUP option,
+   Some people express the desire to *always* use the OP-BACKUP option,
 by defining some kind of alias or script.  This is not as easy as one
 may thing, due to the fact old style options should appear first and
 consume arguments a bit inpredictably for an alias or script.  But, if
@@ -1032,7 +1033,7 @@ File: tar.info,  Node: Applications,  Next: looking ahead,  Prev: backup,  Up: o
 Notable `tar' Usages
 ====================
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    You can easily use archive files to transport a group of files from
 one system to another: put all relevant files into an archive on one
@@ -1082,7 +1083,7 @@ File: tar.info,  Node: Backups,  Next: Choosing,  Prev: operations,  Up: Top
 Performing Backups and Restoring Files
 **************************************
 
-     _(This message will disappear, once this node revised.)_
+     *(This message will disappear, once this node revised.)*
 
    GNU `tar' is distributed along with the scripts which the Free
 Software Foundation uses for performing backups.  There is no
