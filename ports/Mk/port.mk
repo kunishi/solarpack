@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.45 2000/01/18 11:25:26 kunishi Exp $
+# $Id: port.mk,v 1.46 2000/01/18 11:31:29 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -644,7 +644,12 @@ checksum:
 				${ECHO_MSG} ">> Checksum mismatch for $$file."; \
 				OK="false"; \
 			fi; \
-		done) \
+		done; \
+		if [ "$${OK}" != "true" ]; then \
+			${ECHO_MSG} "Make sure the Makefile and md5 file (${MD5_FILE})"; \
+			${ECHO_MSG} "are up to date."; \
+			exit 1; \
+		fi); \
 	fi
 .endif
 
