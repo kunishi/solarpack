@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/06/07 06:06:36 kunishi Exp $
 #
 
 PORTNAME=	fvwm-i18n
@@ -18,12 +18,13 @@ PATCHFILES =	${DISTNAME}-I18N_MB-1999042001.patch
 USE_X_PREFIX=		yes
 USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
+CONFIGURE_ENV+=		CXX='${CXX} -ansi -pedantic'
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--enable-extras --enable-kanji
 CONFIGURE_ARGS+=	--with-iconpath=${PREFIX}/share/icons/fvwm:/usr/include/X11/bitmaps:/usr/include/X11/pixmaps
 MAKE_ENV+=		prefix=${PREFIX}
 MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX}
-INSTALL_TARGET+=	install-data
+INSTALL_TARGET+=	install install-data
 
 RC_FILES =	decor_examples new-features system.fvwm2rc \
 		system.fvwm2rc-sample-1 system.fvwm2rc-sample-2
