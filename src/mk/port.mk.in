@@ -1,2 +1,2 @@
-PKGBUILDDIR?=	@PKGBUILDDIR@
+PKGBUILDDIR?=	@solpkg_topdir@
 .include "${PKGBUILDDIR}/ports/Mk/port.mk"

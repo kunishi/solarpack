@@ -12,7 +12,7 @@ ac_help=
 ac_default_prefix=/usr/local
 # Any additions from configure.in:
 ac_help="$ac_help
-  --with-topdir	pkgbuild top directory."
+  --with-topdir	Solaris pkgtools top directory."
 
 # Initialize some variables set by options.
 # The variables have the same names as the options, with
@@ -453,7 +453,7 @@ echo > confdefs.h
 
 # A filename unique to this package, relative to the directory that
 # configure is in, which we can look for to find out if srcdir is correct.
-ac_unique_file=mk/pkgbuild.conf
+ac_unique_file=pkg/prototype.in
 
 # Find the source files, if location was not specified.
 if test -z "$srcdir"; then
@@ -532,9 +532,9 @@ fi
 # Check whether --with-topdir or --without-topdir was given.
 if test "${with_topdir+set}" = set; then
   withval="$with_topdir"
-  pkgbuild_topdir="$with_topdir"
+  solpkg_topdir="$with_topdir"
 else
-  pkgbuild_topdir="/usr/solpkg"
+  solpkg_topdir="/usr/solpkg"
 fi
 
 
@@ -651,7 +651,9 @@ done
 
 ac_given_srcdir=$srcdir
 
-trap 'rm -fr `echo "Makefile pkg/pkginfo" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
+trap 'rm -fr `echo "Makefile 
+	mk/port.mk mk/solpkg.conf
+	pkg/pkginfo" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
 cat >> $CONFIG_STATUS <<EOF
 
@@ -683,7 +685,7 @@ s%@includedir@%$includedir%g
 s%@oldincludedir@%$oldincludedir%g
 s%@infodir@%$infodir%g
 s%@mandir@%$mandir%g
-s%@pkgbuild_topdir@%$pkgbuild_topdir%g
+s%@solpkg_topdir@%$solpkg_topdir%g
 
 CEOF
 EOF
@@ -725,7 +727,9 @@ EOF
 
 cat >> $CONFIG_STATUS <<EOF
 
-CONFIG_FILES=\${CONFIG_FILES-"Makefile pkg/pkginfo"}
+CONFIG_FILES=\${CONFIG_FILES-"Makefile 
+	mk/port.mk mk/solpkg.conf
+	pkg/pkginfo"}
 EOF
 cat >> $CONFIG_STATUS <<\EOF
 for ac_file in .. $CONFIG_FILES; do if test "x$ac_file" != x..; then

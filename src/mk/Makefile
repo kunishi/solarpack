@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 1999/06/09 10:43:01 kunishi Exp $
+# $Id: Makefile,v 1.5 1999/12/28 05:04:55 kunishi Exp $
 #
 
 INSTALL=	/usr/ucb/install
@@ -9,12 +9,9 @@ SED=	/usr/bin/sed
 
 SYSMKDIR=	${INSTDIR}${LOCALBASE}/share/mk/
 
-TARGET=	port.mk pkgbuild.conf
+TARGET=	port.mk solpkg.conf
 
-port.mk:	port.mk.in
-	${SED} -e 's!@PKGBUILDDIR@!${PKGBUILDDIR}!' $@.in > $@
-
-install:	port.mk
+install:
 	${INSTALL_DATA} ${TARGET} ${SYSMKDIR}
 
 clean:

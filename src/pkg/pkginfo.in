@@ -4,5 +4,5 @@ VERSION=0.1
 CATEGORY=application
 VENDOR=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
 EMAIL=kunishi@c.oka-pu.ac.jp
-BASEDIR=@pkgbuild_topdir@
+BASEDIR=@solpkg_topdir@
 CLASSES=none

@@ -1,13 +1,14 @@
 #
-# $Id: Makefile.in,v 1.3 1999/06/09 11:04:00 kunishi Exp $
+# $Id: Makefile.in,v 1.4 1999/12/28 05:04:55 kunishi Exp $
 #
 
-PKGNAME=	pkgbuild-0.1
+PKGNAME=	solpkg-0.1
 
 LOCALBASE=	/usr/local
-PKGBUILDDIR=	@pkgbuild_topdir@
+PKGBUILDDIR=	@solpkg_topdir@
 
 CWD:sh=		pwd
+MAKEFILEDIR=	${CWD}/mk
 PKGDIR=		${CWD}/pkg
 RELEASEDIR=	${CWD}/release
 WRKDIR=		${CWD}/work
@@ -24,7 +25,7 @@ TAR=		/usr/bin/tar
 ARCH:sh=	/usr/bin/mach
 OSREL:sh=	/usr/bin/uname -r
 
-RELEASE_PKG_DIR=	/share/local-ftp/pub/Solaris/${ARCH}/${OSREL}
+RELEASE_PKG_DIR=	/export/pub/Solaris/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
 
 CORE_PACKAGES=	bmake-2.1.14.gz \
@@ -59,7 +60,8 @@ install:
 clean:
 	${RM} -f config.cache config.log config.status
 	cd mk && ${MAKE} clean
-	${RM} -f pkg/prototype
+	${RM} -f ${MAKEFILEDIR}/port.mk ${MAKEFILEDIR}/solpkg.conf
+	${RM} -f ${PKGDIR}/pkginfo ${PKGDIR}/prototype
 	${RM} -rf ${WRKDIR}
 	${RM} -f ${RELEASEDIR}/${PKGNAME}
 
