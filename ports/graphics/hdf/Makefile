@@ -1,14 +1,14 @@
 #
-# $Id: Makefile,v 1.2 2000/09/27 01:27:46 kunishi Exp $
+# $Id: Makefile,v 1.3 2001/11/19 12:24:28 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	hdf
 VERSION=	4.1r3
-PORTREV=	1
+PORTREV=	2
 
-PKG=		OPENhdf
+PKG=		OPUChdf
 NAME=		Hierarchical Data Format Library (from NCSA)
 VENDOR=		NCSA, UIUC
 
@@ -16,7 +16,7 @@ MASTER_SITES=	ftp://ftp.ncsa.uiuc.edu/HDF/HDF/HDF4.1r3/tar/
 DISTNAME=	HDF${VERSION}
 
 BUILD_DEPENDS=	GNUm4:${PORTSDIR}/devel/m4
-LIB_DEPENDS=	OPENjpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	OPUCjpeg:${PORTSDIR}/graphics/jpeg
 
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
