@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.63 2000/05/19 11:05:32 kunishi Exp $
+# $Id: port.mk,v 1.64 2000/06/01 13:16:08 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -233,6 +233,7 @@ ECHO?=		/usr/bin/echo
 EGREP?=		/usr/bin/egrep
 ENV?=		/usr/bin/env
 EXPR?=		/usr/bin/expr
+FALSE?=		/usr/bin/false
 FIND?=		/usr/bin/find
 GREP?=		/usr/bin/grep
 GZCAT?=		${SOAP_BINDIR}/gzip -cd
