@@ -5,7 +5,7 @@ fi
 if test ! -f /etc/ssh2/hostkey; then
 	umask 022
 	$CLIENT_BASEDIR/bin/ssh-keygen2 -P -b 1024 -t dsa \
-	    -c "1024-bit dsa hostkey" -o /etc/ssh2/hostkey
+	    -c "1024-bit dsa hostkey" /etc/ssh2/hostkey
 fi
 if test ! -f /etc/ssh2/ssh2_config; then
 	install -c /etc/ssh2 -m 644 -u bin -g bin \
