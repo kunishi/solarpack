@@ -1,0 +1,10 @@
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+if test -x ${INSTALL_INFO}; then
+	${INSTALL_INFO} --delete --info-dir=${INFODIR} ${INFODIR}/history.info
+	${INSTALL_INFO} --delete --info-dir=${INFODIR} ${INFODIR}/readline.info
+else
+	/usr/bin/echo ">> Remove history.info entry to ${INFODIR}/dir by hand."
+	/usr/bin/echo ">> Remove readline.info entry to ${INFODIR}/dir by hand."
+fi
