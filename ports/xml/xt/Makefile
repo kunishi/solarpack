@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.2 2000/05/17 06:42:49 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/06/05 04:01:47 kunishi Exp $
 #
 
 PORTNAME=	xt
-VERSION=	19990822
+VERSION=	19991105
 PORTREV=	1
 
 PKG=		JCLxt
