@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2001/11/13 08:26:33 kunishi Exp $
+# $Id: Makefile,v 1.2 2002/03/18 11:29:11 kunishi Exp $
 #
 
 PORTNAME=	ruby
-VERSION=	1.6.5
+VERSION=	1.6.7
 PORTREV=	1
 
 PKG=		OPUCruby
