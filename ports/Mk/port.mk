@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.62 2000/05/18 10:22:32 kunishi Exp $
+# $Id: port.mk,v 1.63 2000/05/19 11:05:32 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -606,9 +606,9 @@ do-configure:
 .if !target(do-build)
 do-build:
 .if defined(USE_GMAKE)
-	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS} ${MAKE_FLAGS}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${GMAKE} ${ALL_TARGET} ${MAKE_ARGS} ${MAKE_FLAGS}
 .else
-	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${MAKE_ARGS} ${MAKE_FLAGS}
+	@cd ${WRKSRC} && ${MAKE_ENV} ${CCSMAKE} ${ALL_TARGET} ${MAKE_ARGS} ${MAKE_FLAGS}
 .endif
 .endif
 
