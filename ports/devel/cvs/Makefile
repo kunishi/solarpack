@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.8 2000/01/18 11:54:57 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/01/25 06:50:08 kunishi Exp $
 #
 
 PKG=		OPENcvs
 NAME=		CVS, Concurrent Version System
-VERSION=	1.10.7
+VERSION=	1.10.8
 VENDOR=		Cyclic Software, Com. <http://www.cyclic.com/>
 
 DISTNAME=	cvs-${VERSION}
