@@ -1,0 +1,29 @@
+--- Makefile~	Sat Sep 15 05:17:07 2001
++++ Makefile	Thu Nov 29 11:54:22 2001
+@@ -27,7 +27,7 @@
+ eieio: $(eieio_LISP)
+ 	@echo "(add-to-list 'load-path nil)" > $@-compile-script
+ 	@if test ! -z "${LOADPATH}" ; then\
+-	   for loadpath in ${LOADPATH}; do \
++	   for loadpath in "${LOADPATH}"; do \
+ 	      echo -n "(add-to-list 'load-path \"$$loadpath\")" >> $@-compile-script; \
+ 	    done;\
+ 	fi
+@@ -37,7 +37,7 @@
+ examples: $(examples_LISP)
+ 	@echo "(add-to-list 'load-path nil)" > $@-compile-script
+ 	@if test ! -z "${LOADPATH}" ; then\
+-	   for loadpath in ${LOADPATH}; do \
++	   for loadpath in "${LOADPATH}"; do \
+ 	      echo -n "(add-to-list 'load-path \"$$loadpath\")" >> $@-compile-script; \
+ 	    done;\
+ 	fi
+@@ -50,7 +50,7 @@
+ test: $(test_LISP)
+ 	@echo "(add-to-list 'load-path nil)" > $@-compile-script
+ 	@if test ! -z "${LOADPATH}" ; then\
+-	   for loadpath in ${LOADPATH}; do \
++	   for loadpath in "${LOADPATH}"; do \
+ 	      echo -n "(add-to-list 'load-path \"$$loadpath\")" >> $@-compile-script; \
+ 	    done;\
+ 	fi

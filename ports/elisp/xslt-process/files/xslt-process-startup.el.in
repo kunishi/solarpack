@@ -1,0 +1,2 @@
+(add-to-list 'load-path "%%SITELISPDIR%%/xslt-process/lisp/")
+(provide 'xslt-process-startup)

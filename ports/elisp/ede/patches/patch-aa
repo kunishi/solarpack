@@ -1,0 +1,20 @@
+--- Makefile~	Wed May  9 10:43:38 2001
++++ Makefile	Thu Nov 29 13:03:38 2001
+@@ -26,7 +26,7 @@
+ ede: $(ede_LISP)
+ 	@echo "(add-to-list 'load-path nil)" > $@-compile-script
+ 	@if test ! -z "${LOADPATH}" ; then\
+-	   for loadpath in ${LOADPATH}; do \
++	   for loadpath in "${LOADPATH}"; do \
+ 	      echo "(add-to-list 'load-path \"$$loadpath\")" >> $@-compile-script; \
+ 	    done\
+ 	fi
+@@ -36,7 +36,7 @@
+ aux.lisp: $(aux_lisp_LISP)
+ 	@echo "(add-to-list 'load-path nil)" > $@-compile-script
+ 	@if test ! -z "${LOADPATH}" ; then\
+-	   for loadpath in ${LOADPATH}; do \
++	   for loadpath in "${LOADPATH}"; do \
+ 	      echo "(add-to-list 'load-path \"$$loadpath\")" >> $@-compile-script; \
+ 	    done\
+ 	fi

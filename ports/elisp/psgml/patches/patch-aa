@@ -1,0 +1,11 @@
+--- Makefile.in~	Thu Nov 29 23:31:22 2001
++++ Makefile.in	Thu Nov 29 23:39:07 2001
+@@ -42,7 +42,7 @@
+ 
+ install: compile 
+ 	$(SHELL) mkinstalldirs $(lispdir)
+-	for p in *.elc; do \
++	for p in *.el *.elc; do \
+ 	  echo " $(INSTALL_DATA) $$p $(lispdir)/$$p"; \
+ 	  $(INSTALL_DATA) $$p $(lispdir)/$$p; \
+ 	done

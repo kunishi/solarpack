@@ -1,0 +1,11 @@
+--- Makefile~	Mon Dec 11 09:50:56 1995
++++ Makefile	Thu Nov 29 11:36:45 2001
+@@ -70,7 +70,7 @@
+ 	$(INSTALL_DATA) elib.info* $(infodir)
+ 	if $(SHELL) -c 'install-info --version' \
+ 		>/dev/null 2>&1; then \
+-		install-info --infodir=$(infodir) elib.info; \
++		install-info --info-dir=$(infodir) elib.info; \
+ 	else true; fi
+ 
+ clean:
