@@ -1,0 +1,11 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+i postinstall=%%PKGDIR%%/postinstall
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/kterm=%%WRK_BASEDIR%%/bin/kterm 4755 root staff
+d none lib=%%WRK_BASEDIR%%/lib 0755 root bin
+d none lib/X11=%%WRK_BASEDIR%%/lib/X11 0755 root bin
+d none lib/X11/app-defaults=%%WRK_BASEDIR%%/lib/X11/app-defaults 0755 root bin
+f none lib/X11/app-defaults/KTerm=%%WRK_BASEDIR%%/lib/X11/app-defaults/KTerm 0444 root staff
+d none share=%%WRK_BASEDIR%%/share 0755 root bin
+d none share/kterm=%%WRK_BASEDIR%%/share/kterm 0755 root bin
+f none share/kterm/terminfo.kt=%%WRK_BASEDIR%%/share/kterm/terminfo.kt 0644 root bin

@@ -1,10 +1,9 @@
 PKG=OPENkterm
 NAME=X11 kanji terminal emulator
-ARCH=sparc
+ARCH=%%ARCH%%
 VERSION=6.2.0
 CATEGORY=application
 VENDOR=Hiroto Kagotani <kagotani@in.it.okayama-u.ac.jp>
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/openwin
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none
