@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.89 2001/11/30 15:21:54 kunishi Exp $
+# $Id: port.mk,v 1.90 2002/12/26 05:26:16 kunishi Exp $
 #
 
 # ${APDK_DIR} and ${APDK_BINDIR} are set in ${APDK_DIR}/share/mk/soap.conf.
@@ -64,7 +64,9 @@ CXX=		c++ -B${LOCALBASE}/${GNU_HOSTTYPE}/bin/
 BUILD_DEPENDS+=	OPUCbzip2:${PORTSDIR}/archivers/bzip2
 .endif
 .if defined(USE_INSTALL_INFO)
-RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
+.if ${PORTNAME} != texinfo
+RUN_DEPENDS+=	OPUCtxinf:${PORTSDIR}/textproc/texinfo
+.endif
 .endif
 .if defined(USE_ZLIB)
 .if ${OSREL} <= 5.7
@@ -79,12 +81,12 @@ AUTOMAKE_ARGS?=	#
 .endif
 .if defined(USE_AUTOCONF)
 GNU_CONFIGURE=	yes
-BUILD_DEPENDS+=	GNUautcnf:${PORTSDIR}/devel/autoconf
+BUILD_DEPENDS+=	OPUCatcnf:${PORTSDIR}/devel/autoconf
 AUTOCONF=	${LOCALBASE}/bin/autoconf
 AUTOCONF_ARGS?=	#
 .endif
 .if defined(USE_LIBTOOL)
-BUILD_DEPENDS+=	GNUlibtl:${PORTSDIR}/devel/libtool
+BUILD_DEPENDS+=	OPUClibtl:${PORTSDIR}/devel/libtool
 MAKE_ARGS+=	LIBTOOL=${LOCALBASE}/bin/libtool
 MAKE_INSTALL_ARGS+=	LIBTOOL=${LOCALBASE}/bin/libtool
 .endif
@@ -711,12 +713,12 @@ do-extract:
 	@${MKDIR} ${WRKDIR}
 .if !defined(NO_EXTRACT)
 .if defined(USE_ZIP)
-	@for file in "${EXTRACT_ONLY}"; do \
+	@for file in ${EXTRACT_ONLY}; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
 	    cd ${WRKDIR} && (${EXTRACT_CMD} ${DISTDIR}/$${file}); \
 	done
 .else
-	@for file in "${EXTRACT_ONLY}"; do \
+	@for file in ${EXTRACT_ONLY}; do \
 	    ${ECHO_MSG} "===>  Extracting $${file}"; \
 	    cd ${WRKDIR} && (${EXTRACT_CMD} ${DISTDIR}/$${file} | ${TAR} xf -); \
 	done
@@ -1025,7 +1027,14 @@ gen-prototype:
 	@${ECHO} 'i i.suitcase=${TEMPLATEDIR}/i.suitcase' >> ${PROTOTYPE}
 	@${ECHO} 'i r.suitcase=${TEMPLATEDIR}/r.suitcase' >> ${PROTOTYPE}
 .endif
-	@${SED} ${_sedsubprotolist} ${PROTOTYPE_IN} >> ${PROTOTYPE}
+	@(cd ${INSTPREFIX} && \
+	  ${FIND} . | ${ELIMINATE_FILES} | ${PKGPROTO}) | \
+	  ${SORT} +2 | ${UNIQ} | ${SED} \
+	  -e 's|^\(f .*\) \(0[0-9]*\) .* .*|\1 \2 ${BINOWN} ${BINGRP}|' \
+	  -e 's|^\(d .*\) .* .*|\1 ${BINOWN} ${BINGRP}|' \
+	  -e 's|^\(. none\) \(.*\) \([0-9]* .*\)|\1 \2=%%INSTPREFIX%%/\2 \3|' \
+	  ${_sedsubprotoinlist} ${_sedsubprotorevlist} | \
+	  ${SED} ${_sedsubprotolist} >> ${PROTOTYPE}
 .endif
 
 .for sub in ${PKGINFO_SUB}
