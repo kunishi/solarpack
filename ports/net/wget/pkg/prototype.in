@@ -1,9 +1,11 @@
 i pkginfo=%%PKGDIR%%/pkginfo
 i postinstall=%%PKGDIR%%/postinstall
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/wget=%%WRK_BASEDIR%%/bin/wget 0755 bin bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/wget.info=%%WRK_BASEDIR%%/info/wget.info 0644 bin bin
+f info info/wget.info=%%WRK_BASEDIR%%/info/wget.info 0644 bin bin
 f none info/wget.info-1=%%WRK_BASEDIR%%/info/wget.info-1 0644 bin bin
 f none info/wget.info-2=%%WRK_BASEDIR%%/info/wget.info-2 0644 bin bin
 f none info/wget.info-3=%%WRK_BASEDIR%%/info/wget.info-3 0644 bin bin

@@ -1,9 +1,0 @@
-PKG=GNUtxinf
-NAME=GNU texinfo tools
-VERSION=3.12
-CATEGORY=application
-ARCH=%%ARCH%%
-VENDOR=Free Software Foundation, Inc.
-EMAIL=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
-BASEDIR=%%BASEDIR%%
-CLASSES=none

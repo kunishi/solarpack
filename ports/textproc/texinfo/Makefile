@@ -1,8 +1,13 @@
 #
-# $Id: Makefile,v 1.5 1999/06/03 12:34:38 kunishi Exp $
+# $Id: Makefile,v 1.6 1999/06/05 05:58:47 kunishi Exp $
 #
 
-DISTNAME=	texinfo-3.12
+PKG=		GNUtxinf
+NAME=		GNU texinfo tools
+VERSION=	3.12
+VENDOR=		${VENDOR_GNU}
+
+DISTNAME=	texinfo-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/texinfo/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/texinfo/
 MAKE_ENV+=	LD_LIBRARY_PATH=${PREFIX}/lib LD_RUN_PATH=${PREFIX}/lib

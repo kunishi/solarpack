@@ -1,8 +1,13 @@
 #
-# $Id: Makefile,v 1.5 1999/06/03 12:31:51 kunishi Exp $
+# $Id: Makefile,v 1.6 1999/06/05 05:55:38 kunishi Exp $
 #
 
-DISTNAME=	patch-2.5
+PKG=		GNUpatch
+NAME=		GNU patch
+VERSION=	2.5
+VENDOR=		${VENDOR_GNU}
+
+DISTNAME=	patch-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/patch/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/patch/
 

@@ -1,9 +1,0 @@
-PKG=GNUmule
-NAME=GNU Multi-lingual Emacs
-ARCH=%%ARCH%%
-VERSION=2.3@19.34b
-CATEGORY=application
-VENDOR=Free Software Foundation, inc.
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none

@@ -1,9 +1,0 @@
-PKG=GNUpatch
-NAME=GNU patch
-ARCH=%%ARCH%%
-VERSION=2.5
-CATEGORY=application
-VENDOR=Free Software Foundation, Inc.
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
