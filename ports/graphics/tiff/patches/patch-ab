@@ -1,0 +1,45 @@
+--- man/Makefile.in.orig	Wed Sep  3 02:54:41 1997
++++ man/Makefile.in	Mon Jun  7 20:21:25 1999
+@@ -206,9 +206,9 @@
+ # in the man pages to reflect local conventions.
+ #
+ MANSED=${SED}\
+-	-e 's;\$${DIR_BIN};@DIR_BIN@;g' \
+-	-e 's;\$${DIR_LIB};@DIR_LIB@;g' \
+-	-e 's;\$${DIR_INC};@DIR_INC@;g' \
++	-e 's;\$${DIR_BIN};\$@DIR_BIN@;g' \
++	-e 's;\$${DIR_LIB};\$@DIR_LIB@;g' \
++	-e 's;\$${DIR_INC};\$@DIR_INC@;g' \
+ 	${MANSEDLOCAL}
+ 
+ all:	${TARGETS}
+@@ -330,7 +330,7 @@
+ 	 ${ECHO} 'install:';						\
+ 	 for i in *.1; do						\
+ 	    f=${MANAPPNAME};						\
+-	    ${ECHO} '	cd ..; ${INSTALL} -m 444 -F ${MAN}/${MANAPPS}	\
++	    ${ECHO} '	cd ..; ${INSTALL} -m 444 -F $@DIR_MAN@/${MANAPPS}	\
+ 		-idb tiff.man.tools -src' apps/"$$i" '-O' "$$f";	\
+ 	 done								\
+ 	)>apps/Makefile
+@@ -342,16 +342,16 @@
+ 	 ${ECHO} 'install:';						\
+ 	 for i in *.3t; do						\
+ 	    f=${MANLIBNAME};						\
+-	    ${ECHO} '	cd ..; ${INSTALL} -m 444 -F ${MAN}/${MANLIB}	\
++	    ${ECHO} '	cd ..; ${INSTALL} -m 444 -F $@DIR_MAN@/${MANLIB}	\
+ 		-idb tiff.man.dev -src' lib/"$$i" '-O' "$$f";		\
+ 	 done								\
+ 	)>lib/Makefile
+ 
+ install: all
+-	${INSTALL} -m 755 -dir -idb tiff.man.tools ${MAN}
+-	${INSTALL} -m 755 -dir -idb tiff.man.tools ${MAN}/${MANAPPS}
++	${INSTALL} -m 755 -dir -idb tiff.man.tools $@DIR_MAN@
++	${INSTALL} -m 755 -dir -idb tiff.man.tools $@DIR_MAN@/${MANAPPS}
+ 	cd apps; ${MAKE} install
+-	${INSTALL} -m 755 -dir -idb tiff.man.dev ${MAN}/${MANLIB}
++	${INSTALL} -m 755 -dir -idb tiff.man.dev $@DIR_MAN@/${MANLIB}
+ 	cd lib; ${MAKE} install
+ 
+ clean:
