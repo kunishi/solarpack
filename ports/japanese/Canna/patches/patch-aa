@@ -1,0 +1,21 @@
+--- Canna.conf.orig	Thu Nov 28 19:27:01 1996
++++ Canna.conf	Wed Aug  4 16:13:45 1999
+@@ -128,12 +128,12 @@
+  * $Id: patch-aa,v 1.1 1999/08/04 07:38:55 kunishi Exp $
+  */
+ 
+-cannaBinDir = /usr/local/canna/bin
+-cannaSrvDir = /usr/local/canna/bin
+-cannaLibDir = /usr/local/canna/lib
+-cannaManDir = /usr/local/canna/man
+-cannaIncDir = /usr/local/canna/include/canna
+-libCannaDir = /usr/lib
++cannaBinDir = ${PREFIX}/canna/bin
++cannaSrvDir = ${PREFIX}/canna/bin
++cannaLibDir = ${PREFIX}/canna/lib
++cannaManDir = ${PREFIX}/canna/man
++cannaIncDir = ${PREFIX}/canna/include/canna
++libCannaDir = ${PREFIX}/lib
+ 
+ ErrDir  = /usr/spool/canna
+ 
