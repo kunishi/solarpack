@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building bmake
-# $Id: Makefile.bmake,v 1.7 2000/06/01 13:22:25 kunishi Exp $
+# $Id: Makefile.bmake,v 1.8 2000/09/27 11:10:05 kunishi Exp $
 #
 
 TARGET_CMD=	bmake
@@ -8,7 +8,7 @@ TARGET_CMD=	bmake
 include ${BOOTSTRAPDIR}/config.mk
 
 DISTNAME=	bmake
-DISTFILES=	bmake-3.1.0.tar.gz mk-1.2.1.tar.gz
+DISTFILES=	bmake-3.1.2.tar.gz mk-1.2.1.tar.gz
 SRCURL=		ftp://ftp.quick.com.au/pub/sjg/
 
 include ${BOOTSTRAPDIR}/rule.mk
@@ -22,7 +22,7 @@ fetch:
 
 extract:	${FETCH_COOKIE}
 	cd ${WORKDIR} && \
-	  (${GUNZIP} ${DISTDIR}/bmake-3.1.0.tar.gz | ${EXTRACT_CMD} -)
+	  (${GUNZIP} ${DISTDIR}/bmake-3.1.2.tar.gz | ${EXTRACT_CMD} -)
 	cd ${WORKDIR}/bmake && \
 	  (${GUNZIP} ${DISTDIR}/mk-1.2.1.tar.gz | ${EXTRACT_CMD} -)
 
@@ -30,16 +30,14 @@ patch:		${EXTRACT_COOKIE}
 	${DO_NADA}
 
 configure:	${PATCH_COOKIE}
-	cd ${WORKDIR}/${DISTNAME} && \
-	  ${ENV} CC=${TMPPREFIX}/bin/gcc ./configure --prefix=${TMPPREFIX}
+	cd ${WORKDIR}/${DISTNAME} && ./configure --prefix=${TMPPREFIX}
 
 build:		${CONFIGURE_COOKIE}
-	cd ${WORKDIR}/${DISTNAME} && \
-	  ${TMPPREFIX}/bin/gmake -f makefile.boot \
+	cd ${WORKDIR}/${DISTNAME} && gmake -f makefile.boot \
 	  XDEFS='-D_PATH_DEFSYSMK=\"/usr/share/mk/sys.mk\" -D_PATH_DEFSYSPATH=\"/usr/share/mk:${TMPPREFIX}/share/mk:/usr/local/share/mk:/opt/share/mk\"'
 
 install:	${BUILD_COOKIE}
 	if [ ! -f ${INSTALL_COOKIE} ]; then \
-	  cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake -f makefile.boot install install-mk; \
+	  cd ${WORKDIR}/${DISTNAME} && gmake -f makefile.boot install install-mk; \
 	fi
 	${TOUCH} ${INSTALL_COOKIE}

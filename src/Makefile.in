@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.21 2000/05/17 05:41:47 kunishi Exp $
+# $Id: Makefile.in,v 1.22 2000/09/27 11:10:04 kunishi Exp $
 #
 
 include version.mk
@@ -31,21 +31,30 @@ SED=		/usr/bin/sed
 SH=		/bin/sh
 TAR=		/usr/bin/tar
 
+GZIP_CMD=	/usr/bin/gzip
+SFW_CC=		/opt/sfw/bin/gcc
+SFW_GMAKE=	/opt/sfw/bin/gmake
+
 BMAKE=		${CWD}/bin/bmake
 
 ARCH:sh=	/usr/bin/mach
 OSREL:sh=	/usr/bin/uname -r
 
-STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/sbin
+STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/opt/sfw/bin:/usr/sbin
+PATH=		${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}
 
 RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%Y%m%d
 RELEASE_TIME:sh=	/usr/bin/date +%Y.%m.%d.%H.%M
 RELEASE_HOST:sh=	/usr/bin/hostname
 
+SOAP_MKS=		${BOOTSTRAPDIR}/soap.conf \
+			${BOOTSTRAPDIR}/port.mk \
+			${BOOTSTRAPDIR}/port.pre.mk
 SOAP_PSTAMP=		${RELEASE_HOST}:${RELEASE_TIME}
 SOAP_CONF_PKG=		${PKGNAME}-conf-${SOAP_VERSION}-${SOAP_REV}
 
+MAKE_ENV=	PATH=${PATH}
 MAKEFLAGS=	TOPDIR=${CWD} \
 		BOOTSTRAPDIR=${BOOTSTRAPDIR}
 
@@ -74,42 +83,43 @@ bootstrap::
 	${MAKE} build-misc-package
 
 build-strap-tools::
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gzip install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.lukemftp install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gcc install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gmake install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.patch install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.bmake install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gtar install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.md5 install
-	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.texinfo install
+	if [ ! -x ${GZIP_CMD} ]; then \
+	  ${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gzip install; \
+	fi
+	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.lukemftp install
+	if [ ! -x ${SFW_CC} ]; then \
+	  ${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gcc install; \
+	fi
+	if [ ! -x ${SFW_GMAKE} ]; then \
+	  ${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gmake install; \
+	fi
+	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.patch install
+	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.bmake install
+	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gtar install
+	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.md5 install
+	${ENV} ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.texinfo install
 
 prepare-for-package::
 	cd ${TOPDIR} && \
 	  (${RM} -f bin && ${LN} -s ${WRKDIR}${LOCALBASE}/bin)
 	${MKDIR} ${RELEASE_PKG_DIR}
-	${CP} ${BOOTSTRAPDIR}/soap.conf ${BOOTSTRAPDIR}/port.mk \
-	  ${WRKDIR}${LOCALBASE}/share/mk
+	${CP} ${SOAP_MKS} ${WRKDIR}${LOCALBASE}/share/mk
 
 build-tools::
 	for tool in ${CORE_TOOLS}; do \
-	  (PATH=${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}; export PATH; \
-	   cd ${PORTSDIR}/$${tool} && \
-	     ${BMAKE} ${BUILD_OPTS} install); \
+	  (cd ${PORTSDIR}/$${tool} && \
+	    ${ENV} PATH=${PATH} ${BMAKE} ${BUILD_OPTS} install); \
 	done
 
 build-package::
 	for tool in ${CORE_TOOLS}; do \
-	  (PATH=${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}; export PATH; \
-	   cd ${PORTSDIR}/$${tool} && \
-	     ${BMAKE} ${BUILD_PACKAGE_OPTS} package); \
+	  (cd ${PORTSDIR}/$${tool} && \
+	     ${ENV} PATH=${PATH} ${BMAKE} ${BUILD_PACKAGE_OPTS} package); \
 	done
 	for tool in ${CORE_TOOLS}; do \
-	  (PATH=${WRKDIR}${LOCALBASE}/bin:${STANDARD_PATH}; export PATH; \
-	   cd ${PORTSDIR}/$${tool} && \
-	     ${BMAKE} ${BUILD_OPTS} release); \
+	  (cd ${PORTSDIR}/$${tool} && \
+	     ${ENV} PATH=${PATH} ${BMAKE} ${BUILD_OPTS} release); \
 	done
-
 
 build-misc-package::
 	${MKDIR} ${WRKDIR}/spool
@@ -121,7 +131,7 @@ build-misc-package::
 	       ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
 	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG} all
-	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG}
+	${GZIP_CMD} ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG}
 
 clean:
 	${RM} -rf config.cache config.log config.status

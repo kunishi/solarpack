@@ -1,6 +1,6 @@
 #
 # Bootstrap makefile for building lukemftp
-# $Id: Makefile.lukemftp,v 1.4 2000/09/27 01:25:18 kunishi Exp $
+# $Id: Makefile.lukemftp,v 1.5 2000/09/27 11:10:05 kunishi Exp $
 #
 
 TARGET_CMD=	lukemftp
@@ -14,12 +14,19 @@ SRCURL=		ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/
 FETCH_CMD=	/usr/bin/ftp
 FETCH_SCRIPT=	${BOOTSTRAPDIR}/get-${TARGET_CMD}
 FETCH_SITE=	ftp.netbsd.org
+FETCH_DIR=	/pub/NetBSD/misc/lukemftp
 
 include ${BOOTSTRAPDIR}/rule.mk
 
 fetch:
+	${RM} ${FETCH_SCRIPT}
+	${ECHO_MSG} "user anonymous ${MAINTAINER}" > ${FETCH_SCRIPT}
+	${ECHO_MSG} "binary" >> ${FETCH_SCRIPT}
+	${ECHO_MSG} "cd ${FETCH_DIR}" >> ${FETCH_SCRIPT}
+	${ECHO_MSG} "get ${DISTFILES}" >> ${FETCH_SCRIPT}
+	${ECHO_MSG} "quit" >> ${FETCH_SCRIPT}
 	if [ ! -f ${DISTDIR}/${DISTFILES} ]; then \
-	  (cd ${DISTDIR}; ${FETCH_CMD} -n ${FETCH_SITE} <${FETCH_SCRIPT}); \
+	  (cd ${DISTDIR}; ${FETCH_CMD} -n ${FETCH_SITE} < ${FETCH_SCRIPT}); \
 	fi
 
 extract:	${FETCH_COOKIE}

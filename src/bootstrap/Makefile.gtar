@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building gtar
-# $Id: Makefile.gtar,v 1.3 2000/05/15 22:14:59 kunishi Exp $
+# $Id: Makefile.gtar,v 1.4 2000/09/27 11:10:05 kunishi Exp $
 #
 
 TARGET_CMD=	gtar
@@ -27,13 +27,13 @@ patch:		${EXTRACT_COOKIE}
 
 configure:	${PATCH_COOKIE}
 	cd ${WORKDIR}/${DISTNAME} && \
-	  ${ENV} CC=${TMPPREFIX}/bin/gcc ./configure --prefix=${TMPPREFIX} --program-prefix=g
+	  ./configure --prefix=${TMPPREFIX} --program-prefix=g
 
 build:		${CONFIGURE_COOKIE}
-	cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake
+	cd ${WORKDIR}/${DISTNAME} && gmake
 
 install:	${BUILD_COOKIE}
 	if [ ! -f ${INSTALL_COOKIE} ]; then \
-	  cd ${WORKDIR}/${DISTNAME} && ${TMPPREFIX}/bin/gmake install; \
+	  cd ${WORKDIR}/${DISTNAME} && gmake install; \
 	fi
 	${TOUCH} ${INSTALL_COOKIE}
