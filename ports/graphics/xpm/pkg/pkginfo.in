@@ -1,9 +1,0 @@
-PKG=OPENxpm
-NAME=X PixMap library and its tools
-ARCH=%%ARCH%%
-VERSION=3.4k
-CATEGORY=application
-VENDOR=Arnaud Le Hors <lehors@sophia.inria.fr>, <http://www.inria.fr/koala/lehors/xpm.html>.
-EMAIL=%%PKG_MAINTAINER%%
-BASEDIR=%%BASEDIR%%
-CLASSES=none
