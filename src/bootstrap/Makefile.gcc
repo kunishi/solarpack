@@ -1,11 +1,11 @@
 #
 # Bootstrap makefile for building gcc
-# $Id: Makefile.gcc,v 1.1 2000/01/05 10:55:33 kunishi Exp $
+# $Id: Makefile.gcc,v 1.2 2000/05/12 09:14:01 kunishi Exp $
 #
 
 TARGET_CMD=	gcc
 
-include ${TOPDIR}/bootstrap/config.mk
+include ${BOOTSTRAPDIR}/config.mk
 
 DISTNAME=	gcc-2.95.2
 DISTFILES=	gcc-2.95.2.tar.gz

@@ -1,11 +1,11 @@
 #
 # bootstrap makefile for building md5
-# $Id: Makefile.md5,v 1.2 2000/05/02 05:06:49 kunishi Exp $
+# $Id: Makefile.md5,v 1.3 2000/05/12 09:14:01 kunishi Exp $
 #
 
 TARGET_CMD=	md5
 
-include ${TOPDIR}/bootstrap/config.mk
+include ${BOOTSTRAPDIR}/config.mk
 
 DISTNAME=	MD5
 DISTFILES=	MD5.tar.Z

@@ -1,6 +1,7 @@
 ###
 # solpkg root directory. 
 SOLPKGDIR=	@solpkg_topdir@
+SOLPKGBINDIR=	${SOLPKGDIR}/bin
 #
 # The directory where solpkg ports tree are in.
 # Edit by yourself to fit your own environment.
@@ -8,7 +9,7 @@ SOLPKGDIR=	@solpkg_topdir@
 SOLPKGSRCDIR=	/export/pub/cvs/solpkg
 #
 # C compiler for building packages.
-#CC=	${SOLPKGDIR}/bin/gcc
+#CC=	${SOLPKGBINDIR}/gcc
 #
 # package maintainer.
 #

@@ -1,11 +1,11 @@
 #
 # Bootstrap makefile for building lukemftp
-# $Id: Makefile.lukemftp,v 1.2 2000/05/02 05:06:49 kunishi Exp $
+# $Id: Makefile.lukemftp,v 1.3 2000/05/12 09:14:01 kunishi Exp $
 #
 
 TARGET_CMD=	lukemftp
 
-include ${TOPDIR}/bootstrap/config.mk
+include ${BOOTSTRAPDIR}/config.mk
 
 DISTNAME=	lukemftp-1.2
 DISTFILES=	lukemftp-1.2.tar.gz

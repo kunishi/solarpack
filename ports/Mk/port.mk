@@ -1,9 +1,9 @@
 #
-# $Id: port.mk,v 1.54 2000/04/26 08:32:45 kunishi Exp $
+# $Id: port.mk,v 1.55 2000/05/12 09:14:01 kunishi Exp $
 #
 
-# ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
-# (${SOLPKGDIR}/bin/bmake automatically searches ${SOLPKGDIR}/share/mk 
+# ${SOLPKGDIR} and ${SOLPKGBINDIR} are set in ${SOLPKGDIR}/share/mk/solpkg.conf.
+# (${SOLPKGBINDIR}/bmake automatically searches ${SOLPKGDIR}/share/mk 
 #  as makefile directory.)
 # ${SOLPKGSRCDIR} is set in ${SOLPKGDIR}/share/mk/port.mk.
 
@@ -142,14 +142,14 @@ RELEASE_COOKIE?=	${WRKDIR}/.release_done
 
 NOTHING_TO_DO?=		/usr/bin/true
 
-CC?=		${SOLPKGDIR}/bin/gcc
-GMAKE?=		${SOLPKGDIR}/bin/gmake
+CC?=		${SOLPKGBINDIR}/gcc
+GMAKE?=		${SOLPKGBINDIR}/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 
 CONFIGURE_ENV+=	CC="${CC}" \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-MD5?=		${SOLPKGDIR}/bin/md5
+MD5?=		${SOLPKGBINDIR}/md5
 MD5_FILE=	${FILESDIR}/md5
 
 MAKEFILE?=	Makefile
@@ -169,17 +169,17 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
-FETCH_CMD?=	${SOLPKGDIR}/bin/ftp
+FETCH_CMD?=	${SOLPKGBINDIR}/ftp
 FETCH_FLAGS?=	
 
-PATCH?=		${SOLPKGDIR}/bin/patch
+PATCH?=		${SOLPKGBINDIR}/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 PATCH_ARGS?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
-TAR?=		${SOLPKGDIR}/bin/gtar
+TAR?=		${SOLPKGBINDIR}/gtar
 
 EXTRACT_CMD?=	${GZIP_CMD}
 
@@ -214,8 +214,8 @@ ENV?=		/usr/bin/env
 EXPR?=		/usr/bin/expr
 FIND?=		/usr/bin/find
 GREP?=		/usr/bin/grep
-GZCAT?=		${SOLPKGDIR}/bin/gzip -cd
-GZIP?=		${SOLPKGDIR}/bin/gzip
+GZCAT?=		${SOLPKGBINDIR}/gzip -cd
+GZIP?=		${SOLPKGBINDIR}/gzip
 INSTALL?=	/usr/ucb/install
 LN?=		/usr/bin/ln
 MV?=		/usr/bin/mv

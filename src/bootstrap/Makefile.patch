@@ -1,11 +1,11 @@
 #
 # bootstrap makefile for building GNU patch
-# $Id: Makefile.patch,v 1.1 2000/01/05 10:55:34 kunishi Exp $
+# $Id: Makefile.patch,v 1.2 2000/05/12 09:14:01 kunishi Exp $
 #
 
 TARGET_CMD=	patch
 
-include ${TOPDIR}/bootstrap/config.mk
+include ${BOOTSTRAPDIR}/config.mk
 
 DISTNAME=	patch-2.5
 DISTFILES=	${DISTNAME}.tar.gz

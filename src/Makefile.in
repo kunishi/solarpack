@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.12 2000/05/11 07:42:32 kunishi Exp $
+# $Id: Makefile.in,v 1.13 2000/05/12 09:14:01 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
@@ -39,23 +39,21 @@ STANDARD_PATH=	/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:/usr/ucb
 
 RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
-WORKDIR=	${CWD}/work
 
-MAKEFLAGS=	TOPDIR=${CWD}
+MAKEFLAGS=	TOPDIR=${CWD} \
+		BOOTSTRAPDIR=${BOOTSTRAPDIR}
 
-CORE_TOOLS=	\
-		bmake \
-		gcc \
-		gmake \
-		gtar \
-		gzip \
-		lukemftp \
-		md5 \
-		patch \
-		texinfo
+CORE_TOOLS=	bmake gcc gmake gtar gzip lukemftp md5 patch texinfo
+
+BUILD_OPTS=		SOLPKGSRCDIR=${CWD} \
+			SOLPKGDIR=${SOLPKGDIR} \
+			SOLPKGBINDIR=${WRKDIR}/usr/local/bin \
+			RELEASE_PKG_DIR=${RELEASEDIR} \
+			CORE_TOOLS=yes 
 
 BUILD_PACKAGE_OPTS=	SOLPKGSRCDIR=${CWD} \
 			SOLPKGDIR=${SOLPKGDIR} \
+			SOLPKGBINDIR=${WRKDIR}/usr/local/bin \
 			RELEASE_PKG_DIR=${RELEASEDIR} \
 			CORE_TOOLS=yes 
 
@@ -65,6 +63,7 @@ all:
 bootstrap::
 	${MAKE} build-strap-tools
 	${MAKE} prepare-for-package
+	${MAKE} build-tools
 	${MAKE}	build-package
 	${MAKE} build-misc-package
 
@@ -86,12 +85,25 @@ prepare-for-package::
 	${CP} ${BOOTSTRAPDIR}/solpkg.conf ${BOOTSTRAPDIR}/port.mk \
 	  ${WRKDIR}/usr/local/share/mk
 
+build-tools::
+	for tool in ${CORE_TOOLS}; do \
+	  (PATH=${WRKDIR}/usr/local/bin:${STANDARD_PATH}; export PATH; \
+	   cd ${PORTSDIR}/$${tool} && \
+	     ${BMAKE} ${BUILD_OPTS} install); \
+	done
+
 build-package::
 	for tool in ${CORE_TOOLS}; do \
 	  (PATH=${WRKDIR}/usr/local/bin:${STANDARD_PATH}; export PATH; \
 	   cd ${PORTSDIR}/$${tool} && \
-	     ${BMAKE} ${BUILD_PACKAGE_OPTS} release); \
+	     ${BMAKE} ${BUILD_PACKAGE_OPTS} package); \
 	done
+	for tool in ${CORE_TOOLS}; do \
+	  (PATH=${WRKDIR}/usr/local/bin:${STANDARD_PATH}; export PATH; \
+	   cd ${PORTSDIR}/$${tool} && \
+	     ${BMAKE} ${BUILD_OPTS} release); \
+	done
+
 
 build-misc-package::
 	${MKDIR} ${WRKDIR}/spool
@@ -110,10 +122,10 @@ clean:
 	${RM} -rf ${WRKDIR}
 	${RM} ${CWD}/bin
 
-releaseclean:	clean
+releaseclean:
 	${RM} -rf ${RELEASEDIR}
 
-distclean:	releaseclean
+distclean:
 	${RM} -f Makefile
 	${RM} -rf ${RELEASEDIR}
-	${RM} ${DISTDIR}/*.tar ${DISTDIR}/*.tar.gz ${DISTDIR}/*.tar.Z
+	${RM} -f ${DISTDIR}/*.tar ${DISTDIR}/*.tar.gz ${DISTDIR}/*.tar.Z
