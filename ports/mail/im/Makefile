@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.6 2000/09/27 01:27:52 kunishi Exp $
+# $Id: Makefile,v 1.7 2001/11/13 11:07:37 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -16,6 +16,7 @@ MASTER_SITES=	ftp://ftp.mew.org/pub/Mew/
 
 GNU_CONFIGURE=yes
 CONFIGURE_ARGS+=	--enable-rpop
+USE_PERL5=	yes
 
 EDITABLE_FILES+=	lib/im/SiteConfig
 DOCS=	00changes 00copyright 00copyright.jis 00perl 00readme 00usage \
@@ -23,8 +24,6 @@ DOCS=	00changes 00copyright 00copyright.jis 00perl 00readme 00usage \
 	man/imget.jis man/imhist.jis man/imjoin.jis man/immv.jis \
 	man/impack.jis man/imput man/imput.jis man/imrm.jis \
 	man/imsetup.jis man/imsort.jis man/imstore.jis man/imtar.jis
-
-RUN_DEPENDS=	OPENperl:${PORTSDIR}/lang/perl5
 
 post-install:
 	${MKDIR} ${INSTPREFIX}/share/doc/im

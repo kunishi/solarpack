@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/09/27 01:27:42 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/11/13 11:07:37 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -14,8 +14,6 @@ VENDOR=		Metamata, Inc. <http://www.metamata.com/JavaCC/>
 
 MASTER_SITES=	#
 DISTFILES=	JavaCC1_1.zip Docs.class
-
-BUILD_DEPENDS=	OPENperl:${PORTSDIR}/lang/perl5
 
 NO_BUILD=	yes
 IS_INTERACTIVE=	yes
