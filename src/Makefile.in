@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.20 2000/05/17 02:52:20 kunishi Exp $
+# $Id: Makefile.in,v 1.21 2000/05/17 05:41:47 kunishi Exp $
 #
 
 include version.mk
@@ -42,7 +42,9 @@ RELEASE_PKG_DIR=	${RELEASEDIR}/${ARCH}/${OSREL}
 RELEASE_DATE:sh=	/usr/bin/date +%Y%m%d
 RELEASE_TIME:sh=	/usr/bin/date +%Y.%m.%d.%H.%M
 RELEASE_HOST:sh=	/usr/bin/hostname
+
 SOAP_PSTAMP=		${RELEASE_HOST}:${RELEASE_TIME}
+SOAP_CONF_PKG=		${PKGNAME}-conf-${SOAP_VERSION}-${SOAP_REV}
 
 MAKEFLAGS=	TOPDIR=${CWD} \
 		BOOTSTRAPDIR=${BOOTSTRAPDIR}
@@ -118,8 +120,8 @@ build-misc-package::
 		-e 's!%%SOAP_PSTAMP%%!${SOAP_PSTAMP}!' \
 	       ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
-	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${PKGNAME}-conf-${SOAP_VERSION} all
-	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${PKGNAME}-conf-${SOAP_VERSION}
+	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG} all
+	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${SOAP_CONF_PKG}
 
 clean:
 	${RM} -rf config.cache config.log config.status
