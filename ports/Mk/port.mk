@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.32 1999/08/20 10:22:06 kunishi Exp $
+# $Id: port.mk,v 1.33 1999/08/20 12:01:34 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -67,6 +67,7 @@ CATEGORY?=	application
 MAINTAINER?=	${PKG_MAINTAINER}
 .if defined(USE_INSTALL_INFO)
 CLASSES+=	info
+RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/devel-core/texinfo
 .endif
 CLASSES+=	none
 # NAME, VENDOR, MAINTAINER, and CLASSES are processed directly,
@@ -233,6 +234,7 @@ MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX}
 
 .if defined(USE_GMAKE)
 MAKE_ENV+=	MAKE=${GMAKE}
+BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel-core/gmake
 .endif
 
 .if defined(USE_IMAKE)
@@ -625,15 +627,15 @@ depends:	lib-depends
 	@cd ${MASTERDIR} && ${MAKE} build-depends
 	@cd ${MASTERDIR} && ${MAKE} run-depends
 
-.if make(build-depends)
+.if make(build-depends) && defined(BUILD_DEPENDS)
 DEPENDS_TMP+=	${BUILD_DEPENDS}
 .endif
 
-.if make(lib-depends)
+.if make(lib-depends) && defined(LIB_DEPENDS)
 DEPENDS_TMP+=	${LIB_DEPENDS}
 .endif
 
-.if make(run-depends)
+.if make(run-depends) && defined(RUN_DEPENDS)
 DEPENDS_TMP+=	${RUN_DEPENDS}
 .endif
 
