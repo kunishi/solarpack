@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.15 2000/06/02 00:46:08 kunishi Exp $
+# $Id: Makefile,v 1.16 2000/06/26 02:22:28 kunishi Exp $
 #
 
 PORTNAME=	gmake
-VERSION=	3.79
+VERSION=	3.79.1
 PORTREV=	1
 
 .if defined(CORE_TOOLS)
@@ -18,6 +18,10 @@ VENDOR=		${VENDOR_GNU}
 DISTNAME=	make-${VERSION}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/make/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/make/
+
+.if !defined(CORE_TOOLS)
+LIB_DEPENDS+=	GNUgetxt:${PORTSDIR}/devel/gettext
+.endif
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
