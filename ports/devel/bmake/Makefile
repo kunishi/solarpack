@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.16 2000/06/01 13:15:20 kunishi Exp $
+# $Id: Makefile,v 1.17 2000/06/06 04:51:29 kunishi Exp $
 #
 
 PORTNAME=	bmake
@@ -23,6 +23,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKEFILE=	makefile.boot
+ALL_TARGET=	bmake
 MAKE_ARGS+=	XDEFS='-D_PATH_DEFSYSMK=\"${PREFIX}/share/mk/sys.mk\" -D_PATH_DEFSYSPATH=\"${PREFIX}/share/mk:/usr/local/share/mk:/opt/share/mk\"'
 
 ALL_TARGET=	bmake
