@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2001/03/03 06:38:45 kunishi Exp $
+# $Id: Makefile,v 1.6 2001/03/03 06:39:20 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -26,7 +26,7 @@ CONFIGURE_ARGS+= \
 	--enable-menubar --enable-graphics --enable-xim \
 	--enable-languages --with-encoding=EUCJ \
 	--disable-backspace-key --disable-delete-key \
-	--mandir='$${prefix}/share/man' --libdir='$${prefix}/lib'
+	--mandir='$${prefix}/share/man'
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/bin ${INSTPREFIX}/share/man/man1
