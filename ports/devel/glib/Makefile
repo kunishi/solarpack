@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.2 2000/01/18 12:11:10 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:46 kunishi Exp $
 # 
+
+PORTNAME=	glib
+VERSION=	1.2.3
+PORTREV=	1
 
 PKG=		GNUglib
 NAME=		some useful routines for C programming
-VERSION=	1.2.3
-VENDOR=		http://www.gtk.org/
 
-DISTNAME=	glib-${VERSION}
+VENDOR=		http://www.gtk.org/
 MASTER_SITES=	ftp://ftp.gimp.org/pub/gtk/v1.2/
 
 GNU_CONFIGURE=	yes

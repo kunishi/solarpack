@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.4 2000/04/26 08:32:46 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	perl
+VERSION=	5.00503
+PORTREV=	1
 
 PKG=		OPENperl
 NAME=		Perl Programming Language
-VERSION=	5.00503
-VENDOR=		Larry Wall
 
+VENDOR=		Larry Wall
 DISTNAME =	perl5.005_03
-PKGNAME =	perl-${VERSION}
 MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/lang/perl/CPAN/src/5.0/
 
 HAS_CONFIGURE=	yes

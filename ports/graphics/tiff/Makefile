@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.4 2000/04/26 08:32:46 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	tiff
+VERSION=	3.5.5
+PORTREV=	1
 
 PKG=		OPENtiff
 NAME=		TIFF Software Distribution
-VERSION=	3.5.5
-VENDOR=		Silicon Graphics, Inc.
 
+VENDOR=		Silicon Graphics, Inc.
 DISTNAME=	tiff-v${VERSION}
-PKGNAME=	tiff-${VERSION}
 MASTER_SITES=	http://www.libtiff.org/
 
 LIB_DEPENDS=	OPENzlib:${PORTSDIR}/devel/zlib \

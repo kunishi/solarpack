@@ -1,13 +1,16 @@
 #
-# $Id: Makefile,v 1.2 2000/01/19 01:31:20 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	tex
+VERSION=	7.2b
+PORTREV=	1
 
 PKG=		OPENtex
 NAME=		TeX-related programs that use the kpathsea library.
-VERSION=	7.2b
-VENDOR=		TeX Users Group <http://www.tug.org/>
 
-DISTNAME=	web2c-7.2b
+VENDOR=		TeX Users Group <http://www.tug.org/>
+DISTNAME=	web2c-${VERSION}
 MASTER_SITES=	ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/systems/web2c/ \
 		ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/macros/latex/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \

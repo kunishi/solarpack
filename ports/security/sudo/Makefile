@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.2 2000/04/26 08:32:47 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	sudo
+VERSION=	1.6.3
+PORTREV=	1
 
 PKG=		OPENsudo
 NAME=		CU version of sudo
-VERSION=	1.6.3
-VENDOR=		http://www.courtesan.com/
 
-DISTNAME=	sudo-${VERSION}
+VENDOR=		http://www.courtesan.com/
 MASTER_SITES=	ftp://ftp.cs.colorado.edu/pub/sysadmin/sudo/
 
 GNU_CONFIGURE=	yes

@@ -1,20 +1,22 @@
 #
-# $Id: Makefile,v 1.4 1999/06/09 02:36:00 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:49 kunishi Exp $
 #
+
+PORTNAME=	xpbiff
+VERSION=	1.27
+PORTREV=	1
 
 PKG=		OPENxpbyb
 NAME=		Xpbiff with youbin support
-VERSION=	1.27
-VENDOR=		Kazuhiko Shutoh <shutoh@lm.emi.yamaha.co.jp>
 
-DISTNAME=	xpbiff
-PKGNAME=	xpbiff-${VERSION}
+VENDOR=		Kazuhiko Shutoh <shutoh@lm.emi.yamaha.co.jp>
+DISTNAME=	${PORTNAME}
 MASTER_SITES=	ftp://ftp.ics.es.osaka-u.ac.jp/pub/xpbiff/
 EXTRACT_SUFX=	.tar.Z
-DISTFILES=	xpbiff-1.27-with-YOUBIN.tar.gz.uu
+DISTFILES=	${DISTNAME}-${VERSION}-with-YOUBIN.tar.gz.uu
 
 PATCH_SITES=	ftp://ftp.ics.es.osaka-u.ac.jp/pub/xpbiff/
-PATCHFILES=	xpbiff-1.27-with-YOUBIN.patch-1
+PATCHFILES=	${DISTNAME}-${VERSION}-with-YOUBIN.patch-1
 PATCH_DIST_STRIP=	-p1
 
 USE_IMAKE=	yes

@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:35:58 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	makejvf
+VERSION=	1.0
+PORTREV=	1
 
 PKG=		OPENmkjvf
 NAME=		A utility for making Japanese virtual fonts for ASCII pTeX
-VERSION=	1.0
-VENDOR=		ASCII Corp., Inc. <http://www.ascii.co.jp/>
 
-DISTNAME=	makejvf-${VERSION}
+VENDOR=		ASCII Corp., Inc. <http://www.ascii.co.jp/>
 MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/jvf/
 
 do-install:

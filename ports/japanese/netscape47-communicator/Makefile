@@ -1,32 +1,36 @@
 #
-# $Id: Makefile,v 1.2 2000/04/26 08:32:46 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	ja-netscape-communicator
+VERSION=	4.72
+PORTREV=	1
 
 PKG=		NSjacomm
 NAME=		Netscape Communicator with Japanese localization
-VERSION=	4.72
 VENDOR=		Netscape Communications Corporation
 
 ARCH!=		/usr/bin/mach
 
+NS_SHORTVERSION=	472
+
 .if (${ARCH} == "sparc")
-DISTNAME=	communicator-v472-export.sparc-sun-solaris2.5.1
-MASTER_SITES=	ftp://ftp.netscape.com/pub/communicator/english/4.72/unix/supported/sunos551/complete_install/
+DISTNAME=	communicator-v${NS_SHORTVERSION}-export.sparc-sun-solaris2.5.1
+MASTER_SITES=	ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551/complete_install/
 .elif (${ARCH} == "i386")
-DISTNAME=	communicator-v472-export.x86-sun-solaris2.5.1
-MASTER_SITES=	ftp://ftp.netscape.com/pub/communicator/english/4.72/unix/supported/sunos551_x86/complete_install/
+DISTNAME=	communicator-v${NS_SHORTVERSION}-export.x86-sun-solaris2.5.1
+MASTER_SITES=	ftp://ftp.netscape.com/pub/communicator/english/${VERSION}/unix/supported/sunos551_x86/complete_install/
 .endif
-PKGNAME=	ja-netscape-communicator-${VERSION}
 MASTER_SITES+=	http://www.bres.tsukuba.ac.jp/~yohta/netscape/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		communicator-ja-euc-v472-export.generic-generic-generic.tar.gz
+		communicator-ja-euc-v${NS_SHORTVERSION}-export.generic-generic-generic.tar.gz
 
 NO_BUILD=	yes
 PREFIX=		/usr
 .if (${ARCH} == "sparc")
-WRKSRC?=	${WRKDIR}/communicator-v472.sparc-sun-solaris2.5.1
+WRKSRC?=	${WRKDIR}/communicator-v${NS_SHORTVERSION}.sparc-sun-solaris2.5.1
 .elif (${ARCH} == "i386")
-WRKSRC?=	${WRKDIR}/communicator-v472.x86-sun-solaris2.5.1
+WRKSRC?=	${WRKDIR}/communicator-v${NS_SHORTVERSION}.x86-sun-solaris2.5.1
 .endif
 
 MAKE_INSTALL_ENV+=	MOZILLA_HOME=${INSTPREFIX}/local/netscape

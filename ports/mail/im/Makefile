@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.4 2000/04/26 08:32:46 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	im
+VERSION=	140
+PORTREV=	1
 
 PKG=		OPENim
 NAME=		Internet Message, Perl5 commands to integrate Email and NetNews handling.
-VERSION=	140
-VENDOR=		IM developing team <http://www.mew.org/>
 
-DISTNAME=	im-${VERSION}
+VENDOR=		IM developing team <http://www.mew.org/>
 MASTER_SITES=	ftp://ftp.mew.org/pub/Mew/
 
 GNU_CONFIGURE=yes

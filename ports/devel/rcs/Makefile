@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.4 1999/06/05 05:47:19 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
 #
+
+PORTNAME=	rcs
+VERSION=	5.7
+PORTREV=	1
 
 PKG=		GNUrcs
 NAME=		GNU rcs, the Revision Control System
-VERSION=	5.7
-VENDOR=		${VENDOR_GNU}
 
-DISTNAME =	rcs-${VERSION}
+VENDOR=		${VENDOR_GNU}
 MASTER_SITES = 	ftp://ring.nacsis.ac.jp/pub/GNU/rcs/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/rcs/
 GNU_CONFIGURE=	yes

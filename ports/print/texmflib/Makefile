@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.1 1999/08/31 12:09:13 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	texmflib
+VERSION=	7.3
+PORTREV=	1
 
 PKG=		OPENtxmfl
 NAME=		Basic TeX&mf input files distribution.
-VERSION=	7.3
-VENDOR=		kb@cs.umb.edu
 
-DISTNAME=	texmflib-${VERSION}
+VENDOR=		kb@cs.umb.edu
 MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/ptex218/web2c/
 
 NO_BUILD=	yes

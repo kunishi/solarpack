@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.2 2000/01/19 01:38:20 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	tcsh
+VERSION=	6.09.00
+PORTREV=	1
 
 PKG=		OPENtcsh
 NAME=		tcsh, and extended C-shell with many useful features
-VERSION=	6.09
 VENDOR=		Christos Zoulas <christos@gw.com>
 
-DISTNAME =	tcsh-${VERSION}
-PKGNAME=	tcsh-6.09.00
+DISTNAME=	${PORTNAME}-6.09
 MASTER_SITES =	ftp://ftp.ccs.dendai.ac.jp/pub/misc/shell/tcsh/ \
 		ftp://ftp.astron.com/pub/tcsh/
 

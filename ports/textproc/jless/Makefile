@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.2 2000/04/26 08:32:47 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	ja-less
+VERSION=	332+iso248
+PORTREV=	1
 
 PKG=		OPENjless
 NAME=		less, a paginator
-VERSION=	332+iso248
-VENDOR=		Kazushi Marukawa (jam@pobox.com), http://www.pobox.com/~jam/less/
 
+VENDOR=		Kazushi Marukawa (jam@pobox.com), http://www.pobox.com/~jam/less/
 DISTNAME=	less-332
-PKGNAME=	ja-less-332+iso248
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/less/ \
 		ftp://hiroshima.isdn.uiuc.edu/less/contrib/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \

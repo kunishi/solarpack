@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.2 2000/01/25 13:40:08 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	ssh
+VERSION=	1.2.27
+PORTREV=	1
 
 PKG=		OPENssh1
 NAME=		Secure shell version 1
-VERSION=	1.2.27
-VENDOR=		SSH Communications Security, Espoo, Finland, http://www.cs.hut.fi/ssh
 
-DISTNAME=	ssh-${VERSION}
+VENDOR=		SSH Communications Security, Espoo, Finland, http://www.cs.hut.fi/ssh
 MASTER_SITES=	ftp://ftp.cs.hut.fi/pub/ssh/
 
 GNU_CONFIGURE=	yes

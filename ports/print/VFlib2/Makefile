@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.1 2000/01/19 11:36:01 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	VFlib2
+VERSION=	2.25.1
+PORTREV=	1
 
 PKG=		OPENvflib
 NAME=		VFlib, a library for converting vector fonts to bitmap data.
-VERSION=	2.25.1
-VENDOR=		Hirotsugu Kakugawa <h.kakugawa@computer.org>
 
-DISTNAME=	VFlib2-${VERSION}
+VENDOR=		Hirotsugu Kakugawa <h.kakugawa@computer.org>
 MASTER_SITES=	ftp://gull.se.hiroshima-u.ac.jp/pub/TypeHack/
 
 LIB_DEPENDS=	OPENft:${PORTSDIR}/print/freetype

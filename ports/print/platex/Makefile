@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.1 2000/01/19 10:15:16 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	ja-platex2e-jis
+VERSION=	1999.08.09
+PORTREV=	1
 
 PKG=		OPENpltxj
 NAME=		ASCII Japanese pLaTeX2e, JIS version
-VERSION=	1999.08.09
-VENDOR=		ASCII Corporation, http://www.ascii.co.jp/ptex/
 
+VENDOR=		ASCII Corporation, http://www.ascii.co.jp/ptex/
 DISTNAME=	pl19990809j
-PKGNAME=	ja-platex2e-jis-1999.08.09
 MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/platex/1999-08-09/ \
 		ftp://ftp.jp.freebsd.org/pub/FreeBSD/ports/distfiles/LOCAL_PORTS/ \
 		ftp://ftp.ams.org/pub/tex/

@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.3 2000/01/19 09:16:34 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	ja-ptex
+VERSION=	2.1.8
+PORTREV=	1
 
 PKG=		OPENptexj
 NAME=		ASCII pTeX, JIS version
-VERSION=	2.1.8
-VENDOR=		ASCII Corporation, Inc., http://www.ascii.co.jp/pb/ptex/
 
+VENDOR=		ASCII Corporation, Inc., http://www.ascii.co.jp/pb/ptex/
 DISTNAME=	web2c-7.2
-PKGNAME=	ptex-2.1.8
 MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/ptex218/ \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/ptex218/web2c/ \
 		ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/systems/web2c/ \

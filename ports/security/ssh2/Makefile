@@ -1,13 +1,16 @@
 #
-# $Id: Makefile,v 1.2 1999/08/26 10:21:07 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	ssh2
+VERSION=	2.0.13
+PORTREV=	1
 
 PKG=		OPENssh2
 NAME=		Secure shell version 2
-VERSION=	2.0.13
-VENDOR=		SSH Communications Security Ltd., Finland <http://www.ssh.fi/>.
 
-DISTNAME=	ssh-2.0.13
+VENDOR=		SSH Communications Security Ltd., Finland <http://www.ssh.fi/>.
+DISTNAME=	ssh-${VERSION}
 MASTER_SITES=	ftp://ftp.cs.hut.fi/pub/ssh/ \
 		ftp://ftp.kyoto.wide.ad.jp/pub/security/ssh/
 

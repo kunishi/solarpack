@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.4 1999/06/09 02:35:59 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	fvwm-i18n
+VERSION=	2.2
+PORTREV=	1
 
 PKG=		OPENfvwm
 NAME=		fvwm version 2
-VERSION=	2.2
 VENDOR=		Robert Nation, <http://www.fvwm.org/>
 
 DISTNAME =	fvwm-${VERSION}
-PKGNAME =	fvwm-i18n-${VERSION}
 MASTER_SITES =	ftp://ftp.fvwm.org/pub/fvwm/version-2/
 PATCH_SITES =	ftp://ftp.ics.es.osaka-u.ac.jp/pub/CFAN/fvwm-users-jp/I18N_MB/
 PATCHFILES =	${DISTNAME}-I18N_MB-1999042001.patch

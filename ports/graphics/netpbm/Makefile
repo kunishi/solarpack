@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.3 2000/04/26 08:32:46 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	netpbm
+VERSION=	8.4
+PORTREV=	1
 
 PKG=		OPENntpbm
 NAME=	A toolkit for conversion of images between different formats
-VERSION=	8.4
-VENDOR=		SunSITE, http://metalab.unc.edu/
 
-DISTNAME=	netpbm-${VERSION}
+VENDOR=		SunSITE, http://metalab.unc.edu/
 MASTER_SITES=	ftp://metalab.unc.edu/pub/Linux/apps/graphics/convert/
 EXTRACT_SUFX=	.tgz
 
@@ -15,8 +17,6 @@ LIB_DEPENDS=	OPENtiff:${PORTSDIR}/graphics/tiff \
 		OPENjpeg:${PORTSDIR}/graphics/jpeg \
 		OPENpng:${PORTSDIR}/graphics/png
 
-#WRKSRC=		${WRKDIR}/netpbm
-#USE_IMAKE=	yes
 USE_GMAKE=	yes
 
 PREFIX=		${LOCALBASE}

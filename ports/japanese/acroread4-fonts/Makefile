@@ -1,20 +1,25 @@
 #
-# $Id: Makefile,v 1.2 1999/06/16 10:54:42 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/05/17 06:42:47 kunishi Exp $
 #
+
+.if defined(JPFONT)
+PORTNAME=	ja-acrobat-reader
+.else
+PORTNAME=	acrobat-reader
+.endif
+VERSION=	4.0
+PORTREV=	1
 
 PKG=	ADBacrord
 NAME=	Adobe Acrobat Reader
-VERSION=	4.0
-VENDOR=	Adobe Systems Inc.
 
+VENDOR=	Adobe Systems Inc.
 DISTNAME=	sunsparc-arws-40
-PKGNAME=	acrobat-reader-${VERSION}
 MASTER_SITES=	ftp://ftp-pac.adobe.com/pub/adobe/acrobatreader/unix/4.x/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 WRKSRC=		${WRKDIR}
 
 .if defined(JPFONT)
-PKGNAME=	acrobat-reader-jp-${VERSION}
 DISTFILES+=	jpnfont.tar.gz
 PROTOTYPE_IN=	${PKGDIR}/prototype.jp.in
 .endif

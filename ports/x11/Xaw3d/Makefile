@@ -1,21 +1,23 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:35:58 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/05/17 06:42:48 kunishi Exp $
 #
+
+PORTNAME=	Xaw3d
+VERSION=	1.5
+PORTREV=	1
 
 PKG=		OPENxaw3d
 NAME=		Three-D Athena Widgets
-VERSION=	1.5
-VENDOR=		Kaleb S. Keithley <kaleb@opengroup.org>
 
-DISTNAME=	Xaw3d-1.5
+VENDOR=		Kaleb S. Keithley <kaleb@opengroup.org>
 MASTER_SITES=	ftp://ftp.x.org/contrib/widgets/Xaw3d/R6.3/
 
-WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
+WRKSRC=		${WRKDIR}/xc/lib/${PORTNAME}
 USE_IMAKE=	yes
 
 post-install:
-	${MKDIR} ${INSTPREFIX}/share/doc/Xaw3d
+	${MKDIR} ${INSTPREFIX}/share/doc/${PORTNAME}
 	${INSTALL} -c -m 644 -o root -g bin \
-	  ${WRKSRC}/README.XAW3D ${INSTPREFIX}/share/doc/Xaw3d
+	  ${WRKSRC}/README.XAW3D ${INSTPREFIX}/share/doc/${PORTNAME}
 
 .include <port.mk>

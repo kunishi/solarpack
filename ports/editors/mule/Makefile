@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.4 2000/04/26 08:32:45 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
 #
+
+PORTNAME=	ja-mule-canna+wnn6
+VERSION=	2.3@19.34b
+PORTREV=	1
 
 PKG=		GNUmule
 NAME=		GNU Multi-lingual Emacs
-VERSION=	2.3@19.34b
-VENDOR=		${VENDOR_GNU}
 
+VENDOR=		${VENDOR_GNU}
 DISTNAME =	emacs-19.34b
-PKGNAME =	ja-mule-canna+wnn6-${VERSION}
 MASTER_SITES =	ftp://ring.nacsis.ac.jp/pub/GNU/emacs/ \
 		ftp://etlport.etl.go.jp/pub/mule/
 

@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.4 2000/01/19 01:20:09 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
 #
+
+PORTNAME=	auctex
+VERSION=	9.9p
+PORTREV=	1
 
 PKG=		OPENauctx
 NAME=		A much enhanced LaTeX mode for GNU Emacs
-VERSION=	9.9p
-VENDOR=auc-tex_mgr@sunsite.auc.dk
 
-DISTNAME=	auctex-${VERSION}
+VENDOR=auc-tex_mgr@sunsite.auc.dk
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/text/CTAN/support/auctex/
 
 USE_GMAKE=	yes

@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.1 1999/10/28 04:24:58 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/05/17 06:42:46 kunishi Exp $
 #
+
+PORTNAME=	psepro
+VERSION=	6.0
+PORTREV=	1
 
 PKG=	OBJDpsepr
 NAME=	ObjectStore PSE Pro
-VERSION=	6.0
-VENDOR=	ObjectDesing Inc., http://www.objectdesign.com/
 
+VENDOR=	ObjectDesing Inc., http://www.objectdesign.com/
 DISTNAME=	proinst.class
-PKGNAME=	psepro-${VERSION}
 MASTER_SITES=	/export/pub/java/psepro60/GenJava.v6/
 DISTFILES=	${DISTNAME}
 

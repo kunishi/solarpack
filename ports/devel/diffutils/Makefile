@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.5 2000/01/18 11:55:28 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/05/17 06:42:46 kunishi Exp $
 #
+
+PORTNAME=	diffutils
+VERSION=	2.7
+PORTREV=	1
 
 PKG=		GNUdiff
 NAME=		GNU diffutils
-VERSION=	2.7
-VENDOR=		${VENDOR_GNU}
 
-DISTNAME=	diffutils-${VERSION}
+VENDOR=		${VENDOR_GNU}
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/diffutils/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/diffutils/
 GNU_CONFIGURE=	yes

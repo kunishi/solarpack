@@ -1,13 +1,15 @@
 # 
-# $Id: Makefile,v 1.3 1999/06/09 02:34:15 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/05/17 06:42:46 kunishi Exp $
 #
+
+PORTNAME=	tm
+VERSION=	7.106
+PORTREV=	1
 
 PKG=		OPENtm
 NAME=		Tools for MIME, MIME package for GNU Emacs
-VERSION=	7.106
-VENDOR=		MORIOKA Tomohiko <morioka@jaist.ac.jp>
 
-DISTNAME=	tm-${VERSION}
+VENDOR=		MORIOKA Tomohiko <morioka@jaist.ac.jp>
 MASTER_SITES=	ftp://ftp.jaist.ac.jp/pub/GNU/elisp/mime/
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/tm

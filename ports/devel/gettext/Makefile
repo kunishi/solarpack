@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.4 2000/01/18 11:58:25 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
 # 
+
+PORTNAME=	gettext
+VERSION=	0.10.35
+PORTREV=	1
 
 PKG=		GNUgetxt
 NAME=		GNU gettext package
-VERSION=	0.10.35
-VENDOR=		${VENDOR_GNU}
 
-DISTNAME=	gettext-${VERSION}
+VENDOR=		${VENDOR_GNU}
 MASTER_SITES=	ftp://alpha.gnu.ai.mit.edu/gnu/ \
 		ftp://alpha.gnu.org/pub/gnu/
 

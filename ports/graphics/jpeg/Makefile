@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:34:17 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	jpeg
+VERSION=	6b
+PORTREV=	1
 
 PKG=		OPENjpeg
 NAME=		The Independent JPEG Group's JPEG software
-VERSION=	6b
-VENDOR=		The Independent JPEG Group
 
+VENDOR=		The Independent JPEG Group
 DISTNAME=	jpegsrc.v6b
-PKGNAME=	jpeg-${VERSION}
 MASTER_SITES=	ftp://ftp.uu.net/graphics/jpeg/
 
 WRKSRC=		${WRKDIR}/${PKGNAME}

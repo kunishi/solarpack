@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.4 1999/06/05 07:59:19 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	ja-Canna
+VERSION=	3.5b2
+PORTREV=	1
 
 PKG=		OPENcanna
 NAME=		Canna, a Japanese input system
-VERSION=	3.5b2
-VENDOR=		NEC Corporation, Inc. <http://www.nec.co.jp/japanese/product/computer/soft/canna/>.
 
+VENDOR=		NEC Corporation, Inc. <http://www.nec.co.jp/japanese/product/computer/soft/canna/>.
 DISTNAME =	Canna35b2
-PKGNAME =	ja-Canna-${VERSION}
 MASTER_SITES =	ftp://ftp.nec.co.jp/pub/Canna/Canna35/ \
 		ftp://ring.nacsis.ac.jp/pub/text/xemacs/aux/
 

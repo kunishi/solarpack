@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.1 1999/08/25 08:16:13 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/05/17 06:42:49 kunishi Exp $
 #
+
+PORTNAME=	xml4j
+VERSION=	2.0.14
+PORTREV=	1
 
 PKG=		IBMxml4j
 NAME=		IBM XML Parser for Java
-VERSION=	2.0.14
-VENDOR=		IBM Corporation, http://www.alphaworks.ibm.com/
 
-DISTNAME=	xml4j_2_0_14
-PKGNAME=	xml4j-2.0.14
+VENDOR=		IBM Corporation, http://www.alphaworks.ibm.com/
+DISTNAME=	${PORTNAME}_2_0_14
 MASTER_SITES=	http://www.alphaworks.ibm.com/tech/xml4j/
 
 NO_FETCH=	Fetch ${DISTFILES} manually from ${MASTER_SITES}.

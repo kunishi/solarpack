@@ -1,14 +1,16 @@
 #
-# $Id: Makefile,v 1.1 1999/08/25 09:50:32 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/05/17 06:42:49 kunishi Exp $
 #
+
+PORTNAME=	xt
+VERSION=	19990822
+PORTREV=	1
 
 PKG=		JCLxt
 NAME=		XSL Transformation tool for Java
-VERSION=	19990822
-VENDOR=		James Clark, http://www.jclark.com/
 
-DISTNAME=	xt
-PKGNAME=	xt-19990822
+VENDOR=		James Clark, http://www.jclark.com/
+DISTNAME=	${PORTNAME}
 EXTRACT_SUFX=	.zip
 MASTER_SITES=	ftp://ftp.jclark.com/pub/xml/
 

@@ -1,13 +1,15 @@
 #
-# $Id: Makefile,v 1.7 2000/01/21 09:51:29 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/05/17 06:42:47 kunishi Exp $
 #
+
+PORTNAME=	dvipsk
+VERSION=	5.78
+PORTREV=	1
 
 PKG=		OPENadvps
 NAME=		dvipsk for ASCII pTeX
-VERSION=	5.78
-VENDOR=		TeX Users Group
 
-DISTNAME=	dvipsk-${VERSION}
+VENDOR=		TeX Users Group
 MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/ptex218/web2c/ \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/ptex218/
 DISTFILES=	web2c-7.2.tar.gz web-7.2.tar.gz \
