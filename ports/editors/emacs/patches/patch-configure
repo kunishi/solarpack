@@ -1,0 +1,11 @@
+--- configure.orig	Fri Feb 28 12:29:32 2003
++++ configure	Fri Feb 28 12:30:31 2003
+@@ -5439,7 +5439,7 @@
+ /* Override any gcc2 internal prototype to avoid an error.  */
+ /* We use char because int might match the return type of a gcc2
+     builtin and then its argument prototype would still apply.  */
+-char TIFFGetVersion();
++const char* TIFFGetVersion();
+ 
+ int main() {
+ TIFFGetVersion()

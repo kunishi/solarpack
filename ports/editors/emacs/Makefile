@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.2 2002/03/20 09:24:54 kunishi Exp $
+# $Id: Makefile,v 1.3 2003/02/28 04:19:24 kunishi Exp $
 #
 
 PORTNAME=	emacs
 VERSION=	21.2
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPUCemacs
 NAME=		GNU Emacs editor
@@ -21,9 +21,9 @@ PATCH_DIST_STRIP=	-p1
 
 LIB_DEPENDS=	OPUCjpeg:${PORTSDIR}/graphics/jpeg \
 		OPUCtiff:${PORTSDIR}/graphics/tiff \
-		OPENungif:${PORTSDIR}/graphics/libungif \
+		OPUCungif:${PORTSDIR}/graphics/libungif \
 		OPUCpng:${PORTSDIR}/graphics/png \
-		OPENxpm:${PORTSDIR}/graphics/xpm
+		OPUCxpm:${PORTSDIR}/graphics/xpm
 .if defined(USE_XAW3D)
 LIB_DEPENDS+=	OPUCxaw3d:${PORTSDIR}/graphics/xaw3d
 .endif
@@ -34,7 +34,6 @@ CONFIGURE_ARGS+=	--without-xim
 .if !defined(USE_XAW3D)
 CONFIGURE_ARGS+=	--with-x-toolkit=motif
 .endif
-USE_AUTOCONF=	yes
 USE_GMAKE=	yes
 PROTOTYPE_SUB+=	EMACS_VER=${VERSION}
 CLASS_INFO=	info/ada-mode info/autotype info/ccmode info/cl \
