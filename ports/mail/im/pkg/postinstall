@@ -1,1 +1,0 @@
-(cd $CLIENT_BASEDIR/lib/im && cp SiteConfig.sample SiteConfig)
