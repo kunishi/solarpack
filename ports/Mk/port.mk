@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.7 1999/05/21 02:14:16 kunishi Exp $
+# $Id: port.mk,v 1.8 1999/05/21 02:27:47 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -75,7 +75,8 @@ EXTRACT_ONLY?=	${DISTFILES}
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 PATCH_ARGS=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
-PATCH_DIST_ARGS=	-d ${WRKSRC} --forward --quiet -E ${PATCH_DIST_STRIP}
+PATCH_DIST_APPLY_DIR?=	${WRKSRC}
+PATCH_DIST_ARGS=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
 CONFIGURE_ENV=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
