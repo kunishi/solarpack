@@ -1,10 +1,9 @@
 PKG=OPENxaw3d
 NAME=Three-D Athena Widgets
 VERSION=1.5
-ARCH=sparc
+ARCH=%%ARCH%%
 CATEGORY=application
 VENDOR=Kaleb S. Keithley <kaleb@opengroup.org>
-NAME=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/openwin
+NAME=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none

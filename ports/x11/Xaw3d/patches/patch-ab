@@ -1,0 +1,18 @@
+--- Vendor.c.orig	Tue Oct 15 23:41:25 1996
++++ Vendor.c	Wed May 19 18:14:22 1999
+@@ -65,7 +65,6 @@
+ #include <X11/Xmu/Converters.h>
+ #include <X11/Xmu/Atoms.h>
+ #include <X11/Xmu/Editres.h>
+-#include <X11/Xmu/ExtAgent.h>
+ 
+ /* The following two headers are for the input method. */
+ 
+@@ -322,7 +321,6 @@
+ 	Cardinal    *num_args;
+ {
+     XtAddEventHandler(new, (EventMask) 0, TRUE, _XEditResCheckMessages, NULL);
+-    XtAddEventHandler(new, (EventMask) 0, TRUE, XmuRegisterExternalAgent, NULL);
+     XtCreateWidget("shellext", xawvendorShellExtWidgetClass,
+ 		   new, args, *num_args);
+ }
