@@ -1,7 +1,7 @@
---- Makefile.in.orig	Fri Jan 21 19:11:51 2000
-+++ Makefile.in	Fri Jan 21 19:12:08 2000
-@@ -93,8 +93,8 @@
- mandir5 = $(mandir)/$(mantype)$(mansect5)
+--- Makefile.in~	Sun Jan 20 09:43:16 2002
++++ Makefile.in	Fri Mar 15 18:11:45 2002
+@@ -92,8 +92,8 @@
+ mandirform = $(mandir)/$(mantype)$(mansectform)
  
  # User and group ids the installed files should be "owned" by
 -install_uid = 0
@@ -11,3 +11,28 @@
  
  # User, group, and mode the sudoers file should be "owned" by (configure)
  sudoers_uid = @SUDOERS_UID@
+@@ -293,18 +293,18 @@
+ 	    $(DESTDIR)$(mandirsu) $(DESTDIR)$(mandirform)
+ 
+ install-binaries: $(PROGS)
+-	$(INSTALL) -O $(install_uid) -G $(install_gid) -M 4111 -s sudo $(DESTDIR)$(sudodir)/sudo
+-	$(INSTALL) -O $(install_uid) -G $(install_gid) -M 0111 -s visudo $(DESTDIR)$(visudodir)/visudo
++	$(INSTALL) -o $(install_uid) -g $(install_gid) -m 4111 -s sudo $(DESTDIR)$(sudodir)/sudo
++	$(INSTALL) -o $(install_uid) -g $(install_gid) -m 0111 -s visudo $(DESTDIR)$(visudodir)/visudo
+ 
+ install-sudoers:
+ 	test -f $(DESTDIR)$(sudoersdir)/sudoers || \
+-	    $(INSTALL) -O $(sudoers_uid) -G $(sudoers_gid) -M $(sudoers_mode) \
++	    $(INSTALL) -o $(sudoers_uid) -g $(sudoers_gid) -m $(sudoers_mode) \
+ 		$(srcdir)/sudoers $(DESTDIR)$(sudoersdir)/sudoers
+ 
+ install-man:
+-	$(INSTALL) -O $(install_uid) -G $(install_gid) -M 0444 @mansrcdir@/sudo.$(mantype) $(DESTDIR)$(mandirsu)/sudo.$(mansectsu)
+-	$(INSTALL) -O $(install_uid) -G $(install_gid) -M 0444 @mansrcdir@/visudo.$(mantype) $(DESTDIR)$(mandirsu)/visudo.$(mansectsu)
+-	$(INSTALL) -O $(install_uid) -G $(install_gid) -M 0444 @mansrcdir@/sudoers.$(mantype) $(DESTDIR)$(mandirform)/sudoers.$(mansectform)
++	$(INSTALL) -o $(install_uid) -g $(install_gid) -m 0444 @mansrcdir@/sudo.$(mantype) $(DESTDIR)$(mandirsu)/sudo.$(mansectsu)
++	$(INSTALL) -o $(install_uid) -g $(install_gid) -m 0444 @mansrcdir@/visudo.$(mantype) $(DESTDIR)$(mandirsu)/visudo.$(mansectsu)
++	$(INSTALL) -o $(install_uid) -g $(install_gid) -m 0444 @mansrcdir@/sudoers.$(mantype) $(DESTDIR)$(mandirform)/sudoers.$(mansectform)
+ @MAN_POSTINSTALL@
+ 
+ check:

@@ -1,18 +1,19 @@
 #
-# $Id: Makefile,v 1.5 2000/09/27 01:27:57 kunishi Exp $
+# $Id: Makefile,v 1.6 2003/01/07 03:50:13 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	sudo
-VERSION=	1.6.3p4
+VERSION=	1.6.6
 PORTREV=	1
 
-PKG=		OPENsudo
+PKG=		OPUCsudo
 NAME=		CU version of sudo
 
-VENDOR=		http://www.courtesan.com/
-MASTER_SITES=	ftp://ftp.cs.colorado.edu/pub/sysadmin/sudo/
+VENDOR=		http://www.courtesan.com/sudo/
+MASTER_SITES=	http://www.courtesan.com/sudo/dist/ \
+		ftp://ftp.cs.colorado.edu/pub/sysadmin/sudo/
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
