@@ -1,0 +1,29 @@
+--- libtiff/tif_jpeg.c~	Mon Nov 19 20:26:18 2001
++++ libtiff/tif_jpeg.c	Mon Nov 19 20:26:59 2001
+@@ -549,7 +549,7 @@
+ 		samples_per_clump += compptr->h_samp_factor *
+ 			compptr->v_samp_factor;
+ 		buf = TIFFjpeg_alloc_sarray(sp, JPOOL_IMAGE,
+-				compptr->width_in_blocks * DCTSIZE,
++				compptr->width_in_data_units * DCTSIZE,
+ 				(JDIMENSION) (compptr->v_samp_factor*DCTSIZE));
+ 		if (buf == NULL)
+ 			return (0);
+@@ -1203,7 +1203,7 @@
+ 		     ci++, compptr++) {
+ 		    int hsamp = compptr->h_samp_factor;
+ 		    int vsamp = compptr->v_samp_factor;
+-		    int padding = (int) (compptr->width_in_blocks * DCTSIZE -
++		    int padding = (int) (compptr->width_in_data_units * DCTSIZE -
+ 					 clumps_per_line * hsamp);
+ 		    for (ypos = 0; ypos < vsamp; ypos++) {
+ 			inptr = ((JSAMPLE*) buf) + clumpoffset;
+@@ -1264,7 +1264,7 @@
+ 		     ci < sp->cinfo.c.num_components;
+ 		     ci++, compptr++) {
+ 			int vsamp = compptr->v_samp_factor;
+-			tsize_t row_width = compptr->width_in_blocks * DCTSIZE
++			tsize_t row_width = compptr->width_in_data_units * DCTSIZE
+ 				* sizeof(JSAMPLE);
+ 			for (ypos = sp->scancount * vsamp;
+ 			     ypos < DCTSIZE * vsamp; ypos++) {
