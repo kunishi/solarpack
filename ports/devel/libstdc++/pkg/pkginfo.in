@@ -1,10 +1,9 @@
 PKG=GNUlstdc+
 NAME=GNU standard C++ library
 VERSION=2.8.1.1
-ARCH=sparc
+ARCH=%%ARCH%%
 CATEGORY=application
 VENDOR=Free Software Foundation
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/local
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none
