@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/05/17 13:11:08 kunishi Exp $
 #
 
 PORTNAME=	libtool
-VERSION=	1.3
+VERSION=	1.3.4
 PORTREV=	1
 
 PKG=		GNUlibtl
