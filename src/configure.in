@@ -4,12 +4,6 @@ AC_INIT(mk/pkgbuild.conf)
 AC_SUBST(pkgbuild_topdir)
 
 dnl Checks for programs.
-AC_PATH_PROG(PKGB_COMPRESS, compress, missing_compress)
-AC_PATH_PROG(PKGB_MKDIR, mkdir, missing_mkdir)
-AC_PATH_PROG(PKGB_PKGMK, pkgmk, missing_pkgmk)
-AC_PATH_PROG(PKGB_PKGTRANS, pkgtrans, missing_pkgtrans)
-AC_PATH_PROG(PKGB_RM, rm, missing_rm)
-AC_PATH_PROG(PKGB_SED, sed, missing_sed)
 
 dnl Checks for libraries.
 

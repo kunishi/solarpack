@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.2 1999/06/09 10:42:22 kunishi Exp $
+# $Id: Makefile.in,v 1.3 1999/06/09 11:04:00 kunishi Exp $
 #
 
 PKGNAME=	pkgbuild-0.1
@@ -12,12 +12,31 @@ PKGDIR=		${CWD}/pkg
 RELEASEDIR=	${CWD}/release
 WRKDIR=		${CWD}/work
 
-COMPRESS=	@PKGB_COMPRESS@
-PKGMK=		@PKGB_PKGMK@
-PKGTRANS=	@PKGB_PKGTRANS@
-MKDIR=		@PKGB_MKDIR@ -p
-RM=		@PKGB_RM@
-SED=		@PKGB_SED@
+COMPRESS=	/usr/bin/compress
+CP=		/usr/bin/cp
+PKGMK=		/usr/bin/pkgmk
+PKGTRANS=	/usr/bin/pkgtrans
+MKDIR=		/usr/bin/mkdir -p
+RM=		/usr/bin/rm
+SED=		/usr/bin/sed
+TAR=		/usr/bin/tar
+
+ARCH:sh=	/usr/bin/mach
+OSREL:sh=	/usr/bin/uname -r
+
+RELEASE_PKG_DIR=	/share/local-ftp/pub/Solaris/${ARCH}/${OSREL}
+RELEASE_DATE:sh=	/usr/bin/date +%G%m%d
+
+CORE_PACKAGES=	bmake-2.1.14.gz \
+		gcc-2.8.1.gz \
+		gmake-3.77.gz \
+		gtar-1.12.gz \
+		gzip-1.2.4 \
+		libstdc++-2.8.1.1.gz \
+		md5-1.0.gz \
+		patch-2.5.gz \
+		texinfo-3.12.gz \
+		wget-1.5.3.gz
 
 all:
 	cd mk && ${MAKE} PKGBUILDDIR=${PKGBUILDDIR} LOCALBASE=${LOCALBASE}
@@ -29,6 +48,9 @@ release:	all
 	${PKGMK} -o -f ${PKGDIR}/prototype -b ${CWD} -d ${WRKDIR}
 	${PKGTRANS} ${WRKDIR} ${RELEASEDIR}/${PKGNAME} all
 	${COMPRESS} ${RELEASEDIR}/${PKGNAME}
+	cd ${RELEASE_PKG_DIR} && ${CP} ${CORE_PACKAGES} ${RELEASEDIR}
+	${TAR} cf ${RELEASEDIR}/ports-${RELEASE_DATE}.tar ports
+	${COMPRESS} ${RELEASEDIR}/ports-${RELEASE_DATE}.tar
 
 install:
 	cd mk && \
