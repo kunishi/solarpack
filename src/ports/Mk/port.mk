@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.31 1999/07/23 09:06:29 kunishi Exp $
+# $Id: port.mk,v 1.32 1999/08/20 10:22:06 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -77,6 +77,11 @@ PKGINFO_SUB+=	PKG=${PKG} \
 		CATEGORY=${CATEGORY} \
 		ARCH=${ARCH} \
 		BASEDIR=${PREFIX}
+.if defined(PKG_WITHOUT_GZIP)
+PKGNAME_REAL=	${PKGNAME}
+.else
+PKGNAME_REAL=	${PKGNAME}.gz
+.endif
 
 EXTRACT_COOKIE?=	${WRKDIR}/.extract_done
 PATCH_COOKIE?=		${WRKDIR}/.patch_done
@@ -299,25 +304,25 @@ release:	${RELEASE_COOKIE}
 ${EXTRACT_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} fetch
 	@cd ${MASTERDIR} && ${MAKE} real-extract
-${PATCH_COOKIE}:	${EXTRACT_COOKIE}
+${PATCH_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} extract
 	@cd ${MASTERDIR} && ${MAKE} real-patch
-${CONFIGURE_COOKIE}:	${PATCH_COOKIE}
+${CONFIGURE_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} patch
 	@cd ${MASTERDIR} && ${MAKE} real-configure
-${BUILD_COOKIE}:	${CONFIGURE_COOKIE}
+${BUILD_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} configure
 	@cd ${MASTERDIR} && ${MAKE} real-build
-${INSTALL_COOKIE}:	${BUILD_COOKIE}
+${INSTALL_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} build
 	@cd ${MASTERDIR} && ${MAKE} real-install
-${PACKAGE_COOKIE}:	${INSTALL_COOKIE}
+${PACKAGE_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} install
 	@cd ${MASTERDIR} && ${MAKE} real-package
-${INSTPKG_COOKIE}:	${PACKAGE_COOKIE}
+${INSTPKG_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} package
 	@cd ${MASTERDIR} && ${MAKE} real-instpkg
-${RELEASE_COOKIE}:	${PACKAGE_COOKIE}
+${RELEASE_COOKIE}:
 	@cd ${MASTERDIR} && ${MAKE} package
 	@cd ${MASTERDIR} && ${MAKE} real-release
 
@@ -559,10 +564,12 @@ do-instpkg:
 
 .if !target(do-release)
 do-release:
-	${GZIP} -c -9 ${PKGNAME} > ${PKGNAME}.gz
+.if !defined(PKG_WITHOUT_GZIP)
+	${GZIP} -c -9 ${PKGNAME} > ${PKGNAME_REAL}
+.endif
 .if defined(RELEASE_PKG_DIR)
 	if [ -d ${RELEASE_PKG_DIR} ]; then \
-	  ${MV} ${PKGNAME}.gz ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
+	  ${MV} ${PKGNAME_REAL} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
 	fi
 .endif
 .endif
