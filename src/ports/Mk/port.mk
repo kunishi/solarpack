@@ -1,8 +1,10 @@
 #
-# $Id: port.mk,v 1.25 1999/06/05 07:58:57 kunishi Exp $
+# $Id: port.mk,v 1.26 1999/06/05 09:32:39 kunishi Exp $
 #
 
-.include "/opt/local/pkgbuild/conf/pkgbuild.conf"
+# ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
+
+.include "${PKGBUILDDIR}/conf/pkgbuild.conf"
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
@@ -25,7 +27,6 @@ MASTERDIR?=	${.CURDIR}
 LOCALBASE?=	/usr/local
 X11BASE?=	/usr/openwin
 
-PKGBUILDDIR?=	/opt/pkgbuild
 DISTDIR?=	${PKGBUILDDIR}/distfiles
 EXTRACT_SUFX?=	.tar.gz
 RELEASE_PKG_DIR?=	${PKGBUILDDIR}/packages
