@@ -1,0 +1,29 @@
+initd=/etc/init.d
+start_prefix=S%%INITD_START_NUM%%
+kill_prefix=K%%INITD_KILL_NUM%%
+installf_script=/var/tmp/$PKGINST-installf
+
+test -f ${installf_script} && rm -f ${installf_script}
+
+while read src dst
+do
+	echo ${dst}
+	cp ${src} ${dst} || exit 2
+	file=`basename ${dst}`
+	rm -f ${initd}/${file} && \
+	  install -c ${initd} -m 755 -u root -g sys ${dst} ${initd}/${file}
+	echo "echo ${initd}/${file}" >> ${installf_script}
+	echo "installf $PKGINST ${initd}/${file} f 0755 root sys" >> ${installf_script}
+	rm -f /etc/rc0.d/${kill_prefix}${file} && \
+	  ln -s ../init.d/${file} /etc/rc0.d/${kill_prefix}${file}
+	echo "echo /etc/rc0.d/${kill_prefix}${file}" >> ${installf_script}
+	echo "installf $PKGINST /etc/rc0.d/${kill_prefix}${file}=../init.d/${file} s" >> ${installf_script}
+	rm -f /etc/rc1.d/${kill_prefix}${file} && \
+	  ln -s ../init.d/${file} /etc/rc1.d/${kill_prefix}${file}
+	echo "echo /etc/rc1.d/${kill_prefix}${file}" >> ${installf_script}
+	echo "installf $PKGINST /etc/rc1.d/${kill_prefix}${file}=../init.d/${file} s" >> ${installf_script}
+	rm -f /etc/rc2.d/${start_prefix}${file} && \
+	  ln -s ../init.d/${file} /etc/rc2.d/${start_prefix}${file}
+	echo "echo /etc/rc2.d/${start_prefix}${file}" >> ${installf_script}
+	echo "installf $PKGINST /etc/rc2.d/${start_prefix}${file}=../init.d/${file} s" >> ${installf_script}
+done

@@ -1,0 +1,15 @@
+initd=/etc/init.d
+kill_prefix=K%%INITD_KILL_NUM%%
+start_prefix=S%%INITD_START_NUM%%
+removef_script=/var/tmp/$PKGINST-removef
+
+while read src
+do
+	echo ${src}
+	rm -f ${src} || exit 2
+	file=`basename ${src}`
+	rm -f ${initd}/${file} || exit 2
+	rm -f /etc/rc0.d/${kill_prefix}${file} || exit 2
+	rm -f /etc/rc1.d/${kill_prefix}${file} || exit 2
+	rm -f /etc/rc2.d/${start_prefix}${file} || exit 2
+done
