@@ -1,2 +1,0 @@
-/usr/ucb/install -c -m 0644 $CLIENT_BASEDIR/share/gv/GV.ad \
-	/usr/openwin/lib/X11/app-defaults/GV
