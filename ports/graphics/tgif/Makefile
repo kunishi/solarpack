@@ -1,20 +1,20 @@
 #
-# $Id: Makefile,v 1.4 2001/03/30 01:33:54 kunishi Exp $
+# $Id: Makefile,v 1.5 2001/11/28 12:40:47 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	tgif
-VERSION=	4.1.40
+VERSION=	4.1.41
 PORTREV=	1
 
-PKG=		OPENtgif
+PKG=		OPUCtgif
 NAME=		tgif, an Xlib base 2-D drawing facility under X11, with JP extension.
 VENDOR=		William Chia-Wei Cheng <william@cs.ucla.edu>
 
 MASTER_SITES=	ftp://bourbon.cs.umd.edu/pub/tgif/
 
-RUN_DEPENDS=	OPENntpbm:${PORTSDIR}/graphics/netpbm/
+RUN_DEPENDS=	OPUCntpbm:${PORTSDIR}/graphics/netpbm/
 
 USE_IMAKE=	yes
 
