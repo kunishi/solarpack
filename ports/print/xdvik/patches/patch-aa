@@ -1,0 +1,11 @@
+--- xdvik/Makefile.in.orig	Fri May 21 11:57:55 1999
++++ xdvik/Makefile.in	Fri May 21 12:06:06 1999
+@@ -27,7 +27,7 @@
+ 
+ XDVIETCDIR = @XDVIETCDIR@
+ 
+-VFLIB = @VFLIB@
++VFLIB = -L${libdir} -R${libdir} -lVFlib2 -lttf
+ 
+ # Make `#include <X11/...>' and `-lX...' work.
+ # This matches web2c (needed only for Metafont).
