@@ -1,0 +1,6 @@
+INFODIR=$CLIENT_BASEDIR/info
+INSTALL_INFO=$CLIENT_BASEDIR/bin/install-info
+
+$INSTALL_INFO --info-dir=$INFODIR --delete $INFODIR/info-stnd.info
+$INSTALL_INFO --info-dir=$INFODIR --delete $INFODIR/info.info
+$INSTALL_INFO --info-dir=$INFODIR --delete $INFODIR/texinfo
