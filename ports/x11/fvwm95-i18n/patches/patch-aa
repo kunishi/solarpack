@@ -1,0 +1,19 @@
+--- modules/FvwmConsole/Imakefile.orig	Thu Dec 12 06:07:33 1996
++++ modules/FvwmConsole/Imakefile	Tue May 11 19:28:07 1999
+@@ -14,7 +14,8 @@
+ OBJS3 = FCtest.o 
+ 
+ /*FvwmModuleTarget(FCtest)*/
+-ComplexProgramTarget_3(FCtest,$(LOCAL_LIBRARIES),) 
++/* ComplexProgramTarget_3(FCtest,$(LOCAL_LIBRARIES),)  */
++NormalProgramTarget(FCtest,$(OBJS3),,$(LOCAL_LIBRARIES),)
+ 
+ /***************************************************************************
+  * #define HAVE_READLINE
+@@ -44,4 +45,5 @@
+ SRCS2 = FvwmConsoleC.c getline.c
+ OBJS2 = FvwmConsoleC.o getline.o
+ /*FvwmModuleTarget(FvwmConsoleC)                           */
+-ComplexProgramTarget_2(FvwmConsoleC,$(LOCAL_LIBRARIES) $(ADD_LIBRARIES),) 
++/* ComplexProgramTarget_2(FvwmConsoleC,$(LOCAL_LIBRARIES) $(ADD_LIBRARIES),) */
++NormalProgramTarget(FvwmConsoleC,$(OBJS2),,$(LOCAL_LIBRARIES) $(ADD_LIBRARIES),)
