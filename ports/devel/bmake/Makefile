@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.18 2000/06/07 13:26:46 kunishi Exp $
+# $Id: Makefile,v 1.19 2000/06/13 02:15:44 kunishi Exp $
 #
 
 PORTNAME=	bmake
-VERSION=	3.1.1
+VERSION=	3.1.2
 PORTREV=	1
 
 .if defined(CORE_TOOLS)
@@ -24,7 +24,7 @@ GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKEFILE=	makefile.boot
 ALL_TARGET=	bmake
-MAKE_ARGS+=	XDEFS='-D_PATH_DEFSYSMK=\"${PREFIX}/share/mk/sys.mk\" -D_PATH_DEFSYSPATH=\"${PREFIX}/share/mk:/usr/local/share/mk:/opt/share/mk\"'
+MAKE_ARGS+=	XDEFS='-D_PATH_DEFSYSMK=\"${PREFIX}/share/mk/sys.mk\" -D_PATH_DEFSYSPATH=\"${PREFIX}/share/mk:/usr/local/share/mk:/opt/share/mk\" ${CFLAGS}'
 
 ALL_TARGET=	bmake
 INSTALL_TARGET=	install install-man install-mk
