@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.8 2000/01/06 07:58:17 kunishi Exp $
+# $Id: Makefile.in,v 1.9 2000/01/06 07:59:58 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
@@ -101,6 +101,7 @@ build-misc-package::
 
 clean:
 	${RM} -rf config.cache config.log config.status
+	${RM} -f ${PKGDIR}/pkginfo ${PKGDIR}/prototype
 	cd mk && ${MAKE} clean
 	for tool in ${CORE_TOOLS}; do \
 	  (cd ${PORTSDIR}/$${tool} && ${BMAKE} ${BUILD_PACKAGE_OPTS} pkgclean); \
