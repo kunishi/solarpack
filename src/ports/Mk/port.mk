@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.2 1999/05/17 11:51:47 kunishi Exp $
+# $Id: port.mk,v 1.3 1999/05/17 12:11:26 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -143,7 +143,7 @@ fetch:
 			done; \
 		fi \
 	done)
-.if defined(${PATCHFILES})
+.if defined(PATCHFILES)
 	@(cd ${DISTDIR}; \
 	 for file in ${PATCHFILES}; do \
 		if [ ! -f $${file} ]; then \
