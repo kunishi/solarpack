@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.6 1999/08/26 04:19:42 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/01/18 11:11:09 kunishi Exp $
 #
 
 PKG=		OPENcvs
@@ -12,5 +12,7 @@ MASTER_SITES=	http://download.cyclic.com/pub/cvs-${VERSION}/
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_INSTALL_INFO=	yes
+
+CLASS_INFO=	info/cvs.info
 
 .include <port.mk>
