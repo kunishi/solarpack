@@ -1,10 +1,13 @@
 #
-# $Id: port.mk,v 1.38 1999/09/01 12:12:54 kunishi Exp $
+# $Id: port.mk,v 1.39 2000/01/06 07:39:39 kunishi Exp $
 #
 
-# ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
+# ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
+# (${SOLPKGDIR}/bin/bmake automatically searches ${SOLPKGDIR}/share/mk 
+#  as makefile directory.)
+# ${SOLPKGSRCDIR} is set in ${SOLPKGDIR}/share/mk/port.mk.
 
-.include "pkgbuild.conf"
+.include "solpkg.conf"
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
@@ -27,23 +30,23 @@ MASTERDIR?=	${.CURDIR}
 LOCALBASE?=	/usr/local
 X11BASE?=	/usr/openwin
 
-DISTDIR?=	${PKGBUILDDIR}/distfiles
-PORTSDIR?=	${PKGBUILDDIR}/ports
+DISTDIR?=	${SOLPKGSRCDIR}/distfiles
+PORTSDIR?=	${SOLPKGSRCDIR}/ports
 EXTRACT_SUFX?=	.tar.gz
-RELEASE_PKG_DIR?=	${PKGBUILDDIR}/packages
+RELEASE_PKG_DIR?=	${SOLPKGSRCDIR}/packages
 
 PATCHDIR?=	${MASTERDIR}/patches
-TOOLSDIR?= 	${PKGBUILDDIR}/tools
+TOOLSDIR?= 	${SOLPKGSRCDIR}/tools
 FILESDIR?=	${MASTERDIR}/files
 SCRIPTDIR?=	${MASTERDIR}/scripts
 PKGDIR?=	${MASTERDIR}/pkg
-TEMPLATEDIR?=	${PKGBUILDDIR}/ports/Template
+TEMPLATEDIR?=	${SOLPKGSRCDIR}/ports/Template
 
 .if defined(USE_IMAKE)
 USE_X_PREFIX=	yes
 .endif
 .if defined(CORE_TOOLS)
-PREFIX?=	${PKGBUILDDIR}
+PREFIX?=	${SOLPKGDIR}
 .else
 .if defined(USE_X_PREFIX)
 PREFIX?=	${X11BASE}
@@ -101,14 +104,14 @@ RELEASE_COOKIE?=	${WRKDIR}/.release_done
 
 NOTHING_TO_DO?=		/usr/bin/true
 
-CC?=		${PKGBUILDDIR}/bin/gcc
-GMAKE?=		${PKGBUILDDIR}/bin/gmake
+CC?=		${SOLPKGDIR}/bin/gcc
+GMAKE?=		${SOLPKGDIR}/bin/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 
 CONFIGURE_ENV+=	CC=${CC} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
-MD5?=		${PKGBUILDDIR}/bin/md5
+MD5?=		${SOLPKGDIR}/bin/md5
 MD5_FILE=	${FILESDIR}/md5
 
 MAKEFILE?=	Makefile
@@ -128,17 +131,17 @@ MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 TOUCH?=		/usr/bin/touch
 TOUCH_FLAGS?=	
 
-WGET?=		${PKGBUILDDIR}/bin/wget
-WGET_FLAGS?=	-nv
+FETCH_CMD?=	${SOLPKGDIR}/bin/ftp
+FETCH_FLAGS?=	
 
-PATCH?=		${PKGBUILDDIR}/bin/patch
+PATCH?=		${SOLPKGDIR}/bin/patch
 PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 PATCH_ARGS?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_APPLY_DIR?=	${WRKSRC}
 PATCH_DIST_ARGS?=	-d ${PATCH_DIST_APPLY_DIR} --forward --quiet -E ${PATCH_DIST_STRIP}
 
-TAR?=		${PKGBUILDDIR}/bin/gtar
+TAR?=		${SOLPKGDIR}/bin/gtar
 
 EXTRACT_CMD?=	${GZIP_CMD}
 
@@ -169,8 +172,8 @@ ECHO?=		/usr/bin/echo
 ENV?=		/usr/bin/env
 EXPR?=		/usr/bin/expr
 GREP?=		/usr/bin/grep
-GZCAT?=		${PKGBUILDDIR}/bin/gzip -cd
-GZIP?=		${PKGBUILDDIR}/bin/gzip
+GZCAT?=		${SOLPKGDIR}/bin/gzip -cd
+GZIP?=		${SOLPKGDIR}/bin/gzip
 INSTALL?=	/usr/ucb/install
 LN?=		/usr/bin/ln
 MV?=		/usr/bin/mv
@@ -454,7 +457,7 @@ do-fetch:
 		if [ ! -f $$file ]; then \
 			for site in ${MASTER_SITES}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${WGET} ${WGET_FLAGS} $${site}$${file}; then \
+				if ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
@@ -466,7 +469,7 @@ do-fetch:
 		if [ ! -f $${file} ]; then \
 			for site in ${PATCH_SITES}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${WGET} ${WGET_FLAGS} $${site}$${file}; then \
+				if ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
@@ -583,7 +586,7 @@ do-release:
 .endif
 .if defined(RELEASE_PKG_DIR)
 	if [ -d ${RELEASE_PKG_DIR} ]; then \
-	  ${MV} ${PKGNAME_REAL} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
+	  ${CP} ${PKGNAME_REAL} ${RELEASE_PKG_DIR}/${ARCH}/${OSREL}; \
 	fi
 .endif
 .endif
