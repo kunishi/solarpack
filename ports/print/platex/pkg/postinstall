@@ -1,0 +1,5 @@
+ln -fs tex $CLIENT_BASEDIR/bin/latex
+installf $PKGINST $CLIENT_BASEDIR/bin/latex=$CLIENT_BASEDIR/bin/tex s || exit 2
+ln -fs ptex $CLIENT_BASEDIR/bin/platex
+installf $PKGINST $CLIENT_BASEDIR/bin/platex=$CLIENT_BASEDIR/bin/ptex s || exit 2
+installf -f $PKGINST || exit 2
