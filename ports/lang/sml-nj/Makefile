@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/20 06:33:11 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/20 14:08:41 kunishi Exp $
 #
 
 PORTNAME=	smlnj
@@ -19,8 +19,7 @@ DISTFILES=	110-bin.${SML_ARCH}-unix.tar.Z \
 		110-smlnj-c.tar.Z 110-smlnj-lib.tar.Z
 EXTRACT_ONLY=	110-config.tar.Z
 
-# seems to be needed gas to compile i386 architecture.
-ONLY_FOR_ARCHS=	sparc
+BUILD_DEPENDS=	GNUbinut:${PORTSDIR}/devel/binutils
 
 WRKSRC=		${WRKDIR}
 PROTOTYPE_SUB+=	SML_ARCH=${SML_ARCH}
