@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/07 12:48:40 kunishi Exp $
 #
+
+ARCH!=		/usr/bin/mach
 
 PORTNAME=	ssh2
 VERSION=	2.0.13
@@ -15,6 +17,9 @@ MASTER_SITES=	ftp://ftp.cs.hut.fi/pub/ssh/ \
 		ftp://ftp.kyoto.wide.ad.jp/pub/security/ssh/
 
 GNU_CONFIGURE=	yes
+.if (${ARCH} == "i386")
+CONFIGURE_ARGS+=	--disable-asm
+.endif
 USE_GMAKE=	yes
 
 RUN_DEPENDS=	OPENssh1:${PORTSDIR}/security/ssh1

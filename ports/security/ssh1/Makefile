@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/07 12:48:34 kunishi Exp $
 #
+
+ARCH!=		/usr/bin/mach
 
 PORTNAME=	ssh
 VERSION=	1.2.27
@@ -13,6 +15,9 @@ VENDOR=		SSH Communications Security, Espoo, Finland, http://www.cs.hut.fi/ssh
 MASTER_SITES=	ftp://ftp.cs.hut.fi/pub/ssh/
 
 GNU_CONFIGURE=	yes
+.if (${ARCH} == "i386")
+CONFIGURE_ARGS+=	--disable-asm
+.endif
 MAKE_INSTALL_ENV+=	prefix=${LOCALBASE} \
 			install_prefix=${WRKDIR}
 
