@@ -1,0 +1,9 @@
+PKG=GNUawk
+NAME=GNU awk
+ARCH=%%ARCH%%
+VERSION=3.0.3
+CATEGORY=application
+VENDOR=Free Software Foundation, Inc.
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
+CLASSES=none
