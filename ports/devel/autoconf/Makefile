@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.3 1999/06/04 01:34:42 kunishi Exp $
+# $Id: Makefile,v 1.4 1999/06/04 03:21:50 kunishi Exp $
 #
 
-PKG=		GNUautcnf
-NAME=		GNU autoconf, a tool for generating configure script automatically.
+PKG=	GNUautcnf
+NAME=	GNU autoconf, a tool for generating configure script automatically.
 VERSION=	2.13
 CATEGORY=	application
 VENDOR=		Free Software Foundation
