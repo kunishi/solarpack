@@ -1,0 +1,14 @@
+--- gcc.info.orig	Sun Mar  1 11:03:59 1998
++++ gcc.info	Wed Apr 28 11:02:04 1999
+@@ -1,6 +1,11 @@
+ This is Info file gcc.info, produced by Makeinfo version 1.67 from the
+ input file gcc.texi.
+ 
++INFO-DIR-SECTION Gcc Documentation
++START-INFO-DIR-ENTRY
++* gcc: (gcc).			The GNU C compiler.
++END-INFO-DIR-ENTRY
++
+    This file documents the use and the internals of the GNU compiler.
+ 
+    Published by the Free Software Foundation 59 Temple Place - Suite 330
