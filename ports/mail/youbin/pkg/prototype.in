@@ -1,0 +1,13 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/sendto=%%WRK_BASEDIR%%/bin/sendto 0755 root staff
+f none bin/xyoubin=%%WRK_BASEDIR%%/bin/xyoubin 0755 root staff
+f none bin/youbin=%%WRK_BASEDIR%%/bin/youbin 4755 root staff
+d none etc=%%WRK_BASEDIR%%/etc 0755 root bin
+f none etc/youbind=%%WRK_BASEDIR%%/etc/youbind 0755 root staff
+d none share=%%WRK_BASEDIR%%/share 0755 root bin
+d none share/man=%%WRK_BASEDIR%%/share/man 0755 root bin
+d none share/man/man1=%%WRK_BASEDIR%%/share/man/man1 0755 root bin
+f none share/man/man1/youbin.1=%%WRK_BASEDIR%%/share/man/man1/youbin.1 0444 root staff
+f none share/man/man1/youbin_sub.1=%%WRK_BASEDIR%%/share/man/man1/youbin_sub.1 0444 root staff
+f none share/man/man1/youbind.1=%%WRK_BASEDIR%%/share/man/man1/youbind.1 0444 root staff
