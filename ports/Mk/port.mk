@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.47 2000/01/18 11:50:39 kunishi Exp $
+# $Id: port.mk,v 1.48 2000/01/18 12:06:46 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -820,6 +820,7 @@ makesum:	fetch
 
 ## class processing
 .if defined(CLASS_INFO)
+_sedsubprotoinlist=	-e '/. none info\/dir=.*/ d'
 .for file in ${CLASS_INFO}
 _sedsubprotoinlist!=	file=`${ECHO} "$${file}"`; \
 	echo "${_sedsubprotoinlist} -e 's?\(.\) none \(${file}=.*\)?\1 info \2?'"
