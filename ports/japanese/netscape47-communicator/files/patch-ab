@@ -1,5 +1,11 @@
---- install.orig	Mon May  8 17:01:12 2000
-+++ install	Wed May 31 19:07:06 2000
+--- install~	Sat Oct 28 15:57:08 2000
++++ install	Wed Nov  1 19:50:44 2000
+@@ -1,4 +1,4 @@
+-|#!/bin/sh
++#!/bin/sh
+ 
+ #
+ #
 @@ -26,9 +26,9 @@
  	MISCLOC="/usr/lib/X11/ja_JP.EUC/netscape";
  	;;
