@@ -6,7 +6,6 @@ include ${PKGBUILD_MAKEFILE_DIR}/use_imake.mk
 DISTNAME=	kterm-6.2.0
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/X/opengroup/contrib/applications/ \
 		ftp://ftp.media.kyoto-u.ac.jp/pub/FreeBSD/ports/distfiles/
-#USE_IMAKE=	yes
 
 post-install::
 	@${MKDIR} ${WRK_BASEDIR}/share/kterm
