@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2001/11/10 12:54:43 kunishi Exp $
+# $Id: Makefile,v 1.4 2001/11/12 08:40:23 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -15,7 +15,7 @@ VENDOR=		Thomas Williams and Lars Hecking
 MASTER_SITES=	ftp://ftp.gnuplot.vt.edu/pub/gnuplot/
 
 LIB_DEPENDS=	OPUCpng:${PORTSDIR}/graphics/png \
-		OPENgd:${PORTSDIR}/graphics/gd
+		OPUCgd:${PORTSDIR}/graphics/gd
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
