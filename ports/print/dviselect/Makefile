@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/23 10:19:17 kunishi Exp $
 #
 
 PORTNAME=	dviselect
@@ -14,6 +14,7 @@ DISTNAME=	${PORTNAME}
 MASTER_SITES=	ftp://ftp.ee.duke.edu/archives/
 
 USE_GMAKE=	yes
+ALL_TARGET=	default
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/bin
