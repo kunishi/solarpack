@@ -1,8 +1,6 @@
 #
-# $Id: Makefile,v 1.1 2000/06/06 03:20:23 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/21 02:41:22 kunishi Exp $
 #
-
-ARCH!=		/usr/bin/mach
 
 PORTNAME=	zoularis
 VERSION=	20000512
