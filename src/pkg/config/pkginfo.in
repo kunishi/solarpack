@@ -1,6 +1,6 @@
 PKG=PKGBmisc
 NAME=Package Building Tools, miscellaneous files.
-VERSION=0.1
+VERSION=0.1.1
 CATEGORY=application
 VENDOR=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
 EMAIL=kunishi@c.oka-pu.ac.jp

@@ -1,13 +1,13 @@
 #
 # bootstrap makefile for building gmake
-# $Id: Makefile.gmake,v 1.2 2000/05/12 09:14:01 kunishi Exp $
+# $Id: Makefile.gmake,v 1.3 2000/05/15 22:14:59 kunishi Exp $
 #
 
 TARGET_CMD=	gmake
 
 include ${BOOTSTRAPDIR}/config.mk
 
-DISTNAME=	make-3.78.1
+DISTNAME=	make-3.79
 DISTFILES=	${DISTNAME}.tar.gz
 SRCURL=		ftp://ftp.gnu.org/pub/gnu/make/
 
@@ -30,7 +30,7 @@ configure:	${PATCH_COOKIE}
 	  ${ENV} CC=${TMPPREFIX}/bin/gcc ./configure --prefix=${TMPPREFIX} --program-prefix=g
 
 build:		${CONFIGURE_COOKIE}
-	cd ${WORKDIR}/${DISTNAME} && ${MAKE}
+	cd ${WORKDIR}/${DISTNAME} && ${ENV} LANG=C ${MAKE}
 
 install:	${BUILD_COOKIE}
 	if [ ! -f ${INSTALL_COOKIE} ]; then \

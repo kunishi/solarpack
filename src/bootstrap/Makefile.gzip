@@ -1,14 +1,14 @@
 #
 # Bootstrap makefile for building gzip
-# $Id: Makefile.gzip,v 1.3 2000/05/12 09:14:01 kunishi Exp $
+# $Id: Makefile.gzip,v 1.4 2000/05/15 22:14:59 kunishi Exp $
 #
 
 TARGET_CMD=	gzip
 
 include ${BOOTSTRAPDIR}/config.mk
 
-DISTNAME=	gzip-1.2.4
-DISTFILES=	gzip-1.2.4.tar
+DISTNAME=	gzip-1.2.4a
+DISTFILES=	gzip-1.2.4a.tar
 SRCURL=		ftp://ftp.gnu.org/pub/gnu/gzip/
 
 FETCH_CMD=	/usr/bin/ftp

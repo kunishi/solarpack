@@ -253,7 +253,6 @@ f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/README=%%INSTPREFIX%%/li
 f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/assert.h=%%INSTPREFIX%%/lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/assert.h 0644 root bin
 f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/curses.h=%%INSTPREFIX%%/lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/curses.h 0644 root bin
 f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/exception=%%INSTPREFIX%%/lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/exception 0644 root bin
-f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/fixed=%%INSTPREFIX%%/lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/fixed 0644 root bin
 f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/g2c.h=%%INSTPREFIX%%/lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/g2c.h 0644 root bin
 f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/iso646.h=%%INSTPREFIX%%/lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/iso646.h 0644 root bin
 f none lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/limits.h=%%INSTPREFIX%%/lib/gcc-lib/%%GNU_HOSTTYPE%%/%%GCC_VER%%/include/limits.h 0644 root bin

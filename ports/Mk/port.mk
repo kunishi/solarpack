@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.56 2000/05/15 03:54:17 kunishi Exp $
+# $Id: port.mk,v 1.57 2000/05/15 22:14:59 kunishi Exp $
 #
 
 # ${SOLPKGDIR} and ${SOLPKGBINDIR} are set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -25,7 +25,7 @@ SUNW_ISA!=	/usr/bin/uname -p
 .if (${ARCH} == "sparc")
 GNU_HOSTTYPE?=	${ARCH}-sun-solaris${OSREL_SOLARIS}
 .elif (${ARCH} == "i386")
-GNU_HOSTTYPE?=	${ARCH}--solaris${OSREL_SOLARIS}
+GNU_HOSTTYPE?=	${ARCH}-pc-solaris${OSREL_SOLARIS}
 .endif
 
 MASTERDIR?=	${.CURDIR}

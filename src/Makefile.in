@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.13 2000/05/12 09:14:01 kunishi Exp $
+# $Id: Makefile.in,v 1.14 2000/05/15 22:14:59 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
@@ -109,8 +109,8 @@ build-misc-package::
 	${MKDIR} ${WRKDIR}/spool
 	${SED} -e 's!%%INSTPREFIX%%!${CWD}!' ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
-	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/solpkg-misc-0.1 all
-	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/solpkg-misc-0.1
+	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/solpkg-misc-0.1.1 all
+	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/solpkg-misc-0.1.1
 
 clean:
 	${RM} -rf config.cache config.log config.status

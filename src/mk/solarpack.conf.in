@@ -9,7 +9,7 @@ SOLPKGBINDIR=	${SOLPKGDIR}/bin
 SOLPKGSRCDIR=	/export/pub/cvs/solpkg
 #
 # C compiler for building packages.
-#CC=	${SOLPKGBINDIR}/gcc
+CC=	${SOLPKGBINDIR}/gcc
 #
 # package maintainer.
 #
