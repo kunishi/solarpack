@@ -1,10 +1,10 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/gm4=%%WRK_BASEDIR%%/bin/gm4 0755 bin bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/m4.info=%%WRK_BASEDIR%%/info/m4.info 0644 bin bin
+f info info/m4.info=%%WRK_BASEDIR%%/info/m4.info 0644 bin bin
 f none info/m4.info-1=%%WRK_BASEDIR%%/info/m4.info-1 0644 bin bin
 f none info/m4.info-2=%%WRK_BASEDIR%%/info/m4.info-2 0644 bin bin
 f none info/m4.info-3=%%WRK_BASEDIR%%/info/m4.info-3 0644 bin bin
