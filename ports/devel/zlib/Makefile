@@ -1,19 +1,18 @@
 #
-# $Id: Makefile,v 1.7 2001/03/30 01:33:52 kunishi Exp $
+# $Id: Makefile,v 1.8 2002/03/13 06:53:41 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	zlib
-VERSION=	1.1.3
+VERSION=	1.1.4
 PORTREV=	1
 
 PKG=		OPENzlib
 NAME=		zlib, A general purpose data compression library
 
 VENDOR=		Jean-loup Gailly (jloup@gzip.org) and Mark Adler (madler@alumni.caltech.edu)
-MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/graphics/ImageMagick/delegates/ \
-		ftp://ring.nacsis.ac.jp/pub/text/xemacs/aux/
+MASTER_SITES=	http://prdownloads.sourceforge.net/libpng/
 
 .if ${OSREL} <= 5.7
 BUILD_DEPENDS=	GNUcc27:${PORTSDIR}/devel/gcc27
