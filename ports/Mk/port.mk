@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.58 2000/05/16 07:01:34 kunishi Exp $
+# $Id: port.mk,v 1.59 2000/05/17 01:34:51 kunishi Exp $
 #
 
 # ${SOLPKGDIR} and ${SOLPKGBINDIR} are set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -121,7 +121,7 @@ _VERSION=	${VERSION}
 .endif
 
 _PKGHOST!=	/usr/bin/hostname
-_PKGTS!=	/usr/bin/date '%Y.%m.%d.%H.%M'
+_PKGTS!=	/usr/bin/date '+%Y.%m.%d.%H.%M'
 
 PKGINFO_SUB+=	PKG=${PKG} \
 		VERSION=${_VERSION} \

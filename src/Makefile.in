@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.17 2000/05/16 06:38:19 kunishi Exp $
+# $Id: Makefile.in,v 1.18 2000/05/17 01:34:51 kunishi Exp $
 #
 
 include version.mk
@@ -112,7 +112,7 @@ build-misc-package::
 	       ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
 	${SED} -e 's!%%SOLPKGDIR%%!${SOLPKGDIR}!' \
 	       -e 's!%%SOLPKG_VERSION%%!${SOLPKG_VERSION}!' \
-	       ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
+	       ${PKGDIR}/pkginfo.in > ${PKGDIR}/pkginfo
 	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
 	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOLPKG_VERSION} all
 	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/${PKGNAME}-misc-${SOLPKG_VERSION}
