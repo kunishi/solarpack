@@ -208,6 +208,7 @@ f none ssl/man/man3/SSL_CTX_set_cert_store.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX
 f none ssl/man/man3/SSL_CTX_set_cert_verify_callback.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX_set_cert_verify_callback.3 0644 root bin
 f none ssl/man/man3/SSL_CTX_set_cipher_list.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX_set_cipher_list.3 0644 root bin
 f none ssl/man/man3/SSL_CTX_set_client_CA_list.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX_set_client_CA_list.3 0644 root bin
+f none ssl/man/man3/SSL_CTX_set_client_cert_cb.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX_set_client_cert_cb.3 0644 root bin
 f none ssl/man/man3/SSL_CTX_set_default_passwd_cb.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX_set_default_passwd_cb.3 0644 root bin
 f none ssl/man/man3/SSL_CTX_set_info_callback.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX_set_info_callback.3 0644 root bin
 f none ssl/man/man3/SSL_CTX_set_mode.3=%%INSTPREFIX%%/ssl/man/man3/SSL_CTX_set_mode.3 0644 root bin
