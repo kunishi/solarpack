@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 2000/05/17 06:42:46 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/06/13 12:09:38 kunishi Exp $
 #
 
 PORTNAME=	zlib
@@ -17,5 +17,8 @@ HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--shared --prefix=${PREFIX}
 
 PKG_WITHOUT_GZIP=	yes
+
+do-configure:
+	@cd ${WRKSRC} && ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
 
 .include <port.mk>
