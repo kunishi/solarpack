@@ -1,0 +1,42 @@
+#
+# $Id: Makefile.in,v 1.1 1999/06/09 10:35:38 kunishi Exp $
+#
+
+PKGNAME=	pkgbuild-0.1
+
+LOCALBASE=	/usr/local
+PKGBUILDDIR=	@pkgbuild_topdir@
+
+CWD:sh=		pwd
+PKGDIR=		${CWD}/pkg
+RELEASEDIR=	${CWD}/release
+WRKDIR=		${CWD}/work
+
+COMPRESS=	@PKGB_COMPRESS@
+PKGMK=		@PKGB_PKGMK@
+PKGTRANS=	@PKGB_PKGTRANS@
+MKDIR=		@PKGB_MKDIR@ -p
+RM=		@PKGB_RM@
+SED=		@PKGB_SED@
+
+all:
+	cd mk && ${MAKE} PKGBUILDDIR=${PKGBUILDDIR}
+	cd pkg && ${SED} -e 's!%%INSTPREFIX%%!${CWD}!g' prototype.in > prototype
+
+release:	all
+	${MKDIR} ${WRKDIR}
+	${MKDIR} ${RELEASEDIR}
+	${PKGMK} -o -f ${PKGDIR}/prototype -b ${CWD} -d ${WRKDIR}
+	${PKGTRANS} ${WRKDIR} ${RELEASEDIR}/${PKGNAME} all
+	${COMPRESS} ${RELEASEDIR}/${PKGNAME}
+
+clean:
+	${RM} -f config.cache config.log config.status
+	cd mk && ${MAKE} clean
+	${RM} -f pkg/prototype
+	${RM} -rf ${WRKDIR}
+	${RM} -f ${RELEASEDIR}/${PKGNAME}
+
+distclean:	clean
+	${RM} -f Makefile
+	${RM} -rf ${RELEASEDIR}
