@@ -29,4 +29,5 @@ f none share/doc/tcp_wrappers/DISCLAIMER=%%INSTPREFIX%%/share/doc/tcp_wrappers/D
 f none share/doc/tcp_wrappers/README=%%INSTPREFIX%%/share/doc/tcp_wrappers/README 0644 root bin
 f none share/doc/tcp_wrappers/README.IRIX=%%INSTPREFIX%%/share/doc/tcp_wrappers/README.IRIX 0644 root bin
 f none share/doc/tcp_wrappers/README.NIS=%%INSTPREFIX%%/share/doc/tcp_wrappers/README.NIS 0644 root bin
+f none share/doc/tcp_wrappers/README.ipv6=%%INSTPREFIX%%/share/doc/tcp_wrappers/README.ipv6 0644 root bin
 f none share/doc/tcp_wrappers/convert-inetd-conf.sh=%%INSTPREFIX%%/share/doc/tcp_wrappers/convert-inetd-conf.sh 0644 root bin

@@ -1,20 +1,21 @@
 #
-# $Id: Makefile,v 1.1 2001/04/04 04:11:49 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/11/08 08:45:35 kunishi Exp $
 #
 
 PORTNAME=	tcp_wrappers
 VERSION=	7.6
-PORTREV=	1
+PORTREV=	3
 
 PKG=		OPENtcpw
 NAME=		TCP/IPv daemon wrapper package
 
 MASTER_SITES=	ftp://ftp.porcupine.org/pub/security/
-DISTNAME=	${PORTNAME}_${VERSION}
+DISTNAME=	${PORTNAME}_${VERSION}-ipv6.1
 
 ALL_TARGET=	sunos5
 DOCS=		BLURB Banners.Makefile CHANGES DISCLAIMER \
 		README README.IRIX README.NIS
+DOCS+=		README.ipv6
 
 do-install:
 	${MKDIR} ${INSTPREFIX}/bin ${INSTPREFIX}/include ${INSTPREFIX}/lib ${INSTPREFIX}/sbin ${INSTPREFIX}/share/doc/${PORTNAME}
