@@ -1,0 +1,19 @@
+--- Makefile.orig	Sat Jun 22 01:21:23 1996
++++ Makefile	Fri May 19 18:51:19 2000
+@@ -8,13 +8,13 @@
+ ##----------------------------------------------------------------------
+ 
+ # Where TRR directory is found
+-trrdir=/usr/local/lib/emacs/site-lisp/trr
++trrdir=${PREFIX}/share/emacs/site-lisp/trr
+ 
+ # Where info files go.
+-infodir = /usr/local/info
++infodir = ${PREFIX}/info
+ 
+ # Name of your emacs binary
+-Emacs=emacs
++#EMACS=emacs
+ #EMACS=mule
+ 
+ ##----------------------------------------------------------------------

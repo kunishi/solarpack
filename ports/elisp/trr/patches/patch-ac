@@ -1,0 +1,13 @@
+--- trr.texi.orig	Fri May 19 19:21:23 2000
++++ trr.texi	Fri May 19 19:22:34 2000
+@@ -5,6 +5,10 @@
+ @setchapternewpage odd
+ @comment %**end of header (This is for running Texinfo on a region.)
+ 
++@direntry
++* trr: (trr).		a type-writing training program on GNU Emacs. (japanese)
++@end direntry
++
+ @node    Top, Starting up, , (dir)
+ @comment node-name,     next,           previous, up
+ 

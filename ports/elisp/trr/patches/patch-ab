@@ -1,0 +1,18 @@
+--- trr.el.orig	Tue Jun 18 22:42:35 1996
++++ trr.el	Fri May 19 18:52:23 2000
+@@ -37,13 +37,13 @@
+ 
+ ;;; Code:
+ ;; Site Constaints.
+-(defconst TRR:default-directory "/usr/local/lib/emacs/site-lisp/trr/"
++(defconst TRR:default-directory "%%PREFIX%%/share/emacs/site-lisp/trr/"
+   "*Default directory for TRR.")
+ 
+ (defconst TRR:default-japanese t
+   "* if t, TRR displays its messages in Japanese by default.")
+ 
+-(defconst TRR:installator "ymmt@is.s.u-tokyo.ac.jp"
++(defconst TRR:installator "%%MAINTAINER%%"
+   "instllators name or e-mail address")
+ 
+ ;; User Customizable Variables.

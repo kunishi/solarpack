@@ -1,0 +1,4 @@
+for file in $CLIENT_BASEDIR/share/emacs/site-lisp/trr/text/*
+do
+  $CLIENT_BASEDIR/share/emacs/site-lisp/trr/format `basename $file`
+done
