@@ -13,6 +13,23 @@ if [ ! -f /etc/shells ]; then
 EOF
 fi
 
+if [ `/usr/bin/uname -r` > '5.7' ]; then
+	cat <<EOF >>/etc/shells
+/bin/bash
+/bin/pfcsh
+/bin/pfksh
+/bin/pfsh
+/bin/tcsh
+/bin/zsh
+/usr/bin/bash
+/usr/bin/pfcsh
+/usr/bin/pfksh
+/usr/bin/pfsh
+/usr/bin/tcsh
+/usr/bin/zsh
+EOF
+fi
+
 while read src dst
 do
 	echo ${dst}
