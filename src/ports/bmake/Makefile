@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.9 1999/08/27 12:10:43 kunishi Exp $
+# $Id: Makefile,v 1.10 2000/01/05 10:29:20 kunishi Exp $
 #
 
 PKG=		PKGBbmake
 NAME=		pkgbuild core tools: BSD make tool
-VERSION=	2.2.1
+VERSION=	2.2.3
 VENDOR=		Simon J. Gerraty <sjg@quick.com.au>
 
 DISTNAME=	bmake-${VERSION}
