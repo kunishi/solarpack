@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.13 2000/09/27 01:27:40 kunishi Exp $
+# $Id: Makefile,v 1.14 2001/04/18 13:02:11 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	cvs
-VERSION=	1.10.8
+VERSION=	1.11
 PORTREV=	1
 
 PKG=		OPENcvs
