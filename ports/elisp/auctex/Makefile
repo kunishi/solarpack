@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2000/09/27 01:27:44 kunishi Exp $
+# $Id: Makefile,v 1.8 2001/04/17 05:52:43 kunishi Exp $
 #
 
 .include <port.pre.mk>
@@ -11,10 +11,10 @@ PORTREV=	1
 PKG=		OPENauctx
 NAME=		A much enhanced LaTeX mode for GNU Emacs
 
-VENDOR=auc-tex_mgr@sunsite.auc.dk
+VENDOR=		auc-tex_mgr@sunsite.auc.dk
 MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/text/CTAN/support/auctex/
 
-BUILD_DEPENDS=	mule:${PORTSDIR}/editors/mule-canna+wnn6
+BUILD_DEPENDS=	GNUmule:${PORTSDIR}/editors/mule-canna+wnn6
 
 USE_GMAKE=	yes
 
