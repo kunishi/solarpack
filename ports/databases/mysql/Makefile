@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/09/06 10:55:17 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/06 11:02:45 kunishi Exp $
 #
 
 PORTNAME=	mysql
@@ -8,6 +8,7 @@ PORTREV=	1
 
 PKG=		OPENmysql
 NAME=		Multithreaded SQL database
+VENDOR=		http://www.mysql.com/
 
 MASTER_SITES=	http://www.mysql.com/Downloads/MySQL-3.22/
 
