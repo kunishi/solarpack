@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.11 1999/05/21 08:32:20 kunishi Exp $
+# $Id: port.mk,v 1.12 1999/05/21 10:15:40 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -129,18 +129,19 @@ MAKE_ENV+=	MAKE=${GMAKE}
 .endif
 
 .if defined(USE_IMAKE)
-USE_X_PREFIX=	yes
-CONFIGURE=	${X11BASE}/bin/xmkmf
+USE_X_PREFIX?=	yes
+CONFIGURE?=	${X11BASE}/bin/xmkmf
 CONFIGURE_ARGS+=	-a
 MAKE_ARGS+=	DESTDIR=${PREFIX}
-MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR}
+MAKE_INSTALL_ARGS+=	DESTDIR=${WRKDIR} PREFIX=${PREFIX} \
+		LOCALBASE=${LOCALBASE} X11BASE=${X11BASE}
 .if !defined(NO_INSTALL_MAN)
 INSTALL_TARGET+=	install.man
 .endif
 .endif
 
 .if defined(USE_X_PREFIX)
-PREFIX=		${X11BASE}
+PREFIX?=		${X11BASE}
 .endif
 
 ### rule definitions
