@@ -1,5 +1,6 @@
 i pkginfo=%%PKGDIR%%/pkginfo
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
+f none bin/bmake=%%WRK_BASEDIR%%/bin/bmake 0755 root bin
 d none share=%%WRK_BASEDIR%%/share 0755 root bin
 d none share/doc=%%WRK_BASEDIR%%/share/doc 0755 root bin
 d none share/doc/bmake=%%WRK_BASEDIR%%/share/doc/bmake 0755 root bin
