@@ -1,13 +1,15 @@
---- gzip.info.orig	Thu Aug 19 05:43:57 1993
-+++ gzip.info	Sat May  8 20:19:35 1999
-@@ -1,6 +1,10 @@
- Info file gzip.info, produced by Makeinfo, -*- Text -*- from input
- file gzip.texi.
- 
-+START-INFO-DIR-ENTRY
-+* gzip: (gzip).		GNU compressing utilities.
-+END-INFO-DIR-ENTRY
-+
-    This file documents the the GNU `gzip' command for compressing
- files.
- 
+*** gzip.info~	Wed Feb  3 08:51:48 1999
+--- gzip.info	Tue Apr 18 11:00:00 2000
+***************
+*** 1,6 ****
+--- 1,10 ----
+  This is Info file gzip.info, produced by Makeinfo version 1.67 from the
+  input file gzip.texi.
+  
++ START-INFO-DIR-ENTRY
++ * gzip: (gzip).		GNU compressing utilities.
++ END-INFO-DIR-ENTRY
++ 
+     This file documents the the GNU `gzip' command for compressing files.
+  
+     Copyright (C) 1992-1993 Jean-loup Gailly

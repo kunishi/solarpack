@@ -1,16 +1,15 @@
 #
-# $Id: Makefile,v 1.3 2000/01/19 04:44:50 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/04/26 08:32:46 kunishi Exp $
 #
 
 PKG=		OPENtiff
 NAME=		TIFF Software Distribution
-VERSION=	3.5.4
+VERSION=	3.5.5
 VENDOR=		Silicon Graphics, Inc.
 
-DISTNAME=	tiff-v3.5.4
+DISTNAME=	tiff-v${VERSION}
 PKGNAME=	tiff-${VERSION}
-MASTER_SITES=	ftp://ftp.onshore.com/pub/libtiff/ \
-		http://www.libtiff.org/
+MASTER_SITES=	http://www.libtiff.org/
 
 LIB_DEPENDS=	OPENzlib:${PORTSDIR}/devel/zlib \
 		OPENjpeg:${PORTSDIR}/graphics/jpeg
@@ -20,6 +19,7 @@ CONFIGURE_ARGS+=	--noninteractive \
 			--with-ZIP --with-JPEG \
 			--with-DIRS_LIBINC=${LOCALBASE}/include \
 			--with-DIR_GZLIB=${LOCALBASE}/lib \
-			--with-DIR_JPEGLIB=${LOCALBASE}/lib
+			--with-DIR_JPEGLIB=${LOCALBASE}/lib \
+			--target=${GNU_HOSTTYPE}
 
 .include <port.mk>

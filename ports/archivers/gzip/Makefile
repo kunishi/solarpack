@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.8 2000/01/18 11:37:13 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/04/26 08:32:45 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -8,7 +8,7 @@ PKG=		PKGBgzip
 PKG=		GNUgzip
 .endif
 NAME=		pkgbuild core tools: GNU compress utilities
-VERSION=	1.2.4
+VERSION=	1.2.4a
 VENDOR=		${VENDOR_GNU}
 
 DISTNAME=	gzip-${VERSION}

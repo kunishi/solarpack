@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:35:58 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/04/26 08:32:46 kunishi Exp $
 #
 
 PKG=		OPENvxdvi
@@ -14,6 +14,8 @@ MASTER_SITES=	ftp://ftp.ipc.chiba-u.ac.jp/pub/pub.yamaga/xdvik-20c/
 PATCHFILES=	xdvik20c-j1.0p0d.patch.gz
 PATCH_SITES=	ftp://ftp.ipc.chiba-u.ac.jp/pub/pub.yamaga/xdvik-20c/
 PATCH_DIST_STRIP=	-p1
+
+LIB_DEPENDS=	OPENvflib:${PORTSDIR}/print/VFlib2
 
 GNU_CONFIGURE=	yes
 MAKE_INSTALL_ARGS+=	texmf=${INSTPREFIX}/share/texmf

@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.53 2000/01/25 13:41:54 kunishi Exp $
+# $Id: port.mk,v 1.54 2000/04/26 08:32:45 kunishi Exp $
 #
 
 # ${SOLPKGDIR} is set in ${SOLPKGDIR}/share/mk/solpkg.conf.
@@ -61,9 +61,9 @@ PREFIX?=	${LOCALBASE}
 .if defined(USE_INSTALL_INFO)
 RUN_DEPENDS+=	GNUtxinf:${PORTSDIR}/textproc/texinfo
 .endif
-.if defined(USE_GMAKE)
-BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel/gmake
-.endif
+#.if defined(USE_GMAKE)
+#BUILD_DEPENDS+=	GNUmake:${PORTSDIR}/devel/gmake
+#.endif
 
 WRKDIR?=	${MASTERDIR}/work
 WRKSRC?=	${WRKDIR}/${DISTNAME}
@@ -146,7 +146,7 @@ CC?=		${SOLPKGDIR}/bin/gcc
 GMAKE?=		${SOLPKGDIR}/bin/gmake
 XMKMF?=		${X11BASE}/bin/xmkmf -a
 
-CONFIGURE_ENV+=	CC=${CC} \
+CONFIGURE_ENV+=	CC="${CC}" \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib
 
 MD5?=		${SOLPKGDIR}/bin/md5

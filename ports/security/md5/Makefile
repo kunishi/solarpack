@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2000/01/06 11:23:35 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/04/26 08:32:46 kunishi Exp $
 #
 
 .if defined(CORE_TOOLS)
@@ -13,12 +13,13 @@ VERSION=	1.0
 VENDOR=		Jim Ellis <jte@cert.org>
 
 DISTNAME=	MD5
+EXTRACT_SUFX=	.tar.Z
 .if defined(CORE_TOOLS)
 PKGNAME=	core-md5-${VERSION}
 .else
 PKGNAME=	md5-${VERSION}
 .endif
-MASTER_SITES=	ftp://ftp.tut.ac.jp/pub/Security/tool/md5/
+MASTER_SITES=	ftp://ftp.aist-nara.ac.jp/pub/Security/tool/md5/
 WRKSRC=		${WRKDIR}
 
 test:

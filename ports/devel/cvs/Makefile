@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.9 2000/01/25 06:50:08 kunishi Exp $
+# $Id: Makefile,v 1.10 2000/04/26 08:32:45 kunishi Exp $
 #
 
 PKG=		OPENcvs
@@ -13,5 +13,8 @@ GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
 CLASS_INFO=	info/cvs.info
+
+BUILD_DEPENDS+=	OPENperl:${PORTSDIR}/lang/perl5
+RUN_DEPENDS+=	OPENperl:${PORTSDIR}/lang/perl5
 
 .include <port.mk>

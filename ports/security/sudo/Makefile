@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.1 2000/01/21 10:23:31 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/04/26 08:32:47 kunishi Exp $
 #
 
 PKG=		OPENsudo
 NAME=		CU version of sudo
-VERSION=	1.6.1
+VERSION=	1.6.3
 VENDOR=		http://www.courtesan.com/
 
 DISTNAME=	sudo-${VERSION}

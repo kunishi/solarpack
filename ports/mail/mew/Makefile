@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.3 1999/06/09 02:34:19 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/04/26 08:32:46 kunishi Exp $
 #
 
 PKG=		OPENmew
 NAME=		Mew, Messaging in the Emacs World
-VERSION=	1.93
+VERSION=	1.94.2
 VENDOR=		Mew developing team <http://www.mew.org/>
 
 DISTNAME=	mew-${VERSION}
@@ -12,6 +12,9 @@ MASTER_SITES=	ftp://ftp.mew.org/pub/Mew/
 
 INSTALL_TARGET=	install install-info install-jinfo
 MAKE_INSTALL_ARGS+=	PREFIX=${INSTPREFIX}
+
+RUN_DEPENDS=	OPENim:${PORTSDIR}/mail/im
+CLASS_INFO=	info/mew.info info/mew.jis.info
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/bin
