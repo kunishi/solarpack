@@ -1,9 +1,9 @@
 #
-# $Id: Makefile,v 1.2 2000/06/26 05:55:14 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/21 12:30:32 kunishi Exp $
 #
 
 PORTNAME=	gimp
-VERSION=	1.1.24
+VERSION=	1.1.25
 PORTREV=	1
 
 PKG=		GNUgimp
