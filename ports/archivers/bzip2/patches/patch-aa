@@ -1,6 +1,38 @@
---- Makefile.orig	Sun Sep  5 07:09:06 1999
-+++ Makefile	Wed May 17 22:03:45 2000
-@@ -44,8 +44,6 @@
+--- Makefile~	Sat Jun 24 05:34:47 2000
++++ Makefile	Sun Nov 11 00:43:33 2001
+@@ -12,10 +12,18 @@
+       decompress.o \
+       bzlib.o
+ 
+-all: libbz2.a bzip2 bzip2recover test
++SO_OBJS=	blocksort.so \
++		huffman.so \
++		crctable.so \
++		randtable.so \
++		compress.so \
++		decompress.so \
++		bzlib.so
++
++all: libbz2.a libbz2.so.1 bzip2 bzip2recover test
+ 
+ bzip2: libbz2.a bzip2.o
+-	$(CC) $(CFLAGS) -o bzip2 bzip2.o -L. -lbz2
++	$(CC) $(CFLAGS) -o bzip2 bzip2.o libbz2.a
+ 
+ bzip2recover: bzip2recover.o
+ 	$(CC) $(CFLAGS) -o bzip2recover bzip2recover.o
+@@ -29,6 +37,10 @@
+ 		ranlib libbz2.a ; \
+ 	fi
+ 
++libbz2.so.1:	$(SO_OBJS)
++	${CC} -shared -Wl,-h -Wl,libbz2.so.1 -o libbz2.so.1 $(SO_OBJS)
++	ln -sf libbz2.so.1 libbz2.so
++
+ test: bzip2
+ 	@cat words1
+ 	./bzip2 -1  < sample1.ref > sample1.rb2
+@@ -45,8 +57,6 @@
  	cmp sample3.tst sample3.ref
  	@cat words3
  
@@ -9,3 +41,28 @@
  install: bzip2 bzip2recover
  	if ( test ! -d $(PREFIX)/bin ) ; then mkdir $(PREFIX)/bin ; fi
  	if ( test ! -d $(PREFIX)/lib ) ; then mkdir $(PREFIX)/lib ; fi
+@@ -67,9 +77,12 @@
+ 	chmod a+r $(PREFIX)/include/bzlib.h
+ 	cp -f libbz2.a $(PREFIX)/lib
+ 	chmod a+r $(PREFIX)/lib/libbz2.a
++	cp -f libbz2.so.1 $(PREFIX)/lib
++	chmod a+r $(PREFIX)/lib/libbz2.so.1
++	cd $(PREFIX)/lib; ln -sf libbz2.so.1 libbz2.so
+ 
+ clean: 
+-	rm -f *.o libbz2.a bzip2 bzip2recover \
++	rm -f *.o *.so libbz2.a libbz2.so.1 bzip2 bzip2recover \
+ 	sample1.rb2 sample2.rb2 sample3.rb2 \
+ 	sample1.tst sample2.tst sample3.tst
+ 
+@@ -92,6 +105,10 @@
+ 	$(CC) $(CFLAGS) -c bzip2.c
+ bzip2recover.o: bzip2recover.c
+ 	$(CC) $(CFLAGS) -c bzip2recover.c
++
++.SUFFIXES:	.c .so
++.c.so:
++	$(CC) -c -fpic -DPIC $(CFLAGS) $< -o $@
+ 
+ DISTNAME=bzip2-1.0.1
+ tarfile:

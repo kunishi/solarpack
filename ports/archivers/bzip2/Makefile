@@ -1,12 +1,12 @@
 #
-# $Id: Makefile,v 1.4 2001/11/08 13:42:05 kunishi Exp $
+# $Id: Makefile,v 1.5 2001/11/10 15:46:36 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	bzip2
 VERSION=	1.0.1
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPUCbzip2
 NAME=		a block-sorting file compressor
