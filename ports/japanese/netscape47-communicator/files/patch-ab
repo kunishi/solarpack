@@ -1,0 +1,15 @@
+--- install.ja.orig	Mon Jul 19 10:48:07 1999
++++ install.ja	Wed Aug 18 20:01:18 1999
+@@ -25,9 +25,9 @@
+ 	MISCLOC="/usr/lib/X11/ja_JP.EUC/netscape";
+ 	;;
+ SunOS)
+-	ADLOC="/usr/openwin/lib/locale/ja/app-defaults";
+-	CFGLOC="/usr/openwin/lib/ja/app-defaults";
+-	MISCLOC="/usr/openwin/lib/locale/ja/netscape";
++	ADLOC="${PREFIX}/openwin/lib/locale/ja/app-defaults";
++	CFGLOC="${PREFIX}/openwin/lib/ja/app-defaults";
++	MISCLOC="${PREFIX}/openwin/lib/locale/ja/netscape";
+ 	;;
+ AIX)
+ 	ADLOC="/usr/lib/X11/ja_JP/app-defaults";
