@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/20 14:01:45 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/21 12:35:00 kunishi Exp $
 #
 
 PORTNAME=	binutils
@@ -18,6 +18,8 @@ USE_GMAKE=	yes
 CONFIGURE_ARGS+=	--program-prefix=g
 
 PROTOTYPE_IN=	${PKGDIR}/prototype.in.${ARCH}
+
+ARCH!=		/usr/bin/mach
 
 pre-install:
 	${MKDIR} ${INSTPREFIX}/include
