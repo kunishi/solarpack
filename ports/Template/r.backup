@@ -1,0 +1,7 @@
+while read dst
+do
+	echo ">> ${dst} is removed from $PKGINST, for future use."
+	removef $PKGINST ${dst}
+	removef -f ${PKGINST} || exit 2
+done
+exit 0
