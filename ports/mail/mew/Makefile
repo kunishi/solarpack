@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.9 2001/11/30 11:04:29 kunishi Exp $
+# $Id: Makefile,v 1.10 2001/11/30 12:01:38 kunishi Exp $
 #
 
 PORTNAME=	mew
 VERSION=	2.1
-PORTREV=	2
+PORTREV=	3
 
 PKG=		OPUCmew
 NAME=		Mew, Messages in the Emacs World

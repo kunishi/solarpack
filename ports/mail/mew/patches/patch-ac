@@ -1,0 +1,27 @@
+--- mew-mime.el~	Tue Oct 30 11:57:50 2001
++++ mew-mime.el	Fri Nov 30 20:52:50 2001
+@@ -572,8 +572,13 @@
+      (mew-mime-application/mspowerpoint cache begin end parameter)
+      (mew-summary-display-postscript 'nohook))))
+ 
++(defun mew-basename (filename)
++  (if (string-match "[^/]*$" filename)
++      (substring filename (match-beginning 0))
++    filename))
++
+ (defun mew-mime-application/msoffice (prog cache begin end &optional parameter)
+-  (let ((doit t) file1 file2)
++  (let ((doit t) file1 file2 arg)
+     (condition-case nil
+ 	(require 'un-define)
+       (file-error
+@@ -601,7 +606,8 @@
+       (if (eq prog mew-prog-application/msword)
+  	  (mew-frwlet
+  	   'utf-8 mew-cs-dummy
+- 	   (call-process prog nil nil nil file1 file2)
++	   (setq arg (concat "--targetdir=" mew-temp-dir))
++ 	   (call-process prog nil nil nil arg file1 (mew-basename file2))
+ 	   (let ((buffer-file-coding-system)) ;; to prevent the side effect
+ 	     (insert-file-contents file2)))
+ 	(mew-frwlet
