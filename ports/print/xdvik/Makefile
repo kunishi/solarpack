@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.6 2000/06/09 04:08:00 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/27 01:27:56 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ja-xdvik-vflib
 VERSION=	20c+j1.0p0d

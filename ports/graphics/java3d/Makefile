@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/06/08 04:23:26 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:27:49 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	java3d
 VERSION=	1.2

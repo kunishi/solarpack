@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/06/19 05:44:52 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:27:50 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	jbigkit
 VERSION=	1.2

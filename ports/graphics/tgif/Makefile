@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/07/01 11:31:50 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:50 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ja-tgif
 VERSION=	3.0.18+j12

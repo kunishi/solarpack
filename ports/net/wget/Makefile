@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.14 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.15 2000/09/27 01:27:53 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	wget
 VERSION=	1.5.3

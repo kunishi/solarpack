@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.6 2000/09/21 12:28:53 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/27 01:27:44 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	auctex
 VERSION=	9.9p

@@ -1,8 +1,8 @@
 #
-# $Id: Makefile,v 1.5 2000/06/07 07:33:47 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:27:51 kunishi Exp $
 #
 
-ARCH!=	/usr/bin/mach
+.include <port.pre.mk>
 
 PORTNAME=	ja-acrobat-reader-fonts
 VERSION=	4.0.5

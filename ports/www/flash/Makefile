@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/06/08 04:41:38 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:58 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	flash-plugin
 VERSION=	4.0r12

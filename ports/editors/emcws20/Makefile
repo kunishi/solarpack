@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/07/14 10:20:34 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:43 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 .if !defined(PORTNAME)
 PORTNAME=	emcws20

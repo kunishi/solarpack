@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:27:41 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	fileutils
 VERSION=	4.0

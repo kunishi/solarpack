@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/09/08 09:06:56 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/09/27 01:27:39 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	mysql
 VERSION=	3.22.32

@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.5 2000/07/14 11:52:28 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:27:56 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	psepro
 VERSION=	6.0

@@ -1,8 +1,8 @@
 #
-# $Id: Makefile,v 1.7 2000/07/06 12:27:58 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/09/27 01:27:57 kunishi Exp $
 #
 
-ARCH!=		/usr/bin/mach
+.include <port.pre.mk>
 
 PORTNAME=	ssh
 VERSION=	1.2.30

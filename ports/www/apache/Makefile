@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/09/06 12:33:06 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:58 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	apache
 VERSION=	1.3.12

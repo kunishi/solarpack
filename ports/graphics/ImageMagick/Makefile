@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/09/21 12:29:41 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:45 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ImageMagick
 VERSION=	5.1.1

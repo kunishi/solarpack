@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.6 2000/09/21 12:38:07 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/27 01:28:00 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	xpbiff
 VERSION=	1.27

@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.4 2000/06/07 05:51:46 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/09/27 01:27:58 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ja-less
 VERSION=	332+iso248

@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.4 2000/06/07 05:51:12 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/09/27 01:27:57 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	sudo
 VERSION=	1.6.3p4

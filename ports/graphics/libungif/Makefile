@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/07/01 07:44:09 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:50 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	libungif
 VERSION=	4.1.0b1

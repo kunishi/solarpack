@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/05/23 10:34:58 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/09/27 01:27:53 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	VFlib2
 VERSION=	2.25.1

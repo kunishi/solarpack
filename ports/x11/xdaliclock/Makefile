@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.5 2000/06/07 06:06:51 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:28:00 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	xdaliclock
 VERSION=	2.18

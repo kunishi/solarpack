@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.7 2000/09/21 12:37:45 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/09/27 01:27:59 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	fvwm-i18n
 VERSION=	2.2

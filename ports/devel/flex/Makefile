@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/06/20 09:20:54 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:27:41 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	flex
 VERSION=	2.5.4a

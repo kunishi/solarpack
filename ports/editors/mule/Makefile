@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.6 2000/07/14 11:13:29 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/27 01:27:44 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME?=	ja-mule
 VERSION=	2.3@19.34b

@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/06/06 06:40:12 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/09/27 01:27:56 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	xml4j
 VERSION=	2.0.13

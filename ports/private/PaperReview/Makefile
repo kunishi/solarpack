@@ -1,10 +1,12 @@
 #
-# $Id: Makefile,v 1.2 2000/09/12 11:26:20 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:56 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	PaperReview
 VERSION=	2.54
-PORTREV=	4
+PORTREV=	5
 
 PKG=		OPENpaprv
 NAME=		Paper Review System
@@ -42,18 +44,19 @@ do-build:
 do-install:
 	${MKDIR} ${CONF_BASEDIR}/cgi-bin
 	${MKDIR} ${CONF_BASEDIR}/doc
-	${MKDIR} ${CONF_BASEDIR}/examples
-	${MKDIR} ${CONF_BASEDIR}/images
+	${MKDIR} ${CONF_BASEDIR}/examples/html
+	${MKDIR} ${CONF_BASEDIR}/examples/images
+	${MKDIR} ${CONF_BASEDIR}/examples/php
 	${MKDIR} ${CONF_BASEDIR}/log
-	${MKDIR} ${CONF_BASEDIR}/php
 	${MKDIR} ${CONF_BASEDIR}/reviews
 	cd ${WRKSRC}/${CONFCODE} && ${ENV} ${MAKE_INSTALL_ENV} ${CCSMAKE} ${INSTALL_TARGET} ${MAKE_INSTALL_ARGS} ${MAKE_FLAGS}
 	${CHMOD} 753 ${CONF_BASEDIR}/log ${CONF_BASEDIR}/reviews
-	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/php/* ${CONF_BASEDIR}/php
-	${INSTALL_DATA} ${WRKSRC}/bgnd.gif ${CONF_BASEDIR}/images
 	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/sql/createdb.sql ${CONF_BASEDIR}/${CONFCODE}create.txt
 	${INSTALL_DATA} ${WRKSRC}/README ${CONF_BASEDIR}/doc
-	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/sql/initdb.sql ${CONF_BASEDIR}/doc
-	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/html/* ${CONF_BASEDIR}/examples
+	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/sql/initdb.sql ${CONF_BASEDIR}/examples
+	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/html/* ${CONF_BASEDIR}/examples/html
+	${INSTALL_DATA} ${WRKSRC}/bgnd.gif ${CONF_BASEDIR}/examples/images
+	${INSTALL_DATA} ${WRKSRC}/images/* ${CONF_BASEDIR}/examples/images
+	${INSTALL_DATA} ${WRKSRC}/${CONFCODE}/php/* ${CONF_BASEDIR}/examples/php
 
 .include <port.mk>

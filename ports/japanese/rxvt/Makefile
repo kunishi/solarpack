@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/09/21 12:34:15 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:51 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	rxvt
 VERSION=	2.7.5

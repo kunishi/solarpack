@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.5 2000/06/07 05:48:34 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:27:52 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 .if defined(POPD_YOUBIN_SUPPORT)
 PORTNAME=	qpopper-youbin

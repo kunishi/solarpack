@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/06/22 12:25:36 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:28:00 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	xeyes
 VERSION=	1.0

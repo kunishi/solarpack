@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.11 2000/06/07 13:04:40 kunishi Exp $
+# $Id: Makefile,v 1.12 2000/09/27 01:27:54 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	dvipsk
 VERSION=	5.78a

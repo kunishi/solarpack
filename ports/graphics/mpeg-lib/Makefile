@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/06/16 12:03:38 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:27:50 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	mpeg_lib
 VERSION=	1.3.1

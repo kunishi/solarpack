@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/09/21 12:36:42 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:59 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	mod_php
 VERSION=	3.0.16

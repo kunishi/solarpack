@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.8 2000/09/15 04:54:15 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/09/27 01:27:53 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	lukemftp
 VERSION=	1.4

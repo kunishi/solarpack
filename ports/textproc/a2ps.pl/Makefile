@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/05/17 11:24:21 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:27:57 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ja-a2ps
 VERSION=	1.44

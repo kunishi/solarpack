@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.8 2000/05/17 06:42:46 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/09/27 01:27:39 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	autoconf
 VERSION=	2.13

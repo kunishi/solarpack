@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.8 2000/06/07 05:50:53 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/09/27 01:27:55 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ja-ptex
 VERSION=	2.1.8

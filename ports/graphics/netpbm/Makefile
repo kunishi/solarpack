@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.9 2000/09/21 12:33:09 kunishi Exp $
+# $Id: Makefile,v 1.10 2000/09/27 01:27:50 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	netpbm
 VERSION=	9.5

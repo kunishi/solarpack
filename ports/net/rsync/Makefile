@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/06/02 03:39:11 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/09/27 01:27:53 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	rsync
 VERSION=	2.4.3

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.5 2000/06/22 12:26:23 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:27:59 kunishi Exp $
 #
 
 SUBDIR+=	Xaw3d
@@ -9,7 +9,7 @@ SUBDIR+=	fvwm95-i18n
 SUBDIR+=	gtk
 SUBDIR+=	kinput2
 SUBDIR+=	kterm
-SUBDIR+=	windowmaker-i18n
+#SUBDIR+=	windowmaker-i18n
 SUBDIR+=	xdaliclock
 SUBDIR+=	xeyes
 SUBDIR+=	xpbiff

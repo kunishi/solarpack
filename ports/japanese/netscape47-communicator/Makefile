@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.8 2000/09/08 11:28:11 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/09/27 01:27:51 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ja-netscape-communicator
 VERSION=	4.75
@@ -9,8 +11,6 @@ PORTREV=	1
 PKG=		NSjacomm
 NAME=		Netscape Communicator with Japanese localization
 VENDOR=		Netscape Communications Corporation
-
-ARCH!=		/usr/bin/mach
 
 NS_SHORTVERSION=	475
 

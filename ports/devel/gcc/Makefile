@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.19 2000/05/30 05:44:00 kunishi Exp $
+# $Id: Makefile,v 1.20 2000/09/27 01:27:41 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 OSREL!=		/usr/bin/uname -r
 

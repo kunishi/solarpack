@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.6 2000/09/21 12:36:09 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/27 01:27:57 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	tcsh
 VERSION=	6.09.03

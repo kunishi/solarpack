@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/06/01 09:41:03 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:56 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	microsoft-ttfont
 VERSION=	1.0

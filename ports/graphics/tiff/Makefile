@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.8 2000/09/21 12:33:42 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/09/27 01:27:51 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	tiff
 VERSION=	3.5.5

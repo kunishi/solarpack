@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/06/16 11:52:03 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:45 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	aalib
 VERSION=	1.2

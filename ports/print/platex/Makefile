@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/05/17 06:42:48 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:27:55 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ja-platex2e-jis
 VERSION=	1999.08.09

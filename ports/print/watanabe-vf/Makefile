@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/05/23 10:34:14 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:27:56 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	watanabe-vf
 VERSION=	1.0

@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.12 2000/05/17 03:59:58 kunishi Exp $
+# $Id: Makefile,v 1.13 2000/09/27 01:27:58 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	texinfo
 VERSION=	4.0

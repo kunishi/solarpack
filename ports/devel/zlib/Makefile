@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.5 2000/06/14 07:35:15 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:27:43 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	zlib
 VERSION=	1.1.3

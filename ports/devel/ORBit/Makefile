@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.1 2000/06/20 09:57:41 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/09/27 01:27:39 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	ORBit
 VERSION=	0.5.1

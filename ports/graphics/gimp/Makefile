@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.3 2000/09/21 12:30:32 kunishi Exp $
+# $Id: Makefile,v 1.4 2000/09/27 01:27:46 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	gimp
 VERSION=	1.1.25

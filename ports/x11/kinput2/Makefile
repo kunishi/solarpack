@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:49 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/09/27 01:28:00 kunishi Exp $
 # 
+
+.include <port.pre.mk>
 
 PORTNAME=	kinput2-canna+wnn6
 VERSION=	3.0

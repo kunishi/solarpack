@@ -1,6 +1,8 @@
 #
-# $Id: Makefile,v 1.2 2000/05/18 05:43:41 kunishi Exp $
+# $Id: Makefile,v 1.3 2000/09/27 01:28:00 kunishi Exp $
 #
+
+.include <port.pre.mk>
 
 PORTNAME=	windowmaker-i18n
 VERSION=	0.62.1
@@ -34,7 +36,6 @@ CONFIGURE_ARGS+= \
 	--with-libs-from="-L${LOCALBASE}/lib -R${LOCALBASE}/lib" \
 	--with-incs-from="-I${LOCALBASE}/include"
 
-ARCH!=	/usr/bin/mach
 .if (${ARCH} == "i386")
 CONFIGURE_ENV+=	ac_cv_c_inline_mmx=no
 .endif

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2000/07/01 07:27:29 kunishi Exp $
+# $Id: Makefile,v 1.8 2000/09/27 01:27:39 kunishi Exp $
 #
 
 SUBDIR+=	ORBit
@@ -13,7 +13,7 @@ SUBDIR+=	diffutils
 SUBDIR+=	fileutils
 SUBDIR+=	flex
 SUBDIR+=	gcc
-SUBDIR+=	gcc27
+#SUBDIR+=	gcc27
 SUBDIR+=	gettext
 SUBDIR+=	glib
 SUBDIR+=	gmake
@@ -23,8 +23,8 @@ SUBDIR+=	libreadline
 SUBDIR+=	libtool
 SUBDIR+=	m4
 SUBDIR+=	patch
-SUBDIR+=	rcs
-SUBDIR+=	zlib
-SUBDIR+=	zoularis
+#SUBDIR+=	rcs
+#SUBDIR+=	zlib
+#SUBDIR+=	zoularis
 
 .include <port.subdir.mk>
