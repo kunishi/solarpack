@@ -14,6 +14,7 @@ f none etc/ssh_prng_cmds=%%INSTPREFIX%%/etc/ssh_prng_cmds 0644 root bin
 f none etc/sshd_config=%%INSTPREFIX%%/etc/sshd_config 0644 root bin
 d none libexec=%%INSTPREFIX%%/libexec 0755 root bin
 f none libexec/sftp-server=%%INSTPREFIX%%/libexec/sftp-server 0755 root bin
+f none libexec/ssh-rand-helper=%%INSTPREFIX%%/libexec/ssh-rand-helper 0755 root bin
 d none man=%%INSTPREFIX%%/man 0755 root bin
 d none man/man1=%%INSTPREFIX%%/man/man1 0755 root bin
 f none man/man1/scp.1=%%INSTPREFIX%%/man/man1/scp.1 0644 root bin
