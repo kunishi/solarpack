@@ -1,19 +1,19 @@
 #
-# $Id: Makefile,v 1.6 2001/03/23 07:02:43 kunishi Exp $
+# $Id: Makefile,v 1.7 2001/11/08 14:15:40 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	png
-VERSION=	1.0.9
+VERSION=	1.2.0
 PORTREV=	1
 
-PKG=		OPENpng
+PKG=		OPUCpng
 NAME=		PNG handling library
 
 VENDOR=		G. R.-Pehrson, A. E. Dilger, and G. E. Schalnat <png-group@w3.org>
 DISTNAME=	libpng-${VERSION}
-MASTER_SITES=	ftp://ftp.libpng.org/pub/png/src/
+MASTER_SITES=	http://www.libpng.org/pub/png/src/
 
 post-extract:
 	cd ${WRKSRC} && ${CP} scripts/makefile.solaris Makefile
