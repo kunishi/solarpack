@@ -19,7 +19,7 @@
 -#undef SOLARIS
 -#undef UcbLibDir	-L/usr/ucblib
 +#define SOLARIS
-+#define UcbLibDir	-L/usr/ucblib
++#define UcbLibDir	-L/usr/ucblib -R/usr/ucblib
  
  /*
   *	For slow work station

@@ -1,0 +1,11 @@
+--- Imakefile.orig	Mon Oct 24 16:06:53 1994
++++ Imakefile	Wed Aug  4 16:31:59 1999
+@@ -15,7 +15,7 @@
+ #include "config.h"
+ 
+ #ifdef XPM
+-         XPMLIB = -lXpm
++         XPMLIB = -L${PREFIX}/lib -R${PREFIX}/lib -lXpm
+ #ifdef DepXpmLib
+       DEPXPMLIB = DepXpmLib
+ #endif
