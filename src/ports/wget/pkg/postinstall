@@ -1,3 +1,0 @@
-mkdir -p $CLIENT_BASEDIR/etc
-cp $CLIENT_BASEDIR/share/examples/wget/sample.wgetrc \
-   $CLIENT_BASEDIR/etc/wgetrc
