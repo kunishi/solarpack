@@ -1,5 +1,5 @@
 #
-# $Id: soap.conf.in,v 1.5 1999/05/19 09:49:09 kunishi Exp $
+# $Id: soap.conf.in,v 1.6 1999/05/21 07:12:40 kunishi Exp $
 #
 ###
 # pkgbuild root directory.
@@ -15,6 +15,11 @@ PKG_MAINTAINER=	Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
 # the root directory to put the released packages
 #
 RELEASE_PKG_DIR=/share/local-ftp/pub/Solaris
+
+## Master sites lists
+# GNU
+MASTER_SITES=	ftp://ring.nacsis.ac.jp/pub/GNU/%SUBDIR%/ \
+		ftp://ftp.media.kyoto-u.ac.jp/pub/GNU/%SUBDIR%/
 
 ### do not modify below
 PKGBUILD_MAKEFILE_DIR=	${PKGBUILDDIR}/ports/Mk
