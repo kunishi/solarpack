@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 09:01:50 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/23 11:21:47 kunishi Exp $
 #
 
 SUBDIR+=	archivers
@@ -11,6 +11,7 @@ SUBDIR+=	graphics
 SUBDIR+=	japanese
 SUBDIR+=	lang
 SUBDIR+=	mail
+SUBDIR+=	math
 SUBDIR+=	misc
 SUBDIR+=	net
 SUBDIR+=	print
