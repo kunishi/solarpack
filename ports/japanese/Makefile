@@ -1,8 +1,9 @@
 #
-# $Id: Makefile,v 1.1 2000/06/05 08:58:39 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/07 07:35:22 kunishi Exp $
 #
 
 SUBDIR+=	Canna
+SUBDIR+=	acroread4-fonts
 SUBDIR+=	netscape47-communicator
 SUBDIR+=	rxvt
 
