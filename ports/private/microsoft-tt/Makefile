@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 2000/06/01 09:35:00 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/06/01 09:41:03 kunishi Exp $
 #
 
 PORTNAME=	microsoft-ttfont
@@ -11,7 +11,7 @@ NAME=	Microsoft Japanese TrueType fonts
 VENDOR=	Microsoft Corp.
 
 DISTNAME=	#
-MASTER_SITES=	ftp://kunishi@bloodstone.c.oka-pu.ac.jp/%2Fexport/share/fonts/truetype/microsoft/
+MASTER_SITES=	ftp://${USER}@bloodstone.c.oka-pu.ac.jp/%2Fexport/share/fonts/truetype/microsoft/
 DISTFILES=	msmincho.ttc msgothic.ttc
 WRKSRC=		${WRKDIR}
 
