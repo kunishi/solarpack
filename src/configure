@@ -526,258 +526,6 @@ fi
 
 
 
-# Extract the first word of "cp", so it can be a program name with args.
-set dummy cp; ac_word=$2
-echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:533: checking for $ac_word" >&5
-if eval "test \"`echo '$''{'ac_cv_path_PKGB_CP'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  case "$PKGB_CP" in
-  /*)
-  ac_cv_path_PKGB_CP="$PKGB_CP" # Let the user override the test with a path.
-  ;;
-  ?:/*)			 
-  ac_cv_path_PKGB_CP="$PKGB_CP" # Let the user override the test with a dos path.
-  ;;
-  *)
-  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
-  ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
-    test -z "$ac_dir" && ac_dir=.
-    if test -f $ac_dir/$ac_word; then
-      ac_cv_path_PKGB_CP="$ac_dir/$ac_word"
-      break
-    fi
-  done
-  IFS="$ac_save_ifs"
-  test -z "$ac_cv_path_PKGB_CP" && ac_cv_path_PKGB_CP="missing_cp"
-  ;;
-esac
-fi
-PKGB_CP="$ac_cv_path_PKGB_CP"
-if test -n "$PKGB_CP"; then
-  echo "$ac_t""$PKGB_CP" 1>&6
-else
-  echo "$ac_t""no" 1>&6
-fi
-
-# Extract the first word of "compress", so it can be a program name with args.
-set dummy compress; ac_word=$2
-echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:569: checking for $ac_word" >&5
-if eval "test \"`echo '$''{'ac_cv_path_PKGB_COMPRESS'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  case "$PKGB_COMPRESS" in
-  /*)
-  ac_cv_path_PKGB_COMPRESS="$PKGB_COMPRESS" # Let the user override the test with a path.
-  ;;
-  ?:/*)			 
-  ac_cv_path_PKGB_COMPRESS="$PKGB_COMPRESS" # Let the user override the test with a dos path.
-  ;;
-  *)
-  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
-  ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
-    test -z "$ac_dir" && ac_dir=.
-    if test -f $ac_dir/$ac_word; then
-      ac_cv_path_PKGB_COMPRESS="$ac_dir/$ac_word"
-      break
-    fi
-  done
-  IFS="$ac_save_ifs"
-  test -z "$ac_cv_path_PKGB_COMPRESS" && ac_cv_path_PKGB_COMPRESS="missing_compress"
-  ;;
-esac
-fi
-PKGB_COMPRESS="$ac_cv_path_PKGB_COMPRESS"
-if test -n "$PKGB_COMPRESS"; then
-  echo "$ac_t""$PKGB_COMPRESS" 1>&6
-else
-  echo "$ac_t""no" 1>&6
-fi
-
-# Extract the first word of "mkdir", so it can be a program name with args.
-set dummy mkdir; ac_word=$2
-echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:605: checking for $ac_word" >&5
-if eval "test \"`echo '$''{'ac_cv_path_PKGB_MKDIR'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  case "$PKGB_MKDIR" in
-  /*)
-  ac_cv_path_PKGB_MKDIR="$PKGB_MKDIR" # Let the user override the test with a path.
-  ;;
-  ?:/*)			 
-  ac_cv_path_PKGB_MKDIR="$PKGB_MKDIR" # Let the user override the test with a dos path.
-  ;;
-  *)
-  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
-  ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
-    test -z "$ac_dir" && ac_dir=.
-    if test -f $ac_dir/$ac_word; then
-      ac_cv_path_PKGB_MKDIR="$ac_dir/$ac_word"
-      break
-    fi
-  done
-  IFS="$ac_save_ifs"
-  test -z "$ac_cv_path_PKGB_MKDIR" && ac_cv_path_PKGB_MKDIR="missing_mkdir"
-  ;;
-esac
-fi
-PKGB_MKDIR="$ac_cv_path_PKGB_MKDIR"
-if test -n "$PKGB_MKDIR"; then
-  echo "$ac_t""$PKGB_MKDIR" 1>&6
-else
-  echo "$ac_t""no" 1>&6
-fi
-
-# Extract the first word of "pkgmk", so it can be a program name with args.
-set dummy pkgmk; ac_word=$2
-echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:641: checking for $ac_word" >&5
-if eval "test \"`echo '$''{'ac_cv_path_PKGB_PKGMK'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  case "$PKGB_PKGMK" in
-  /*)
-  ac_cv_path_PKGB_PKGMK="$PKGB_PKGMK" # Let the user override the test with a path.
-  ;;
-  ?:/*)			 
-  ac_cv_path_PKGB_PKGMK="$PKGB_PKGMK" # Let the user override the test with a dos path.
-  ;;
-  *)
-  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
-  ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
-    test -z "$ac_dir" && ac_dir=.
-    if test -f $ac_dir/$ac_word; then
-      ac_cv_path_PKGB_PKGMK="$ac_dir/$ac_word"
-      break
-    fi
-  done
-  IFS="$ac_save_ifs"
-  test -z "$ac_cv_path_PKGB_PKGMK" && ac_cv_path_PKGB_PKGMK="missing_pkgmk"
-  ;;
-esac
-fi
-PKGB_PKGMK="$ac_cv_path_PKGB_PKGMK"
-if test -n "$PKGB_PKGMK"; then
-  echo "$ac_t""$PKGB_PKGMK" 1>&6
-else
-  echo "$ac_t""no" 1>&6
-fi
-
-# Extract the first word of "pkgtrans", so it can be a program name with args.
-set dummy pkgtrans; ac_word=$2
-echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:677: checking for $ac_word" >&5
-if eval "test \"`echo '$''{'ac_cv_path_PKGB_PKGTRANS'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  case "$PKGB_PKGTRANS" in
-  /*)
-  ac_cv_path_PKGB_PKGTRANS="$PKGB_PKGTRANS" # Let the user override the test with a path.
-  ;;
-  ?:/*)			 
-  ac_cv_path_PKGB_PKGTRANS="$PKGB_PKGTRANS" # Let the user override the test with a dos path.
-  ;;
-  *)
-  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
-  ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
-    test -z "$ac_dir" && ac_dir=.
-    if test -f $ac_dir/$ac_word; then
-      ac_cv_path_PKGB_PKGTRANS="$ac_dir/$ac_word"
-      break
-    fi
-  done
-  IFS="$ac_save_ifs"
-  test -z "$ac_cv_path_PKGB_PKGTRANS" && ac_cv_path_PKGB_PKGTRANS="missing_pkgtrans"
-  ;;
-esac
-fi
-PKGB_PKGTRANS="$ac_cv_path_PKGB_PKGTRANS"
-if test -n "$PKGB_PKGTRANS"; then
-  echo "$ac_t""$PKGB_PKGTRANS" 1>&6
-else
-  echo "$ac_t""no" 1>&6
-fi
-
-# Extract the first word of "rm", so it can be a program name with args.
-set dummy rm; ac_word=$2
-echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:713: checking for $ac_word" >&5
-if eval "test \"`echo '$''{'ac_cv_path_PKGB_RM'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  case "$PKGB_RM" in
-  /*)
-  ac_cv_path_PKGB_RM="$PKGB_RM" # Let the user override the test with a path.
-  ;;
-  ?:/*)			 
-  ac_cv_path_PKGB_RM="$PKGB_RM" # Let the user override the test with a dos path.
-  ;;
-  *)
-  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
-  ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
-    test -z "$ac_dir" && ac_dir=.
-    if test -f $ac_dir/$ac_word; then
-      ac_cv_path_PKGB_RM="$ac_dir/$ac_word"
-      break
-    fi
-  done
-  IFS="$ac_save_ifs"
-  test -z "$ac_cv_path_PKGB_RM" && ac_cv_path_PKGB_RM="missing_rm"
-  ;;
-esac
-fi
-PKGB_RM="$ac_cv_path_PKGB_RM"
-if test -n "$PKGB_RM"; then
-  echo "$ac_t""$PKGB_RM" 1>&6
-else
-  echo "$ac_t""no" 1>&6
-fi
-
-# Extract the first word of "sed", so it can be a program name with args.
-set dummy sed; ac_word=$2
-echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:749: checking for $ac_word" >&5
-if eval "test \"`echo '$''{'ac_cv_path_PKGB_SED'+set}'`\" = set"; then
-  echo $ac_n "(cached) $ac_c" 1>&6
-else
-  case "$PKGB_SED" in
-  /*)
-  ac_cv_path_PKGB_SED="$PKGB_SED" # Let the user override the test with a path.
-  ;;
-  ?:/*)			 
-  ac_cv_path_PKGB_SED="$PKGB_SED" # Let the user override the test with a dos path.
-  ;;
-  *)
-  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
-  ac_dummy="$PATH"
-  for ac_dir in $ac_dummy; do 
-    test -z "$ac_dir" && ac_dir=.
-    if test -f $ac_dir/$ac_word; then
-      ac_cv_path_PKGB_SED="$ac_dir/$ac_word"
-      break
-    fi
-  done
-  IFS="$ac_save_ifs"
-  test -z "$ac_cv_path_PKGB_SED" && ac_cv_path_PKGB_SED="missing_sed"
-  ;;
-esac
-fi
-PKGB_SED="$ac_cv_path_PKGB_SED"
-if test -n "$PKGB_SED"; then
-  echo "$ac_t""$PKGB_SED" 1>&6
-else
-  echo "$ac_t""no" 1>&6
-fi
-
 
 
 
@@ -786,7 +534,7 @@ if test "${with_topdir+set}" = set; then
   withval="$with_topdir"
   pkgbuild_topdir="$with_topdir"
 else
-  pkgbuild_topdir="/opt/local/pkgbuild"
+  pkgbuild_topdir="/usr/solpkg"
 fi
 
 
@@ -903,7 +651,7 @@ done
 
 ac_given_srcdir=$srcdir
 
-trap 'rm -fr `echo "Makefile" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
+trap 'rm -fr `echo "Makefile pkg/pkginfo" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
 cat >> $CONFIG_STATUS <<EOF
 
@@ -936,13 +684,6 @@ s%@oldincludedir@%$oldincludedir%g
 s%@infodir@%$infodir%g
 s%@mandir@%$mandir%g
 s%@pkgbuild_topdir@%$pkgbuild_topdir%g
-s%@PKGB_CP@%$PKGB_CP%g
-s%@PKGB_COMPRESS@%$PKGB_COMPRESS%g
-s%@PKGB_MKDIR@%$PKGB_MKDIR%g
-s%@PKGB_PKGMK@%$PKGB_PKGMK%g
-s%@PKGB_PKGTRANS@%$PKGB_PKGTRANS%g
-s%@PKGB_RM@%$PKGB_RM%g
-s%@PKGB_SED@%$PKGB_SED%g
 
 CEOF
 EOF
@@ -984,7 +725,7 @@ EOF
 
 cat >> $CONFIG_STATUS <<EOF
 
-CONFIG_FILES=\${CONFIG_FILES-"Makefile"}
+CONFIG_FILES=\${CONFIG_FILES-"Makefile pkg/pkginfo"}
 EOF
 cat >> $CONFIG_STATUS <<\EOF
 for ac_file in .. $CONFIG_FILES; do if test "x$ac_file" != x..; then
