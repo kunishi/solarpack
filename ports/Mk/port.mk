@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.71 2000/06/23 11:24:51 kunishi Exp $
+# $Id: port.mk,v 1.72 2000/06/30 01:50:40 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -263,6 +263,7 @@ SH?=		/bin/sh
 SORT?=		/usr/bin/sort
 UNAME?=		/usr/bin/uname
 UNIQ?=		/usr/bin/uniq
+UNZIP?=		/usr/bin/unzip
 
 ECHO_MSG?=	${ECHO}
 
