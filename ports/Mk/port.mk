@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.33 1999/08/20 12:01:34 kunishi Exp $
+# $Id: port.mk,v 1.34 1999/08/25 10:36:07 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -330,6 +330,9 @@ ${RELEASE_COOKIE}:
 
 real-fetch:
 	@${ECHO_MSG} "===> Fetching for ${PKGNAME}"
+.if defined(NO_FETCH)
+	@${ECHO_MSG} ">> ${NO_FETCH}"
+.endif
 .if target(pre-fetch)
 	@cd ${MASTERDIR} && ${MAKE} ${.TARGET:S/^real-/pre-/}
 .endif
