@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.1 1999/08/31 11:39:44 kunishi Exp $
+# $Id: Makefile,v 1.2 2000/01/19 01:38:20 kunishi Exp $
 #
 
 PKG=		OPENtcsh
@@ -14,7 +14,8 @@ MASTER_SITES =	ftp://ftp.ccs.dendai.ac.jp/pub/misc/shell/tcsh/ \
 
 GNU_CONFIGURE=	yes
 WRKSRC=		${WRKDIR}/${PKGNAME}
-CATEGORY_SHELL=		yes
 INSTALL_TARGET=		install install.man
+
+CLASS_SHELL=	bin/tcsh
 
 .include <port.mk>
