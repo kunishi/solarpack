@@ -1,13 +1,13 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 s none bin/awk=gawk
 f none bin/gawk=%%WRK_BASEDIR%%/bin/gawk 0755 root bin
 l none bin/gawk-3.0.3=gawk
 f none bin/igawk=%%WRK_BASEDIR%%/bin/igawk 0755 root bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/gawk.info=%%WRK_BASEDIR%%/info/gawk.info 0644 root bin
+f info info/gawk.info=%%WRK_BASEDIR%%/info/gawk.info 0644 root bin
 d none lib=%%WRK_BASEDIR%%/lib 0755 root bin
 d none libexec=%%WRK_BASEDIR%%/libexec 0755 root bin
 d none libexec/awk=%%WRK_BASEDIR%%/libexec/awk 0755 root bin
