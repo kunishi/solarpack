@@ -1,39 +1,68 @@
 #
-# $Id: Makefile,v 1.8 2000/05/17 06:42:47 kunishi Exp $
+# $Id: Makefile,v 1.9 2000/06/02 14:14:51 kunishi Exp $
 #
 
 PORTNAME=	dvipsk
-VERSION=	5.78
-PORTREV=	1
+VERSION=	5.78a
+PORTREV=	2
 
 PKG=		OPENadvps
 NAME=		dvipsk for ASCII pTeX
 
 VENDOR=		TeX Users Group
-MASTER_SITES=	ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/ptex218/web2c/ \
-		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/ptex218/
-DISTFILES=	web2c-7.2.tar.gz web-7.2.tar.gz \
-		${DISTNAME}${EXTRACT_SUFX} dvipsk-jpatch-p1.4c.tar.gz
-EXTRACT_ONLY=	web2c-7.2.tar.gz web-7.2.tar.gz dvipsk-jpatch-p1.4c.tar.gz
+MASTER_SITES=	ftp://ftp.center.osaka-pu.ac.jp/CTAN/dviware/dvipsk/ \
+		ftp://ftp.riken.go.jp/pub/CTAN/dviware/dvipsk/ \
+		ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/dviware/dvipsk/ \
+		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} dvipsk-jpatch-p1.4d.tar.gz
 
 RUN_DEPENDS+=	OPENptexj:${PORTSDIR}/print/ptex
 
-WRKSRC=		${WRKDIR}/web2c-7.2
 GNU_CONFIGURE=	yes
 MAKE_INSTALL_ARGS+=	prefix=${INSTPREFIX} texmf=${INSTPREFIX}/share/texmf
 
 CLASS_INFO=	info/dvips.info
 
-post-extract:
-	@cd ${WRKSRC}; ${TAR} xzf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
+DVIPSDIR=	${INSTPREFIX}/share/texmf/dvips
+TEXDIR=		${INSTPREFIX}/share/texmf/tex
+CONTRIB_FILES=	MakeTeXPK.pl PSTricks colorsep.pro config.proto crop.lpr \
+		timesmat.sty whichinpath afm-extra/*.ed bbfig/bb* \
+		configs/* psfig/README psfig/lprep* volker/*
+PLAIN_MACROS=	psfig/psfig.tex psfntmac/ps_plain.tex
+LATEX209_MACROS=latex209/*.sty psfntmac/ps_lfonts.tex pspic/*
+DOCS=		../README.jpatch dvipsk/README \
+		dvipsk/dvips.texi dvipsk/dvips.help
 
 pre-patch:
-	${PATCH} -p1 -s -d ${WRKSRC}/dvipsk < ${WRKDIR}/dvipsk.patch
+	${PATCH} -p0 -s -d ${WRKSRC} < ${WRKDIR}/dvipsk.patch
+
+post-build:
+	cd ${WRKSRC}/dvipsk/contrib; \
+	  ../squeeze < colorsep.lpro > colorsep.pro
 
 do-install:
-	cd ${WRKSRC}/dvipsk; ${MAKE_ENV} ${CCSMAKE} ${MAKE_FLAGS} ${MAKE_INSTALL_ARGS} install
+	cd ${WRKSRC}/dvipsk; ${ENV} ${MAKE_INSTALL_ENV} ${CCSMAKE} ${MAKE_INSTALL_ARGS} ${INSTALL_TARGET}
 
 post-install:
-	cd ${INSTPREFIX}; ${RM} -rf share
+	${MKDIR} ${DVIPSDIR}/contrib ${TEXDIR}/plain/dvips ${TEXDIR}/latex209/dvips
+	${MKDIR} ${DVIPSDIR}/contrib/afm-extra \
+	  ${DVIPSDIR}/contrib/bbfig \
+	  ${DVIPSDIR}/contrib/configs \
+	  ${DVIPSDIR}/contrib/psfig \
+	  ${DVIPSDIR}/contrib/volker
+	cd ${WRKSRC}/dvipsk/contrib; \
+	  for i in ${CONTRIB_FILES}; do \
+	    ${INSTALL_DATA} $$i ${DVIPSDIR}/contrib/$$i; \
+	  done; \
+	  for i in ${PLAIN_MACROS}; do \
+	    ${INSTALL_DATA} $$i ${TEXDIR}/plain/dvips; \
+	  done; \
+	  for i in ${LATEX209_MACROS}; do \
+	    ${INSTALL_DATA} $$i ${TEXDIR}/latex209/dvips; \
+	  done
+	${MKDIR} ${INSTPREFIX}/share/doc/dvips
+	for i in ${DOCS}; do \
+	  ${INSTALL_DATA} ${WRKSRC}/$$i ${INSTPREFIX}/share/doc/dvips; \
+	done
 
 .include <port.mk>
