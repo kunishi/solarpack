@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.9 1999/05/21 03:18:50 kunishi Exp $
+# $Id: port.mk,v 1.10 1999/05/21 05:13:28 kunishi Exp $
 #
 
 .include "/opt/local/pkgbuild/conf/pkgbuild.conf"
@@ -100,6 +100,7 @@ MAKE_ENV+=	PREFIX=${PREFIX} \
 MAKE_INSTALL_ENV+=	PREFIX=${WRK_BASEDIR} \
 		LD_RUN_PATH=${LOCALBASE}/lib:${X11BASE}/lib \
 		CC=${CC}
+MAKE_INSTALL_ARGS+=	INSTALL=${INSTALL}
 MAKE_INSTALL_EXEC_DIR?=	${WRKSRC}
 
 .if defined(GNU_CONFIGURE)
