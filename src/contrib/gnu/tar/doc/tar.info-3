@@ -1,4 +1,4 @@
-This is tar.info, produced by Makeinfo version 3.12f from tar.texi.
+This is tar.info, produced by makeinfo version 4.0 from tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -212,7 +212,7 @@ create a new archive; you can use `--append' (`-r').  The archive must
 already exist in order to use `--append'.  (A related operation is the
 `--update' operation; you can use this to add newer versions of archive
 members to an existing archive.  To learn how to do this with
-`--update', *note update::..)
+`--update', *note update::.)
 
    If you use `--append' (`-r') to add a file that has the same name as
 an archive member to an archive containing that archive member, then the
@@ -300,8 +300,8 @@ Multiple Files with the Same Name
    You can use `--append' (`-r') to add copies of files which have been
 updated since the archive was created.  (However, we do not recommend
 doing this since there is another `tar' option called `--update'; *note
-update::. for more information.  We describe this use of `--append'
-here for the sake of completeness.)   When you extract the archive, the
+update:: for more information.  We describe this use of `--append' here
+for the sake of completeness.)   When you extract the archive, the
 older version will be effectively lost.  This works because files are
 extracted from an archive in the order in which they were archived.
 Thus, when the archive is extracted, a file archived later in time will
@@ -487,7 +487,7 @@ to using the `cat' utility, use the `--ignore-zeros' (`-i') option.
 improperly combined using the `cat' shell utility.
 
    You must specify the source archives using `--file=ARCHIVE-NAME'
-(`-f ARCHIVE-NAME') (*note file::.).  If you do not specify the target
+(`-f ARCHIVE-NAME') (*note file::).  If you do not specify the target
 archive, `tar' uses the value of the environment variable `TAPE', or,
 if this has not been set, the default archive name.
 

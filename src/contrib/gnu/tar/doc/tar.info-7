@@ -1,4 +1,4 @@
-This is tar.info, produced by Makeinfo version 3.12f from tar.texi.
+This is tar.info, produced by makeinfo version 4.0 from tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -168,7 +168,7 @@ you can use the options described in the following sections.  If you do
 not specify any format parameters, `tar' uses default parameters.  You
 cannot modify a compressed archive.  If you create an archive with the
 `--blocking-factor=512-SIZE' (`-b 512-SIZE') option specified
-(*note Blocking Factor::.), you must specify that blocking-factor when
+(*note Blocking Factor::), you must specify that blocking-factor when
 operating on the archive.  *Note Formats::, for other examples of
 format parameter considerations.
 
@@ -713,7 +713,7 @@ Archives Longer than One Tape or Disk
 
    To create an archive that is larger than will fit on a single unit of
 the media, use the `--multi-volume' (`-M') option in conjunction with
-the `--create' (`-c') option (*note create::.).  A "multi-volume"
+the `--create' (`-c') option (*note create::).  A "multi-volume"
 archive can be manipulated like any other archive (provided the
 `--multi-volume' (`-M') option is specified), but is stored on more
 than one tape or disk.
@@ -755,11 +755,11 @@ of the archive media (and new volumes, if needed).  For all other
 operations, you need to use the entire archive.
 
    If a multi-volume archive was labeled using `--label=ARCHIVE-LABEL'
-(`-V ARCHIVE-LABEL') (*note label::.) when it was created, `tar' will
-not automatically label volumes which are added later.  To label
-subsequent volumes, specify `--label=ARCHIVE-LABEL' (`-V
-ARCHIVE-LABEL') again in conjunction with the `--append' (`-r'),
-`--update' (`-u') or `--concatenate' (`--catenate', `-A') operation.
+(`-V ARCHIVE-LABEL') (*note label::) when it was created, `tar' will not
+automatically label volumes which are added later.  To label subsequent
+volumes, specify `--label=ARCHIVE-LABEL' (`-V ARCHIVE-LABEL') again in
+conjunction with the `--append' (`-r'), `--update' (`-u') or
+`--concatenate' (`--catenate', `-A') operation.
 
 `--multi-volume'
 `-M'

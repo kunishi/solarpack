@@ -1,4 +1,4 @@
-This is tar.info, produced by Makeinfo version 3.12f from tar.texi.
+This is tar.info, produced by makeinfo version 4.0 from tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -119,26 +119,25 @@ Invoking GNU `tar'
      _(This message will disappear, once this node revised.)_
 
    This chapter is about how one invokes the GNU `tar' command, from
-the command synopsis (*note Synopsis::.).  There are numerous options,
+the command synopsis (*note Synopsis::).  There are numerous options,
 and many styles for writing them.  One mandatory option specifies the
-operation `tar' should perform (*note Operation Summary::.), other
+operation `tar' should perform (*note Operation Summary::), other
 options are meant to detail how this operation should be performed
-(*note Option Summary::.).  Non-option arguments are not always
+(*note Option Summary::).  Non-option arguments are not always
 interpreted the same way, depending on what the operation is.
 
    You will find in this chapter everything about option styles and
-rules for writing them (*note Styles::.).  On the other hand,
-operations and options are fully described elsewhere, in other
-chapters.  Here, you will find only synthetic descriptions for
-operations and options, together with pointers to other parts of the
-`tar' manual.
+rules for writing them (*note Styles::).  On the other hand, operations
+and options are fully described elsewhere, in other chapters.  Here,
+you will find only synthetic descriptions for operations and options,
+together with pointers to other parts of the `tar' manual.
 
    Some options are so special they are fully described right in this
 chapter.  They have the effect of inhibiting the normal operation of
 `tar' or else, they globally alter the amount of feedback the user
 receives about what is going on.  These are the `--help' and
-`--version' (*note help::.), `--verbose' (`-v') (*note verbose::.)  and
-`--interactive' (`-w') options (*note interactive::.).
+`--version' (*note help::), `--verbose' (`-v') (*note verbose::) and
+`--interactive' (`-w') options (*note interactive::).
 
 * Menu:
 
@@ -263,7 +262,7 @@ interaction.  Some options make sense with all operating modes, while
 others are meaningful only with particular modes.  You will likely use
 some options frequently, while you will only use others infrequently,
 or not at all.  (A full list of options is available in *note All
-Options::..)
+Options::.)
 
    Note that `tar' options are case sensitive.  For example, the
 options `-T' and `-t' are different; the first requires an argument for
@@ -717,7 +716,7 @@ File: tar.info,  Node: Option Summary,  Next: Short Option Summary,  Prev: Opera
      unreadable file.  *Note Reading::.
 
 `--ignore-umask'
-     (See `--preserve-permissions'; *note Writing::..)
+     (See `--preserve-permissions'; *note Writing::.)
 
 `--ignore-zeros'
 `-i'
@@ -846,7 +845,7 @@ File: tar.info,  Node: Option Summary,  Next: Short Option Summary,  Prev: Opera
      `--same-order'.  .
 
 `--preserve-order'
-     (See `--same-order'; *note Reading::..)
+     (See `--same-order'; *note Reading::.)
 
 `--preserve-permissions'
 `--same-permissions'
@@ -892,7 +891,7 @@ File: tar.info,  Node: Option Summary,  Next: Short Option Summary,  Prev: Opera
      owner specified in the `tar' archive with this option present.  .
 
 `--same-permissions'
-     (See `--preserve-permissions'; *note Writing::..)
+     (See `--preserve-permissions'; *note Writing::.)
 
 `--show-omitted-dirs'
      Instructs `tar' to mention directories its skipping over when
@@ -1256,7 +1255,7 @@ Asking for Confirmation During Operations
 instructions.  In some situations however, you may want to exclude some
 files and archive members from the operation (for instance if disk or
 storage space is tight).  You can do this by excluding certain files
-automatically (*note Choosing::.), or by performing an operation
+automatically (*note Choosing::), or by performing an operation
 interactively, using the `--interactive' (`-w') option.  `tar' also
 accepts `--confirmation' for this option.
 

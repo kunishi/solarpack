@@ -1,4 +1,4 @@
-This is tar.info, produced by Makeinfo version 3.12f from tar.texi.
+This is tar.info, produced by makeinfo version 4.0 from tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -40,7 +40,7 @@ Handling File Attributes
 updated.  To have `tar' attempt to set the access times back to what
 they were before they were read, use the `--atime-preserve' option.
 This doesn't work for files that you don't own, unless you're root, and
-it doesn't interact with incremental dumps nicely (*note Backups::.),
+it doesn't interact with incremental dumps nicely (*note Backups::),
 but it is good enough for some purposes.
 
    Handling of file attributes

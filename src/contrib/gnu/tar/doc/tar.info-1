@@ -1,4 +1,4 @@
-This is tar.info, produced by Makeinfo version 3.12f from tar.texi.
+This is tar.info, produced by makeinfo version 4.0 from tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -309,7 +309,7 @@ will recur throughout the book.  It also tells you who has worked on GNU
 `tar' and its documentation, and where you should send bug reports or
 comments.
 
-   The second chapter is a tutorial (*note Tutorial::.) which provides a
+   The second chapter is a tutorial (*note Tutorial::) which provides a
 gentle introduction for people who are new to using `tar'.  It is meant
 to be self contained, not requiring any reading from subsequent
 chapters to make sense.  It moves from topic to topic in a logical,
@@ -324,7 +324,7 @@ tutorial frequently; however, if a section discusses something which is
 a complex variant of a basic concept, there may be a cross reference to
 that basic concept.  (The entire book, including the tutorial, assumes
 that the reader understands some basic concepts of using a Unix-type
-operating system; *note Tutorial::..)
+operating system; *note Tutorial::.)
 
    The third chapter presents the remaining five operations, and
 information about using `tar' options and option syntax.
@@ -333,9 +333,9 @@ information about using `tar' options and option syntax.
 chapter presents everything that needs to be said about a specific
 topic.
 
-   One of the chapters (*note Date input formats::.) exists in its
+   One of the chapters (*note Date input formats::) exists in its
 entirety in other GNU manuals, and is mostly self-contained.  In
-addition, one section of this manual (*note Standard::.) contains a big
+addition, one section of this manual (*note Standard::) contains a big
 quote which is taken directly from `tar' sources.
 
    In general, we give both the long and short (abbreviated) option
@@ -550,7 +550,7 @@ manual, and the hardware you will be using:
 
    * Before you start to work through this tutorial, you should
      understand what the terms "archive" and "archive member" mean
-     (*note Definitions::.).  In addition, you should understand
+     (*note Definitions::).  In addition, you should understand
      something about how Unix-type operating systems work, and you
      should know how to use some basic utilities.  For example, you
      should know how to create, list, copy, rename, edit, and delete
@@ -1016,7 +1016,7 @@ written out mnemonically can affect how well you remember which option
 does what, and therefore where different names have to be placed.
 (Placing options in an unusual order can also cause `tar' to report an
 error if you have set the shell environment variable,
-`POSIXLY_CORRECT'; *note posix compliance::. for more information on
+`POSIXLY_CORRECT'; *note posix compliance:: for more information on
 this.)
 
 
@@ -1260,7 +1260,7 @@ name is important.  `tar --extract --file=bfiles.tar birds' will fail,
 because there is no member named `birds'.  To extract the member named
 `./birds', you must specify `tar --extract --file=bfiles.tar ./birds'.
 To find the exact member names of the members of an archive, use
-`--list' (`-t') (*note list::.).
+`--list' (`-t') (*note list::).
 
    If you give the `--verbose' (`-v') option, then `--extract'
 (`--get', `-x') will print the names of the archive members as it

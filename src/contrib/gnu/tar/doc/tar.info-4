@@ -1,4 +1,4 @@
-This is tar.info, produced by Makeinfo version 3.12f from tar.texi.
+This is tar.info, produced by makeinfo version 4.0 from tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -682,7 +682,7 @@ files smaller than 400K in length and put that list into a file called
 `small-files'.  You can then use the `-T' option to `tar' to specify
 the files from that file, `small-files', to create the archive
 `little.tgz'.  (The `-z' option to `tar' compresses the archive with
-`gzip'; *note gzip::. for more information.)
+`gzip'; *note gzip:: for more information.)
 
      $ find . -size -400 -print > small-files
      $ tar -c -v -z -T small-files -f little.tgz
@@ -977,7 +977,7 @@ themselves, but does not descend on them recursively.  Many people use
 `find' for locating files they want to back up, and since `tar'
 _usually_ recursively descends on directories, they have to use the
 `! -d' option to `find'  as they usually do not want all the files in a
-directory.  They then use the {No Value For "op-file-from"} option to
+directory.  They then use the {No value for `op-file-from'} option to
 archive the files located via `find'.
 
    The problem when restoring files archived in this manner is that the
@@ -1089,7 +1089,7 @@ relative to the then current directory, which might not be the same as
 the original current working directory of `tar', due to a previous
 `--directory' option.
 
-   When using `--files-from' (*note files::.), you can put `-C' options
+   When using `--files-from' (*note files::), you can put `-C' options
 in the file list.  Unfortunately, you cannot put `--directory' options
 in the file list.  (This interpretation can be disabled by using the
 `--null' option.)

@@ -1,4 +1,4 @@
-This is tar.info, produced by Makeinfo version 3.12f from tar.texi.
+This is tar.info, produced by makeinfo version 4.0 from tar.texi.
 
 START-INFO-DIR-ENTRY
 * tar: (tar).			Making tape (or disk) archives.
@@ -432,7 +432,7 @@ Pure numbers in date strings
 the context in the date string.
 
    If the decimal number is of the form YYYYMMDD and no other calendar
-date item (*note Calendar date item::.) appears before it in the date
+date item (*note Calendar date item::) appears before it in the date
 string, then YYYY is read as the year, MM as the month number and DD as
 the day of the month, for the specified calendar date.
 

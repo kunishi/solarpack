@@ -1,6 +1,6 @@
 #
 # bootstrap makefile for building gmake
-# $Id: Makefile,v 1.1 2001/02/22 08:38:03 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/02/22 13:04:22 kunishi Exp $
 #
 
 TARGET_CMD=	make
@@ -8,23 +8,23 @@ TARGET_CMD=	make
 include ../config.mk
 include ../rule.mk
 
-all:	build
+install:=	GMAKE=./make
+EXTRA_CONFIGURE_ARGS=	--program-prefix=g
+CLEAN_TARGET=	distclean
 
 patch:
-	${DO_NADA}
+	@${DO_NADA}
 
 configure:	${PATCH_COOKIE}
-	cd ${WORKDIR}/${TARGET_CMD} && \
-	  ${CONFIGURE_ENV} ./configure --prefix=${PREFIX} --program-prefix=g
+	@cd ${WORKDIR}/${TARGET_CMD} && \
+	  ${CONFIGURE_ENV} ${GNU_CONFIGURE} ${CONFIGURE_ARGS} ${EXTRA_CONFIGURE_ARGS}
 
 build:		${CONFIGURE_COOKIE}
-	cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE}
+	@cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE} ${BUILD_TARGET}
 
 install:	${BUILD_COOKIE}
-	if [ ! -f ${INSTALL_COOKIE} ]; then \
-	  cd ${WORKDIR}/${TARGET_CMD} && ${INSTALL_ENV} ./make ${MAKE_INSTALL_ARGS} install; \
-	fi
-	${TOUCH} ${INSTALL_COOKIE}
+	@cd ${WORKDIR}/${TARGET_CMD} && \
+	  ${INSTALL_ENV} ${GMAKE} ${MAKE_INSTALL_ARGS} ${INSTALL_TARGET}
 
 clean::
-	cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE} distclean
+	@cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE} ${CLEAN_TARGET}

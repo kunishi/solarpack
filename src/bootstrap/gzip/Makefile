@@ -1,6 +1,6 @@
 #
 # Bootstrap makefile for building gzip
-# $Id: Makefile,v 1.1 2001/02/22 08:38:02 kunishi Exp $
+# $Id: Makefile,v 1.2 2001/02/22 13:04:22 kunishi Exp $
 #
 
 TARGET_CMD=	gzip
@@ -8,21 +8,20 @@ TARGET_CMD=	gzip
 include ../config.mk
 include ../rule.mk
 
+CLEAN_TARGET=	distclean
+
 patch:
-	${DO_NADA}
+	@${DO_NADA}
 
 configure:	${PATCH_COOKIE}
-	cd ${WORKDIR}/${TARGET_CMD} && \
-	  ${CONFIGURE_ENV} ./configure --prefix=${PREFIX}
+	@cd ${WORKDIR}/${TARGET_CMD} && \
+	  ${CONFIGURE_ENV} ${GNU_CONFIGURE} ${CONFIGURE_ARGS}
 
 build:		${CONFIGURE_COOKIE}
-	cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE}
+	@cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE} ${BUILD_TARGET}
 
 install:	${BUILD_COOKIE}
-	if [ ! -f ${INSTALL_COOKIE} ]; then \
-	  cd ${WORKDIR}/${TARGET_CMD} && ${INSTALL_ENV} ${MAKE} ${MAKE_INSTALL_ARGS} install; \
-	fi
-	${TOUCH} ${INSTALL_COOKIE}
+	@cd ${WORKDIR}/${TARGET_CMD} && ${INSTALL_ENV} ${MAKE} ${MAKE_INSTALL_ARGS} ${INSTALL_TARGET}
 
 clean::
-	cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE} distclean
+	@cd ${WORKDIR}/${TARGET_CMD} && ${MAKE_ENV} ${MAKE} ${CLEAN_TARGET}

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.23 2001/02/22 08:37:58 kunishi Exp $
+# $Id: Makefile.in,v 1.24 2001/02/22 13:04:20 kunishi Exp $
 #
 
 include version.mk
@@ -66,16 +66,6 @@ BOOTSTRAP_ENV=	TOPDIR=${CWD} \
 
 MAKE_ENV=	${BOOTSTRAP_ENV}
 
-#BOOTSTRAP_FLAGS=${MAKEFLAGS} \
-#		PREFIX=${TMPPREFIX} \
-#		prefix=${TMPPREFIX}
-
-#MAKEFLAGS=	TOPDIR=${CWD} \
-#		PATH=${PATH} \
-#		LOCALBASE=${LOCALBASE} \
-#		GMAKE=${GMAKE} \
-#		BOOTSTRAPDIR=${BOOTSTRAPDIR}
-
 include sunos.${OSREL}.mk
 
 DIST_PKGS?=	# none
@@ -94,7 +84,6 @@ all:
 	@echo "Start build process under PATH=${PATH}"
 	${MAKE} check-required-packages
 	${MAKE} prepare-build-tree
-#	${MAKE} bootstrap-tools
 	${MAKE} build-tools
 
 check-required-packages::
@@ -123,13 +112,9 @@ prepare-build-tree::
 	  ${LNDIR} ${CONTRIBDIR}/bsd/$$pkg; \
 	done
 
-bootstrap-tools::
-	for pkg in ${BOOTSTRAP_TOOLS}; do \
-	  cd ${BOOTSTRAPDIR}/$$pkg && ${ENV} ${BOOTSTRAP_ENV} ${MAKE} ${BOOTSTRAP_FLAGS} install; \
-	done
-
 build-tools::
 	@for pkg in ${BUILD_PKGS}; do \
+	  echo "===> $$pkg"; \
 	  cd ${BOOTSTRAPDIR}/$$pkg && ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} install; \
 	done
 
@@ -163,6 +148,7 @@ build-misc-package::
 
 clean::
 	@for pkg in ${BUILD_PKGS}; do \
+	  echo "===> $$pkg"; \
 	  cd ${BOOTSTRAPDIR}/$$pkg && ${MAKE_ENV} ${MAKE} ${MAKEFLAGS} clean; \
 	done
 
@@ -170,6 +156,7 @@ releaseclean:
 	${RM} -rf ${RELEASEDIR}
 
 distclean:
+	cd ${MAKEFILEDIR} && ${MAKE} clean
+	${RM} -rf ${WRKDIR}
+	${RM} -rf config.cache config.log config.status
 	${RM} -f Makefile
-	${RM} -rf ${RELEASEDIR}
-#	${RM} -f ${DISTDIR}/*.tar ${DISTDIR}/*.tar.gz ${DISTDIR}/*.tar.Z
