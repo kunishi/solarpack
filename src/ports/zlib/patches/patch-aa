@@ -1,0 +1,11 @@
+--- Makefile.in.orig	Fri Jul 10 01:07:18 1998
++++ Makefile.in	Fri Aug 20 19:53:58 1999
+@@ -33,7 +33,7 @@
+ TAR=tar
+ SHELL=/bin/sh
+ 
+-prefix = /usr/local
++prefix = ${PREFIX}
+ exec_prefix = ${prefix}
+ libdir = ${exec_prefix}/lib
+ includedir = ${prefix}/include
