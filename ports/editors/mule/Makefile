@@ -1,13 +1,13 @@
 #
-# $Id: Makefile,v 1.5 2000/05/17 06:42:46 kunishi Exp $
+# $Id: Makefile,v 1.6 2000/07/14 11:13:29 kunishi Exp $
 #
 
-PORTNAME=	ja-mule-canna+wnn6
+PORTNAME?=	ja-mule
 VERSION=	2.3@19.34b
 PORTREV=	1
 
-PKG=		GNUmule
-NAME=		GNU Multi-lingual Emacs
+PKG?=		GNUmule
+NAME?=		GNU Multi-lingual Emacs
 
 VENDOR=		${VENDOR_GNU}
 DISTNAME =	emacs-19.34b
@@ -32,16 +32,20 @@ CONFIGURE_ARGS +=	--with-x \
 			--with-x-toolkit=yes \
 			--with-pop \
 			--with-executable=mule
-# for Wnn6
+PROTOTYPE_SUB+=		EMACS_VER=${EMACS_VER}
+
+.if defined(WITH_WNN6)
 CONFIGURE_ARGS +=	--with-wnn6 \
 			--with-wnn-includes=${WNN6_DIR}/include/wnn \
 			--with-wnn-libraries=${WNN6_DIR}/lib
-# for Canna
-CONFIGURE_ARGS +=	--with-canna \
-			--with-canna-includes=${PREFIX}/canna/include \
-			--with-canna-libraries=${PREFIX}/lib
+.endif
 
+.if defined(WITH_CANNA)
+CONFIGURE_ARGS +=	--with-canna \
+			--with-canna-includes=${LOCALBASE}/canna/include \
+			--with-canna-libraries=${LOCALBASE}/lib
 LIB_DEPENDS=	OPENcanna:${PORTSDIR}/japanese/Canna
+.endif
 
 post-patch:
 	@(cd ${WRKSRC}/lisp; \
@@ -51,6 +55,6 @@ post-patch:
 post-install:
 	${MKDIR} ${INSTPREFIX}/share/examples/emacs/info
 	${INSTALL_DATA} ${WRKSRC}/info/dir ${INSTPREFIX}/share/examples/emacs/info
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/emacs/${EMACS_VER}
+#	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTPREFIX}/share/emacs/${EMACS_VER}
 
 .include <port.mk>

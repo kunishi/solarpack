@@ -1,5 +1,6 @@
 i pkginfo=%%PKGDIR%%/pkginfo
 i postinstall=%%PKGDIR%%/postinstall
+i depend=%%PKGDIR%%/depend
 d none bin=%%INSTPREFIX%%/bin 0755 root bin
 f none bin/any2ps=%%INSTPREFIX%%/bin/any2ps 0755 root bin
 f none bin/b2m=%%INSTPREFIX%%/bin/b2m 0755 root bin
@@ -335,6 +336,7 @@ f none share/emacs/%%EMACS_VER%%/lisp/calendar.el=%%INSTPREFIX%%/share/emacs/%%E
 f none share/emacs/%%EMACS_VER%%/lisp/calendar.elc=%%INSTPREFIX%%/share/emacs/%%EMACS_VER%%/lisp/calendar.elc 0644 root bin
 f none share/emacs/%%EMACS_VER%%/lisp/can-n-egg.el=%%INSTPREFIX%%/share/emacs/%%EMACS_VER%%/lisp/can-n-egg.el 0644 root bin
 f none share/emacs/%%EMACS_VER%%/lisp/canna.el=%%INSTPREFIX%%/share/emacs/%%EMACS_VER%%/lisp/canna.el 0644 root bin
+f none share/emacs/%%EMACS_VER%%/lisp/canna.elc=%%INSTPREFIX%%/share/emacs/%%EMACS_VER%%/lisp/canna.elc 0644 root bin
 f none share/emacs/%%EMACS_VER%%/lisp/case-table.el=%%INSTPREFIX%%/share/emacs/%%EMACS_VER%%/lisp/case-table.el 0444 root bin
 f none share/emacs/%%EMACS_VER%%/lisp/case-table.elc=%%INSTPREFIX%%/share/emacs/%%EMACS_VER%%/lisp/case-table.elc 0644 root bin
 f none share/emacs/%%EMACS_VER%%/lisp/cc-compat.el=%%INSTPREFIX%%/share/emacs/%%EMACS_VER%%/lisp/cc-compat.el 0444 root bin
