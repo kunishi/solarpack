@@ -1,10 +1,9 @@
 PKG=OPENkinp2
 NAME=kinput2, an input server for easy input of Japanese text
 VERSION=2.0.3beta2
-ARCH=sparc
+ARCH=%%ARCH%%
 CATEGORY=application
 VENDOR=Makoto Ishisone <ishisone@sra.co.jp>
-EMAIL=kunishi@c.oka-pu.ac.jp
-PSTAMP=Takeo Kunishima
-BASEDIR=/usr/openwin
+EMAIL=%%PKG_MAINTAINER%%
+BASEDIR=%%BASEDIR%%
 CLASSES=none
