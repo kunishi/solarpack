@@ -1,11 +1,11 @@
 i pkginfo=%%PKGDIR%%/pkginfo
-i postinstall=%%PKGDIR%%/postinstall
-i preremove=%%PKGDIR%%/preremove
+i i.info=%%TEMPLATEDIR%%/i.info
+i r.info=%%TEMPLATEDIR%%/r.info
 d none bin=%%WRK_BASEDIR%%/bin 0755 root bin
 f none bin/aclocal=%%WRK_BASEDIR%%/bin/aclocal 0755 bin bin
 f none bin/automake=%%WRK_BASEDIR%%/bin/automake 0755 bin bin
 d none info=%%WRK_BASEDIR%%/info 0755 root bin
-f none info/automake.info=%%WRK_BASEDIR%%/info/automake.info 0644 bin bin
+f info info/automake.info=%%WRK_BASEDIR%%/info/automake.info 0644 bin bin
 f none info/automake.info-1=%%WRK_BASEDIR%%/info/automake.info-1 0644 bin bin
 f none info/automake.info-2=%%WRK_BASEDIR%%/info/automake.info-2 0644 bin bin
 f none info/automake.info-3=%%WRK_BASEDIR%%/info/automake.info-3 0644 bin bin
