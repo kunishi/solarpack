@@ -1,10 +1,10 @@
 #
-# $Id: port.mk,v 1.38 1999/09/01 12:12:54 kunishi Exp $
+# $Id: port.mk,v 1.39 2000/01/05 10:38:10 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
 
-.include "pkgbuild.conf"
+.include "solpkg.conf"
 
 .if !defined(ARCH)
 ARCH!=		/usr/bin/mach
