@@ -1,0 +1,11 @@
+--- makefile.boot.in.orig	Thu May 11 14:29:39 2000
++++ makefile.boot.in	Thu May 11 14:31:47 2000
+@@ -30,7 +30,7 @@
+ 
+ install-man:
+ 	test -d ${prefix}/man/cat1 || ${INSTALL} -m755 -d ${prefix}/man/cat1
+-	${INSTALL} -m444 ${srcdir}/bmake.0 ${prefix}/man/cat1/bmake.1
++	${INSTALL} -m444 ${srcdir}/bmake.cat1 ${prefix}/man/cat1/bmake.1
+ 
+ install-mk:
+ 	test -d ${MK} || ${INSTALL} -m775 -d ${MK}
