@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.4 2000/09/27 01:27:53 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/09/27 02:52:43 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	rsync
-VERSION=	2.4.3
+VERSION=	2.4.6
 PORTREV=	1
 
 PKG=	GNUrsync
