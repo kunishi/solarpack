@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.5 2001/11/20 10:47:58 kunishi Exp $
+# $Id: Makefile,v 1.6 2001/12/12 10:24:34 kunishi Exp $
 #
 
 PORTNAME=	openssh
-VERSION=	3.0.1p1
-PORTREV=	1
+VERSION=	3.0.2p1
+PORTREV=	2
 
 PKG=		OPUCopssh
 NAME=		a free version of SSH, originated from OpenBSD Project
