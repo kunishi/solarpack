@@ -1,17 +1,21 @@
 ###
-# pkgbuild root directory.
-PKGBUILDDIR=	@solpkg_topdir@
+# solpkg root directory. 
+SOLPKGDIR=	@solpkg_topdir@
+#
+# The directory where solpkg ports tree are in.
+# Edit by yourself to fit your own environment.
+SOLPKGSRCDIR=	${SOLPKGDIR}
+#SOLPKGSRCDIR=	/export/pub/cvs/solpkg
 #
 # C compiler for building packages. (comment out when using 'cc'.)
-CC=	${PKGBUILDDIR}/bin/gcc
+CC=	${SOLPKGDIR}/bin/gcc
 #
 # package maintainer.
 #
 PKG_MAINTAINER=	kunishi@c.oka-pu.ac.jp
 #
 # the root directory to put the released packages
-#
-RELEASE_PKG_DIR=/share/pub/Solaris
+#RELEASE_PKG_DIR=	${SOLPKGDIR}/packages
 
 ## Master sites lists
 # GNU

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.in,v 1.6 2000/01/06 04:59:36 kunishi Exp $
+# $Id: Makefile.in,v 1.7 2000/01/06 07:52:49 kunishi Exp $
 #
 
 PKGNAME=	solpkg-0.1
@@ -22,6 +22,8 @@ PKGMK=		/usr/bin/pkgmk
 PKGTRANS=	/usr/bin/pkgtrans
 LN=		/usr/bin/ln
 MKDIR=		/usr/bin/mkdir -p
+PKGMK=		/usr/bin/pkgmk -o
+PKGTRANS=	/usr/bin/pkgtrans -o
 RM=		/usr/bin/rm
 SED=		/usr/bin/sed
 SH=		/bin/sh
@@ -63,6 +65,7 @@ bootstrap::
 	${MAKE} build-strap-tools
 	${MAKE} prepare-for-package
 	${MAKE}	build-package
+	${MAKE} build-misc-package
 
 build-strap-tools::
 	${MAKE} ${MAKEFLAGS} -f ${BOOTSTRAPDIR}/Makefile.gzip install
@@ -88,6 +91,13 @@ build-package::
 	   cd ${PORTSDIR}/$${tool} && \
 	     ${BMAKE} ${BUILD_PACKAGE_OPTS} release); \
 	done
+
+build-misc-package::
+	${MKDIR} ${WRKDIR}/spool
+	${SED} -e 's!%%INSTPREFIX%%!${CWD}!' ${PKGDIR}/prototype.in > ${PKGDIR}/prototype
+	${PKGMK} -d ${WRKDIR}/spool -f ${PKGDIR}/prototype
+	${PKGTRANS} -s ${WRKDIR}/spool ${RELEASE_PKG_DIR}/solpkg-misc-0.1 all
+	${CWD}/bin/gzip ${RELEASE_PKG_DIR}/solpkg-misc-0.1
 
 clean:
 	${RM} -rf config.cache config.log config.status

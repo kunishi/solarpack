@@ -1,5 +1,5 @@
-PKG=PKGBmks
-NAME=Package Building Tools, makefiles in system directory.
+PKG=PKGBmisc
+NAME=Package Building Tools, miscellaneous files.
 VERSION=0.1
 CATEGORY=application
 VENDOR=Takeo Kunishima <kunishi@c.oka-pu.ac.jp>
