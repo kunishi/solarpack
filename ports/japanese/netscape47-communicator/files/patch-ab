@@ -1,6 +1,6 @@
---- install.ja.orig	Mon Jul 19 10:48:07 1999
-+++ install.ja	Wed Aug 18 20:01:18 1999
-@@ -25,9 +25,9 @@
+--- install.orig	Mon May  8 17:01:12 2000
++++ install	Wed May 31 19:07:06 2000
+@@ -26,9 +26,9 @@
  	MISCLOC="/usr/lib/X11/ja_JP.EUC/netscape";
  	;;
  SunOS)
@@ -13,3 +13,49 @@
  	;;
  AIX)
  	ADLOC="/usr/lib/X11/ja_JP/app-defaults";
+@@ -57,7 +57,7 @@
+ esac
+ 
+ cde_ready=0
+-if [ -e /usr/dt ] ; then
++if [ -d /usr/dt ] ; then
+     cde_ready=1		# CDE was installed
+ else
+     cde_font="-dt-interface system-medium-*-*-S*-*-*-*-*-*-*-*-*";
+@@ -85,7 +85,7 @@
+     echo "	We don't have any CDE(Common Desktop Environment) fonts."
+ fi
+ 
+-read dummy
++#read dummy
+ 
+ #
+ # See if we have to use the lame SYS-V echo command flags.
+@@ -192,7 +192,8 @@
+ while test -z ""
+ do
+    ${ECHO}  "Do you want to continue? (Y/N): ${ENDER}"
+-   read choice
++#   read choice
++   choice="y"
+    case $choice in
+       [yY]) break;;
+       [nN]) exit 0;;
+@@ -207,7 +208,7 @@
+     echo "Please enter the path to your Install Directory:"
+     echo ""
+     ${ECHO} "[Netscape Install Directory] : ${ENDER}"
+-    read TARGET
++#    read TARGET
+ else
+     echo ""
+     echo "Please enter the path to your Install Directory."
+@@ -215,7 +216,7 @@
+     echo "Hit return to use the indicated default."
+     echo ""
+     ${ECHO} "[Install Directory - ${INSTALL_DIR}] : ${ENDER}"
+-    read TARGET
++#    read TARGET
+ fi
+ 
+ if test ! -z "${TARGET}"

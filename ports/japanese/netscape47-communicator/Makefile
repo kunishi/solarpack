@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.4 2000/05/31 08:58:48 kunishi Exp $
+# $Id: Makefile,v 1.5 2000/05/31 10:11:24 kunishi Exp $
 #
 
 PORTNAME=	ja-netscape-communicator
@@ -40,11 +40,11 @@ post-patch:
 
 do-install:
 	cd ${WRKSRC} && ${ENV} ${MAKE_INSTALL_ENV} ./ns-install
-	cd ${WRKDIR}/netscape-ja_euc && ${ENV} ${MAKE_INSTALL_ENV} ./install.ja
+	cd ${WRKDIR}/netscape-ja_euc && ${ENV} ${MAKE_INSTALL_ENV} ./install
 
 post-install:
 	${CHOWN} -R ${BINOWN}:${BINGRP} ${INSTPREFIX} 
 	${MKDIR} ${INSTPREFIX}/local/bin
-	cd ${INSTPREFIX}/local/bin && ${LN} -s ../netscape/netscape netscape-current
+	cd ${INSTPREFIX}/local/bin && ${LN} -s ../netscape/netscape netscape
 
 .include <port.mk>

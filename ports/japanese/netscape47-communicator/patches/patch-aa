@@ -1,6 +1,35 @@
---- ns-install.orig	Thu Jun  3 05:44:31 1999
-+++ ns-install	Wed Aug 18 19:56:14 1999
-@@ -413,7 +413,7 @@
+--- ns-install.orig	Fri May  5 08:04:03 2000
++++ ns-install	Wed May 31 18:41:34 2000
+@@ -146,7 +146,7 @@
+ while test ${flag} -eq 1
+ do
+ 	${ECHO} "Location for ${PRODUCT} software [${INSTALL_DIR}]: ${ENDER}"
+-	read TARGET
++#	read TARGET
+ 	if test -z "${TARGET}"
+ 	then
+ 		TARGET="${INSTALL_DIR}"
+@@ -161,7 +161,8 @@
+ 	then
+ 		echo ""
+ 		${ECHO} "${TARGET}: No such directory.  Do you wish to create it? (y/n)[y] ${ENDER}"
+-		read check
++#		read check
++		check="y"
+ 		if test "${check}" = "n" -o "${check}" = "N"
+ 		then
+ 			flag=1
+@@ -187,7 +188,8 @@
+ 		echo "you will be prompted for a different directory."
+ 		echo ""
+ 		${ECHO} "Do you wish to install in '${TARGET}'? (y/n)[y] ${ENDER}"
+-		read check
++#		read check
++		check="y"
+ 		if test "${check}" = "n" -o "${check}" = "N"
+ 		then
+ 			flag=1
+@@ -421,7 +423,7 @@
  	awk '{printf("\techo \"%s\" >>/tmp/infile\n", $0)}' ${REG_INFILE}
  	echo "	${TARGET}/vreg ${TARGET}/${VREGISTRY} /tmp/infile"
  	echo ""
@@ -9,7 +38,7 @@
  	exit 3
  fi
  #
-@@ -426,7 +426,7 @@
+@@ -434,7 +436,7 @@
  #
  # Get rid of the trash.
  #
