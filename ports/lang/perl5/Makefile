@@ -1,10 +1,10 @@
 #
-# $Id: Makefile,v 1.6 2000/05/17 11:05:23 kunishi Exp $
+# $Id: Makefile,v 1.7 2000/09/21 12:28:23 kunishi Exp $
 #
 
 PORTNAME=	perl
 VERSION=	5.6.0
-PORTREV=	1
+PORTREV=	2
 
 PKG=		OPENperl
 NAME=		Perl Programming Language
