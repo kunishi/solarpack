@@ -1,11 +1,11 @@
 #
-# $Id: Makefile,v 1.9 2001/11/08 13:52:02 kunishi Exp $
+# $Id: Makefile,v 1.10 2001/11/28 10:51:46 kunishi Exp $
 #
 
 .include <port.pre.mk>
 
 PORTNAME=	bash
-VERSION=	2.05
+VERSION=	2.05a
 PORTREV=	1
 
 PKG=		OPUCbash

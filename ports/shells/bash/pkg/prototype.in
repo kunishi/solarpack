@@ -7,4 +7,3 @@ d none man=%%INSTPREFIX%%/man 0755 root bin
 d none man/man1=%%INSTPREFIX%%/man/man1 0755 root bin
 f none man/man1/bash.1=%%INSTPREFIX%%/man/man1/bash.1 0644 root bin
 f none man/man1/bashbug.1=%%INSTPREFIX%%/man/man1/bashbug.1 0644 root bin
-d none man/man3=%%INSTPREFIX%%/man/man3 0755 root bin
