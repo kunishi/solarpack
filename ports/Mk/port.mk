@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.65 2000/06/02 14:16:49 kunishi Exp $
+# $Id: port.mk,v 1.66 2000/06/06 07:51:34 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -187,6 +187,7 @@ TOUCH_FLAGS?=
 
 FETCH_CMD?=	${SOAP_BINDIR}/ftp
 FETCH_FLAGS?=	
+FETCH_ENV?=	FTPANONPASS=${PKG_MAINTAINER}
 
 PATCH?=		${SOAP_BINDIR}/patch
 PATCH_STRIP?=	-p0
@@ -523,9 +524,9 @@ do-fetch:
 	@(cd ${DISTDIR}; \
 	 for file in ${DISTFILES}; do \
 		if [ ! -f $$file ]; then \
-			for site in ${MASTER_SITES}; do \
+			for site in ${MASTER_SITES} ${MASTER_SITES_LOCAL}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
+				if ${ENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
@@ -535,9 +536,9 @@ do-fetch:
 	@(cd ${DISTDIR}; \
 	 for file in ${PATCHFILES}; do \
 		if [ ! -f $${file} ]; then \
-			for site in ${PATCH_SITES}; do \
+			for site in ${PATCH_SITES} ${MASTER_SITES_LOCAL}; do \
 				${ECHO_MSG} ">> fetching $${site}$${file}..."; \
-				if ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
+				if ${ENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_FLAGS} $${site}$${file}; then \
 					continue 2; \
 				fi \
 			done; \
