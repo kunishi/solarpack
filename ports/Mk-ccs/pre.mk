@@ -22,12 +22,12 @@ WGET=		/usr/local/bin/wget
 
 ECHO_MSG=	${ECHO}
 PKGMAKE=	/usr/ccs/bin/make
-POSTPROTO=	${CURDIR}/../../tools/postproto.sh
+POSTPROTO=	${PKGBUILDDIR}/tools/postproto.sh
 
 ARCH:sh=	/usr/bin/mach
 OSREL:sh=		/usr/bin/uname -r
 OSREL_SOLARIS:sh=	/usr/bin/uname -r | /usr/bin/sed 's/^5/2/'
-include	${PKGBUILD_MAKEFILE_DIR}/${ARCH}.mk
+include	${PKGBUILD_CCS_MAKEFILE_DIR}/${ARCH}.mk
 
 LOCALBASE=	/usr/local
 X11BASE=	/usr/openwin

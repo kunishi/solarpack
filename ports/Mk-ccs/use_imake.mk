@@ -1,5 +1,5 @@
-include ${PKGBUILD_MAKEFILE_DIR}/use_x_prefix.mk
-include ${PKGBUILD_MAKEFILE_DIR}/use_ccsmake.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_x_prefix.mk
+include ${PKGBUILD_CCS_MAKEFILE_DIR}/use_ccsmake.mk
 
 CONFIGURE=	${X11BASE}/bin/xmkmf
 CONFIGURE_ARGS +=	-a
