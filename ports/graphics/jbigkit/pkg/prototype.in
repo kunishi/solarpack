@@ -1,0 +1,16 @@
+i pkginfo=%%PKGDIR%%/pkginfo
+d none bin=%%INSTPREFIX%%/bin 0755 root bin
+f none bin/jbgtopbm=%%INSTPREFIX%%/bin/jbgtopbm 0755 root bin
+f none bin/pbmtojbg=%%INSTPREFIX%%/bin/pbmtojbg 0755 root bin
+d none include=%%INSTPREFIX%%/include 0755 root bin
+f none include/jbig.h=%%INSTPREFIX%%/include/jbig.h 0644 root bin
+d none lib=%%INSTPREFIX%%/lib 0755 root bin
+f none lib/libjbig.a=%%INSTPREFIX%%/lib/libjbig.a 0644 root bin
+d none man=%%INSTPREFIX%%/man 0755 root bin
+d none man/man1=%%INSTPREFIX%%/man/man1 0755 root bin
+f none man/man1/jbgtopbm.1=%%INSTPREFIX%%/man/man1/jbgtopbm.1 0644 root bin
+f none man/man1/pbmtojbg.1=%%INSTPREFIX%%/man/man1/pbmtojbg.1 0644 root bin
+d none share=%%INSTPREFIX%%/share 0755 root bin
+d none share/doc=%%INSTPREFIX%%/share/doc 0755 root bin
+d none share/doc/jbigkit=%%INSTPREFIX%%/share/doc/jbigkit 0755 root bin
+f none share/doc/jbigkit/jbig.doc=%%INSTPREFIX%%/share/doc/jbigkit/jbig.doc 0644 root bin

@@ -1,0 +1,15 @@
+--- libjbig/Makefile~	Sat Apr  8 20:15:46 2000
++++ libjbig/Makefile	Mon Jun 19 14:31:11 2000
+@@ -2,10 +2,10 @@
+ # $Id: patch-ab,v 1.1 2000/06/19 05:44:52 kunishi Exp $
+ 
+ # Select an ANSI/ISO C compiler here, GNU gcc is recommended
+-CC = gcc
++#CC = gcc
+ 
+ # Options for the compiler: A high optimization level is suggested
+-CFLAGS = -O -Wall -ansi -pedantic
++CFLAGS+= -Wall -ansi -pedantic
+ 
+ all: libjbig.a tstcodec
+ 

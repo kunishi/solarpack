@@ -1,0 +1,19 @@
+--- Makefile~	Sat Apr  8 20:19:41 2000
++++ Makefile	Mon Jun 19 14:26:03 2000
+@@ -2,13 +2,13 @@
+ # $Id: patch-aa,v 1.1 2000/06/19 05:44:52 kunishi Exp $
+ 
+ # Select an ANSI/ISO C compiler here, GNU gcc is recommended
+-CC = gcc
++#CC = gcc
+ 
+ # Options for the compiler: A high optimization level is suggested
+-CCFLAGS = -O2 -W
++#CCFLAGS = -O2 -W
+ #CCFLAGS = -O -g -W -Wall -ansi -pedantic #-DDEBUG  # developer only
+ 
+-CFLAGS = $(CCFLAGS) -I../libjbig
++CFLAGS = -O -g -I../libjbig
+ 
+ VERSION=1.2
+ 
