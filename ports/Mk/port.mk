@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.68 2000/06/08 04:23:51 kunishi Exp $
+# $Id: port.mk,v 1.69 2000/06/08 04:33:43 kunishi Exp $
 #
 
 # ${SOAP_DIR} and ${SOAP_BINDIR} are set in ${SOAP_DIR}/share/mk/soap.conf.
@@ -335,7 +335,7 @@ INSTALL_TARGET+=	install.man
 
 .if defined(ONLY_FOR_ARCHS)
 .for __ARCH in ${ONLY_FOR_ARCHS}
-.if ${MACHINE_ARCH:M${__ARCH}} != ""
+.if ${ARCH:M${__ARCH}} != ""
 __ARCH_OK?=	1
 .endif
 .endfor
