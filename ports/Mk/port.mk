@@ -1,5 +1,5 @@
 #
-# $Id: port.mk,v 1.36 1999/08/27 11:54:05 kunishi Exp $
+# $Id: port.mk,v 1.37 1999/08/31 11:16:00 kunishi Exp $
 #
 
 # ${PKGBUILDDIR} is set in ${LOCALBASE}/share/mk/port.mk.
@@ -69,6 +69,9 @@ PKGINFO?=	${PKGDIR}/pkginfo
 PKGINFO_IN?=	${TEMPLATEDIR}/pkginfo
 CATEGORY?=	application
 MAINTAINER?=	${PKG_MAINTAINER}
+.if defined(CATEGORY_SHELL)
+CLASSES+=	shell
+.endif
 .if defined(USE_INSTALL_INFO)
 CLASSES+=	info
 .endif
@@ -791,6 +794,10 @@ gen-prototype-in:	${INSTALL_COOKIE}
 .if defined(USE_INSTALL_INFO)
 	@${ECHO} 'i i.info=%%TEMPLATEDIR%%/i.info' >> ${PROTOTYPE_IN}
 	@${ECHO} 'i r.info=%%TEMPLATEDIR%%/r.info' >> ${PROTOTYPE_IN}
+.endif
+.if defined(CATEGORY_SHELL)
+	@${ECHO} 'i i.shell=%%TEMPLATEDIR%%/i.shell >> ${PROTOTYPE_IN}
+	@${ECHO} 'i r.shell=%%TEMPLATEDIR%%/r.shell >> ${PROTOTYPE_IN}
 .endif
 	@(cd ${WRKDIR}${PREFIX} && find . -print | ${PKGPROTO}) | \
 	  ${SORT} +2 | ${UNIQ} | ${SED} \
