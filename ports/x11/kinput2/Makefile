@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.7 2001/03/02 08:53:11 kunishi Exp $
+# $Id: Makefile,v 1.8 2001/03/02 09:01:08 kunishi Exp $
 # 
 
 .include <port.pre.mk>
@@ -18,6 +18,5 @@ MASTER_SITES=	ftp://ftp.sra.co.jp/pub/x11/kinput2/
 USE_IMAKE=	yes
 
 LIB_DEPENDS=	OPENcanna:${PORTSDIR}/japanese/Canna
-MAKE_INSTALL_ARGS+=	MFLAGS='XAPPLOADDIR=${X11BASE}/lib/app-defaults'
 
 .include <port.mk>
