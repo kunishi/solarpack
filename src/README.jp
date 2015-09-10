@@ -1,72 +1,63 @@
 -*- text -*-
 
-SOAP -- Solaris Application Packaging tool
+Solarpack -- Solaris Application Packaging tool
 
-Author: $B9qEg>f@8(B <kunishi@acm.org>
+Author: 国島丈生 <kunishi@acm.org>
 
-1. $B$O$8$a$K(B
+1. はじめに
 
-SOAP$B$O!"(BSolaris$BMQ%P%$%J%j%Q%C%1!<%8$r:n@.$9$k$N$r;Y1g$9$k%D!<%k$G$9!#(B
-FreeBSD$B$N(Bports$B$d!"(BNetBSD$B$N(Bpkgsrc$B$K$J$i$C$?9=@.!&;H$$J}$K$J$C$F$$$^$9$,!"(B
-Solaris$B$N%Q%C%1!<%84IM}%7%9%F%`$KFC2=$7$?$5$^$6$^$J5!G=$,DI2C$5$l$F$$(B
-$B$^$9!#(B
+Solarpackは、Solaris用バイナリパッケージを作成するのを支援するツールです。
+FreeBSDのportsや、NetBSDのpkgsrcにならった構成・使い方になっていますが、
+Solarisのパッケージ管理システムに特化したさまざまな機能が追加されてい
+ます。
 
-$B8=:_!"(BSolaris7 (SPARC, Intel)$B$K$FF0:n$r3NG'$7$F$$$^$9!#$^$?!"(BSolaris2.6
-(SPARC)$B$G$b(BSOAP$B$N(Bbuild$B$K@.8y$9$k$3$H$r3NG'$7$F$$$^$9!#(BSolaris8$B$O:n<T$N(B
-$B4D6-$,@0$C$F$*$i$:!"F0:n$OL$3NG'$G$9(B($BF0$/$H;W$$$^$9$,!D!D(B)$B!#(B
+現在、Solaris7 (SPARC, Intel)にて動作を確認しています。また、Solaris2.6
+(SPARC)でもSolarpackのbuildに成功することを確認しています。Solaris8は作者の
+環境が整っておらず、動作は未確認です(動くと思いますが……)。
 
-$B>\$7$$FCD'$d;H$$J}$K$D$$$F$O!"IUB0$N%I%-%e%a%s%H$r;2>H$7$F$/$@$5$$!#(B
+詳しい特徴や使い方については、付属のドキュメントを参照してください。
 
-2. $BF~<jJ}K!(B
+2. インストール方法
 
-ftp://psi.c.oka-pu.ac.jp/pub/solaris/SOAP/ $B$K$F8x3+$r9T$C$F$$$^$9!#(B
-$B$3$N%G%#%l%/%H%j$K$"$k0J2<$N%U%!%$%k$r(Banonymous ftp$B$K$F<hF@$7$F$/$@$5$$!#(B
+Solarpackをインストールするには、gcc が必要となります。
+http://www.sunfreeware.com/ でバイナリパッケージを取得してインストール
+するなり、Solaris8のメディアについてきているgccをインストールしておく
+なりしてください。また、gccのインストールされたディレクトリにコマンド
+パスが通っている必要があります。また、/usr/ccs/bin にもコマンドパスを
+通しておいてください。
 
-	README.jp			$B$3$N%U%!%$%k(B
-	soap-src-0.3.2.tar.Z		SOAP$B%=!<%9%U%!%$%k(B
-	ports-snap.tar.gz		ports$B%D%j!<%9%J%C%W%7%g%C%H(B
+その後、以下の手順でインストールを行ってください。
 
-3. $B%$%s%9%H!<%kJ}K!(B
-
-SOAP$B$r%$%s%9%H!<%k$9$k$K$O!"(Bgcc $B$,I,MW$H$J$j$^$9!#(B
-http://www.sunfreeware.com/ $B$G%P%$%J%j%Q%C%1!<%8$r<hF@$7$F%$%s%9%H!<%k(B
-$B$9$k$J$j!"(BSolaris8$B$N%a%G%#%"$K$D$$$F$-$F$$$k(Bgcc$B$r%$%s%9%H!<%k$7$F$*$/(B
-$B$J$j$7$F$/$@$5$$!#$^$?!"(Bgcc$B$N%$%s%9%H!<%k$5$l$?%G%#%l%/%H%j$K%3%^%s%I(B
-$B%Q%9$,DL$C$F$$$kI,MW$,$"$j$^$9!#$^$?!"(B/usr/ccs/bin $B$K$b%3%^%s%I%Q%9$r(B
-$BDL$7$F$*$$$F$/$@$5$$!#(B
-
-$B$=$N8e!"0J2<$N<j=g$G%$%s%9%H!<%k$r9T$C$F$/$@$5$$!#(B
-
- (1) soap-src-0.3.2.tar.Z $B$rE,Ev$J%G%#%l%/%H%j$GE83+$9$k!#(B
+ (1) soap-src-0.3.2.tar.Z を適当なディレクトリで展開する。
  (2) cd soap-src-0.3.2
  (3) ./configure
-     --with-topdir $B$H$$$&%*%W%7%g%s$K$h$j!"(BSOAP$B$r%$%s%9%H!<%k$9$k(B
-     $B%G%#%l%/%H%j$r;XDj$G$-$k!#=q<0$O(B ./configure --help $B$r;2>H!#(B
+     --with-topdir というオプションにより、SOAPをインストールする
+     ディレクトリを指定できる。書式は ./configure --help を参照。
  (4) env LANG=C make bootstrap
-     $B$3$l$K$h$j!"(BSOAP$B$N%P%$%J%j%Q%C%1!<%8$,(B release/${ARCH}/${OSREL}/
-     $B$N2<$K:n$i$l$^$9!#4{B8$N4D6-$K$OA4$/1F6A$7$^$;$s!#$?$@$7!"(B
-     gcc 2.95.2 $B$N(B full build $B$r(B2$B2s9T$&$?$a!"%G%#%9%/MFNL$O$+$J$j(B
-     $BI,MW$G$9!#(B
-     $B$J$*!":G6a$N(B gmake $B$O(B LANG=japanese $B4D6-$G$O%$%s%9%H!<%k;~$KJ86g$r(B
-     $B8@$o$l$k$?$a!"(BLANG $B$r;XDj$7$J$$$+(B C $B$K$7$F$*$$$F$/$@$5$$!#(B
- (5) release/${ARCH}/${OSREL}/ $B$N2<$N%Q%C%1!<%872$r(B pkgadd(1) $B$G(B
-     $B%$%s%9%H!<%k$7$F$/$@$5$$!#(B
- (6) $(SOAP topdir)/share/mk/soap.conf $B$r4D6-$K9g$o$;$FJT=8$7$F$/$@$5$$!#(B
- (7) soap.conf $B$G;XDj$7$?%G%#%l%/%H%j$K(B ports-snap.tar.gz $B$rE83+$7$^$9!#(B
+     これにより、SOAPのバイナリパッケージが release/${ARCH}/${OSREL}/
+     の下に作られます。既存の環境には全く影響しません。ただし、
+     gcc 2.95.2 の full build を2回行うため、ディスク容量はかなり
+     必要です。
+     なお、最近の gmake は LANG=japanese 環境ではインストール時に文句を
+     言われるため、LANG を指定しないか C にしておいてください。
+ (5) release/${ARCH}/${OSREL}/ の下のパッケージ群を pkgadd(1) で
+     インストールしてください。
+ (6) $(SOAP topdir)/share/mk/soap.conf を環境に合わせて編集してください。
+ (7) soap.conf で指定したディレクトリに ports-snap.tar.gz を展開します。
 
-4. $BMxMQJ}K!(B
+3. 利用方法
 
-$B>\$7$/$OIUB0$N%I%-%e%a%s%H$r;2>H$7$F$/$@$5$$!#(B
+詳しくは付属のドキュメントを参照してください。
 
-SOAP$B%$%s%9%H!<%k;~$K;XDj$7$?%G%#%l%/%H%j$N2<$K!"(BSOAP$B<B9T$KI,MW$J%3%^%s%I(B
-$B$,$9$Y$F4^$^$l$F$$$^$9!#$3$NCf$K$O(B gcc $B$J$I$,4^$^$l$^$9$N$G!"IaCJ$O(B
-$B$3$N%G%#%l%/%H%j$K$O%Q%9$rDL$5$:!"(BSOAP$B$K$h$C$F%Q%C%1!<%8$r:n@.$9$k>l9g$N$_(B
-$B%Q%9$rDL$9$h$&$K$7$?$[$&$,$h$$$G$7$g$&!#(B
+SOAPインストール時に指定したディレクトリの下に、SOAP実行に必要なコマンド
+がすべて含まれています。この中には gcc などが含まれますので、普段は
+このディレクトリにはパスを通さず、SOAPによってパッケージを作成する場合のみ
+パスを通すようにしたほうがよいでしょう。
 
-5. $BCm0U;v9`(B
+4. 注意事項
 
-$BK\%7%9%F%`$NMxMQ$K$h$jB;32Ey$r<u$1$F$b!":n<T$O$$$C$5$$@UG$$r<h$j$^$;$s!#(B
-$B$"$J$?$N@UG$$K$*$$$FMxMQ$7$F$/$@$5$$!#(B
-($B%i%$%;%s%9>r9`$O$$$:$l@0Hw$7$^$9(B)
+本システムの利用により損害等を受けても、作者はいっさい責任を取りません。
+あなたの責任において利用してください。
+(ライセンス条項はいずれ整備します)
 
 $Id: README.jp,v 1.1 2000/06/06 09:15:50 kunishi Exp $
